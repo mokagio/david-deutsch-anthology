@@ -1,0 +1,25 @@
+books:
+  - name: The Fabric of Reality
+    url: TODO
+    published_date: YYYY/MM/DD
+  - name: The Beginning of Infinity
+    url: TODO
+    published_date: 2011/MM/DD
+
+talks:
+  - title: TITLE
+    url: URL
+    delivered_date: YYYY/MM/DD
+
+podcast_interviews:
+  - title: TITLE
+    url: URL
+    published_date: YYYY/MM/DD
+
+other:
+  - title: Google Scholar
+    details: List of technical publications.
+    url: URL
+  - title: Website
+    details: David's official website
+    url: URL
