@@ -17,9 +17,6 @@ podcast_interviews:
     published_date: YYYY/MM/DD
 
 other:
-  - title: Google Scholar
-    details: List of technical publications.
-    url: URL
   - title: Website
-    details: David's official website
-    url: URL
+    details: David's official website.
+    url: "https://www.daviddeutsch.org.uk/"
