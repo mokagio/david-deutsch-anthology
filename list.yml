@@ -12,9 +12,11 @@ talks:
     delivered_date: YYYY/MM/DD
 
 podcast_interviews:
-  - title: TITLE
-    url: URL
-    published_date: YYYY/MM/DD
+  - title: Disagreeing about Belief, Probability, and Truth
+    url: "https://www.youtube.com/watch?v=jGht9LNHytU"
+    show: Increments Podcast
+    show_url: "https://www.incrementspodcast.com/"
+    published_date: 2024/11/01
 
 other:
   - title: Website
