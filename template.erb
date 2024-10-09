@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource List</title>
+</head>
+<body>
+    <h1>Books</h1>
+    <ul>
+        <% books.each do |book| %>
+            <li>
+                <strong><%= book['name'] %></strong>
+                <br>
+                Published on: <%= book['published_date'] %>
+                <br>
+                <a href="<%= book['url'] %>">More Info</a>
+            </li>
+        <% end %>
+    </ul>
+
+    <h1>Talks</h1>
+    <ul>
+        <% talks.each do |talk| %>
+            <li>
+                <strong><%= talk['title'] %></strong>
+                <br>
+                Delivered on: <%= talk['delivered_date'] %>
+                <br>
+                <a href="<%= talk['url'] %>">Watch</a>
+            </li>
+        <% end %>
+    </ul>
+
+    <h1>Podcast Interviews</h1>
+    <ul>
+        <% podcast_interviews.each do |podcast| %>
+            <li>
+                <strong><%= podcast['title'] %></strong>
+                <br>
+                Show: <a href="<%= podcast['show_url'] %>"><%= podcast['show'] %></a>
+                <br>
+                Published on: <%= podcast['published_date'] %>
+                <br>
+                <a href="<%= podcast['url'] %>">Listen</a>
+            </li>
+        <% end %>
+    </ul>
+
+    <h1>Other</h1>
+    <ul>
+        <% other.each do |item| %>
+            <li>
+                <strong><%= item['title'] %></strong>
+                <br>
+                <%= item['details'] %>
+                <br>
+                <a href="<%= item['url'] %>">Visit</a>
+            </li>
+        <% end %>
+    </ul>
+</body>
+</html>
