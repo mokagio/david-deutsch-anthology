@@ -12,10 +12,17 @@ talks:
     delivered_date: YYYY/MM/DD
 
 podcast_interviews:
+  - title: The Deutsch Files I
+    url: https://nav.al/deutsch-files-i
+    show:
+      name: Naval's Podcast
+      url: https://nav.al/podcast
+    published_date: 2024/01/11
   - title: Disagreeing about Belief, Probability, and Truth
     url: "https://www.youtube.com/watch?v=jGht9LNHytU"
-    show: Increments Podcast
-    show_url: "https://www.incrementspodcast.com/"
+    show:
+      name: Increments Podcast
+      url: "https://www.incrementspodcast.com/"
     published_date: 2024/11/01
 
 other:

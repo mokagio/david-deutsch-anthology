@@ -35,7 +35,7 @@
       <% podcast_interviews.each do |podcast| %>
         <li>
           <em><a href="<%= podcast['url'] %>" target="_blank"><%= podcast['title'] %></a></em>
-          on <a href="<%= podcast['show_url'] %>" target="_blank"><%= podcast['show'] %></a>
+          on <a href="<%= podcast['show']['url'] %>" target="_blank"><%= podcast['show']['name'] %></a>
           (<%= podcast['published_date'] %>)
         </li>
       <% end %>
