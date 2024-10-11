@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'erb'
 require 'yaml'
 
@@ -18,7 +19,8 @@ erb = ERB.new(template)
 html_content = erb.result(binding)
 
 # Save the generated HTML to a file
-name = 'index.html'
+name = File.join('public', 'index.html')
+FileUtils.mkdir_p(File.dirname(name))
 File.open(name, 'w') do |file|
   file.write(html_content)
 end
