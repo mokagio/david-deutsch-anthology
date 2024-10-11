@@ -9,17 +9,13 @@
     <p>This page collects <a href="https://www.daviddeutsch.org.uk/" target="_blank">David Deutsch's</a> books, talks, and interviews.</p>
     <p>You can contribute to the list <a href="https://github.com/mokagio/david-deutsch-anthology" target="_blank">here</a>.</p>
     <h1>Books</h1>
-    <ul>
-      <% books.each do |book| %>
-        <li>
-          <strong><%= book['name'] %></strong>
-          <br>
-          Published on: <%= book['published_date'] %>
-        <br>
-        <a href="<%= book['url'] %>" target="_blank">More Info</a>
-        </li>
-      <% end %>
-    </ul>
+    <% books.each do |book| %>
+      <p>
+        <a href="<%= book['url'] %>" target="_blank">
+          <em><%= book['name'] %></em> (<%= book['published_year'] %>)
+        </a>
+      </p>
+    <% end %>
 
     <h1>Talks</h1>
     <ul>
@@ -38,13 +34,9 @@
     <ul>
       <% podcast_interviews.each do |podcast| %>
         <li>
-          <strong><%= podcast['title'] %></strong>
-          <br>
-          Show: <a href="<%= podcast['show_url'] %>" target="_blank"><%= podcast['show'] %></a>
-          <br>
-          Published on: <%= podcast['published_date'] %>
-        <br>
-        <a href="<%= podcast['url'] %>" target="_blank">Listen</a>
+          <em><a href="<%= podcast['url'] %>" target="_blank"><%= podcast['title'] %></a></em>
+          on <a href="<%= podcast['show_url'] %>" target="_blank"><%= podcast['show'] %></a>
+          (<%= podcast['published_date'] %>)
         </li>
       <% end %>
     </ul>

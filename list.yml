@@ -1,10 +1,10 @@
 books:
   - name: The Fabric of Reality
     url: TODO
-    published_date: YYYY/MM/DD
+    published_year: 1997
   - name: The Beginning of Infinity
     url: TODO
-    published_date: 2011/MM/DD
+    published_year: 2011
 
 talks:
   - title: TITLE
