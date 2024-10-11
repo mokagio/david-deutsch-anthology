@@ -3,7 +3,7 @@ require 'erb'
 require 'yaml'
 
 # Load data from YAML file
-data = YAML.load_file('list.yml')
+data = YAML.load_file('list.yml', aliases: true)
 
 # Extract the sections from the YAML file
 books = data['books']

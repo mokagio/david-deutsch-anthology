@@ -1,7 +1,10 @@
+---
+
 books:
   - name: The Fabric of Reality
     url: TODO
     published_year: 1997
+
   - name: The Beginning of Infinity
     url: TODO
     published_year: 2011
@@ -14,10 +17,21 @@ talks:
 podcast_interviews:
   - title: The Deutsch Files I
     url: https://nav.al/deutsch-files-i
-    show:
+    show: &naval
       name: Naval's Podcast
       url: https://nav.al/podcast
     published_date: 2024/01/11
+
+  - title: The Deutsch Files II
+    url: https://nav.al/deutsch-files-ii
+    show: *naval
+    published_date: 2024/01/26
+
+  - title: The Deutsch Files III
+    url: https://nav.al/deutsch-files-iii
+    show: *naval
+    published_date: 2024/02/17
+
   - title: Disagreeing about Belief, Probability, and Truth
     url: "https://www.youtube.com/watch?v=jGht9LNHytU"
     show:
