@@ -52,6 +52,5 @@ podcast_interviews:
     published_date: 2023/03/07
 
 other:
-  - title: Website
-    details: David's official website.
-    url: "https://www.daviddeutsch.org.uk/"
+  - name: David's official website
+    url: https://www.daviddeutsch.org.uk/

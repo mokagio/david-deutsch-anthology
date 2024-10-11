@@ -45,11 +45,7 @@
     <ul>
       <% other.each do |item| %>
         <li>
-          <strong><%= item['title'] %></strong>
-          <br>
-          <%= item['details'] %>
-          <br>
-          <a href="<%= item['url'] %>" target="_blank">Visit</a>
+          <a href="<%= item['url'] %>" target="_blank"><%= item['name'] %></a>
         </li>
       <% end %>
     </ul>
