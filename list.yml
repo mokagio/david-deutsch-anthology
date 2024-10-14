@@ -44,6 +44,11 @@ podcast_interviews:
     show: *naval
     published_date: 2024/02/17
 
+  - title: The Deutsch Files IV
+    url: https://nav.al/deutsch-files-iv
+    show: *naval
+    published_date: 2024/10/11
+
   - title: Disagreeing about Belief, Probability, and Truth
     url: "https://www.youtube.com/watch?v=jGht9LNHytU"
     show:
@@ -62,6 +67,30 @@ podcast_interviews:
     url: https://www.youtube.com/watch?v=3JmfAJDiHwQ
     show: *logan_chipkin
     published_date: 2023/03/07
+
+  - title: Surviving the Cosmos
+    url: https://www.samharris.org/podcasts/making-sense-episodes/surviving-the-cosmos
+    show: &making_sense
+      name: Making Sense with Sam Harris
+      url: https://www.samharris.org/podcasts
+    published_date: 2015/12/16
+
+  - title: Finding our Way in the Cosmos
+    url: https://www.samharris.org/podcasts/making-sense-episodes/finding-our-way-in-the-cosmos
+    show: *making_sense
+    published_date: 2016/11/16
+
+  - title: David Deutsch & Steven Pinker (First Ever Public Dialogue) — AGI, P(Doom), and The Enemies of Progress
+    url: https://josephnoelwalker.com/153-deutsch-pinker-dialogue/
+    show: &joe_walker
+      title: The Joe Walker Podcast
+      url: https://josephnoelwalker.com/podcast/
+    published_date: 2023/12/20
+
+  - title: Against Bayesianism
+    url: https://josephnoelwalker.com/139-david-deutsch/
+    show: *joe_walker
+    published_date: 2022/04/25
 
 other:
   - name: David's official website
