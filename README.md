@@ -1,5 +1,9 @@
 # David Deutsch Anthology
 
+Online at https://mokagio.github.io/david-deutsch-anthology/
+
+---
+
 This project aims to collect all of [David Deutsch](https://www.daviddeutsch.org.uk/)'s speeches, talks, and interviews.
 
 It is both a personal reference and an attempt to share David's powerful worldview.
