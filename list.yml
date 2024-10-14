@@ -79,7 +79,7 @@ podcast_interviews:
   - title: David Deutsch & Steven Pinker (First Ever Public Dialogue) — AGI, P(Doom), and The Enemies of Progress
     url: https://josephnoelwalker.com/153-deutsch-pinker-dialogue/
     show: &joe_walker
-      title: The Joe Walker Podcast
+      name: The Joe Walker Podcast
       url: https://josephnoelwalker.com/podcast/
     published_date: 2023/12/20
 
