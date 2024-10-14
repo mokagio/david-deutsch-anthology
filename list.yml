@@ -2,11 +2,23 @@
 
 books:
   - name: The Fabric of Reality
-    url: TODO
+    urls:
+      - title: Official Site
+        url: https://www.daviddeutsch.org.uk/books/the-fabric-of-reality/
+      - title: GoodReads
+        url: https://www.goodreads.com/book/show/177068.The_Fabric_of_Reality
+      - title: Amazon (Affiliate)
+        url: https://amzn.to/3Yno2JK
     published_year: 1997
 
   - name: The Beginning of Infinity
-    url: TODO
+    urls:
+      - title: Official Site
+        url: https://www.thebeginningofinfinity.com/
+      - title: GoodReads
+        url: https://www.goodreads.com/book/show/10483171-the-beginning-of-infinity
+      - title: Amazon (Affiliate)
+        url: https://amzn.to/3TF7Pga
     published_year: 2011
 
 talks:

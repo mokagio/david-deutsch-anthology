@@ -11,9 +11,11 @@
     <h1>Books</h1>
     <% books.each do |book| %>
       <p>
-        <a href="<%= book['url'] %>" target="_blank">
-          <em><%= book['name'] %></em> (<%= book['published_year'] %>)
-        </a>
+        <em><%= book['name'] %></em> (<%= book['published_year'] %>)
+        -
+        <% book['urls'].each_with_index do |url, index| %>
+          <a href="<%= url['url'] %>" target="_blank"><%= url['title'] %></a><% unless index >= book['urls'].count - 1 %>,&nbsp;<% end %>
+        <% end %>
       </p>
     <% end %>
 
