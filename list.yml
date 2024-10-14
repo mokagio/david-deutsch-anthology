@@ -76,6 +76,20 @@ podcast_interviews:
     show: *making_sense
     published_date: 2016/11/16
 
+  - title: David Deutsch and Naval Ravikant — The Fabric of Reality, The Importance of Disobedience, The Inevitability of Artificial General Intelligence, Finding Good Problems, Redefining Wealth, Foundations of True Knowledge, Harnessing Optimism, Quantum Computing, and More
+    url: https://tim.blog/2023/03/24/david-deutsch-naval-ravikant/
+    show:
+      name: The Tim Ferriss Show
+      url: https://tim.blog
+    published_date: 2023/03/24
+
+  - title: David Deutsch on Multiple Worlds and Our Place in Them
+    url: https://conversationswithtyler.com/episodes/david-deutsch/
+    show:
+      name: Conversations with Tyler
+      url: https://conversationswithtyler.com/episodes/
+    published_date: 2021/06/02
+
   - title: David Deutsch & Steven Pinker (First Ever Public Dialogue) — AGI, P(Doom), and The Enemies of Progress
     url: https://josephnoelwalker.com/153-deutsch-pinker-dialogue/
     show: &joe_walker
@@ -87,6 +101,13 @@ podcast_interviews:
     url: https://josephnoelwalker.com/139-david-deutsch/
     show: *joe_walker
     published_date: 2022/04/25
+
+  - title: Free-Will, Taking Children Seriously, and Anarcho-Capitalism
+    url: https://www.youtube.com/watch?app=desktop&v=Hh9xOB2oDHk
+    show:
+      name: Arjun Khemani's YouTube Channel
+      url: https://www.youtube.com/@arjunkhemani
+    published_date: 2024/01/01
 
 other:
   - name: David's official website
