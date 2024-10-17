@@ -18,9 +18,9 @@ books:
     published_year: 2011
 
 talks:
-  - title: TITLE
-    url: URL
-    delivered_date: YYYY/MM/DD
+  - title: David Deutsch on Optimism at RSA
+    url: https://www.youtube.com/watch?v=lX-K63pVPTM
+    delivered_date: 2015/11/18
 
 podcast_interviews:
   - title: The Deutsch Files I
@@ -112,3 +112,5 @@ podcast_interviews:
 other:
   - name: David's official website
     url: https://www.daviddeutsch.org.uk/
+  - name: "BBC Antenna Documentary: Time-Travel by Dr David Deutsch (1992)"
+    url: https://www.youtube.com/watch?v=C6_gxoLwrWw
