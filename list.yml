@@ -102,6 +102,20 @@ podcast_interviews:
     show: *joe_walker
     published_date: 2022/04/25
 
+  - title: The Universal Constructor with David Deutsch
+    url: https://podcasts.apple.com/nz/podcast/the-universal-constructor-with-david-deutsch/id1481994554?i=1000603140355
+    show:
+      name: Fallible Animals
+      url: https://www.youtube.com/@loganchipkin4905
+    published_date: 2023/07/03
+
+  - title: Selecting for Deafness
+    url: https://podcasts.apple.com/us/podcast/s01e14-selecting-for-deafness-david-deutsch/id1470490447?i=1000466743291
+    show:
+      name: Dilemma Podcast
+      url: https://podcasts.apple.com/us/podcast/dilemma-podcast/id1470490447
+    published_date: 2020/02/26
+
   - title: Free-Will, Taking Children Seriously, and Anarcho-Capitalism
     url: https://www.youtube.com/watch?app=desktop&v=Hh9xOB2oDHk
     show:
