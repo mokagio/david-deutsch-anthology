@@ -102,6 +102,13 @@ podcast_interviews:
     show: *joe_walker
     published_date: 2022/04/25
 
+  - title: On Beauty, Knowledge, and Progress
+    url: https://www.youtube.com/watch?v=vYNLahd6fds
+    show:
+      name: Foresight Institute Podcast
+      url: https://www.youtube.com/channel/UCg5UVUMqXeCQ03MelT_RXMg
+    published_date: 2023/04/27
+
   - title: The Universal Constructor with David Deutsch
     url: https://podcasts.apple.com/nz/podcast/the-universal-constructor-with-david-deutsch/id1481994554?i=1000603140355
     show:
