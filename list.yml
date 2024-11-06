@@ -130,6 +130,13 @@ podcast_interviews:
       url: https://www.youtube.com/@arjunkhemani
     published_date: 2024/01/01
 
+  - title: The Multiverse is REAL
+    url: https://www.youtube.com/watch?v=bux0SjaUCY0
+    show:
+      name: Within Reason Podcast
+      url: https://www.youtube.com/@CosmicSkeptic
+    published_date: 2024/03/05
+
 other:
   - name: David's official website
     url: https://www.daviddeutsch.org.uk/
