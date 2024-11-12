@@ -124,11 +124,16 @@ podcast_interviews:
     published_date: 2020/02/26
 
   - title: Free-Will, Taking Children Seriously, and Anarcho-Capitalism
-    url: https://www.youtube.com/watch?app=desktop&v=Hh9xOB2oDHk
-    show:
-      name: Arjun Khemani's YouTube Channel
+    url: https://www.youtube.com/watch?v=Hh9xOB2oDHk
+    show: &arjun_khemain
+      name: Arjun Khemani's Podcast
       url: https://www.youtube.com/@arjunkhemani
     published_date: 2024/01/01
+
+  - title: The Era of Man, Popper, and Western Civilization
+    url: https://www.youtube.com/watch?v=I3FzAjgPztU
+    show: *arjun_khemain
+    published_date: 2024/11/12
 
   - title: The Multiverse is REAL
     url: https://www.youtube.com/watch?v=bux0SjaUCY0
