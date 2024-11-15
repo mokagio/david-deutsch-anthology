@@ -142,11 +142,16 @@ podcast_interviews:
       url: https://www.youtube.com/@CosmicSkeptic
     published_date: 2024/03/05
 
-  - title: Truth and Abstractions, with David Deutsch and Jake Orthwein
-    url: https://doexplain.buzzsprout.com/1260167/episodes/15993837-half-episode-57-truth-and-abstractions-with-david-deutsch-and-jake-orthwein
-    show:
+  - title: The Primacy of Ideas, with David Deutsch
+    url: https://doexplain.buzzsprout.com/1260167/episodes/4846241-10-the-primacy-of-ideas-with-david-deutsch
+    show: &do_explain
       name: Do Explain
       url: https://doexplain.buzzsprout.com
+    published_date: 2020/02/25
+
+  - title: Truth and Abstractions, with David Deutsch and Jake Orthwein
+    url: https://doexplain.buzzsprout.com/1260167/episodes/15993837-half-episode-57-truth-and-abstractions-with-david-deutsch-and-jake-orthwein
+    show: *do_explain
     published_date: 2024/10/28
 
 other:
