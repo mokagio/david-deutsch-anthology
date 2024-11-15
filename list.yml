@@ -142,8 +142,16 @@ podcast_interviews:
       url: https://www.youtube.com/@CosmicSkeptic
     published_date: 2024/03/05
 
+  - title: Truth and Abstractions, with David Deutsch and Jake Orthwein
+    url: https://doexplain.buzzsprout.com/1260167/episodes/15993837-half-episode-57-truth-and-abstractions-with-david-deutsch-and-jake-orthwein
+    show:
+      name: Do Explain
+      url: https://doexplain.buzzsprout.com
+    published_date: 2024/10/28
+
 other:
   - name: David's official website
     url: https://www.daviddeutsch.org.uk/
+
   - name: "BBC Antenna Documentary: Time-Travel by Dr David Deutsch (1992)"
     url: https://www.youtube.com/watch?v=C6_gxoLwrWw
