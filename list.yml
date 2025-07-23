@@ -154,6 +154,32 @@ podcast_interviews:
     show: *do_explain
     published_date: 2024/10/28
 
+  - title: Physicist Dr. David Deutsch-Quantum Computing, Turing Machines, & Multiverses
+    url: https://www.youtube.com/watch?v=S7GS_T_2dyE
+    show: &the_saad_truth
+      name: The Saad Truth with Dr. Saad
+      url: thesaadtruthwithdrsaad
+    published_date: 2024/10/24
+
+  - title: Physicist Dr. David Deutsch Returns - Science, Mathematics & Jew Hatred
+    url: https://www.youtube.com/watch?v=ZcPExkCWzRM
+    show: *the_saad_truth
+    published_date: 2024/11/12
+
+  - title: David Deutsch, Peter Boghossian, & Reid Nicewonder Talk Fermi Paradox, Ideological Contagion, & More
+    url: https://www.youtube.com/watch?v=qPvTbftn-xY
+    show:
+      name: Conversations with Peter Boghossian
+      url: https://www.youtube.com/watch?v=U6_20UFONB4&list=PLYNjnJFU-62sS7o8YLGJGe7RiKneIYfU2
+    published_date: 2024/03/06
+
+  - title: "David Deutsch: the fabric of explanations, optimism and creativity"
+    url: https://www.fromthelotus.world/p/23-david-deutsch-the-fabric-of-explanations
+    show:
+      name: Salvador Podcast
+      url: https://www.fromthelotus.world/
+    published_date: 2025/06/24
+
 other:
   - name: David's official website
     url: https://www.daviddeutsch.org.uk/
