@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'fileutils'
 require 'erb'
 require 'yaml'
@@ -12,7 +14,7 @@ podcast_interviews = data['podcast_interviews']
 other = data['other']
 
 # Load the ERB template
-template = File.read('template.erb')
+template = File.read(File.join('templates', 'index.erb'))
 
 # Bind the variables and generate the HTML
 erb = ERB.new(template)

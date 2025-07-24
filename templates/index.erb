@@ -37,8 +37,12 @@
     <h1>Podcast Interviews</h1>
     <ul>
       <% podcast_interviews.each do |podcast| %>
+        <%
+          url = podcast['url'] || podcast['youtube_url'] || podcast['podcast_url']
+          next unless url
+        %>
         <li>
-          <em><a href="<%= podcast['url'] %>" target="_blank"><%= podcast['title'] %></a></em>
+          <em><a href="<%= url %>" target="_blank"><%= podcast['title'] %></a></em>
           on <a href="<%= podcast['show']['url'] %>" target="_blank"><%= podcast['show']['name'] %></a>
           (<%= podcast['published_date'] %>)
         </li>

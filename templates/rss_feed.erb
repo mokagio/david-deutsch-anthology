@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <atom:link href="https://mokagio.github.io/david-deutsch-anthology/feed.rss" rel="self" type="application/rss+xml" />
+    <title>David Deutsch Podcast Interviews</title>
+    <link>https://mokagio.github.io/david-deutsch-anthology/</link>
+    <description>A collection of podcast appearances by David Deutsch.</description>
+    <language>en-us</language>
+    <pubDate><%= Time.now.rfc2822 %></pubDate>
+    <% podcast_interviews.each do |podcast| %>
+      <% next unless podcast['podcast_url'] %>
+      <item>
+        <title><%= podcast['title'] %></title>
+        <link><%= podcast['podcast_url'] %></link>
+        <guid><%= podcast['podcast_url'] %></guid>
+        <pubDate><%= Time.parse(podcast['published_date']).rfc2822 rescue Time.now.rfc2822 %></pubDate>
+        <description>Interview on <%= podcast.dig('show', 'name') || 'Unknown Show' %></description>
+      </item>
+    <% end %>
+  </channel>
+</rss>

@@ -46,21 +46,21 @@ podcast_interviews:
     published_date: 2024/10/11
 
   - title: Disagreeing about Belief, Probability, and Truth
-    url: "https://www.youtube.com/watch?v=jGht9LNHytU"
+    youtube_url: https://www.youtube.com/watch?v=jGht9LNHytU
     show:
       name: Increments Podcast
-      url: "https://www.incrementspodcast.com/"
+      url: https://www.incrementspodcast.com/
     published_date: 2024/11/01
 
   - title: David Deutsch Interview
-    url: https://www.youtube.com/watch?v=P8bCBypqrEw
+    youtube_url: https://www.youtube.com/watch?v=P8bCBypqrEw
     show: &logan_chipkin
       name: Logan Chipkin
       url: https://www.youtube.com/@loganchipkin4905
     published_date: 2020/09/24
 
   - title: The Universal Constructor with David Deutsch
-    url: https://www.youtube.com/watch?v=3JmfAJDiHwQ
+    youtube_url: https://www.youtube.com/watch?v=3JmfAJDiHwQ
     show: *logan_chipkin
     published_date: 2023/03/07
 
@@ -103,71 +103,71 @@ podcast_interviews:
     published_date: 2022/04/25
 
   - title: On Beauty, Knowledge, and Progress
-    url: https://www.youtube.com/watch?v=vYNLahd6fds
+    youtube_url: https://www.youtube.com/watch?v=vYNLahd6fds
     show:
       name: Existential Hope Podcast by Foresight Institute
       url: https://www.youtube.com/channel/UCg5UVUMqXeCQ03MelT_RXMg
     published_date: 2023/04/27
 
   - title: The Universal Constructor with David Deutsch
-    url: https://podcasts.apple.com/nz/podcast/the-universal-constructor-with-david-deutsch/id1481994554?i=1000603140355
+    podcast_url: https://podcasts.apple.com/nz/podcast/the-universal-constructor-with-david-deutsch/id1481994554?i=1000603140355
     show:
       name: Fallible Animals
       url: https://www.youtube.com/@loganchipkin4905
     published_date: 2023/07/03
 
   - title: Selecting for Deafness
-    url: https://podcasts.apple.com/us/podcast/s01e14-selecting-for-deafness-david-deutsch/id1470490447?i=1000466743291
+    podcast_url: https://podcasts.apple.com/us/podcast/s01e14-selecting-for-deafness-david-deutsch/id1470490447?i=1000466743291
     show:
       name: Dilemma Podcast
       url: https://podcasts.apple.com/us/podcast/dilemma-podcast/id1470490447
     published_date: 2020/02/26
 
   - title: Free-Will, Taking Children Seriously, and Anarcho-Capitalism
-    url: https://www.youtube.com/watch?v=Hh9xOB2oDHk
+    youtube_url: https://www.youtube.com/watch?v=Hh9xOB2oDHk
     show: &arjun_khemain
       name: Arjun Khemani's Podcast
       url: https://www.youtube.com/@arjunkhemani
     published_date: 2024/01/01
 
   - title: The Era of Man, Popper, and Western Civilization
-    url: https://www.youtube.com/watch?v=I3FzAjgPztU
+    youtube_url: https://www.youtube.com/watch?v=I3FzAjgPztU
     show: *arjun_khemain
     published_date: 2024/11/12
 
   - title: The Multiverse is REAL
-    url: https://www.youtube.com/watch?v=bux0SjaUCY0
+    youtube_url: https://www.youtube.com/watch?v=bux0SjaUCY0
     show:
       name: Within Reason Podcast
       url: https://www.youtube.com/@CosmicSkeptic
     published_date: 2024/03/05
 
   - title: The Primacy of Ideas, with David Deutsch
-    url: https://doexplain.buzzsprout.com/1260167/episodes/4846241-10-the-primacy-of-ideas-with-david-deutsch
+    podcast_url: https://doexplain.buzzsprout.com/1260167/episodes/4846241-10-the-primacy-of-ideas-with-david-deutsch
     show: &do_explain
       name: Do Explain
       url: https://doexplain.buzzsprout.com
     published_date: 2020/02/25
 
   - title: Truth and Abstractions, with David Deutsch and Jake Orthwein
-    url: https://doexplain.buzzsprout.com/1260167/episodes/15993837-half-episode-57-truth-and-abstractions-with-david-deutsch-and-jake-orthwein
+    podcast_url: https://doexplain.buzzsprout.com/1260167/episodes/15993837-half-episode-57-truth-and-abstractions-with-david-deutsch-and-jake-orthwein
     show: *do_explain
     published_date: 2024/10/28
 
   - title: Physicist Dr. David Deutsch-Quantum Computing, Turing Machines, & Multiverses
-    url: https://www.youtube.com/watch?v=S7GS_T_2dyE
+    youtube_url: https://www.youtube.com/watch?v=S7GS_T_2dyE
     show: &the_saad_truth
       name: The Saad Truth with Dr. Saad
       url: thesaadtruthwithdrsaad
     published_date: 2024/10/24
 
   - title: Physicist Dr. David Deutsch Returns - Science, Mathematics & Jew Hatred
-    url: https://www.youtube.com/watch?v=ZcPExkCWzRM
+    youtube_url: https://www.youtube.com/watch?v=ZcPExkCWzRM
     show: *the_saad_truth
     published_date: 2024/11/12
 
   - title: David Deutsch, Peter Boghossian, & Reid Nicewonder Talk Fermi Paradox, Ideological Contagion, & More
-    url: https://www.youtube.com/watch?v=qPvTbftn-xY
+    youtube_url: https://www.youtube.com/watch?v=qPvTbftn-xY
     show:
       name: Conversations with Peter Boghossian
       url: https://www.youtube.com/watch?v=U6_20UFONB4&list=PLYNjnJFU-62sS7o8YLGJGe7RiKneIYfU2
