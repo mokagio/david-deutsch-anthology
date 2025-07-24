@@ -10,7 +10,7 @@ data = YAML.load_file('list.yml', aliases: true)
 # Extract the sections from the YAML file
 books = data['books']
 talks = data['talks']
-podcast_interviews = data['podcast_interviews']
+podcast_interviews = data['podcast_interviews'].sort_by { |i| i['published_date'] }
 other = data['other']
 
 # Load the ERB template

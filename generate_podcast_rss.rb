@@ -6,7 +6,7 @@ require 'time'
 require 'fileutils'
 
 data = YAML.load_file('list.yml', aliases: true)
-podcast_interviews = data['podcast_interviews']#.sort { |a, b| Time.parse(a['published_date']) < Time.parse(b['published_date']) }
+podcast_interviews = data['podcast_interviews'].sort_by { |i| i['published_date'] }
 
 output_path = File.join('public', 'podcast.rss')
 FileUtils.mkdir_p(File.dirname(output_path))
