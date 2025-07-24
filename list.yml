@@ -111,6 +111,7 @@ podcast_interviews:
 
   - title: The Universal Constructor with David Deutsch
     podcast_url: https://podcasts.apple.com/nz/podcast/the-universal-constructor-with-david-deutsch/id1481994554?i=1000603140355
+    youtube_url: https://www.youtube.com/watch?v=P8bCBypqrEw
     show:
       name: Fallible Animals
       url: https://www.youtube.com/@loganchipkin4905
@@ -179,6 +180,75 @@ podcast_interviews:
       name: Salvador Podcast
       url: https://www.fromthelotus.world/
     published_date: 2025/06/24
+
+  - title: David Deutsch on Brexit and Error Correction
+    youtube_url: https://www.youtube.com/watch?v=xdtssXITXuE
+    show: &joe_boswell
+      name: Joe Boswell
+      url: https://www.youtube.com/@joeboswellphilosophy
+    published_date: 2019/12/05
+
+  - title: David Deutsch on 'Constructor Theory'
+    youtube_url: https://www.youtube.com/watch?v=d8KCXgzqhSQ
+    show: *joe_boswell
+    published_date: 2018/12/08
+
+  - title: David Deutsch - AI, America, Fun, & Bayes
+    youtube_url: https://www.youtube.com/watch?v=EVwjofV5TgU
+    url: https://www.dwarkesh.com/p/david-deutsch
+    show:
+      name: Dwarkesh Podcast
+      url: https://www.dwarkesh.com
+    published_date: 2022/01/31
+
+  - title: "ToKCast Episode 100: David Deutsch"
+    youtube_url: https://www.youtube.com/watch?v=_pAgz8iVC44
+    show: &tokcast
+      name: ToKCast
+      url: https://www.bretthall.org/tokcast
+    published_date: 2021/12/01
+
+  - title: To what extent can we predict the future? With Robin Hanson and David Deutsch
+    youtube_url: https://www.youtube.com/watch?v=IBc1oVXen-o
+    show:
+      name: Daniel Martin
+      url: https://www.youtube.com/@dannn185
+    published_date: 2021/12/13
+
+  - title: David Deutsch on The Fun Criterion, Objective Beauty & Artificial Intelligence
+    youtube_url: https://www.youtube.com/watch?v=uQ2GHzFYxaI&t=1s
+    show:
+      name: Ripples
+      url: https://www.youtube.com/@RippleQM
+    published_date: 2021/10/09
+
+  - title: David Deutsch – 'Karl Popper and the Beginning of Infinity'
+    youtube_url: https://www.youtube.com/watch?v=vKO8YRwVVu8
+    show:
+      name: The Popperian Podcast
+      url: https://www.jedleahenry.org/the-popperian-podcast
+    published_date: 2020/11/29
+
+  - title: Chat with David Deutsch about The Beginning of Infinity
+    youtube_url: https://www.youtube.com/watch?v=t511rshmw1Y
+    show:
+      name: visakanv
+      url: https://www.youtube.com/@visakanv
+    published_date: 2020/03/18
+
+  - title: Meeting David Deutsch
+    youtube_url: https://www.youtube.com/watch?v=Qrt0XXg0QKM
+    show:
+      name: Knowledge and Reality
+      url: https://www.sadianaeem.org/podcasts.html
+    published_date: 2021/01/10
+
+  - title: Theory of Anything Hosts David Deutsch
+    youtube_url: https://www.youtube.com/watch?v=Q_Cs5iNazB8
+    show:
+      name: Theory of Anything
+      url: https://www.youtube.com/@theoryofanything6137
+    published_date: 2021/01/11
 
 other:
   - name: David's official website
