@@ -33,7 +33,9 @@ jobs:
         uses: ruby/setup-ruby@v1
       - name: Generate static pages
         run: ruby generate_html.rb
-      - name: Upload artifact
+      - name: Generate podcast feed
+        run: ruby generate_podcast_rss.rb
+      - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:
           path: './public/'
