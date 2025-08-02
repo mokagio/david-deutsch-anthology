@@ -250,6 +250,14 @@ podcast_interviews:
       url: https://www.youtube.com/@theoryofanything6137
     published_date: 2021/01/11
 
+  - title: A Woven Web of Guesses with DAVID DEUTSCH
+    youtube_url: https://www.youtube.com/watch?v=Nsv36BuuRK4
+    podcast_url: https://podcasts.apple.com/us/podcast/a-woven-web-of-guesses-with-david-deutsch/id1672821908?i=1000701986283
+    show:
+      name: The Falsifiable Podcast
+      url: https://www.youtube.com/@thefalsifiablepodcast
+    published_date: 2025/04/02
+
 other:
   - name: David's official website
     url: https://www.daviddeutsch.org.uk/
