@@ -258,6 +258,24 @@ podcast_interviews:
       url: https://www.youtube.com/@thefalsifiablepodcast
     published_date: 2025/04/02
 
+  - title: '"There is only one interpretation of quantum mechanics" | David Deutsch FULL INTERVIEW'
+    youtube_url: https://www.youtube.com/watch?v=ilEjjnkgTfQ
+    show:
+      name: The Institute of Art and Ideas
+      url: https://www.youtube.com/@TheInstituteOfArtAndIdeas
+    published_date: 2025/06/04
+
+lectures:
+  - title: The Unity of the Universe
+    url: https://podcasts.ox.ac.uk/unity-universe
+    date: 2016/03/09
+
+print_interviews:
+  - title:
+    url: https://philosophynow.org/issues/30/David_Deutsch
+    publication: Philosophy Now
+    issue: 30
+
 other:
   - name: David's official website
     url: https://www.daviddeutsch.org.uk/
