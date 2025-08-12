@@ -265,6 +265,20 @@ podcast_interviews:
       url: https://www.youtube.com/@TheInstituteOfArtAndIdeas
     published_date: 2025/06/04
 
+  - title: 'Peter Werkhoven joins David Deutsch digitally to talk about quantum computing'
+    youtube_url: https://www.youtube.com/watch?v=C3XP0CAARU4
+    show:
+      name: TNO
+      url: https://www.youtube.com/@tno
+    published_date: 2025/06/03
+
+  - title: 'How Quantum Theory Leads to Conscious AI | David Deutsch Interview'
+    youtube_url: https://www.youtube.com/watch?v=iuTn2vgkayA
+    show:
+      name: This Is World
+      url: https://www.youtube.com/@ThisIsWorldOfficial
+    published_date: 2025/08/07
+
 lectures:
   - title: The Unity of the Universe
     url: https://podcasts.ox.ac.uk/unity-universe
