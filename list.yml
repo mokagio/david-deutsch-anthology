@@ -279,6 +279,15 @@ podcast_interviews:
       url: https://www.youtube.com/@ThisIsWorldOfficial
     published_date: 2025/08/07
 
+  - title: "David Deutsch - The Beginning of Infinity, Explanations That Transform the World"
+    url: https://theinnovationshow.io/episode/ep-145-the-beginning-of-infinity-explanations-that-transform-the-world-david-deutsch/
+    youtube_url: https://www.youtube.com/watch?v=flA3Qbkj_cw
+    podcast_url: https://theinnovationshow.io/download-episode/354/ep-145-the-beginning-of-infinity-explanations-that-transform-the-world-david-deutsch.mp3
+    show:
+      name: The Innovation Show
+      url: https://theinnovationshow.io/
+    published_date: 2019/02/12
+
 lectures:
   - title: The Unity of the Universe
     url: https://podcasts.ox.ac.uk/unity-universe
