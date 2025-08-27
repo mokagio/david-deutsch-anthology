@@ -312,3 +312,10 @@ podcast_interviews:
       name: The Innovation Show
       url: https://theinnovationshow.io/
     published_date: 2019/02/12
+
+  - title: "David Deutsch: The Quantum Theory No One Dares Explain!"
+    youtube_url: https://www.youtube.com/watch?v=EPX_t3E1QOU
+    show:
+      name: Brian Keating's Into The Impossible Podcast
+      url: https://www.youtube.com/watch?v=sa-WZcXhYH4&list=PLJGKdZD30K_9rVCDAdRSwoJLi5ls6JN-q
+    published_date: 2025/08/23
