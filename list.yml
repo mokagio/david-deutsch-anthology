@@ -17,6 +17,27 @@ books:
         url: https://www.goodreads.com/book/show/10483171-the-beginning-of-infinity
     published_year: 2011
 
+lectures:
+  - title: The Unity of the Universe
+    url: https://podcasts.ox.ac.uk/unity-universe
+    date: 2016/03/09
+
+print_interviews:
+  - title:
+    url: https://philosophynow.org/issues/30/David_Deutsch
+    publication: Philosophy Now
+    issue: 30
+
+other:
+  - name: David's official website
+    url: https://www.daviddeutsch.org.uk/
+
+  - name: David's YouTube channel
+    url: https://www.youtube.com/@DavidDeutschPhysicist
+
+  - name: "BBC Antenna Documentary: Time-Travel by Dr David Deutsch (1992)"
+    url: https://www.youtube.com/watch?v=C6_gxoLwrWw
+
 talks:
   - title: David Deutsch on Optimism at RSA
     url: https://www.youtube.com/watch?v=lX-K63pVPTM
@@ -291,24 +312,3 @@ podcast_interviews:
       name: The Innovation Show
       url: https://theinnovationshow.io/
     published_date: 2019/02/12
-
-lectures:
-  - title: The Unity of the Universe
-    url: https://podcasts.ox.ac.uk/unity-universe
-    date: 2016/03/09
-
-print_interviews:
-  - title:
-    url: https://philosophynow.org/issues/30/David_Deutsch
-    publication: Philosophy Now
-    issue: 30
-
-other:
-  - name: David's official website
-    url: https://www.daviddeutsch.org.uk/
-
-  - name: David's YouTube channel
-    url: https://www.youtube.com/@DavidDeutschPhysicist
-
-  - name: "BBC Antenna Documentary: Time-Travel by Dr David Deutsch (1992)"
-    url: https://www.youtube.com/watch?v=C6_gxoLwrWw
