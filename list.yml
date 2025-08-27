@@ -22,6 +22,10 @@ talks:
     url: https://www.youtube.com/watch?v=lX-K63pVPTM
     delivered_date: 2015/11/18
 
+  - title: A new way to explain explanations – TED
+    url: https://www.youtube.com/watch?v=folTvNDL08A
+    delivered_date: 2009/10/27 # This is the YouTube upload, though
+
 podcast_interviews:
   - title: The Deutsch Files I
     url: https://nav.al/deutsch-files-i
