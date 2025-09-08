@@ -319,3 +319,10 @@ podcast_interviews:
       name: Brian Keating's Into The Impossible Podcast
       url: https://www.youtube.com/watch?v=sa-WZcXhYH4&list=PLJGKdZD30K_9rVCDAdRSwoJLi5ls6JN-q
     published_date: 2025/08/23
+
+  - title: How to Reverse Academia's Stagnation
+    youtube_url: https://www.youtube.com/watch?v=Em-85baHx0A
+    show:
+      name: Conjecture Institute Podcast
+      url: https://www.youtube.com/@ConjectureInstitute
+    published_date: 2025/09/05
