@@ -326,3 +326,10 @@ podcast_interviews:
       name: Conjecture Institute Podcast
       url: https://www.youtube.com/@ConjectureInstitute
     published_date: 2025/09/05
+
+  - title: "David Deutsch: AGI, the origins of quantum computing, and the future of humanity"
+    youtube_url: https://www.youtube.com/watch?v=IVA2bK9qjzE
+    show:
+      name: Strange Loop Podcast
+      url: https://www.youtube.com/@SanaLabs/podcasts
+    published_date: 2025/09/03
