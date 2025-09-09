@@ -333,3 +333,10 @@ podcast_interviews:
       name: Strange Loop Podcast
       url: https://www.youtube.com/@SanaLabs/podcasts
     published_date: 2025/09/03
+
+  - title: David Deutsch, Robin Hanson, & Daniel Martin on Culture
+    youtube_url: https://www.youtube.com/watch?v=7zUQBs-ju6w
+    show:
+      name: Robin Hanson
+      url: https://www.youtube.com/@RobinHanson
+    published_date: 2025/06/28
