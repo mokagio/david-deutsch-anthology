@@ -340,3 +340,10 @@ podcast_interviews:
       name: Robin Hanson
       url: https://www.youtube.com/@RobinHanson
     published_date: 2025/06/28
+
+  - title: What is the best pathway to knowledge?
+    youtube_url: https://www.youtube.com/watch?v=7r56Z76L_I8
+    show:
+      name: The Shape of Dialogue
+      url: https://www.youtube.com/@theshapeofdialogue7211
+    published_date: 2025/09/18
