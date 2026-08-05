@@ -50,6 +50,7 @@ talks:
 podcast_interviews:
   - title: The Deutsch Files I
     url: https://nav.al/deutsch-files-i
+    audio_url: https://traffic.libsyn.com/naval/David_D_-_Ai.mp3
     show: &naval
       name: Naval's Podcast
       url: https://nav.al/podcast
@@ -57,21 +58,25 @@ podcast_interviews:
 
   - title: The Deutsch Files II
     url: https://nav.al/deutsch-files-ii
+    audio_url: https://traffic.libsyn.com/naval/The_Deutsch_Files_II.m4a
     show: *naval
     published_date: 2024/01/26
 
   - title: The Deutsch Files III
     url: https://nav.al/deutsch-files-iii
+    audio_url: https://traffic.libsyn.com/naval/The_Deutsch_Files_III.m4a
     show: *naval
     published_date: 2024/02/17
 
   - title: The Deutsch Files IV
     url: https://nav.al/deutsch-files-iv
+    audio_url: https://traffic.libsyn.com/forcedn/naval/The_Deutsch_Files_IV.mp3
     show: *naval
     published_date: 2024/10/11
 
   - title: Disagreeing about Belief, Probability, and Truth
     youtube_url: https://www.youtube.com/watch?v=jGht9LNHytU
+    audio_url: https://dts.podtrac.com/redirect.mp3/https://chrt.fm/track/1F5B4D/aphid.fireside.fm/d/1437767933/3229e340-4bf1-42a5-a5b7-4f508a27131c/03508f9b-3a2a-4b15-9b23-fe30083b431b.mp3
     show:
       name: Increments Podcast
       url: https://www.incrementspodcast.com/
@@ -86,11 +91,13 @@ podcast_interviews:
 
   - title: The Universal Constructor with David Deutsch
     youtube_url: https://www.youtube.com/watch?v=3JmfAJDiHwQ
+    audio_url: https://anchor.fm/s/e9f811c/podcast/play/66096607/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-2-7%2F75731dcb-8cf3-4a7f-b0d1-c0f8fdd942e0.mp3
     show: *logan_chipkin
     published_date: 2023/03/07
 
   - title: Surviving the Cosmos
     url: https://www.samharris.org/podcasts/making-sense-episodes/surviving-the-cosmos
+    audio_url: https://traffic.libsyn.com/secure/wakingup/Making_Sense_22_Surviving_the_Cosmos_Paywall_7-27-22.mp3
     show: &making_sense
       name: Making Sense with Sam Harris
       url: https://www.samharris.org/podcasts
@@ -98,11 +105,13 @@ podcast_interviews:
 
   - title: Finding our Way in the Cosmos
     url: https://www.samharris.org/podcasts/making-sense-episodes/finding-our-way-in-the-cosmos
+    audio_url: https://traffic.libsyn.com/secure/wakingup/Making_Sense_52_Finding_Our_Way_Paywall_7-27-22.mp3
     show: *making_sense
     published_date: 2016/11/16
 
   - title: David Deutsch and Naval Ravikant — The Fabric of Reality, The Importance of Disobedience, The Inevitability of Artificial General Intelligence, Finding Good Problems, Redefining Wealth, Foundations of True Knowledge, Harnessing Optimism, Quantum Computing, and More
     url: https://tim.blog/2023/03/24/david-deutsch-naval-ravikant/
+    audio_url: https://rss.art19.com/episodes/0d001a31-eb7d-4f15-b8e5-cc6d319ba39d.mp3?rss_browser=BAhJIgtDaHJvbWUGOgZFVA%3D%3D--d05363d83ce333c74f32188013892b2863ad051c
     show:
       name: The Tim Ferriss Show
       url: https://tim.blog
@@ -110,6 +119,7 @@ podcast_interviews:
 
   - title: David Deutsch on Multiple Worlds and Our Place in Them
     url: https://conversationswithtyler.com/episodes/david-deutsch/
+    audio_url: https://traffic.libsyn.com/secure/cowenconvos/CWT-126-DavidDeutsch-podcast-v1Final.mp3?dest-id=850607
     show:
       name: Conversations with Tyler
       url: https://conversationswithtyler.com/episodes/
@@ -117,6 +127,7 @@ podcast_interviews:
 
   - title: David Deutsch & Steven Pinker (First Ever Public Dialogue) — AGI, P(Doom), and The Enemies of Progress
     url: https://josephnoelwalker.com/153-deutsch-pinker-dialogue/
+    audio_url: https://enrichment.soundstack.com/4vjqq8/traffic.omny.fm/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/a482236a-5a44-43bd-9af5-b0db00198610/audio.mp3?utm_source=Podcast&in_playlist=f287bcce-12f0-44fa-b389-af9000132cfb
     show: &joe_walker
       name: The Joe Walker Podcast
       url: https://josephnoelwalker.com/podcast/
@@ -124,11 +135,13 @@ podcast_interviews:
 
   - title: Against Bayesianism
     url: https://josephnoelwalker.com/139-david-deutsch/
+    audio_url: https://enrichment.soundstack.com/4vjqq8/traffic.omny.fm/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/82637707-880b-4eee-81e7-af9000144577/audio.mp3?utm_source=Podcast&in_playlist=f287bcce-12f0-44fa-b389-af9000132cfb
     show: *joe_walker
     published_date: 2022/04/25
 
   - title: On Beauty, Knowledge, and Progress
     youtube_url: https://www.youtube.com/watch?v=vYNLahd6fds
+    audio_url: https://sphinx.acast.com/p/open/s/683f0798c966cde736234a29/e/68405d395de209b54b1e025c/media.mp3
     show:
       name: Existential Hope Podcast by Foresight Institute
       url: https://www.youtube.com/channel/UCg5UVUMqXeCQ03MelT_RXMg
@@ -136,6 +149,7 @@ podcast_interviews:
 
   - title: The Universal Constructor with David Deutsch
     podcast_url: https://podcasts.apple.com/nz/podcast/the-universal-constructor-with-david-deutsch/id1481994554?i=1000603140355
+    audio_url: https://anchor.fm/s/e9f811c/podcast/play/66096607/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-2-7%2F75731dcb-8cf3-4a7f-b0d1-c0f8fdd942e0.mp3
     youtube_url: https://www.youtube.com/watch?v=P8bCBypqrEw
     show:
       name: Fallible Animals
@@ -144,6 +158,7 @@ podcast_interviews:
 
   - title: Selecting for Deafness
     podcast_url: https://podcasts.apple.com/us/podcast/s01e14-selecting-for-deafness-david-deutsch/id1470490447?i=1000466743291
+    audio_url: https://anchor.fm/s/c4db244/podcast/play/10628930/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2020-1-26%2F52502993-48000-2-90b4478f2d90c.mp3
     show:
       name: Dilemma Podcast
       url: https://podcasts.apple.com/us/podcast/dilemma-podcast/id1470490447
@@ -151,6 +166,7 @@ podcast_interviews:
 
   - title: Free-Will, Taking Children Seriously, and Anarcho-Capitalism
     youtube_url: https://www.youtube.com/watch?v=Hh9xOB2oDHk
+    audio_url: https://api.substack.com/feed/podcast/140216749/254217dd22994eed239715a0d77b66ae.mp3
     show: &arjun_khemain
       name: Arjun Khemani's Podcast
       url: https://www.youtube.com/@arjunkhemani
@@ -158,6 +174,7 @@ podcast_interviews:
 
   - title: The Era of Man, Popper, and Western Civilization
     youtube_url: https://www.youtube.com/watch?v=I3FzAjgPztU
+    audio_url: https://api.substack.com/feed/podcast/151485080/660977dbe0cb7dab33afb3615f7df527.mp3
     show: *arjun_khemain
     published_date: 2024/11/12
 
@@ -170,6 +187,7 @@ podcast_interviews:
 
   - title: The Primacy of Ideas, with David Deutsch
     podcast_url: https://doexplain.buzzsprout.com/1260167/episodes/4846241-10-the-primacy-of-ideas-with-david-deutsch
+    audio_url: https://pdcn.co/e/www.buzzsprout.com/1260167/episodes/4846241-the-primacy-of-ideas-with-david-deutsch.mp3
     show: &do_explain
       name: Do Explain
       url: https://doexplain.buzzsprout.com
@@ -177,11 +195,13 @@ podcast_interviews:
 
   - title: Truth and Abstractions, with David Deutsch and Jake Orthwein
     podcast_url: https://doexplain.buzzsprout.com/1260167/episodes/15993837-half-episode-57-truth-and-abstractions-with-david-deutsch-and-jake-orthwein
+    audio_url: https://pdcn.co/e/www.buzzsprout.com/1260167/episodes/15993837-half-episode-truth-and-abstractions-with-david-deutsch-and-jake-orthwein.mp3
     show: *do_explain
     published_date: 2024/10/28
 
   - title: Physicist Dr. David Deutsch-Quantum Computing, Turing Machines, & Multiverses
     youtube_url: https://www.youtube.com/watch?v=S7GS_T_2dyE
+    audio_url: https://mcdn.podbean.com/mf/web/6mu2h8t6f8cjtcjv/Physicist_Dr_David_Deutsch-_Quantum_Computing_Turing_Machines_and_Multiverses_The_Saad_Truth_with_Dr_Saad_729_93g79.mp3
     show: &the_saad_truth
       name: The Saad Truth with Dr. Saad
       url: thesaadtruthwithdrsaad
@@ -189,11 +209,13 @@ podcast_interviews:
 
   - title: Physicist Dr. David Deutsch Returns - Science, Mathematics & Jew Hatred
     youtube_url: https://www.youtube.com/watch?v=ZcPExkCWzRM
+    audio_url: https://mcdn.podbean.com/mf/web/9xkzft962ir4vegq/Physicist_Dr_David_Deutsch_Returns_-_Science_Mathematics_Jew-Hatred_The_Saad_Truth_with_Dr_Saad_749_b66o6.mp3
     show: *the_saad_truth
     published_date: 2024/11/12
 
   - title: David Deutsch, Peter Boghossian, & Reid Nicewonder Talk Fermi Paradox, Ideological Contagion, & More
     youtube_url: https://www.youtube.com/watch?v=qPvTbftn-xY
+    audio_url: https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/8cb104e9-39a8-4ddc-9e91-a0e10355329b/14631866-david-deutsch-peter-boghossian-reid-nicewonder-talk-fermi-paradox-ideological-contagion-more.mp3?dest-id=4872530
     show:
       name: Conversations with Peter Boghossian
       url: https://www.youtube.com/watch?v=U6_20UFONB4&list=PLYNjnJFU-62sS7o8YLGJGe7RiKneIYfU2
@@ -201,6 +223,7 @@ podcast_interviews:
 
   - title: "David Deutsch: the fabric of explanations, optimism and creativity"
     url: https://www.fromthelotus.world/p/23-david-deutsch-the-fabric-of-explanations
+    audio_url: https://api.substack.com/feed/podcast/166343984/2df7a8f83f444e18ec4f9af70ed83457.mp3
     show:
       name: Salvador Podcast
       url: https://www.fromthelotus.world/
@@ -221,6 +244,7 @@ podcast_interviews:
   - title: David Deutsch - AI, America, Fun, & Bayes
     youtube_url: https://www.youtube.com/watch?v=EVwjofV5TgU
     url: https://www.dwarkesh.com/p/david-deutsch
+    audio_url: https://api.substack.com/feed/podcast/52511224/c32c22a9d2c5737aa08be0ef635603e2.mp3
     show:
       name: Dwarkesh Podcast
       url: https://www.dwarkesh.com
@@ -228,6 +252,7 @@ podcast_interviews:
 
   - title: "ToKCast Episode 100: David Deutsch"
     youtube_url: https://www.youtube.com/watch?v=_pAgz8iVC44
+    audio_url: https://mcdn.podbean.com/mf/web/zzbafz/Episode_100_Podcast65rif.mp3
     show: &tokcast
       name: ToKCast
       url: https://www.bretthall.org/tokcast
@@ -249,6 +274,7 @@ podcast_interviews:
 
   - title: David Deutsch – 'Karl Popper and the Beginning of Infinity'
     youtube_url: https://www.youtube.com/watch?v=vKO8YRwVVu8
+    audio_url: https://traffic.libsyn.com/secure/popperian-podcast/The_Popperian_Podcast_1__David_Deutsch__Karl_Popper_and_the_Beginning_of_Infinity.mp3?dest-id=2291375
     show:
       name: The Popperian Podcast
       url: https://www.jedleahenry.org/the-popperian-podcast
@@ -270,6 +296,7 @@ podcast_interviews:
 
   - title: Theory of Anything Hosts David Deutsch
     youtube_url: https://www.youtube.com/watch?v=Q_Cs5iNazB8
+    audio_url: https://traffic.megaphone.fm/APO5822129085.mp3
     show:
       name: Theory of Anything
       url: https://www.youtube.com/@theoryofanything6137
@@ -278,6 +305,7 @@ podcast_interviews:
   - title: A Woven Web of Guesses with DAVID DEUTSCH
     youtube_url: https://www.youtube.com/watch?v=Nsv36BuuRK4
     podcast_url: https://podcasts.apple.com/us/podcast/a-woven-web-of-guesses-with-david-deutsch/id1672821908?i=1000701986283
+    audio_url: https://anchor.fm/s/22428e1c/podcast/play/100760386/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-3-2%2F397722436-44100-2-a78ebe36f96be.m4a
     show:
       name: The Falsifiable Podcast
       url: https://www.youtube.com/@thefalsifiablepodcast
@@ -308,6 +336,7 @@ podcast_interviews:
     url: https://theinnovationshow.io/episode/ep-145-the-beginning-of-infinity-explanations-that-transform-the-world-david-deutsch/
     youtube_url: https://www.youtube.com/watch?v=flA3Qbkj_cw
     podcast_url: https://theinnovationshow.io/download-episode/354/ep-145-the-beginning-of-infinity-explanations-that-transform-the-world-david-deutsch.mp3
+    audio_url: https://theinnovationshow.io/download-episode/354/ep-145-the-beginning-of-infinity-explanations-that-transform-the-world-david-deutsch.mp3
     show:
       name: The Innovation Show
       url: https://theinnovationshow.io/
@@ -315,6 +344,7 @@ podcast_interviews:
 
   - title: "David Deutsch: The Quantum Theory No One Dares Explain!"
     youtube_url: https://www.youtube.com/watch?v=EPX_t3E1QOU
+    audio_url: https://www.podtrac.com/pts/redirect.mp3/pdst.fm/e/traffic.megaphone.fm/BBPI9769799920.mp3?updated=1755955116
     show:
       name: Brian Keating's Into The Impossible Podcast
       url: https://www.youtube.com/watch?v=sa-WZcXhYH4&list=PLJGKdZD30K_9rVCDAdRSwoJLi5ls6JN-q
@@ -322,6 +352,7 @@ podcast_interviews:
 
   - title: How to Reverse Academia's Stagnation
     youtube_url: https://www.youtube.com/watch?v=Em-85baHx0A
+    audio_url: https://mcdn.podbean.com/mf/web/tc493pk23uffxq8a/Edited_Transcript_Twitter_Podcast7j850.mp3
     show:
       name: Conjecture Institute Podcast
       url: https://www.youtube.com/@ConjectureInstitute
@@ -329,6 +360,7 @@ podcast_interviews:
 
   - title: "David Deutsch: AGI, the origins of quantum computing, and the future of humanity"
     youtube_url: https://www.youtube.com/watch?v=IVA2bK9qjzE
+    audio_url: https://anchor.fm/s/1056442e4/podcast/play/107639804/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-8-1%2F406653557-44100-2-845539870b27.mp3
     show:
       name: Strange Loop Podcast
       url: https://www.youtube.com/@SanaLabs/podcasts
@@ -343,6 +375,7 @@ podcast_interviews:
 
   - title: What is the best pathway to knowledge?
     youtube_url: https://www.youtube.com/watch?v=7r56Z76L_I8
+    audio_url: https://episodes.captivate.fm/episode/0fbd5d16-2f06-42a7-80b3-ed000c5ce501.mp3
     show:
       name: The Shape of Dialogue
       url: https://www.youtube.com/@theshapeofdialogue7211
@@ -350,6 +383,7 @@ podcast_interviews:
 
   - title: David Deutsch on the Pattern
     url: https://www.econtalk.org/david-deutsch-on-the-pattern/
+    audio_url: https://cdn.simplecast.com/audio/6fdba516-8381-43b0-b29f-59d05512b693/episodes/a465fa1a-35ca-40f6-8e3c-6f7e49424912/audio/9dfae9e8-490f-499c-8f11-35f0563688e1/default_tc.mp3?aid=rss_feed&feed=wgl4xEgL
     show:
       name: EconTalk
       url: https://www.econtalk.org/
