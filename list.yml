@@ -347,3 +347,10 @@ podcast_interviews:
       name: The Shape of Dialogue
       url: https://www.youtube.com/@theshapeofdialogue7211
     published_date: 2025/09/18
+
+  - title: David Deutsch on the Pattern
+    url: https://www.econtalk.org/david-deutsch-on-the-pattern/
+    show:
+      name: EconTalk
+      url: https://www.econtalk.org/
+    published_date: 2025/12/22
