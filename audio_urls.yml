@@ -307,7 +307,13 @@ https://www.youtube.com/watch?v=iuTn2vgkayA:
   resolved_at: '2026-08-05'
 https://www.youtube.com/watch?v=jGht9LNHytU:
   title: Disagreeing about Belief, Probability, and Truth
-  reason: no audio source found
+  audio_url: https://dts.podtrac.com/redirect.mp3/https://chrt.fm/track/1F5B4D/aphid.fireside.fm/d/1437767933/3229e340-4bf1-42a5-a5b7-4f508a27131c/03508f9b-3a2a-4b15-9b23-fe30083b431b.mp3
+  type: audio/mpeg
+  length: 88784483
+  duration: '1:32:02'
+  strategy: feed
+  matched_title: "#74 - Disagreeing about Belief, Probability, and Truth (w/ David
+    Deutsch)"
   resolved_at: '2026-08-05'
 https://www.youtube.com/watch?v=qPvTbftn-xY:
   title: David Deutsch, Peter Boghossian, & Reid Nicewonder Talk Fermi Paradox, Ideological
@@ -340,7 +346,12 @@ https://www.youtube.com/watch?v=vKO8YRwVVu8:
   resolved_at: '2026-08-05'
 https://www.youtube.com/watch?v=vYNLahd6fds:
   title: On Beauty, Knowledge, and Progress
-  reason: no audio source found
+  audio_url: https://sphinx.acast.com/p/open/s/683f0798c966cde736234a29/e/68405d395de209b54b1e025c/media.mp3
+  type: audio/mpeg
+  length: 155287983
+  duration: '1:04:41'
+  strategy: feed
+  matched_title: David Deutsch on Knowledge, Progress, and the Future of Everything
   resolved_at: '2026-08-05'
 https://www.youtube.com/watch?v=xdtssXITXuE:
   title: David Deutsch on Brexit and Error Correction
