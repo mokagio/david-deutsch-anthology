@@ -1,60 +1,46 @@
 # frozen_string_literal: true
 
-# Populates `audio_urls.yml`, the tracked dictionary that maps each interview's
-# page URL to a playable audio file. Run it after adding entries to `list.yml`;
-# `generate_podcast_rss.rb` only reads the dictionary and never hits the network.
+# Fills in `audio_urls.yml`, the tracked dictionary mapping each interview's page
+# URL to a playable audio file.
 #
-#   ruby resolve_audio_urls.rb                 # resolve entries we have no answer for
+# `generate_podcast_rss.rb` resolves entries the dictionary has never seen, so
+# running this is not a precondition for a working build — it is how you retry the
+# ones that failed, or rebuild the dictionary after changing the resolver.
+#
+#   ruby resolve_audio_urls.rb                 # resolve entries with no answer yet
 #   ruby resolve_audio_urls.rb --retry-failed  # also retry the ones that came up empty
 #   ruby resolve_audio_urls.rb --refresh       # re-resolve everything from scratch
 
 require 'yaml'
-require 'date'
 
+require_relative 'lib/audio_dictionary'
 require_relative 'lib/audio_resolver'
-
-CACHE_PATH = 'audio_urls.yml'
 
 refresh = ARGV.include?('--refresh')
 retry_failed = ARGV.include?('--retry-failed') || refresh
 
-cache = File.exist?(CACHE_PATH) ? YAML.load_file(CACHE_PATH) || {} : {}
 interviews = YAML.load_file('list.yml', aliases: true)['podcast_interviews']
+dictionary = AudioDictionary.new
 resolver = AudioResolver.new
 
 interviews.each_with_index do |interview, index|
   url = AudioResolver.source_url(interview)
   next unless url
 
-  cached = cache[url]
-  if cached && !refresh && (cached['audio_url'] || !retry_failed)
-    puts "[#{index + 1}/#{interviews.size}] cached: #{interview['title']}"
+  settled = dictionary.known?(url) && !refresh && (dictionary.resolved?(url) || !retry_failed)
+  if settled
+    puts "[#{index + 1}/#{interviews.size}] known: #{interview['title']}"
     next
   end
 
   puts "[#{index + 1}/#{interviews.size}] #{interview['title']}"
   result = resolver.resolve(interview)
-
-  cache[url] = {
-    'title' => interview['title'],
-    'audio_url' => result.audio_url,
-    'type' => result.type,
-    'length' => result.length,
-    'duration' => result.duration,
-    'strategy' => result.strategy,
-    # Feed matching is a heuristic; keeping the episode title it landed on makes a
-    # bad match visible in review instead of only in a listener's player.
-    'matched_title' => result.matched_title,
-    'reason' => result.reason,
-    'resolved_at' => Date.today.to_s
-  }.compact
-
   puts "    #{result.reason}" unless result.resolved?
 
-  # Written every iteration so an interrupted run keeps the answers it already paid for.
-  File.write(CACHE_PATH, cache.to_yaml)
+  dictionary.record(interview, result)
+  # Saved every iteration so an interrupted run keeps the answers it already paid for.
+  dictionary.save
 end
 
-resolved = cache.count { |_, entry| entry['audio_url'] }
 puts
-puts "#{resolved}/#{cache.size} entries have audio. Dictionary written to #{CACHE_PATH}."
+puts "#{dictionary.resolved_count}/#{dictionary.entries.size} entries have audio."

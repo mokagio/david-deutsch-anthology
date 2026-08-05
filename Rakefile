@@ -7,7 +7,7 @@ Rake::TestTask.new(:test) do |t|
   t.warning = false
 end
 
-desc 'Find playable audio for interviews that have none yet'
+desc 'Fill in audio_urls.yml for interviews the dictionary has not answered'
 task :resolve do
   ruby 'resolve_audio_urls.rb'
 end
