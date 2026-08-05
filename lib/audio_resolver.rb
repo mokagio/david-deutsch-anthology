@@ -7,6 +7,7 @@ require 'uri'
 
 require_relative 'http_client'
 require_relative 'episode_matcher'
+require_relative 'enclosure'
 
 # Turns an interview's human-facing URL into a playable audio file.
 #
@@ -15,15 +16,6 @@ require_relative 'episode_matcher'
 # from a page has to be probed for both and may carry the site's own tracking
 # parameters.
 class AudioResolver
-  AUDIO_EXTENSIONS = %w[.mp3 .m4a .aac .ogg .oga .opus .wav].freeze
-
-  MIME_TYPES = {
-    '.mp3' => 'audio/mpeg', '.m4a' => 'audio/x-m4a', '.aac' => 'audio/aac',
-    '.ogg' => 'audio/ogg', '.oga' => 'audio/ogg', '.opus' => 'audio/opus', '.wav' => 'audio/wav'
-  }.freeze
-
-  DEFAULT_MIME_TYPE = 'audio/mpeg'
-
   APPLE_PODCASTS_URL = %r{podcasts\.apple\.com/.*?/id(?<collection>\d+).*?[?&]i=(?<episode>\d+)}
 
   Result = Struct.new(:audio_url, :type, :length, :duration, :strategy, :matched_title, :reason,
@@ -84,7 +76,7 @@ class AudioResolver
       return describe(
         episode['episodeUrl'],
         strategy: 'apple',
-        type: episode['episodeFileExtension'] ? nil : DEFAULT_MIME_TYPE,
+        type: episode['episodeFileExtension'] ? nil : Enclosure::DEFAULT_MIME_TYPE,
         duration: milliseconds_to_duration(episode['trackTimeMillis'])
       )
     end
@@ -277,36 +269,20 @@ class AudioResolver
   # --- helpers ------------------------------------------------------------
 
   def describe(url, strategy:, type: nil, duration: nil)
-    response = HttpClient.head(url)
-    resolved_url = response&.url || url
-    content_type = response&.headers&.dig('content-type')&.split(';')&.first
+    details = Enclosure.probe(url)
 
     Result.new(
       audio_url: url,
-      type: type || audio_content_type(content_type) || mime_type_for(resolved_url),
-      length: response&.headers&.dig('content-length')&.to_i,
+      type: type || details&.type || Enclosure.mime_type_for(url),
+      length: details&.length,
       duration: duration,
       strategy: strategy
     )
   end
 
-  def audio_content_type(content_type)
-    content_type if content_type&.start_with?('audio/')
-  end
+  def audio_url?(url) = Enclosure.audio_url?(url)
 
-  def audio_url?(url)
-    AUDIO_EXTENSIONS.include?(extension(url))
-  end
-
-  def mime_type_for(url)
-    MIME_TYPES.fetch(extension(url), DEFAULT_MIME_TYPE)
-  end
-
-  def extension(url)
-    File.extname(URI.parse(url).path.to_s).downcase
-  rescue URI::Error
-    ''
-  end
+  def mime_type_for(url) = Enclosure.mime_type_for(url)
 
   def milliseconds_to_duration(milliseconds)
     return nil unless milliseconds
