@@ -7,11 +7,6 @@ Rake::TestTask.new(:test) do |t|
   t.warning = false
 end
 
-desc 'Fill in audio_urls.yml for interviews the dictionary has not answered'
-task :resolve do
-  ruby 'resolve_audio_urls.rb'
-end
-
 desc 'Build the static site and the podcast feed'
 task :generate do
   ruby 'generate_html.rb'

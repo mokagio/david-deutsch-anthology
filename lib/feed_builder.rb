@@ -3,27 +3,27 @@
 require 'time'
 
 require_relative 'audio_resolver'
+require_relative 'enclosure'
 
-# Turns the interview list plus the audio dictionary into the episodes the feed
-# template renders, and says what it left out and why.
+# Turns the interview list into the episodes the feed template renders, and says
+# what it left out and why.
+#
+# `audio_url` in `list.yml` is the source of truth. The MIME type and byte length
+# an `<enclosure>` needs are not recorded there, so they are probed — pass a
+# different `probe` to avoid the network.
 module FeedBuilder
   Build = Struct.new(:episodes, :skipped, keyword_init: true)
 
   Skip = Struct.new(:title, :reason, keyword_init: true)
 
   class << self
-    def build(interviews, dictionary)
+    def build(interviews, probe: Enclosure.method(:probe))
       episodes = []
       skipped = []
 
       interviews.each do |interview|
-        reason = unusable_reason(dictionary[AudioResolver.source_url(interview)])
-
-        if reason
-          skipped << Skip.new(title: interview['title'], reason: reason)
-        else
-          episodes << episode(interview, dictionary[AudioResolver.source_url(interview)])
-        end
+        episode, reason = episode_for(interview, probe)
+        episode ? episodes << episode : skipped << Skip.new(title: interview['title'], reason: reason)
       end
 
       episodes.sort_by! { |episode| episode[:published_at] }
@@ -36,17 +36,19 @@ module FeedBuilder
 
     private
 
-    def unusable_reason(entry)
-      return 'not resolved yet' unless entry
-      return entry['reason'] || 'no audio source found' unless entry['audio_url']
-      # An enclosure without a byte count is rejected by strict clients, so such an
-      # entry is no more use in the feed than one with no audio at all.
-      return 'audio file size unknown' unless entry['length'].to_i.positive?
+    def episode_for(interview, probe)
+      audio_url = interview['audio_url']
+      return [nil, 'no audio_url'] unless audio_url
 
-      nil
+      details = probe.call(audio_url)
+      # An enclosure without a byte count is rejected by strict clients, so an
+      # unreachable file is no more use in the feed than a missing one.
+      return [nil, "could not read #{audio_url}"] unless details&.usable?
+
+      [episode(interview, audio_url, details), nil]
     end
 
-    def episode(interview, entry)
+    def episode(interview, audio_url, details)
       source_url = AudioResolver.source_url(interview)
       show_name = interview.dig('show', 'name') || 'Unknown Show'
 
@@ -57,10 +59,9 @@ module FeedBuilder
         published_at: Time.parse(interview['published_date']),
         description: "Interview on #{show_name}",
         show_name: show_name,
-        audio_url: entry['audio_url'],
-        type: entry['type'] || 'audio/mpeg',
-        length: entry['length'].to_i,
-        duration: entry['duration']
+        audio_url: audio_url,
+        type: details.type,
+        length: details.length
       }
     end
   end

@@ -14,29 +14,23 @@ Contribute by adding entries to `list.yml`.
 
 The anthology also publishes a podcast feed at `/podcast.rss`, so the interviews can be listened to in a normal podcast app.
 
-A podcast client needs a playable audio file, not a link to the episode's web page, so each entry has to be resolved to one.
-`audio_urls.yml` is that dictionary, keyed by the URL in `list.yml` and tracked in the repository.
+A podcast client needs a playable audio file, not a link to the episode's web page, so a podcast interview reaches the feed only once its `audio_url` is known.
+`list.yml` is the source of truth for that, alongside everything else.
 
-Adding an entry to `list.yml` is enough: the build resolves anything the dictionary has never seen, so a new interview reaches the feed whether or not the dictionary was updated first.
-Entries the dictionary already answered are taken at their word, including the ones it found no audio for, so a normal build stays offline.
+The `/audit-list` skill finds those URLs and records them.
+It also reports links that have rotted.
 
 ```sh
-rake                                     # test, generate, validate
-ruby generate_podcast_rss.rb --offline   # build from the dictionary alone
+rake                                        # test, generate, validate
+ruby generate_podcast_rss.rb --no-resolve   # use only what the list records
 ```
+
+An entry with no `audio_url` is resolved during the build too, so a newly added interview reaches the feed before anyone has run the skill.
+That costs a few minutes per build and is thrown away afterwards — a build has no business editing the source of truth — so recording the URL with the skill is what makes it stop.
 
 Resolution tries, in order: the URL itself when it already points at audio, the iTunes API for Apple Podcasts links, the show's feed, and finally the episode page.
-Matching an entry to an episode in a show's feed is a heuristic, so the dictionary records the episode title it settled on — worth a glance in the diff.
+Matching an entry to an episode in a show's feed is a heuristic, which is why the skill puts the result in a diff to be looked at.
 
-Commit `audio_urls.yml` when a build updates it.
-Nothing breaks if you don't, but the deploy re-resolves those entries every time, and the matched titles go unreviewed.
-
-Entries with no audio stay out of the feed rather than appearing as items no app can play; the build lists them.
-Video-only appearances are the usual reason.
-
-To reattempt those, or to rebuild the dictionary after changing the resolver:
-
-```sh
-ruby resolve_audio_urls.rb --retry-failed
-ruby resolve_audio_urls.rb --refresh
-```
+No build is fully offline: an `<enclosure>` must state the file's MIME type and byte length, and `list.yml` records neither, so every audio URL is probed on the way out.
+An entry whose audio cannot be reached is left out of the feed rather than published as an item no app can play, as are the interviews that were only ever filmed.
+The build lists both.

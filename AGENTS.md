@@ -5,15 +5,18 @@ A static site generated from `list.yml` and deployed to GitHub Pages on push to 
 ## Commands
 
 ```sh
-ruby generate_html.rb              # public/index.html
-ruby generate_podcast_rss.rb       # public/podcast.rss
-ruby count.rb                      # entry tallies
-ruby test/episode_matcher_test.rb  # tests
+rake                # test, generate, validate
+rake test
+rake generate       # public/index.html and public/podcast.rss
+rake validate       # the feed works in a podcast client
+ruby count.rb       # entry tallies
 ```
 
 No Gemfile — Ruby stdlib only, version pinned in `.ruby-version`.
 
 ## Conventions
 
-- Content goes in `list.yml`, markup in `templates/`.
+- Content goes in `list.yml`, markup in `templates/`, shared code in `lib/`.
 - `public/` is generated and gitignored: never edit or commit it.
+- `list.yml` uses YAML anchors and comments. Edit it as text; a round-trip through Ruby's YAML dumper renames every anchor and drops every comment.
+- A podcast interview reaches the feed only if it has an `audio_url`. The `/audit-list` skill finds and records those.

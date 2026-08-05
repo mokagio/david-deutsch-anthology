@@ -32,9 +32,6 @@
       <itunes:summary><%= h episode[:description] %></itunes:summary>
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>false</itunes:explicit>
-<% if episode[:duration] -%>
-      <itunes:duration><%= h episode[:duration] %></itunes:duration>
-<% end -%>
     </item>
 <% end -%>
   </channel>

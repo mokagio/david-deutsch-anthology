@@ -1,22 +1,24 @@
 # frozen_string_literal: true
 
-# Builds the podcast feed from `list.yml` plus the audio dictionary in
-# `audio_urls.yml`.
+# Builds the podcast feed from `list.yml`, which is the source of truth for which
+# interviews have audio.
 #
-# An interview the dictionary has never seen is resolved on the spot, so an entry
-# added to `list.yml` reaches the feed even if nobody ran `resolve_audio_urls.rb`
-# first. Entries the dictionary already answered — including the ones it could
-# find no audio for — are taken at their word, which keeps a normal build offline.
+# An interview with no `audio_url` is resolved on the spot, so an entry added to
+# the list reaches the feed before anyone has run `/audit-list` to record its
+# audio. Nothing is written back — recording a resolution in `list.yml` is that
+# skill's job, and a build has no business editing the source of truth.
 #
-#   ruby generate_podcast_rss.rb            # resolve entries the dictionary lacks
-#   ruby generate_podcast_rss.rb --offline  # build from the dictionary alone
+# The build is never offline: an `<enclosure>` has to state the file's MIME type
+# and byte length, and `list.yml` records neither, so every audio URL is probed.
+#
+#   ruby generate_podcast_rss.rb               # resolve entries with no audio_url
+#   ruby generate_podcast_rss.rb --no-resolve  # use only what the list records
 
 require 'yaml'
 require 'erb'
 require 'cgi'
 require 'fileutils'
 
-require_relative 'lib/audio_dictionary'
 require_relative 'lib/audio_resolver'
 require_relative 'lib/feed_builder'
 
@@ -27,26 +29,29 @@ FEED_AUTHOR = 'David Deutsch'
 
 def h(text) = CGI.escapeHTML(text.to_s)
 
-offline = ARGV.include?('--offline')
+resolve_missing = !ARGV.include?('--no-resolve')
 
 interviews = YAML.load_file('list.yml', aliases: true)['podcast_interviews']
-dictionary = AudioDictionary.new
 
-unless offline
-  resolver = AudioResolver.new
-  missing = interviews.reject { |interview| dictionary.known?(AudioResolver.source_url(interview)) }
+if resolve_missing
+  pending = interviews.reject { |interview| interview['audio_url'] }
 
-  puts "Resolving #{missing.size} entries missing from the dictionary..." unless missing.empty?
-  missing.each do |interview|
-    puts "  #{interview['title']}"
-    dictionary.record(interview, resolver.resolve(interview))
+  unless pending.empty?
+    puts "Looking for audio for #{pending.size} interviews the list does not record..."
+    resolver = AudioResolver.new(logger: ->(message) { puts message })
+
+    found = pending.count do |interview|
+      result = resolver.resolve(interview)
+      interview['audio_url'] = result.audio_url if result.resolved?
+      result.resolved?
+    end
+
+    puts "Found #{found}. Run `/audit-list` to record them in list.yml." if found.positive?
   end
-
-  puts "Dictionary updated — commit #{AudioDictionary::DEFAULT_PATH}." if dictionary.save
 end
 
-build = FeedBuilder.build(interviews, dictionary)
-abort 'No episodes have audio yet — run `ruby resolve_audio_urls.rb` first.' if build.episodes.empty?
+build = FeedBuilder.build(interviews)
+abort 'No interview in list.yml has usable audio.' if build.episodes.empty?
 
 output_path = File.join('public', 'podcast.rss')
 FileUtils.mkdir_p(File.dirname(output_path))
@@ -68,5 +73,5 @@ puts "RSS feed generated: #{output_path} (#{episodes.size} episodes)"
 
 return if build.skipped.empty?
 
-puts "\nSkipped #{build.skipped.size} entries with no audio:"
+puts "\nSkipped #{build.skipped.size} entries:"
 build.skipped.each { |skip| puts "  - #{skip.title} (#{skip.reason})" }
