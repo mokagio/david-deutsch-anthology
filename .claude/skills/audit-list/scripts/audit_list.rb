@@ -108,6 +108,64 @@ class LinkChecker
   end
 end
 
+# Inserts `audio_url` beneath the line that already identifies the entry.
+#
+# Text insertion rather than a YAML dump: `list.yml` uses anchors and comments,
+# and Psych renames `&naval` to `&1` and drops every comment on the way out.
+module ListWriter
+  URL_KEYS = %w[podcast_url url youtube_url].freeze
+
+  class << self
+    def insert(path, findings)
+      source = File.read(path)
+      interviews = YAML.load_file(path, aliases: true)['podcast_interviews']
+      before = interviews.size
+      added = []
+      skipped = []
+
+      # Applying the same report twice is a no-op, not an error.
+      recorded = interviews.select { |i| i['audio_url'] }.map { |i| AudioResolver.source_url(i) }
+      findings = findings.reject { |finding| recorded.include?(finding['entry_url']) }
+
+      findings.each do |finding|
+        line = matching_line(source, finding['entry_url'])
+        next skipped << [finding['title'], 'no unique line matches the entry URL'] unless line
+
+        indent = line[/\A\s*/]
+        source = source.sub(line, "#{line}#{indent}audio_url: #{quote(finding['audio_url'])}\n")
+        added << finding['title']
+      end
+
+      verify!(path, source, before, added.size)
+      File.write(path, source)
+      [added, skipped]
+    end
+
+    private
+
+    def matching_line(source, entry_url)
+      pattern = /^[ \t]*(?:#{URL_KEYS.join('|')}): #{Regexp.escape(entry_url)}[ \t]*\n/
+      matches = source.scan(pattern)
+      matches.size == 1 ? source[pattern] : nil
+    end
+
+    # The file's own convention is bare URLs; only a `#` would actually need quoting.
+    def quote(url) = url.include?(' #') ? url.inspect : url
+
+    def verify!(path, source, expected_entries, expected_additions)
+      parsed = YAML.load(source, aliases: true)['podcast_interviews']
+
+      raise "entry count changed: #{expected_entries} -> #{parsed.size}" unless parsed.size == expected_entries
+
+      gained = parsed.count { |interview| interview['audio_url'] }
+      had = YAML.load_file(path, aliases: true)['podcast_interviews'].count { |i| i['audio_url'] }
+      return if gained - had == expected_additions
+
+      raise "expected #{expected_additions} new audio_url values, found #{gained - had}"
+    end
+  end
+end
+
 # Every string under a key ending in `url`, with the entries that point at it.
 def collect_urls(data)
   urls = Hash.new { |hash, key| hash[key] = [] }
@@ -137,9 +195,16 @@ end
 
 mode = ARGV.find { |arg| %w[--links-only --audio-only].include?(arg) }
 as_json = ARGV.include?('--json')
+write = ARGV.include?('--write')
+# Resolving takes minutes, so an earlier run's report can be applied directly.
+from_report = ARGV[ARGV.index('--report') + 1] if ARGV.include?('--report')
 
-data = YAML.load_file(File.join(ROOT, 'list.yml'), aliases: true)
+LIST_PATH = File.join(ROOT, 'list.yml')
+
+data = YAML.load_file(LIST_PATH, aliases: true)
 report = { 'broken_links' => [], 'unchecked_links' => [], 'audio_found' => [], 'audio_missing' => [] }
+report = JSON.parse(File.read(from_report)) if from_report
+mode = '--audio-only' if from_report
 
 unless mode == '--audio-only'
   urls = collect_urls(data)
@@ -156,7 +221,7 @@ unless mode == '--audio-only'
   end
 end
 
-unless mode == '--links-only'
+unless mode == '--links-only' || from_report
   pending = data['podcast_interviews'].reject { |interview| interview['audio_url'] }
   warn "Looking for audio for #{pending.size} interviews..."
 
@@ -175,6 +240,12 @@ unless mode == '--links-only'
       report['audio_missing'] << entry.merge('reason' => result.reason)
     end
   end
+end
+
+if write && !report['audio_found'].empty?
+  added, skipped = ListWriter.insert(LIST_PATH, report['audio_found'])
+  warn "\nAdded audio_url to #{added.size} entries in list.yml."
+  skipped.each { |title, reason| warn "  SKIPPED #{title}: #{reason}" }
 end
 
 if as_json

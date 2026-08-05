@@ -15,7 +15,7 @@ Two passes over `list.yml`: link liveness, and audio discovery for `podcast_inte
 ## 1. Run the audit
 
 ```sh
-ruby .claude/skills/audit-list/scripts/audit_list.rb --json
+ruby .claude/skills/audit-list/scripts/audit_list.rb --json > /tmp/audit.json
 ```
 
 Takes several minutes — it resolves audio over the network for every interview without an `audio_url`.
@@ -30,30 +30,26 @@ The report has four keys:
 
 ## 2. Add the audio URLs
 
-**Only ever add `audio_url`. Never change, reorder, or remove anything already in the file.**
-
-For each `audio_found` entry, find the entry in `list.yml` by its `entry_url` and insert `audio_url` directly beneath that URL line, at the same indentation:
-
-```yaml
-  - title: David Deutsch on the Pattern
-    url: https://www.econtalk.org/david-deutsch-on-the-pattern/
-    audio_url: https://cdn.simplecast.com/audio/.../default_tc.mp3
-    show: *econtalk
-    published_date: 2025/12/22
+```sh
+ruby .claude/skills/audit-list/scripts/audit_list.rb --report /tmp/audit.json --write
 ```
 
-Use `Edit`, never a YAML rewrite: `list.yml` uses anchors (`&naval`, `*naval`) and inline comments, and re-serialising it through Ruby renames every anchor and drops every comment.
+`--write` inserts `audio_url` beneath the line that already identifies each entry.
+It only ever adds that one key, and refuses to write unless the file still parses, the interview count is unchanged, and exactly as many `audio_url` values appeared as findings were applied.
 
-When `matched_title` differs noticeably from the entry's own title, say so in your summary — that match was a heuristic and is the one thing worth a human glance.
+Do not hand-edit `list.yml` for this, and never rewrite it through Ruby's YAML dumper: the file uses anchors (`&naval`, `*naval`) and comments, and a round-trip renames every anchor to `&1` and drops every comment.
+
+Read the diff before committing.
+When `matched_title` differs noticeably from the entry's own title, flag it — that match was a heuristic, and the diff is the only place a human sees it.
 
 ## 3. Verify
 
 ```sh
-ruby -ryaml -e 'd = YAML.load_file("list.yml", aliases: true); puts d["podcast_interviews"].size'
-grep -c '&' list.yml
+git diff --stat list.yml                                    # additions only, no deletions
+diff <(git show HEAD:list.yml | grep -oE ': [&*][a-z_]+' | sort) <(grep -oE ': [&*][a-z_]+' list.yml | sort)
 ```
 
-The interview count must be unchanged and the anchors must still be there.
+Count `&` naively and you will scare yourself: the audio URLs carry `&` in their query strings.
 
 ## 4. Report, do not fix
 
