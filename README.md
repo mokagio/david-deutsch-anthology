@@ -28,11 +28,12 @@ ruby generate_podcast_rss.rb --no-resolve   # use only what the list records
 Because the list carries the size and type, a build asks nobody anything and takes a fraction of a second.
 That is not a nicety: an earlier version probed each file at build time, and Substack blocks GitHub's runners, so four episodes vanished from a deploy that reported success.
 
-An entry with no `audio_url` is still resolved during the build, so a newly added interview reaches the feed before anyone has run the skill.
+The deploy passes `--no-resolve`, so it touches nothing but `list.yml`.
+Run locally without that flag, the build also tries to resolve entries that have no `audio_url` yet, which is convenient when adding one by hand but is thrown away afterwards — a build has no business editing the source of truth.
+
 Resolution tries, in order: the URL itself when it already points at audio, the iTunes API for Apple Podcasts links, the show's feed, and finally the episode page.
 Matching an entry to an episode in a show's feed is a heuristic, which is why the skill puts the result in a diff to be looked at.
 
-Nothing found that way is written back — a build has no business editing the source of truth — so an unrecorded entry is re-resolved every deploy, and remains at the mercy of whatever host is blocking CI that day.
-Running the skill is what settles it.
+An interview therefore reaches the feed when `/audit-list` records it, not merely when it is added to the list.
 
 Interviews with no audio stay out of the feed rather than appearing as items no app can play; the build lists them.
