@@ -18,24 +18,29 @@ Two passes over `list.yml`: link liveness, and audio discovery for `podcast_inte
 ruby .claude/skills/audit-list/scripts/audit_list.rb --json > /tmp/audit.json
 ```
 
-Takes several minutes — it resolves audio over the network for every interview without an `audio_url`.
+Takes several minutes — it resolves audio for every interview without an `audio_url`, and measures every file the list already names but has not sized.
 Narrow it with `--links-only` or `--audio-only` when only one pass is wanted.
 
-The report has four keys:
+The report keys:
 
-- `audio_found` — an audio URL to add, with the `entry_url` identifying which entry, and `matched_title` when it came from matching an episode in a show's feed.
+- `audio_found` — a new `audio_url`, with its `audio_type` and `audio_length`, the `entry_url` identifying which entry, and `matched_title` when it came from matching an episode in a show's feed.
+- `audio_sized` — an entry that had a URL but no size or type.
+- `audio_unreadable` — a recorded `audio_url` that could not be measured. Worth a look: the file may have moved.
 - `audio_missing` — no audio anywhere. Usually a video-only appearance. Leave alone.
 - `broken_links` — confirmed dead.
 - `unchecked_links` — the checker could not reach the host. Not evidence of anything.
 
-## 2. Add the audio URLs
+## 2. Record what it found
 
 ```sh
 ruby .claude/skills/audit-list/scripts/audit_list.rb --report /tmp/audit.json --write
 ```
 
-`--write` inserts `audio_url` beneath the line that already identifies each entry.
-It only ever adds that one key, and refuses to write unless the file still parses, the interview count is unchanged, and exactly as many `audio_url` values appeared as findings were applied.
+`--write` inserts `audio_url`, `audio_type` and `audio_length` into each entry, keeping them together and adding only keys the entry lacks, so applying a report twice is a no-op.
+It refuses to write unless the file still parses, the interview count is unchanged, and exactly as many of each key appeared as were applied.
+
+The size and type matter as much as the URL: they are what an `<enclosure>` must declare, and recording them is what stops the build probing 34 third-party hosts on every deploy.
+It once probed at build time, and Substack blocks GitHub's runners — four episodes disappeared from a deploy that reported success.
 
 Do not hand-edit `list.yml` for this, and never rewrite it through Ruby's YAML dumper: the file uses anchors (`&naval`, `*naval`) and comments, and a round-trip renames every anchor to `&1` and drops every comment.
 

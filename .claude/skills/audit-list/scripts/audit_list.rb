@@ -3,10 +3,11 @@
 # Reports on `list.yml`: which links are dead, and which podcast interviews have
 # findable audio that the list does not record yet.
 #
-# Reports only — writing the findings back is left to whoever runs this, because
-# re-serialising `list.yml` would rename its anchors and drop its comments.
+# With `--write` it records what it finds — the audio URL and the size and type an
+# `<enclosure>` needs — so the build never has to ask a third-party host anything.
 #
 #   ruby .claude/skills/audit-list/scripts/audit_list.rb [--links-only|--audio-only] [--json]
+#   ruby .claude/skills/audit-list/scripts/audit_list.rb --report <file> --write
 
 require 'json'
 require 'net/http'
@@ -15,6 +16,7 @@ require 'yaml'
 
 ROOT = File.expand_path('../../../..', __dir__)
 require File.join(ROOT, 'lib', 'audio_resolver')
+require File.join(ROOT, 'lib', 'enclosure')
 
 # Separates "this link is gone" from "I could not tell", because a checker that
 # reports the second as the first gets ignored.
@@ -108,60 +110,95 @@ class LinkChecker
   end
 end
 
-# Inserts `audio_url` beneath the line that already identifies the entry.
+# Adds `audio_*` keys to entries in `list.yml`.
 #
 # Text insertion rather than a YAML dump: `list.yml` uses anchors and comments,
 # and Psych renames `&naval` to `&1` and drops every comment on the way out.
 module ListWriter
-  URL_KEYS = %w[podcast_url url youtube_url].freeze
+  ENTRY_START = /^\s*- /
+  AUDIO_KEY = /^\s*audio_(?:url|type|length):/
+  # Not `audio_url`: one entry's page URL is the mp3 itself, so both keys hold the
+  # same value and anchoring on either would be ambiguous.
+  ENTRY_URL_KEY = /^[ \t]*(?:podcast_url|youtube_url|url): /
 
   class << self
-    def insert(path, findings)
-      source = File.read(path)
-      interviews = YAML.load_file(path, aliases: true)['podcast_interviews']
-      before = interviews.size
-      added = []
+    # Each addition is {'entry_url' =>, 'title' =>, 'fields' => {key => value}}. The
+    # entry URL is the anchor because it is unique per entry, which `audio_url` is
+    # not — two entries can point at the same recording.
+    def insert(path, additions)
+      lines = File.readlines(path)
+      before = counts(File.read(path))
+      applied = []
       skipped = []
 
-      # Applying the same report twice is a no-op, not an error.
-      recorded = interviews.select { |i| i['audio_url'] }.map { |i| AudioResolver.source_url(i) }
-      findings = findings.reject { |finding| recorded.include?(finding['entry_url']) }
+      additions.each do |addition|
+        fields = addition['fields']
+        next if fields.empty?
 
-      findings.each do |finding|
-        line = matching_line(source, finding['entry_url'])
-        next skipped << [finding['title'], 'no unique line matches the entry URL'] unless line
+        index = entry_line_index(lines, addition['entry_url'])
+        next skipped << [addition['title'], 'no unique line matches the entry URL'] unless index
 
-        indent = line[/\A\s*/]
-        source = source.sub(line, "#{line}#{indent}audio_url: #{quote(finding['audio_url'])}\n")
-        added << finding['title']
+        indent = lines[index][/\A\s*/]
+        at = last_audio_line_index(lines, index)
+        lines.insert(at + 1, *fields.map { |key, value| "#{indent}#{key}: #{scalar(value)}\n" })
+        applied << addition
       end
 
-      verify!(path, source, before, added.size)
+      source = lines.join
+      verify!(source, before, applied)
       File.write(path, source)
-      [added, skipped]
+      [applied, skipped]
     end
 
     private
 
-    def matching_line(source, entry_url)
-      pattern = /^[ \t]*(?:#{URL_KEYS.join('|')}): #{Regexp.escape(entry_url)}[ \t]*\n/
-      matches = source.scan(pattern)
-      matches.size == 1 ? source[pattern] : nil
+    def entry_line_index(lines, entry_url)
+      matches = lines.each_index.select do |index|
+        lines[index].match?(ENTRY_URL_KEY) && lines[index].split(': ', 2).last.strip == entry_url
+      end
+
+      matches.size == 1 ? matches.first : nil
     end
 
-    # The file's own convention is bare URLs; only a `#` would actually need quoting.
-    def quote(url) = url.include?(' #') ? url.inspect : url
+    # The audio keys belong together, so insert after the last one this entry
+    # already has; with none, straight after the URL that identifies it.
+    def last_audio_line_index(lines, index)
+      last = index
 
-    def verify!(path, source, expected_entries, expected_additions)
-      parsed = YAML.load(source, aliases: true)['podcast_interviews']
+      ((index + 1)...lines.size).each do |cursor|
+        break if lines[cursor].match?(ENTRY_START)
 
-      raise "entry count changed: #{expected_entries} -> #{parsed.size}" unless parsed.size == expected_entries
+        last = cursor if lines[cursor].match?(AUDIO_KEY)
+      end
 
-      gained = parsed.count { |interview| interview['audio_url'] }
-      had = YAML.load_file(path, aliases: true)['podcast_interviews'].count { |i| i['audio_url'] }
-      return if gained - had == expected_additions
+      last
+    end
 
-      raise "expected #{expected_additions} new audio_url values, found #{gained - had}"
+    # The file's convention is bare scalars; only a `#` would actually need quoting.
+    def scalar(value) = value.to_s.include?(' #') ? value.to_s.inspect : value.to_s
+
+    def counts(source)
+      interviews = YAML.load(source, aliases: true)['podcast_interviews']
+      {
+        entries: interviews.size,
+        'audio_url' => interviews.count { |i| i['audio_url'] },
+        'audio_type' => interviews.count { |i| i['audio_type'] },
+        'audio_length' => interviews.count { |i| i['audio_length'] }
+      }
+    end
+
+    def verify!(source, before, additions)
+      after = counts(source)
+
+      raise "entry count changed: #{before[:entries]} -> #{after[:entries]}" unless after[:entries] == before[:entries]
+
+      %w[audio_url audio_type audio_length].each do |key|
+        expected = additions.count { |addition| addition['fields'].key?(key) }
+        actual = after[key] - before[key]
+        next if actual == expected
+
+        raise "expected #{expected} new #{key} values, found #{actual}"
+      end
     end
   end
 end
@@ -222,9 +259,13 @@ unless mode == '--audio-only'
 end
 
 unless mode == '--links-only' || from_report
-  pending = data['podcast_interviews'].reject { |interview| interview['audio_url'] }
-  warn "Looking for audio for #{pending.size} interviews..."
+  interviews = data['podcast_interviews']
+  pending = interviews.reject { |interview| interview['audio_url'] }
+  # An enclosure states the file's size and type; recording them here is what keeps
+  # the build from having to ask 34 third-party hosts on every deploy.
+  incomplete = interviews.select { |i| i['audio_url'] && !(i['audio_type'] && i['audio_length']) }
 
+  warn "Looking for audio for #{pending.size} interviews, sizing #{incomplete.size} already recorded..."
   resolver = AudioResolver.new(logger: ->(message) { warn message })
 
   pending.each do |interview|
@@ -232,19 +273,59 @@ unless mode == '--links-only' || from_report
     result = resolver.resolve(interview)
     entry = { 'title' => interview['title'], 'entry_url' => AudioResolver.source_url(interview) }
 
-    if result.resolved?
-      report['audio_found'] << entry.merge(
-        { 'audio_url' => result.audio_url, 'strategy' => result.strategy, 'matched_title' => result.matched_title }.compact
-      )
-    else
+    unless result.resolved?
       report['audio_missing'] << entry.merge('reason' => result.reason)
+      next
     end
+
+    details = result.length.to_i.positive? ? result : Enclosure.probe(result.audio_url)
+    report['audio_found'] << entry.merge(
+      {
+        'audio_url' => result.audio_url,
+        'audio_type' => details&.type,
+        'audio_length' => details&.length,
+        'strategy' => result.strategy,
+        'matched_title' => result.matched_title
+      }.compact
+    )
+  end
+
+  incomplete.each do |interview|
+    warn "  sizing #{interview['title']}"
+    details = Enclosure.probe(interview['audio_url'])
+
+    unless details&.usable?
+      report['audio_unreadable'] ||= []
+      report['audio_unreadable'] << { 'title' => interview['title'], 'audio_url' => interview['audio_url'] }
+      next
+    end
+
+    report['audio_sized'] ||= []
+    report['audio_sized'] << {
+      'title' => interview['title'],
+      'entry_url' => AudioResolver.source_url(interview),
+      'audio_type' => details.type,
+      'audio_length' => details.length
+    }
   end
 end
 
-if write && !report['audio_found'].empty?
-  added, skipped = ListWriter.insert(LIST_PATH, report['audio_found'])
-  warn "\nAdded audio_url to #{added.size} entries in list.yml."
+if write
+  recorded = data['podcast_interviews'].to_h { |i| [AudioResolver.source_url(i), i] }
+
+  # Only ever add a key the entry lacks, so applying a report twice is a no-op.
+  additions = (report['audio_found'] + (report['audio_sized'] || [])).filter_map do |finding|
+    interview = recorded[finding['entry_url']] || {}
+    fields = %w[audio_url audio_type audio_length]
+             .reject { |key| interview[key] }
+             .to_h { |key| [key, finding[key]] }
+             .compact
+
+    { 'title' => finding['title'], 'entry_url' => finding['entry_url'], 'fields' => fields } unless fields.empty?
+  end
+
+  applied, skipped = ListWriter.insert(LIST_PATH, additions)
+  warn "\nUpdated #{applied.size} entries in list.yml."
   skipped.each { |title, reason| warn "  SKIPPED #{title}: #{reason}" }
 end
 
@@ -261,6 +342,15 @@ else
   report['audio_found'].each do |found|
     puts "  #{found['title']}\n      #{found['audio_url']}"
     puts "      matched feed episode: #{found['matched_title']}" if found['matched_title']
+  end
+
+  sized = report['audio_sized'] || []
+  puts "\n#{sized.size} recorded audio files sized." unless sized.empty?
+
+  unreadable = report['audio_unreadable'] || []
+  unless unreadable.empty?
+    puts "\n#{unreadable.size} recorded audio files could not be read:"
+    unreadable.each { |u| puts "  #{u['title']}\n      #{u['audio_url']}" }
   end
 
   puts "\n#{report['audio_missing'].size} interviews with no audio found."
