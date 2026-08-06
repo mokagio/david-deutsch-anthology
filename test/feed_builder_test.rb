@@ -33,6 +33,26 @@ class FeedBuilderTest < Minitest::Test
     assert_equal 'Interview on EconTalk', episode[:description]
   end
 
+  def test_uses_the_recorded_type_and_length_without_probing
+    entry = interview(title: 'An interview', url: 'https://example.com/one')
+                     .merge('audio_type' => 'audio/x-m4a', 'audio_length' => 999)
+
+    build = FeedBuilder.build([entry], probe: ->(_url) { flunk 'should not probe a recorded entry' })
+
+    episode = build.episodes.fetch(0)
+
+    assert_equal 'audio/x-m4a', episode[:type]
+    assert_equal 999, episode[:length]
+  end
+
+  def test_probes_when_only_one_of_type_and_length_is_recorded
+    entry = interview(title: 'An interview', url: 'https://example.com/one').merge('audio_length' => 999)
+
+    build = FeedBuilder.build([entry], probe: probe(type: 'audio/mpeg', length: 1234))
+
+    assert_equal 1234, build.episodes.fetch(0)[:length]
+  end
+
   def test_skips_an_entry_with_no_audio_url
     build = FeedBuilder.build(
       [interview(title: 'A video', url: 'https://example.com/one', audio_url: nil)],

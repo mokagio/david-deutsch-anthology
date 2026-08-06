@@ -40,12 +40,22 @@ module FeedBuilder
       audio_url = interview['audio_url']
       return [nil, 'no audio_url'] unless audio_url
 
-      details = probe.call(audio_url)
+      details = recorded(interview) || probe.call(audio_url)
       # An enclosure without a byte count is rejected by strict clients, so an
       # unreachable file is no more use in the feed than a missing one.
       return [nil, "could not read #{audio_url}"] unless details&.usable?
 
       [episode(interview, audio_url, details), nil]
+    end
+
+    # A build that trusts the list asks nobody anything. Probing is the fallback
+    # for an entry added by hand, and it fails wherever the host blocks CI.
+    def recorded(interview)
+      type = interview['audio_type']
+      length = interview['audio_length']
+      return nil unless type && length
+
+      Enclosure::Details.new(type: type, length: length.to_i)
     end
 
     def episode(interview, audio_url, details)
