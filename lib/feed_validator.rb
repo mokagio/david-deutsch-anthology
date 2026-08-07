@@ -4,6 +4,8 @@ require 'rss'
 require 'time'
 require 'uri'
 
+require_relative 'enclosure'
+
 # Checks the generated feed against what a podcast client needs, which is a
 # stricter bar than "valid RSS": an item with no enclosure parses fine and then
 # shows up in no app.
@@ -46,7 +48,9 @@ module FeedValidator
       errors = []
       errors << "#{label}: enclosure url is not an absolute http(s) URL" unless http_url?(enclosure.url)
       errors << "#{label}: enclosure type #{enclosure.type.inspect} is not an audio type" unless audio?(enclosure.type)
-      errors << "#{label}: enclosure length is not a positive byte count" unless enclosure.length.to_i.positive?
+      unless enclosure.length.to_i >= Enclosure::MIN_PLAUSIBLE_BYTES
+        errors << "#{label}: enclosure length #{enclosure.length} is too small to be an episode"
+      end
       errors
     end
 

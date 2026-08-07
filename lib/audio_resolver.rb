@@ -145,20 +145,11 @@ class AudioResolver
     )
     return nil unless match
 
-    result =
-      if match.length.to_i.positive?
-        Result.new(
-          audio_url: match.audio_url,
-          type: match.type || mime_type_for(match.audio_url),
-          length: match.length,
-          duration: match.duration,
-          strategy: 'feed'
-        )
-      else
-        # Some hosts (Megaphone among them) publish `length="0"`, which is a valid
-        # feed and an unplayable enclosure in strict clients — ask the file itself.
-        describe(match.audio_url, strategy: 'feed', type: match.type, duration: match.duration)
-      end
+    # Always ask the file rather than believe the feed: Megaphone publishes
+    # `length="0"`, and The TED Interview's feed overstates by 43%. The declared
+    # value is only a fallback for a file that will not answer.
+    result = describe(match.audio_url, strategy: 'feed', type: match.type, duration: match.duration)
+    result.length = match.length if result.length.to_i < Enclosure::MIN_PLAUSIBLE_BYTES
 
     result.matched_title = match.title
     result

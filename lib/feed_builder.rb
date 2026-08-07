@@ -43,7 +43,8 @@ module FeedBuilder
       details = recorded(interview) || probe.call(audio_url)
       # An enclosure without a byte count is rejected by strict clients, so an
       # unreachable file is no more use in the feed than a missing one.
-      return [nil, "could not read #{audio_url}"] unless details&.usable?
+      return [nil, "could not read #{audio_url}"] unless details
+      return [nil, "audio_length #{details.length} is too small to be an episode"] unless details.usable?
 
       [episode(interview, audio_url, details), nil]
     end

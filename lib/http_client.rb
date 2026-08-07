@@ -20,18 +20,15 @@ module HttpClient
       request(Net::HTTP::Get, url, redirects: redirects)
     end
 
-    # Falls back to a one-byte ranged GET: some CDNs answer HEAD with 403 or an empty
-    # Content-Length while happily serving the range request.
     def head(url, redirects: MAX_REDIRECTS)
-      response = request(Net::HTTP::Head, url, redirects: redirects)
-      return response if response && response.headers['content-length']
+      request(Net::HTTP::Head, url, redirects: redirects)
+    end
 
-      ranged = request(Net::HTTP::Get, url, redirects: redirects, headers: { 'Range' => 'bytes=0-0' })
-      return response unless ranged
-
-      total = ranged.headers['content-range']&.slice(%r{/(\d+)\z}, 1)
-      ranged.headers['content-length'] = total if total
-      ranged
+    # Asks for the first byte. The response's `Content-Range` states the file's true
+    # size, which is the only number worth trusting: hosts answer HEAD with 403, with
+    # an empty Content-Length, or with a stub describing something else entirely.
+    def ranged_get(url, redirects: MAX_REDIRECTS)
+      request(Net::HTTP::Get, url, redirects: redirects, headers: { 'Range' => 'bytes=0-0' })
     end
 
     private

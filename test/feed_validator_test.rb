@@ -21,7 +21,7 @@ class FeedValidatorTest < Minitest::Test
     XML
   end
 
-  def playable_item(enclosure: '<enclosure url="https://example.com/a.mp3" type="audio/mpeg" length="123" />')
+  def playable_item(enclosure: '<enclosure url="https://example.com/a.mp3" type="audio/mpeg" length="1234567" />')
     <<~XML
       <title>An interview</title>
       <guid isPermaLink="false">https://example.com/interview</guid>
@@ -42,7 +42,7 @@ class FeedValidatorTest < Minitest::Test
   end
 
   def test_rejects_an_enclosure_pointing_at_a_web_page
-    enclosure = '<enclosure url="https://example.com/episode" type="text/html" length="123" />'
+    enclosure = '<enclosure url="https://example.com/episode" type="text/html" length="1234567" />'
     errors = FeedValidator.errors(feed(playable_item(enclosure: enclosure)))
 
     assert_includes errors.join, 'is not an audio type'
@@ -52,11 +52,18 @@ class FeedValidatorTest < Minitest::Test
     enclosure = '<enclosure url="https://example.com/a.mp3" type="audio/mpeg" length="0" />'
     errors = FeedValidator.errors(feed(playable_item(enclosure: enclosure)))
 
-    assert_includes errors.join, 'not a positive byte count'
+    assert_includes errors.join, 'too small to be an episode'
+  end
+
+  def test_rejects_a_stub_length_that_is_positive_but_absurd
+    enclosure = '<enclosure url="https://example.com/a.mp3" type="audio/mpeg" length="2" />'
+    errors = FeedValidator.errors(feed(playable_item(enclosure: enclosure)))
+
+    assert_includes errors.join, 'too small to be an episode'
   end
 
   def test_rejects_a_relative_enclosure_url
-    enclosure = '<enclosure url="/a.mp3" type="audio/mpeg" length="123" />'
+    enclosure = '<enclosure url="/a.mp3" type="audio/mpeg" length="1234567" />'
     errors = FeedValidator.errors(feed(playable_item(enclosure: enclosure)))
 
     assert_includes errors.join, 'not an absolute http(s) URL'
@@ -76,10 +83,7 @@ class FeedValidatorTest < Minitest::Test
     assert_includes errors.first, 'does not parse'
   end
 
-  def test_the_generated_feed_is_playable
-    path = File.expand_path('../public/podcast.rss', __dir__)
-    skip 'run `ruby generate_podcast_rss.rb` first' unless File.exist?(path)
-
-    assert_empty FeedValidator.errors(File.read(path))
-  end
+  # The generated feed is checked by `rake validate`, which runs after `generate`.
+  # Asserting it here read whatever `public/` happened to contain, and `rake` runs
+  # the tests first — so it passed or failed on the previous build's output.
 end

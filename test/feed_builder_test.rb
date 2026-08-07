@@ -12,7 +12,7 @@ class FeedBuilderTest < Minitest::Test
     }.compact
   end
 
-  def probe(type: 'audio/mpeg', length: 1234)
+  def probe(type: 'audio/mpeg', length: 1234567)
     ->(_url) { Enclosure::Details.new(type: type, length: length) }
   end
 
@@ -29,28 +29,28 @@ class FeedBuilderTest < Minitest::Test
     assert_equal 'https://example.com/one', episode[:guid]
     assert_equal 'https://example.com/a.mp3', episode[:audio_url]
     assert_equal 'audio/mpeg', episode[:type]
-    assert_equal 1234, episode[:length]
+    assert_equal 1234567, episode[:length]
     assert_equal 'Interview on EconTalk', episode[:description]
   end
 
   def test_uses_the_recorded_type_and_length_without_probing
     entry = interview(title: 'An interview', url: 'https://example.com/one')
-                     .merge('audio_type' => 'audio/x-m4a', 'audio_length' => 999)
+                     .merge('audio_type' => 'audio/x-m4a', 'audio_length' => 9_999_999)
 
     build = FeedBuilder.build([entry], probe: ->(_url) { flunk 'should not probe a recorded entry' })
 
     episode = build.episodes.fetch(0)
 
     assert_equal 'audio/x-m4a', episode[:type]
-    assert_equal 999, episode[:length]
+    assert_equal 9_999_999, episode[:length]
   end
 
   def test_probes_when_only_one_of_type_and_length_is_recorded
     entry = interview(title: 'An interview', url: 'https://example.com/one').merge('audio_length' => 999)
 
-    build = FeedBuilder.build([entry], probe: probe(type: 'audio/mpeg', length: 1234))
+    build = FeedBuilder.build([entry], probe: probe(type: 'audio/mpeg', length: 1234567))
 
-    assert_equal 1234, build.episodes.fetch(0)[:length]
+    assert_equal 1234567, build.episodes.fetch(0)[:length]
   end
 
   def test_skips_an_entry_with_no_audio_url
@@ -80,7 +80,19 @@ class FeedBuilderTest < Minitest::Test
     )
 
     assert_empty build.episodes
-    assert_includes build.skipped.fetch(0).reason, 'could not read'
+    assert_includes build.skipped.fetch(0).reason, 'too small'
+  end
+
+  # acast answers a size request with two bytes of text/plain, which a
+  # positive-number check waves through and no client can play.
+  def test_skips_a_recorded_length_too_small_to_be_an_episode
+    entry = interview(title: 'A stub', url: 'https://example.com/one')
+                     .merge('audio_type' => 'audio/mpeg', 'audio_length' => 2)
+
+    build = FeedBuilder.build([entry], probe: ->(_url) { flunk 'should not probe a recorded entry' })
+
+    assert_empty build.episodes
+    assert_includes build.skipped.fetch(0).reason, 'audio_length 2 is too small'
   end
 
   def test_lists_the_newest_episode_first

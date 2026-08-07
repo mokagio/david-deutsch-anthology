@@ -7,8 +7,13 @@ require_relative 'http_client'
 # What an RSS `<enclosure>` needs about an audio file beyond its URL: the MIME
 # type and the byte length, neither of which `list.yml` records.
 module Enclosure
+  # A podcast episode is never a few kilobytes. Hosts that answer a size request
+  # with a stub — acast returns two bytes of `text/plain` — otherwise sail through
+  # a positive-number check and publish an enclosure no client can play.
+  MIN_PLAUSIBLE_BYTES = 100_000
+
   Details = Struct.new(:type, :length, keyword_init: true) do
-    def usable? = !type.nil? && length.to_i.positive?
+    def usable? = !type.nil? && length.to_i >= Enclosure::MIN_PLAUSIBLE_BYTES
   end
 
   AUDIO_EXTENSIONS = %w[.mp3 .m4a .aac .ogg .oga .opus .wav].freeze
@@ -22,12 +27,22 @@ module Enclosure
 
   class << self
     def probe(url)
-      response = HttpClient.head(url)
-      return nil unless response
+      head = HttpClient.head(url)
+      head_type = audio_content_type(head&.headers&.dig('content-type'))
+      head_length = head&.headers&.dig('content-length').to_i
+
+      # A HEAD that does not describe audio is a stub whatever length it claims —
+      # acast answers with two bytes of `text/plain`. Only the range request's
+      # Content-Range can be believed.
+      return Details.new(type: head_type, length: head_length) if head_type && head_length.positive?
+
+      ranged = HttpClient.ranged_get(url)
+      total = ranged&.headers&.dig('content-range')&.slice(%r{/(\d+)\z}, 1)
+      return nil unless total
 
       Details.new(
-        type: audio_content_type(response.headers['content-type']) || mime_type_for(response.url || url),
-        length: response.headers['content-length'].to_i
+        type: audio_content_type(ranged.headers['content-type']) || head_type || mime_type_for(ranged.url || url),
+        length: total.to_i
       )
     end
 
