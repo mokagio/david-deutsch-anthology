@@ -167,7 +167,7 @@ podcast_interviews:
     youtube_url: https://www.youtube.com/watch?v=vYNLahd6fds
     audio_url: https://sphinx.acast.com/p/open/s/683f0798c966cde736234a29/e/68405d395de209b54b1e025c/media.mp3
     audio_type: audio/mpeg
-    audio_length: 2
+    audio_length: 62106594
     show:
       name: Existential Hope Podcast by Foresight Institute
       url: https://www.youtube.com/channel/UCg5UVUMqXeCQ03MelT_RXMg
@@ -286,6 +286,16 @@ podcast_interviews:
     youtube_url: https://www.youtube.com/watch?v=d8KCXgzqhSQ
     show: *joe_boswell
     published_date: 2018/12/08
+
+  - title: David Deutsch on the infinite reach of knowledge
+    podcast_url: https://pca.st/FA1q
+    audio_url: https://sphinx.acast.com/p/open/s/67045b43aa9d704b1e952e88/e/prx_179_7cb483e3-c7b9-4fad-abfb-e5528be4ed58/media.mp3
+    audio_type: audio/mpeg
+    audio_length: 60223650
+    show:
+      name: The TED Interview
+      url: https://www.ted.com/podcasts/ted-interview
+    published_date: 2018/10/23
 
   - title: David Deutsch - AI, America, Fun, & Bayes
     youtube_url: https://www.youtube.com/watch?v=EVwjofV5TgU
