@@ -12,6 +12,9 @@ user-invocable: true
 
 Two passes over `list.yml`: link liveness, and audio discovery for `podcast_interviews`.
 
+[`docs/audio-sourcing.md`](../../../docs/audio-sourcing.md) explains the host behaviour behind most of what this reports — why a 401 from YouTube is not a dead video, why a 429 is not a verdict, why an unreachable host is not a missing page.
+Append to it when a host does something new.
+
 ## 1. Run the audit
 
 ```sh

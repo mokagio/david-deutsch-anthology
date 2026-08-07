@@ -1,0 +1,85 @@
+# Audio sourcing notes
+
+What the podcast hosts and platforms in this list actually do, as opposed to what they claim.
+Every entry here cost a wrong answer once.
+**Append to it when a new host surprises you** — that is the point of the file.
+
+## Never trust a feed's `length`
+
+Megaphone publishes `length="0"` on its enclosures.
+The feed is valid; the enclosure is unplayable in strict clients, and `validate_podcast_rss.rb` rejects it.
+Probe the file for its real byte count before recording `audio_length`.
+
+Assume any host can do this. Check the number rather than the feed.
+
+## Never scrape an aggregator's episode page for audio
+
+A Pocket Casts episode page (`pca.st/xxxx`, redirecting to `pocketcasts.com/podcast/<show>/<uuid>/<episode>/<uuid>`) embeds the mp3 URLs of *several* episodes — the one you want plus neighbours in the same show.
+Picking one by position is a coin flip.
+
+Use the page only for the episode title and show name, then find the episode in the show's own RSS feed.
+Cross-check: the enclosure you settle on should also appear somewhere on the aggregator page.
+
+## Titles differ across platforms
+
+The same conversation is routinely retitled between its YouTube and podcast releases.
+Theories of Everything published `David Deutsch: Einstein Would Fail Modern Grant Applications` as `The Multiverse May Be Real | David Deutsch`, so an exact-title search finds nothing.
+
+Confirm two releases are the same recording by triangulating instead:
+
+- same channel/show author,
+- same publication date,
+- runtime within a few minutes.
+
+## Podcast audio runs longer than the video
+
+Dynamic ad insertion adds minutes. A `pscrb.fm`, `podtrac.com`, `chrt.fm` or `dts.podtrac.com` hop in the audio URL means ads are being stitched in per request.
+
+Expect the audio to exceed the video: 8123s of video against 8313s of audio was the same TOE episode; 3846s against 3881s was the same Foresight one.
+A gap of minutes is normal, an hour is a different recording.
+
+Corollary: `audio_length` on an ad-inserted file will drift over time.
+`/audit-list` reports it as `audio_unreadable` if the URL stops resolving.
+
+## Substack blocks CI
+
+`api.substack.com` serves audio fine from a laptop and refuses GitHub Actions runners.
+This is why `list.yml` records `audio_type` and `audio_length` rather than probing at build time, and why the deploy runs `--no-resolve`.
+
+A build that probes drops those episodes *and reports success*, because a feed of whatever survived still validates.
+
+## YouTube liveness needs oEmbed, and oEmbed lies about 401
+
+A deleted video's watch page returns **200**. Liveness has to come from `https://www.youtube.com/oembed?format=json&url=…`, which 400s once the video is gone.
+
+But oEmbed returns **401 for a live video whose owner disabled embedding**.
+Resolve that by fetching the watch page and looking for `"status":"OK"` — present means it plays.
+
+oEmbed does not understand channel URLs (`youtube.com/@handle`); check those as ordinary links.
+
+## Throttle per host, and treat 429 as "unknown"
+
+Four `nav.al` links checked back-to-back earn a 429 indistinguishable from a dead link.
+Space requests to the same host and retry once before believing a failure.
+
+## HEAD is not universally supported
+
+`dts.podtrac.com` answers HEAD with 405 while serving a ranged GET happily.
+Fall back to `Range: bytes=0-0` and read the total from `Content-Range`.
+
+## Unreachable is not dead
+
+`fromthelotus.world` fails the TLS handshake from Ruby *and* from curl.
+That is the host refusing us, not evidence the page is gone. Report it separately and do not act on it.
+
+## Finding a show's feed
+
+In order of reliability:
+
+1. `feed_url` recorded on the show in `list.yml`.
+2. `<link rel="alternate" type="application/rss+xml">` on the episode page.
+3. The same on the **show's own home page** — `list.yml` records it, and it is how the Increments feed was found.
+4. iTunes search by show name.
+
+Search is last for a reason: querying "Increments Podcast" returns three unrelated shows, and "Logan Chipkin" returns a show whose episodes match on the guest's name alone.
+Whatever the source, confirm by finding the episode in the feed — a feed with no matching episode is the wrong feed.
