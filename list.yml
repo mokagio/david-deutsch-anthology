@@ -447,6 +447,17 @@ podcast_interviews:
       url: https://www.youtube.com/@theshapeofdialogue7211
     published_date: 2025/09/18
 
+  - title: "David Deutsch: Einstein Would Fail Modern Grant Applications"
+    podcast_url: https://pca.st/irai1e46
+    youtube_url: https://www.youtube.com/watch?v=vKeWv-cdWkM
+    audio_url: https://s.gum.fm/s-62d83916a854b1cc0031878d/pscrb.fm/rss/p/traffic.megaphone.fm/TEMI4086813871.mp3?updated=1759762315
+    audio_type: audio/mpeg
+    audio_length: 97025658
+    show:
+      name: Theories of Everything with Curt Jaimungal
+      url: https://www.youtube.com/@TheoriesOfEverything
+    published_date: 2025/10/06
+
   - title: David Deutsch on the Pattern
     url: https://www.econtalk.org/david-deutsch-on-the-pattern/
     audio_url: https://cdn.simplecast.com/audio/6fdba516-8381-43b0-b29f-59d05512b693/episodes/a465fa1a-35ca-40f6-8e3c-6f7e49424912/audio/9dfae9e8-490f-499c-8f11-35f0563688e1/default_tc.mp3?aid=rss_feed&feed=wgl4xEgL
