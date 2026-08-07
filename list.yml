@@ -458,6 +458,16 @@ podcast_interviews:
       url: https://www.youtube.com/@TheoriesOfEverything
     published_date: 2025/10/06
 
+  - title: In search of nothing | David Deutsch, Amanda Gefter, Lee Smolin
+    podcast_url: https://pca.st/fgd9t45f
+    audio_url: https://rss.art19.com/episodes/cf51acc2-5bb1-47df-804a-854958962803.mp3?rss_browser=BAhJIgtDaHJvbWUGOgZFVA%3D%3D--d05363d83ce333c74f32188013892b2863ad051c
+    audio_type: audio/mpeg
+    audio_length: 57888182
+    show:
+      name: Philosophy For Our Times
+      url: https://art19.com/shows/philosophy-for-our-times
+    published_date: 2025/11/06
+
   - title: David Deutsch on the Pattern
     url: https://www.econtalk.org/david-deutsch-on-the-pattern/
     audio_url: https://cdn.simplecast.com/audio/6fdba516-8381-43b0-b29f-59d05512b693/episodes/a465fa1a-35ca-40f6-8e3c-6f7e49424912/audio/9dfae9e8-490f-499c-8f11-35f0563688e1/default_tc.mp3?aid=rss_feed&feed=wgl4xEgL
