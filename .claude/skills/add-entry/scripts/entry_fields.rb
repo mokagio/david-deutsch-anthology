@@ -139,16 +139,26 @@ show_name = (feed.channel.title.respond_to?(:content) ? feed.channel.title.conte
 show_url = feed.channel.link.to_s.strip
 
 # An aggregator link gives no hint that the episode is already in the list under
-# its own site's URL, and the audio file is the only reliable way to tell.
-existing = YAML.load_file(File.join(ROOT, 'list.yml'), aliases: true)['podcast_interviews'].find do |entry|
-  [entry['audio_url'], entry['url'], entry['podcast_url'], entry['youtube_url']].compact.any? do |recorded|
-    recorded == item.enclosure.url || recorded == source_url
+# its own site's URL, and the audio file is the only reliable way to tell. Every
+# section is searched, because a talk released as a podcast lives under `talks`.
+list = YAML.load_file(File.join(ROOT, 'list.yml'), aliases: true)
+section, existing = list.filter_map do |name, entries|
+  next unless entries.is_a?(Array)
+
+  match = entries.find do |entry|
+    next unless entry.is_a?(Hash)
+
+    [entry['audio_url'], entry['url'], entry['podcast_url'], entry['youtube_url']].compact.any? do |recorded|
+      recorded == item.enclosure.url || recorded == source_url
+    end
   end
-end
+  [name, match] if match
+end.first
 
 if existing
+  when_recorded = existing['published_date'] || existing['delivered_date']
   warn ''
-  warn "ALREADY IN THE LIST: #{existing['title']} (#{existing['published_date']}, #{existing.dig('show', 'name')})"
+  warn "ALREADY IN THE LIST (#{section}): #{existing['title']} (#{when_recorded})"
   warn 'Adding this would publish the same recording twice. Stop unless you know better.'
 end
 

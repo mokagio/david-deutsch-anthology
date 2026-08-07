@@ -17,6 +17,9 @@ The anthology also publishes a podcast feed at `/podcast.rss`, so the interviews
 A podcast client needs a playable audio file, not a link to the episode's web page, and an `<enclosure>` has to state that file's size and type.
 `list.yml` records all three, as `audio_url`, `audio_type` and `audio_length`, and is the source of truth for them as for everything else.
 
+Anything in `podcast_interviews` or `talks` carrying those fields is published, so a TED talk released as a podcast episode stays filed as a talk and still reaches the feed.
+Entries in the other sections never do, whatever they record.
+
 The `/audit-list` skill finds and records them.
 It also reports links that have rotted.
 

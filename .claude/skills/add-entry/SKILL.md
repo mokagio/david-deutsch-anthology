@@ -53,6 +53,10 @@ If it is there *without* one and this is the second appearance, introduce an anc
 
 ## 3. Insert it
 
+**Pick the section by what the recording is, not by where you want it to appear.**
+A lecture or a conference talk released as a podcast episode belongs in `talks`, which the feed publishes too — `FeedBuilder::LABELS` lists the sections that reach it.
+Talks use `delivered_date` (when it was given, not when the podcast released it) in place of `published_date`.
+
 `list.yml` is grouped loosely by show, not sorted — the feed is sorted at build time, so position carries no meaning. Put the entry near others of its era or its show:
 
 ```sh
