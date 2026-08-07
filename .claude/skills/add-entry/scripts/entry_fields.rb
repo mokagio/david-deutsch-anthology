@@ -14,6 +14,7 @@ require 'cgi'
 require 'json'
 require 'rss'
 require 'uri'
+require 'yaml'
 
 ROOT = File.expand_path('../../../..', __dir__)
 require File.join(ROOT, 'lib', 'http_client')
@@ -130,6 +131,20 @@ warn 'WARNING: could not determine a byte length — the episode cannot enter th
 published = item.pubDate
 show_name = (feed.channel.title.respond_to?(:content) ? feed.channel.title.content : feed.channel.title).to_s.strip
 show_url = feed.channel.link.to_s.strip
+
+# An aggregator link gives no hint that the episode is already in the list under
+# its own site's URL, and the audio file is the only reliable way to tell.
+existing = YAML.load_file(File.join(ROOT, 'list.yml'), aliases: true)['podcast_interviews'].find do |entry|
+  [entry['audio_url'], entry['url'], entry['podcast_url'], entry['youtube_url']].compact.any? do |recorded|
+    recorded == item.enclosure.url || recorded == source_url
+  end
+end
+
+if existing
+  warn ''
+  warn "ALREADY IN THE LIST: #{existing['title']} (#{existing['published_date']}, #{existing.dig('show', 'name')})"
+  warn 'Adding this would publish the same recording twice. Stop unless you know better.'
+end
 
 quoted = matched_title.match?(/[:#]/) ? matched_title.inspect : matched_title
 

@@ -24,9 +24,12 @@ Pass `--feed URL`, `--show NAME` or `--title TITLE` when it cannot work somethin
 
 **Read the warnings, they are the point:**
 
+- `ALREADY IN THE LIST` — stop. An aggregator link gives no sign the conversation is already recorded under the show's own URL.
 - `weak title match` — it guessed. Confirm the episode is the right one before going further.
 - `feed declared length=0` — normal for Megaphone, already handled, mentioned so the number is not a mystery.
 - `could not determine a byte length` — stop. Without it the entry cannot enter the feed, and recording a zero would ship an enclosure strict clients reject.
+
+Given several URLs, run it on each before writing anything — some may turn out to be duplicates of each other or of the list.
 
 ## 2. Fill in what the script cannot judge
 
@@ -35,7 +38,9 @@ Check it resolves and prefer the canonical form — `https://youtube.com/Theorie
 
 **`youtube_url`** is worth adding when the conversation also exists as a video, and the script deliberately does not guess.
 Titles differ across platforms, so search the guest and show rather than the episode title, then confirm the video is the same recording: same channel, same publication date, runtime within a few minutes of the audio (the script prints the audio duration for this).
-Podcast audio is normally the longer of the two — see the ad-insertion note in the sourcing doc.
+
+Runtime is the check that actually discriminates — a clip carries the right title, channel and date, and is a fraction of the length.
+Podcast audio is normally slightly the longer of the two; anything under about half is an excerpt, so leave `youtube_url` off.
 
 **The show may already be in the list.** Check before writing:
 

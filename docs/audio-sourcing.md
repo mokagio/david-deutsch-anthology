@@ -38,6 +38,11 @@ Dynamic ad insertion adds minutes. A `pscrb.fm`, `podtrac.com`, `chrt.fm` or `dt
 Expect the audio to exceed the video: 8123s of video against 8313s of audio was the same TOE episode; 3846s against 3881s was the same Foresight one.
 A gap of minutes is normal, an hour is a different recording.
 
+**A much shorter video is a clip, not the episode.**
+The IAI published a 753-second excerpt of its 3617-second *In search of nothing* debate, under a near-identical title with the guests reordered.
+Title, channel and rough date all agreed; only the runtime gave it away.
+Compare the ratio, not just the titles — anything under about half the audio length is an excerpt and does not belong in `youtube_url`.
+
 Corollary: `audio_length` on an ad-inserted file will drift over time.
 `/audit-list` reports it as `audio_unreadable` if the URL stops resolving.
 
@@ -83,3 +88,17 @@ In order of reliability:
 
 Search is last for a reason: querying "Increments Podcast" returns three unrelated shows, and "Logan Chipkin" returns a show whose episodes match on the guest's name alone.
 Whatever the source, confirm by finding the episode in the feed — a feed with no matching episode is the wrong feed.
+
+WordPress advertises a per-post feed at `<post-url>/feed/`, which announces itself as `application/rss+xml` and contains no enclosures at all.
+Discovery from an episode page can land on it. Pass the show's real feed explicitly when that happens.
+
+## The same show appears under different names
+
+A producer's video channel and its podcast are often branded differently: the Institute of Art and Ideas publishes the podcast *Philosophy For Our Times*.
+They are separate entries in `list.yml` with separate `show` blocks, because `show` records where an appearance was published, not who produced it.
+
+## An episode can already be in the list under another URL
+
+An aggregator link carries no hint that the same conversation is already recorded under the show's own URL — `pca.st/xd56bapl` is the EconTalk episode the list has had all along.
+The audio file is the reliable identity; the page URL is not.
+`entry_fields.rb` checks and says so.
