@@ -16,14 +16,23 @@ module FeedBuilder
 
   Skip = Struct.new(:title, :reason, keyword_init: true)
 
+  # What an entry is called in its item description. A section with no label is
+  # not published, which is why `books` and `other` never reach the feed.
+  LABELS = { 'podcast_interviews' => 'Interview', 'talks' => 'Talk' }.freeze
+
   class << self
-    def build(interviews, probe: Enclosure.method(:probe))
+    # Takes the whole of `list.yml`: any section with a label contributes whatever
+    # entries carry audio, so a talk released as a podcast episode is published
+    # without needing to be filed as an interview.
+    def build(list, probe: Enclosure.method(:probe))
       episodes = []
       skipped = []
 
-      interviews.each do |interview|
-        episode, reason = episode_for(interview, probe)
-        episode ? episodes << episode : skipped << Skip.new(title: interview['title'], reason: reason)
+      LABELS.each_key do |section|
+        (list[section] || []).each do |entry|
+          episode, reason = episode_for(entry, section, probe)
+          episode ? episodes << episode : skipped << Skip.new(title: entry['title'], reason: reason)
+        end
       end
 
       episodes.sort_by! { |episode| episode[:published_at] }
@@ -36,17 +45,17 @@ module FeedBuilder
 
     private
 
-    def episode_for(interview, probe)
-      audio_url = interview['audio_url']
+    def episode_for(entry, section, probe)
+      audio_url = entry['audio_url']
       return [nil, 'no audio_url'] unless audio_url
 
-      details = recorded(interview) || probe.call(audio_url)
+      details = recorded(entry) || probe.call(audio_url)
       # An enclosure without a byte count is rejected by strict clients, so an
       # unreachable file is no more use in the feed than a missing one.
       return [nil, "could not read #{audio_url}"] unless details
       return [nil, "audio_length #{details.length} is too small to be an episode"] unless details.usable?
 
-      [episode(interview, audio_url, details), nil]
+      [episode(entry, section, audio_url, details), nil]
     end
 
     # A build that trusts the list asks nobody anything. Probing is the fallback
@@ -59,16 +68,17 @@ module FeedBuilder
       Enclosure::Details.new(type: type, length: length.to_i)
     end
 
-    def episode(interview, audio_url, details)
-      source_url = AudioResolver.source_url(interview)
-      show_name = interview.dig('show', 'name') || 'Unknown Show'
+    def episode(entry, section, audio_url, details)
+      source_url = AudioResolver.source_url(entry)
+      show_name = entry.dig('show', 'name') || 'Unknown Show'
 
       {
-        title: interview['title'],
+        title: entry['title'],
         page_url: source_url,
         guid: source_url,
-        published_at: Time.parse(interview['published_date']),
-        description: "Interview on #{show_name}",
+        # A talk records when it was delivered; an interview, when it was published.
+        published_at: Time.parse(entry['published_date'] || entry['delivered_date']),
+        description: "#{LABELS.fetch(section)} on #{show_name}",
         show_name: show_name,
         audio_url: audio_url,
         type: details.type,

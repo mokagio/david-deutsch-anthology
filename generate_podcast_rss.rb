@@ -31,7 +31,8 @@ def h(text) = CGI.escapeHTML(text.to_s)
 
 resolve_missing = !ARGV.include?('--no-resolve')
 
-interviews = YAML.load_file('list.yml', aliases: true)['podcast_interviews']
+list = YAML.load_file('list.yml', aliases: true)
+interviews = list['podcast_interviews']
 
 if resolve_missing
   pending = interviews.reject { |interview| interview['audio_url'] }
@@ -50,8 +51,8 @@ if resolve_missing
   end
 end
 
-build = FeedBuilder.build(interviews)
-abort 'No interview in list.yml has usable audio.' if build.episodes.empty?
+build = FeedBuilder.build(list)
+abort 'Nothing in list.yml has usable audio.' if build.episodes.empty?
 
 output_path = File.join('public', 'podcast.rss')
 FileUtils.mkdir_p(File.dirname(output_path))
