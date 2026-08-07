@@ -119,14 +119,20 @@ abort 'no episode in that feed has an enclosure' unless item
 warn format('matched  : %s (%.2f)', matched_title, score)
 warn 'WARNING: weak title match — confirm this is the right episode' if score < 0.6
 
-# A feed that says `length="0"` is Megaphone being Megaphone. Ask the file.
+# Always ask the file. Megaphone declares `length="0"`; The TED Interview's feed
+# overstates by 43%. The feed's number is the fallback, not the source.
 declared = item.enclosure.length.to_i
-details = declared.positive? ? nil : Enclosure.probe(item.enclosure.url)
-length = declared.positive? ? declared : details&.length
-type = item.enclosure.type || details&.type || Enclosure.mime_type_for(item.enclosure.url)
+details = Enclosure.probe(item.enclosure.url)
+length = details&.usable? ? details.length : declared
+type = details&.type || item.enclosure.type || Enclosure.mime_type_for(item.enclosure.url)
 
-warn 'NOTE: feed declared length=0, probed the file instead' unless declared.positive?
-warn 'WARNING: could not determine a byte length — the episode cannot enter the feed' unless length.to_i.positive?
+if details&.usable? && declared.positive? && (declared - length).abs > length * 0.05
+  warn "NOTE: feed declared length=#{declared}, the file is #{length} — using the file"
+end
+warn 'NOTE: feed declared length=0, probed the file instead' if declared.zero? && details&.usable?
+unless length.to_i >= Enclosure::MIN_PLAUSIBLE_BYTES
+  warn "WARNING: no plausible byte length (#{length}) — the episode cannot enter the feed"
+end
 
 published = item.pubDate
 show_name = (feed.channel.title.respond_to?(:content) ? feed.channel.title.content : feed.channel.title).to_s.strip
