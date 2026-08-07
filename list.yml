@@ -47,6 +47,25 @@ talks:
     url: https://www.youtube.com/watch?v=folTvNDL08A
     delivered_date: 2009/10/27 # This is the YouTube upload, though
 
+  - title: Chemical scum that dream of distant quasars
+    url: https://www.ted.com/talks/david_deutsch_chemical_scum_that_dream_of_distant_quasars
+    podcast_url: https://pca.st/et0jgs4t
+    audio_url: https://sphinx.acast.com/p/open/s/67587e77c705e441797aff96/e/en.audio.talk.ted.com%3A47/media.mp3
+    audio_type: audio/mpeg
+    audio_length: 10163009
+    show: &ted_talks_daily
+      name: TED Talks Daily
+      url: https://www.ted.com/podcasts/ted-talks-daily
+    delivered_date: 2005/07/14
+
+  - title: After billions of years of monotony, the universe is waking up
+    url: https://www.ted.com/talks/david_deutsch_after_billions_of_years_of_monotony_the_universe_is_waking_up
+    audio_url: https://sphinx.acast.com/p/open/s/67587e77c705e441797aff96/e/en.audio.talk.ted.com%3A50792/media.mp3
+    audio_type: audio/mpeg
+    audio_length: 7481238
+    show: *ted_talks_daily
+    delivered_date: 2019/04/15 # TED Talks Daily released it 2019/10/14
+
 podcast_interviews:
   - title: The Deutsch Files I
     url: https://nav.al/deutsch-files-i
