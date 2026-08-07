@@ -6,11 +6,22 @@ Every entry here cost a wrong answer once.
 
 ## Never trust a feed's `length`
 
-Megaphone publishes `length="0"` on its enclosures.
-The feed is valid; the enclosure is unplayable in strict clients, and `validate_podcast_rss.rb` rejects it.
-Probe the file for its real byte count before recording `audio_length`.
+Megaphone publishes `length="0"`.
+The TED Interview's feed declares 86,077,619 bytes for a file that is 60,223,650 — overstating by 43%, presumably from an earlier encoding.
 
-Assume any host can do this. Check the number rather than the feed.
+Both are valid RSS and neither number is the file. Always probe; use the declared value only when the file will not answer.
+
+## Never trust a HEAD response either
+
+acast answers `HEAD` with `content-type: text/plain` and `content-length: 2`.
+It is a stub describing nothing, and it sailed through a "length must be positive" check straight into the published feed, where one episode advertised a two-byte enclosure for weeks.
+
+Ask for `Range: bytes=0-0` and read the total out of `Content-Range`.
+Treat a HEAD whose content type is not `audio/*` as no answer at all.
+
+**A podcast episode is never a few kilobytes.** `Enclosure::MIN_PLAUSIBLE_BYTES` is the floor, and both the feed builder and the validator enforce it, because "greater than zero" is not a test that catches a stub.
+
+Byte lengths on ad-inserted files drift by a fraction of a percent between requests, which is normal and not worth chasing. A discrepancy of tens of percent is a wrong number.
 
 ## Never scrape an aggregator's episode page for audio
 

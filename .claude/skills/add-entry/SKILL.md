@@ -53,7 +53,7 @@ If it is there *without* one and this is the second appearance, introduce an anc
 
 ## 3. Insert it
 
-Entries sit in `published_date` order. Find the neighbours:
+`list.yml` is grouped loosely by show, not sorted — the feed is sorted at build time, so position carries no meaning. Put the entry near others of its era or its show:
 
 ```sh
 ruby -ryaml -e 'YAML.load_file("list.yml", aliases: true)["podcast_interviews"].each_with_index { |i, n| puts "#{n}: #{i["published_date"]}  #{i["title"][0,45]}" }'
