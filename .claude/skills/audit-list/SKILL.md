@@ -10,7 +10,7 @@ user-invocable: true
 
 # Audit the list
 
-Two passes over `list.yml`: link liveness, and audio discovery for `podcast_interviews`.
+Two passes over `list.yml`: link liveness across every section, and audio for the sections the feed publishes (`FeedBuilder::LABELS`) — finding it where it is missing, and re-measuring it where it is already recorded.
 
 [`docs/audio-sourcing.md`](../../../docs/audio-sourcing.md) explains the host behaviour behind most of what this reports — why a 401 from YouTube is not a dead video, why a 429 is not a verdict, why an unreachable host is not a missing page.
 Append to it when a host does something new.
@@ -28,6 +28,7 @@ The report keys:
 
 - `audio_found` — a new `audio_url`, with its `audio_type` and `audio_length`, the `entry_url` identifying which entry, and `matched_title` when it came from matching an episode in a show's feed.
 - `audio_sized` — an entry that had a URL but no size or type.
+- `audio_stale` — a recorded length that no longer matches the file by more than 1%. Ad insertion moves it a fraction of a percent; more than that means the recorded number is wrong or the file was replaced.
 - `audio_unreadable` — a recorded `audio_url` that could not be measured. Worth a look: the file may have moved.
 - `audio_missing` — no audio anywhere. Usually a video-only appearance. Leave alone.
 - `broken_links` — confirmed dead.

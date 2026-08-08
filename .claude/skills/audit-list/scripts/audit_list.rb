@@ -17,6 +17,7 @@ require 'yaml'
 ROOT = File.expand_path('../../../..', __dir__)
 require File.join(ROOT, 'lib', 'audio_resolver')
 require File.join(ROOT, 'lib', 'enclosure')
+require File.join(ROOT, 'lib', 'feed_builder')
 
 # Separates "this link is gone" from "I could not tell", because a checker that
 # reports the second as the first gets ignored.
@@ -259,13 +260,19 @@ unless mode == '--audio-only'
 end
 
 unless mode == '--links-only' || from_report
-  interviews = data['podcast_interviews']
-  pending = interviews.reject { |interview| interview['audio_url'] }
-  # An enclosure states the file's size and type; recording them here is what keeps
-  # the build from having to ask 34 third-party hosts on every deploy.
-  incomplete = interviews.select { |i| i['audio_url'] && !(i['audio_type'] && i['audio_length']) }
+  # Whatever the feed publishes is what needs auditing, so a talk carrying podcast
+  # audio is checked like an interview.
+  publishable = FeedBuilder::LABELS.keys.flat_map { |section| data[section] || [] }
 
-  warn "Looking for audio for #{pending.size} interviews, sizing #{incomplete.size} already recorded..."
+  # Only interviews are worth resolving: a talk without audio was filmed, not aired.
+  pending = (data['podcast_interviews'] || []).reject { |interview| interview['audio_url'] }
+  # An enclosure states the file's size and type; recording them here is what keeps
+  # the build from having to ask 30-odd third-party hosts on every deploy.
+  incomplete = publishable.select { |e| e['audio_url'] && !(e['audio_type'] && e['audio_length']) }
+  recorded = publishable.select { |e| e['audio_url'] && e['audio_type'] && e['audio_length'] }
+
+  warn "Looking for audio for #{pending.size} interviews, sizing #{incomplete.size}, " \
+       "checking #{recorded.size} recorded files..."
   resolver = AudioResolver.new(logger: ->(message) { warn message })
 
   pending.each do |interview|
@@ -306,6 +313,30 @@ unless mode == '--links-only' || from_report
       'entry_url' => AudioResolver.source_url(interview),
       'audio_type' => details.type,
       'audio_length' => details.length
+    }
+  end
+
+  # Re-measuring what is already recorded is how a two-byte stub and a moved file
+  # get noticed. Ad-inserted audio drifts by a fraction of a percent; anything
+  # further means the recorded number is wrong.
+  recorded.each do |entry|
+    warn "  checking #{entry['title']}"
+    details = Enclosure.probe(entry['audio_url'])
+
+    unless details&.usable?
+      report['audio_unreadable'] ||= []
+      report['audio_unreadable'] << { 'title' => entry['title'], 'audio_url' => entry['audio_url'] }
+      next
+    end
+
+    stored = entry['audio_length'].to_i
+    drift = (details.length - stored).abs * 100.0 / stored
+    next if drift <= 1
+
+    report['audio_stale'] ||= []
+    report['audio_stale'] << {
+      'title' => entry['title'], 'entry_url' => AudioResolver.source_url(entry),
+      'recorded' => stored, 'actual' => details.length, 'drift_percent' => drift.round(1)
     }
   end
 end
@@ -351,6 +382,12 @@ else
   unless unreadable.empty?
     puts "\n#{unreadable.size} recorded audio files could not be read:"
     unreadable.each { |u| puts "  #{u['title']}\n      #{u['audio_url']}" }
+  end
+
+  stale = report['audio_stale'] || []
+  unless stale.empty?
+    puts "\n#{stale.size} recorded lengths no longer match the file:"
+    stale.each { |s| puts "  #{s['title']}\n      recorded #{s['recorded']}, actual #{s['actual']} (#{s['drift_percent']}%)" }
   end
 
   puts "\n#{report['audio_missing'].size} interviews with no audio found."
