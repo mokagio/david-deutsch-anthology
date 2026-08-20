@@ -12,6 +12,14 @@
     <generator>david-deutsch-anthology</generator>
     <itunes:author><%= h feed_author %></itunes:author>
     <itunes:summary><%= h feed_description %></itunes:summary>
+<% if feed_image_url -%>
+    <image>
+      <url><%= h feed_image_url %></url>
+      <title><%= h feed_title %></title>
+      <link><%= h site_url %></link>
+    </image>
+    <itunes:image href="<%= h feed_image_url %>" />
+<% end -%>
     <itunes:type>episodic</itunes:type>
     <itunes:explicit>false</itunes:explicit>
     <itunes:category text="Science">
@@ -29,6 +37,9 @@
       <description><%= h episode[:description] %></description>
       <enclosure url="<%= h episode[:audio_url] %>" type="<%= h episode[:type] %>" length="<%= episode[:length] %>" />
       <itunes:author><%= h episode[:show_name] %></itunes:author>
+<% if episode[:image_url] -%>
+      <itunes:image href="<%= h episode[:image_url] %>" />
+<% end -%>
       <itunes:summary><%= h episode[:description] %></itunes:summary>
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>false</itunes:explicit>

@@ -172,4 +172,42 @@ class FeedBuilderTest < Minitest::Test
 
     assert_equal 1, build.episodes.size
   end
+
+  def test_publishes_the_entry_image
+    entry = interview(title: 'An interview', url: 'https://example.com/one')
+            .merge('image_url' => 'https://example.com/episode.jpg')
+
+    build = FeedBuilder.build({ 'podcast_interviews' => [entry] }, probe: probe)
+
+    assert_equal 'https://example.com/episode.jpg', build.episodes.fetch(0)[:image_url]
+  end
+
+  def test_falls_back_to_the_show_image
+    entry = interview(title: 'An interview', url: 'https://example.com/one')
+    entry['show']['image_url'] = 'https://example.com/show.jpg'
+
+    build = FeedBuilder.build({ 'podcast_interviews' => [entry] }, probe: probe)
+
+    assert_equal 'https://example.com/show.jpg', build.episodes.fetch(0)[:image_url]
+  end
+
+  def test_prefers_the_entry_image_over_the_show_image
+    entry = interview(title: 'An interview', url: 'https://example.com/one')
+            .merge('image_url' => 'https://example.com/episode.jpg')
+    entry['show']['image_url'] = 'https://example.com/show.jpg'
+
+    build = FeedBuilder.build({ 'podcast_interviews' => [entry] }, probe: probe)
+
+    assert_equal 'https://example.com/episode.jpg', build.episodes.fetch(0)[:image_url]
+  end
+
+  def test_publishes_an_episode_with_no_image
+    build = FeedBuilder.build(
+      { 'podcast_interviews' => [interview(title: 'An interview', url: 'https://example.com/one')] },
+      probe: probe
+    )
+
+    assert_empty build.skipped
+    assert_nil build.episodes.fetch(0)[:image_url]
+  end
 end

@@ -2,7 +2,7 @@
 
 require 'time'
 
-require_relative 'audio_resolver'
+require_relative 'media_resolver'
 require_relative 'enclosure'
 
 # Turns the interview list into the episodes the feed template renders, and says
@@ -69,7 +69,7 @@ module FeedBuilder
     end
 
     def episode(entry, section, audio_url, details)
-      source_url = AudioResolver.source_url(entry)
+      source_url = MediaResolver.source_url(entry)
       show_name = entry.dig('show', 'name') || 'Unknown Show'
 
       {
@@ -81,6 +81,7 @@ module FeedBuilder
         description: "#{LABELS.fetch(section)} on #{show_name}",
         show_name: show_name,
         audio_url: audio_url,
+        image_url: entry['image_url'] || entry.dig('show', 'image_url'),
         type: details.type,
         length: details.length
       }

@@ -5,14 +5,15 @@ require 'minitest/autorun'
 require_relative '../lib/feed_validator'
 
 class FeedValidatorTest < Minitest::Test
-  def feed(item_body)
+  def feed(item_body, channel_body: '')
     <<~XML
       <?xml version="1.0" encoding="UTF-8" ?>
-      <rss version="2.0">
+      <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
         <channel>
           <title>David Deutsch Podcast Interviews</title>
           <link>https://example.com/</link>
           <description>Interviews.</description>
+          #{channel_body}
           <item>
             #{item_body}
           </item>
@@ -81,6 +82,28 @@ class FeedValidatorTest < Minitest::Test
 
     assert_equal 1, errors.size
     assert_includes errors.first, 'does not parse'
+  end
+
+  def test_accepts_artwork_on_the_channel_and_the_item
+    xml = feed(
+      playable_item + '<itunes:image href="https://example.com/episode.jpg" />',
+      channel_body: '<itunes:image href="https://example.com/cover.jpg" />'
+    )
+
+    assert_empty FeedValidator.errors(xml)
+  end
+
+  def test_rejects_a_relative_item_image
+    errors = FeedValidator.errors(feed(playable_item + '<itunes:image href="/episode.jpg" />'))
+
+    assert_equal 1, errors.size
+    assert_includes errors.first, '<itunes:image>'
+  end
+
+  def test_rejects_a_relative_channel_image
+    errors = FeedValidator.errors(feed(playable_item, channel_body: '<itunes:image href="cover.jpg" />'))
+
+    assert_equal ['channel: <itunes:image> href "cover.jpg" is not an absolute http(s) URL'], errors
   end
 
   # The generated feed is checked by `rake validate`, which runs after `generate`.

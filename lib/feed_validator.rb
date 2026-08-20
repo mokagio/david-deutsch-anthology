@@ -31,6 +31,7 @@ module FeedValidator
       errors = REQUIRED_CHANNEL_FIELDS.reject { |field| present?(channel.public_send(field)) }
                                       .map { |field| "channel is missing <#{field}>" }
       errors << 'channel has no items' if channel.items.empty?
+      errors.concat(image_errors(channel, 'channel'))
       errors
     end
 
@@ -59,7 +60,17 @@ module FeedValidator
       errors << "#{label}: missing <title>" unless present?(item.title)
       errors << "#{label}: missing <guid>" unless present?(item.guid&.content)
       errors << "#{label}: missing or unparseable <pubDate>" unless item.pubDate
+      errors.concat(image_errors(item, label))
       errors
+    end
+
+    # Artwork is optional — a client falls back to the show's, and the show's to
+    # nothing — but a relative href is ignored in silence wherever it appears.
+    def image_errors(element, label)
+      href = element.itunes_image&.href
+      return [] if href.nil? || http_url?(href)
+
+      ["#{label}: <itunes:image> href #{href.inspect} is not an absolute http(s) URL"]
     end
 
     def present?(value) = !value.nil? && !value.to_s.strip.empty?
