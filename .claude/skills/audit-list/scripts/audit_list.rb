@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-# Reports on `list.yml`: which links are dead, and which podcast interviews have
-# findable audio that the list does not record yet.
+# Reports on `list.yml`: which links are dead, and which entries have findable
+# audio or artwork that the list does not record yet.
 #
-# With `--write` it records what it finds — the audio URL and the size and type an
-# `<enclosure>` needs — so the build never has to ask a third-party host anything.
+# With `--write` it records what it finds — the audio URL, the size and type an
+# `<enclosure>` needs, and the picture a client shows — so the build never has to
+# ask a third-party host anything.
 #
 #   ruby .claude/skills/audit-list/scripts/audit_list.rb [--links-only|--audio-only] [--json]
 #   ruby .claude/skills/audit-list/scripts/audit_list.rb --report <file> --write
@@ -15,9 +16,10 @@ require 'uri'
 require 'yaml'
 
 ROOT = File.expand_path('../../../..', __dir__)
-require File.join(ROOT, 'lib', 'audio_resolver')
+require File.join(ROOT, 'lib', 'media_resolver')
 require File.join(ROOT, 'lib', 'enclosure')
 require File.join(ROOT, 'lib', 'feed_builder')
+require File.join(ROOT, 'lib', 'list_writer')
 
 # Separates "this link is gone" from "I could not tell", because a checker that
 # reports the second as the first gets ignored.
@@ -111,99 +113,6 @@ class LinkChecker
   end
 end
 
-# Adds `audio_*` keys to entries in `list.yml`.
-#
-# Text insertion rather than a YAML dump: `list.yml` uses anchors and comments,
-# and Psych renames `&naval` to `&1` and drops every comment on the way out.
-module ListWriter
-  ENTRY_START = /^\s*- /
-  AUDIO_KEY = /^\s*audio_(?:url|type|length):/
-  # Not `audio_url`: one entry's page URL is the mp3 itself, so both keys hold the
-  # same value and anchoring on either would be ambiguous.
-  ENTRY_URL_KEY = /^[ \t]*(?:podcast_url|youtube_url|url): /
-
-  class << self
-    # Each addition is {'entry_url' =>, 'title' =>, 'fields' => {key => value}}. The
-    # entry URL is the anchor because it is unique per entry, which `audio_url` is
-    # not — two entries can point at the same recording.
-    def insert(path, additions)
-      lines = File.readlines(path)
-      before = counts(File.read(path))
-      applied = []
-      skipped = []
-
-      additions.each do |addition|
-        fields = addition['fields']
-        next if fields.empty?
-
-        index = entry_line_index(lines, addition['entry_url'])
-        next skipped << [addition['title'], 'no unique line matches the entry URL'] unless index
-
-        indent = lines[index][/\A\s*/]
-        at = last_audio_line_index(lines, index)
-        lines.insert(at + 1, *fields.map { |key, value| "#{indent}#{key}: #{scalar(value)}\n" })
-        applied << addition
-      end
-
-      source = lines.join
-      verify!(source, before, applied)
-      File.write(path, source)
-      [applied, skipped]
-    end
-
-    private
-
-    def entry_line_index(lines, entry_url)
-      matches = lines.each_index.select do |index|
-        lines[index].match?(ENTRY_URL_KEY) && lines[index].split(': ', 2).last.strip == entry_url
-      end
-
-      matches.size == 1 ? matches.first : nil
-    end
-
-    # The audio keys belong together, so insert after the last one this entry
-    # already has; with none, straight after the URL that identifies it.
-    def last_audio_line_index(lines, index)
-      last = index
-
-      ((index + 1)...lines.size).each do |cursor|
-        break if lines[cursor].match?(ENTRY_START)
-
-        last = cursor if lines[cursor].match?(AUDIO_KEY)
-      end
-
-      last
-    end
-
-    # The file's convention is bare scalars; only a `#` would actually need quoting.
-    def scalar(value) = value.to_s.include?(' #') ? value.to_s.inspect : value.to_s
-
-    def counts(source)
-      interviews = YAML.load(source, aliases: true)['podcast_interviews']
-      {
-        entries: interviews.size,
-        'audio_url' => interviews.count { |i| i['audio_url'] },
-        'audio_type' => interviews.count { |i| i['audio_type'] },
-        'audio_length' => interviews.count { |i| i['audio_length'] }
-      }
-    end
-
-    def verify!(source, before, additions)
-      after = counts(source)
-
-      raise "entry count changed: #{before[:entries]} -> #{after[:entries]}" unless after[:entries] == before[:entries]
-
-      %w[audio_url audio_type audio_length].each do |key|
-        expected = additions.count { |addition| addition['fields'].key?(key) }
-        actual = after[key] - before[key]
-        next if actual == expected
-
-        raise "expected #{expected} new #{key} values, found #{actual}"
-      end
-    end
-  end
-end
-
 # Every string under a key ending in `url`, with the entries that point at it.
 def collect_urls(data)
   urls = Hash.new { |hash, key| hash[key] = [] }
@@ -270,15 +179,17 @@ unless mode == '--links-only' || from_report
   # the build from having to ask 30-odd third-party hosts on every deploy.
   incomplete = publishable.select { |e| e['audio_url'] && !(e['audio_type'] && e['audio_length']) }
   recorded = publishable.select { |e| e['audio_url'] && e['audio_type'] && e['audio_length'] }
+  # A picture the entry inherits from its show already reaches the feed.
+  unillustrated = publishable.reject { |e| e['image_url'] || e.dig('show', 'image_url') }
 
   warn "Looking for audio for #{pending.size} interviews, sizing #{incomplete.size}, " \
-       "checking #{recorded.size} recorded files..."
-  resolver = AudioResolver.new(logger: ->(message) { warn message })
+       "checking #{recorded.size} recorded files, illustrating #{unillustrated.size}..."
+  resolver = MediaResolver.new(logger: ->(message) { warn message })
 
   pending.each do |interview|
     warn "  #{interview['title']}"
     result = resolver.resolve(interview)
-    entry = { 'title' => interview['title'], 'entry_url' => AudioResolver.source_url(interview) }
+    entry = { 'title' => interview['title'], 'entry_url' => MediaResolver.source_url(interview) }
 
     unless result.resolved?
       report['audio_missing'] << entry.merge('reason' => result.reason)
@@ -310,7 +221,7 @@ unless mode == '--links-only' || from_report
     report['audio_sized'] ||= []
     report['audio_sized'] << {
       'title' => interview['title'],
-      'entry_url' => AudioResolver.source_url(interview),
+      'entry_url' => MediaResolver.source_url(interview),
       'audio_type' => details.type,
       'audio_length' => details.length
     }
@@ -335,24 +246,49 @@ unless mode == '--links-only' || from_report
 
     report['audio_stale'] ||= []
     report['audio_stale'] << {
-      'title' => entry['title'], 'entry_url' => AudioResolver.source_url(entry),
+      'title' => entry['title'], 'entry_url' => MediaResolver.source_url(entry),
       'recorded' => stored, 'actual' => details.length, 'drift_percent' => drift.round(1)
     }
+  end
+
+  unillustrated.each do |entry|
+    warn "  illustrating #{entry['title']}"
+    artwork = resolver.resolve_artwork(entry)
+    finding = { 'title' => entry['title'], 'entry_url' => MediaResolver.source_url(entry) }
+
+    unless artwork.found?
+      (report['artwork_missing'] ||= []) << finding.merge('reason' => artwork.reason)
+      next
+    end
+
+    (report['artwork_found'] ||= []) << finding.merge(
+      {
+        'image_url' => artwork.image_url,
+        'scope' => artwork.scope.to_s,
+        'size' => artwork.size,
+        'strategy' => artwork.strategy,
+        'matched_title' => artwork.matched_title
+      }.compact
+    )
   end
 end
 
 if write
-  recorded = data['podcast_interviews'].to_h { |i| [AudioResolver.source_url(i), i] }
+  recorded = FeedBuilder::LABELS.keys.flat_map { |section| data[section] || [] }
+                                .to_h { |entry| [MediaResolver.source_url(entry), entry] }
+
+  findings = report['audio_found'] + (report['audio_sized'] || []) + (report['artwork_found'] || [])
 
   # Only ever add a key the entry lacks, so applying a report twice is a no-op.
-  additions = (report['audio_found'] + (report['audio_sized'] || [])).filter_map do |finding|
-    interview = recorded[finding['entry_url']] || {}
-    fields = %w[audio_url audio_type audio_length]
-             .reject { |key| interview[key] }
-             .to_h { |key| [key, finding[key]] }
+  # Grouped by entry: audio and artwork found in the same run go in together.
+  additions = findings.group_by { |finding| finding['entry_url'] }.filter_map do |entry_url, group|
+    entry = recorded[entry_url] || {}
+    fields = ListWriter::KEYS
+             .reject { |key| entry[key] }
+             .to_h { |key| [key, group.filter_map { |finding| finding[key] }.first] }
              .compact
 
-    { 'title' => finding['title'], 'entry_url' => finding['entry_url'], 'fields' => fields } unless fields.empty?
+    { 'title' => group.first['title'], 'entry_url' => entry_url, 'fields' => fields } unless fields.empty?
   end
 
   applied, skipped = ListWriter.insert(LIST_PATH, additions)
@@ -390,5 +326,15 @@ else
     stale.each { |s| puts "  #{s['title']}\n      recorded #{s['recorded']}, actual #{s['actual']} (#{s['drift_percent']}%)" }
   end
 
+  artwork = report['artwork_found'] || []
+  unless artwork.empty?
+    puts "\n#{artwork.size} entries with artwork to add:"
+    artwork.each do |found|
+      measured = found['size'] ? " (#{found['size']})" : ''
+      puts "  #{found['title']}\n      #{found['scope']} artwork via #{found['strategy']}#{measured}: #{found['image_url']}"
+    end
+  end
+
   puts "\n#{report['audio_missing'].size} interviews with no audio found."
+  puts "#{(report['artwork_missing'] || []).size} entries with no artwork found."
 end

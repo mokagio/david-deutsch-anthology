@@ -19,6 +19,7 @@ require 'yaml'
 ROOT = File.expand_path('../../../..', __dir__)
 require File.join(ROOT, 'lib', 'http_client')
 require File.join(ROOT, 'lib', 'enclosure')
+require File.join(ROOT, 'lib', 'image_probe')
 
 def option(flag) = ARGV.include?(flag) ? ARGV[ARGV.index(flag) + 1] : nil
 
@@ -134,6 +135,17 @@ unless length.to_i >= Enclosure::MIN_PLAUSIBLE_BYTES
   warn "WARNING: no plausible byte length (#{length}) — the episode cannot enter the feed"
 end
 
+# The episode's own picture, or the show's. Measured, because a feed will point
+# `<itunes:image>` at anything: see docs/audio-sourcing.md.
+image_url = [item.itunes_image&.href, feed.channel.itunes_image&.href].compact.find do |candidate|
+  size = ImageProbe.details(candidate)
+  warn "artwork  : #{candidate} (#{size || 'could not measure'})"
+  size.nil? || size.artwork?
+end
+warn 'NOTE: no artwork found; the client will fall back to the channel cover' unless image_url
+# Two spaces, not six: the heredoc below strips its own indentation, this line's is its own.
+image_line = image_url ? "\n  image_url: #{image_url}" : ''
+
 published = item.pubDate
 show_name = (feed.channel.title.respond_to?(:content) ? feed.channel.title.content : feed.channel.title).to_s.strip
 show_url = feed.channel.link.to_s.strip
@@ -169,7 +181,7 @@ puts <<~YAML
       podcast_url: #{source_url}
       audio_url: #{item.enclosure.url}
       audio_type: #{type}
-      audio_length: #{length}
+      audio_length: #{length}#{image_line}
       show:
         name: #{show_name}
         url: #{show_url}

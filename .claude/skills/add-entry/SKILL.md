@@ -2,7 +2,7 @@
 name: add-entry
 description: |
   Add a podcast interview to `list.yml` from a URL — Pocket Casts, Apple Podcasts, a show's episode page.
-  Works out the title, show, date and audio file, then inserts the entry in date order.
+  Works out the title, show, date, audio file and artwork, then inserts the entry in date order.
   Use when given a link to a David Deutsch appearance, or asked to "add this to the list" or invokes /add-entry.
 allowed-tools: Bash(ruby *), Bash(curl *), Bash(git *), Bash(rake *), Bash(grep *), Read, Edit, WebSearch
 user-invocable: true
@@ -28,6 +28,7 @@ Pass `--feed URL`, `--show NAME` or `--title TITLE` when it cannot work somethin
 - `weak title match` — it guessed. Confirm the episode is the right one before going further.
 - `feed declared length=0` — normal for Megaphone, already handled, mentioned so the number is not a mystery.
 - `could not determine a byte length` — stop. Without it the entry cannot enter the feed, and recording a zero would ship an enclosure strict clients reject.
+- `no artwork found` — carry on. The episode plays without a picture and falls back to the channel cover; `/audit-list` looks again, in more places, later.
 
 Given several URLs, run it on each before writing anything — some may turn out to be duplicates of each other or of the list.
 

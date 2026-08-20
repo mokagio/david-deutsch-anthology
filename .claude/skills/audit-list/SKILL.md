@@ -1,16 +1,16 @@
 ---
 name: audit-list
 description: |
-  Check every link in `list.yml` and find audio URLs for podcast interviews that lack one.
-  Adds `audio_url` to entries where audio was found; reports dead links without touching them.
-  Use when asked to "audit the list", "check the links", "find missing audio", or invokes /audit-list.
+  Check every link in `list.yml` and find the audio and artwork the feed needs but the list does not record.
+  Adds `audio_url` and `image_url` to entries where they were found; reports dead links without touching them.
+  Use when asked to "audit the list", "check the links", "find missing audio", "find artwork", or invokes /audit-list.
 allowed-tools: Bash(ruby *), Read, Edit, Grep
 user-invocable: true
 ---
 
 # Audit the list
 
-Two passes over `list.yml`: link liveness across every section, and audio for the sections the feed publishes (`FeedBuilder::LABELS`) — finding it where it is missing, and re-measuring it where it is already recorded.
+Two passes over `list.yml`: link liveness across every section, and media for the sections the feed publishes (`FeedBuilder::LABELS`) — finding audio and artwork where they are missing, and re-measuring the audio where it is already recorded.
 
 [`docs/audio-sourcing.md`](../../../docs/audio-sourcing.md) explains the host behaviour behind most of what this reports — why a 401 from YouTube is not a dead video, why a 429 is not a verdict, why an unreachable host is not a missing page.
 Append to it when a host does something new.
@@ -21,8 +21,8 @@ Append to it when a host does something new.
 ruby .claude/skills/audit-list/scripts/audit_list.rb --json > /tmp/audit.json
 ```
 
-Takes several minutes — it resolves audio for every interview without an `audio_url`, and measures every file the list already names but has not sized.
-Narrow it with `--links-only` or `--audio-only` when only one pass is wanted.
+Takes several minutes — it resolves audio for every interview without an `audio_url`, measures every file the list already names, and looks for the artwork of every entry that has none.
+Narrow it with `--links-only` or `--audio-only` when only one pass is wanted; `--audio-only` covers artwork too, since both come out of the same lookups.
 
 The report keys:
 
@@ -31,6 +31,8 @@ The report keys:
 - `audio_stale` — a recorded length that no longer matches the file by more than 1%. Ad insertion moves it a fraction of a percent; more than that means the recorded number is wrong or the file was replaced.
 - `audio_unreadable` — a recorded `audio_url` that could not be measured. Worth a look: the file may have moved.
 - `audio_missing` — no audio anywhere. Usually a video-only appearance. Leave alone.
+- `artwork_found` — an `image_url`, with the `scope` it came from: `episode` is the episode's own picture, `show` is the show's, which every episode of that show would carry. `size` is what the file measured.
+- `artwork_missing` — no square picture of a usable size anywhere. A show whose entries all come back empty is worth one `image_url` on its `show` anchor by hand, which every entry sharing the anchor then inherits.
 - `broken_links` — confirmed dead.
 - `unchecked_links` — the checker could not reach the host. Not evidence of anything.
 
@@ -40,8 +42,9 @@ The report keys:
 ruby .claude/skills/audit-list/scripts/audit_list.rb --report /tmp/audit.json --write
 ```
 
-`--write` inserts `audio_url`, `audio_type` and `audio_length` into each entry, keeping them together and adding only keys the entry lacks, so applying a report twice is a no-op.
-It refuses to write unless the file still parses, the interview count is unchanged, and exactly as many of each key appeared as were applied.
+`--write` inserts `audio_url`, `audio_type`, `audio_length` and `image_url` into each entry, keeping them together and adding only keys the entry lacks, so applying a report twice is a no-op.
+It refuses to write unless the file still parses, the entry count is unchanged, and exactly as many of each key appeared as were applied.
+`ListWriter` lives in [`lib/list_writer.rb`](../../../lib/list_writer.rb) and is covered by `rake test`.
 
 The size and type matter as much as the URL: they are what an `<enclosure>` must declare, and recording them is what stops the build probing 34 third-party hosts on every deploy.
 It once probed at build time, and Substack blocks GitHub's runners — four episodes disappeared from a deploy that reported success.
@@ -50,6 +53,7 @@ Do not hand-edit `list.yml` for this, and never rewrite it through Ruby's YAML d
 
 Read the diff before committing.
 When `matched_title` differs noticeably from the entry's own title, flag it — that match was a heuristic, and the diff is the only place a human sees it.
+Artwork found `via page` deserves the same look: `og:image` is measured for squareness and size, which catches a banner crop but not a site logo standing in for the episode.
 
 ## 3. Verify
 
