@@ -24,11 +24,12 @@ module HttpClient
       request(Net::HTTP::Head, url, redirects: redirects)
     end
 
-    # Asks for the first byte. The response's `Content-Range` states the file's true
-    # size, which is the only number worth trusting: hosts answer HEAD with 403, with
-    # an empty Content-Length, or with a stub describing something else entirely.
-    def ranged_get(url, redirects: MAX_REDIRECTS)
-      request(Net::HTTP::Get, url, redirects: redirects, headers: { 'Range' => 'bytes=0-0' })
+    # Asks for the first byte by default. The response's `Content-Range` states the
+    # file's true size, which is the only number worth trusting: hosts answer HEAD
+    # with 403, with an empty Content-Length, or with a stub describing something
+    # else entirely.
+    def ranged_get(url, bytes: '0-0', redirects: MAX_REDIRECTS)
+      request(Net::HTTP::Get, url, redirects: redirects, headers: { 'Range' => "bytes=#{bytes}" })
     end
 
     private
