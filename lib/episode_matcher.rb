@@ -9,7 +9,8 @@ require 'date'
 # clear two independent bars: it must name the subject, and it must agree with us
 # on either wording or publication date.
 module EpisodeMatcher
-  Candidate = Struct.new(:title, :published_on, :audio_url, :type, :length, :duration, keyword_init: true)
+  Candidate = Struct.new(:title, :published_on, :audio_url, :type, :length, :duration, :image_url,
+                         keyword_init: true)
 
   # Every entry in the anthology is a David Deutsch appearance, so a feed episode
   # that never names him is a false positive however well its date lines up.

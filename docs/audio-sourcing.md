@@ -113,3 +113,15 @@ They are separate entries in `list.yml` with separate `show` blocks, because `sh
 An aggregator link carries no hint that the same conversation is already recorded under the show's own URL — `pca.st/xd56bapl` is the EconTalk episode the list has had all along.
 The audio file is the reliable identity; the page URL is not.
 `entry_fields.rb` checks and says so.
+
+## Artwork is not whatever a page calls its image
+
+A client renders `<itunes:image>` in a square tile, and three of the four places artwork can come from will happily hand back something else:
+
+- `og:image` on a TED talk page is a 1050×550 banner crop of the stage.
+- `og:image` on a show's own site is often the site logo — `nav.al` returns the same `Navatar.png` for every episode page.
+- Apple's `artworkUrl600` on a `podcastEpisode` record is the *show's* logo whenever the episode has no picture of its own, with nothing in the record to say so. Compare it against the collection's `artworkUrl600`: identical means it is the show's.
+
+So measure the file. `ImageProbe` reads the dimensions out of the first 64KB — PNG, JPEG and WebP headers — and rejects anything that is not square within a couple of percent or is smaller than 400px. A picture it cannot measure is kept, since an unknown format is not evidence of a bad image.
+
+A show's own channel `<itunes:image>` is always artwork, and is the fallback worth trusting. Take it only from a feed the entry or its show names, or one an episode was matched in — an iTunes search by show name lands on the wrong show often enough that its logo cannot be trusted unchecked.
