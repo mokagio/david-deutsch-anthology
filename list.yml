@@ -53,6 +53,7 @@ talks:
     audio_url: https://sphinx.acast.com/p/open/s/67587e77c705e441797aff96/e/en.audio.talk.ted.com%3A47/media.mp3
     audio_type: audio/mpeg
     audio_length: 10163009
+    image_url: https://assets.pippa.io/shows/67587e77c705e441797aff96/aa0a1db493afd8357cee53192fa9f860.png
     show: &ted_talks_daily
       name: TED Talks Daily
       url: https://www.ted.com/podcasts/ted-talks-daily
@@ -72,6 +73,7 @@ podcast_interviews:
     audio_url: https://traffic.libsyn.com/naval/David_D_-_Ai.mp3
     audio_type: audio/mpeg
     audio_length: 52684590
+    image_url: https://i0.wp.com/nav.al/wp-content/uploads/2019/12/Navatar.png?fit=1080%2C1080&ssl=1
     show: &naval
       name: Naval's Podcast
       url: https://nav.al/podcast
@@ -82,6 +84,7 @@ podcast_interviews:
     audio_url: https://traffic.libsyn.com/naval/The_Deutsch_Files_II.m4a
     audio_type: audio/x-m4a
     audio_length: 72258288
+    image_url: https://i0.wp.com/nav.al/wp-content/uploads/2019/12/Navatar.png?fit=1080%2C1080&ssl=1
     show: *naval
     published_date: 2024/01/26
 
@@ -90,6 +93,7 @@ podcast_interviews:
     audio_url: https://traffic.libsyn.com/naval/The_Deutsch_Files_III.m4a
     audio_type: audio/x-m4a
     audio_length: 57540194
+    image_url: https://i0.wp.com/nav.al/wp-content/uploads/2019/12/Navatar.png?fit=1080%2C1080&ssl=1
     show: *naval
     published_date: 2024/02/17
 
@@ -98,6 +102,7 @@ podcast_interviews:
     audio_url: https://traffic.libsyn.com/forcedn/naval/The_Deutsch_Files_IV.mp3
     audio_type: audio/mpeg
     audio_length: 38156686
+    image_url: https://i0.wp.com/nav.al/wp-content/uploads/2019/12/Navatar.png?fit=1080%2C1080&ssl=1
     show: *naval
     published_date: 2024/10/11
 
@@ -106,6 +111,7 @@ podcast_interviews:
     audio_url: https://dts.podtrac.com/redirect.mp3/https://chrt.fm/track/1F5B4D/aphid.fireside.fm/d/1437767933/3229e340-4bf1-42a5-a5b7-4f508a27131c/03508f9b-3a2a-4b15-9b23-fe30083b431b.mp3
     audio_type: audio/mpeg
     audio_length: 89477071
+    image_url: https://assets.fireside.fm/file/fireside-images-2024/podcasts/images/3/3229e340-4bf1-42a5-a5b7-4f508a27131c/episodes/0/03508f9b-3a2a-4b15-9b23-fe30083b431b/cover.jpg?v=9
     show:
       name: Increments Podcast
       url: https://www.incrementspodcast.com/
@@ -123,6 +129,7 @@ podcast_interviews:
     audio_url: https://anchor.fm/s/e9f811c/podcast/play/66096607/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-2-7%2F75731dcb-8cf3-4a7f-b0d1-c0f8fdd942e0.mp3
     audio_type: audio/mpeg
     audio_length: 15321240
+    image_url: https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/2353343/2353343-1569327079532-905b47d09007a.jpg
     show: *logan_chipkin
     published_date: 2023/03/07
 
@@ -149,6 +156,7 @@ podcast_interviews:
     audio_url: https://rss.art19.com/episodes/0d001a31-eb7d-4f15-b8e5-cc6d319ba39d.mp3?rss_browser=BAhJIgtDaHJvbWUGOgZFVA%3D%3D--d05363d83ce333c74f32188013892b2863ad051c
     audio_type: audio/mpeg
     audio_length: 104163290
+    image_url: https://content.production.cdn.art19.com/images/69/10/10/fb/691010fb-625e-4abe-993c-a57228b28dbe/91cb53ae0d5dbb379b9dffecf0a772593891d0d09bbe6d90ee746edbdb79e3ec75584f2ceb8260e9f675a90c05419b9b99842a76905b686f0f51c1a9d3e227ab.jpeg
     show:
       name: The Tim Ferriss Show
       url: https://tim.blog
@@ -159,6 +167,7 @@ podcast_interviews:
     audio_url: https://traffic.libsyn.com/secure/cowenconvos/CWT-126-DavidDeutsch-podcast-v1Final.mp3?dest-id=850607
     audio_type: audio/mpeg
     audio_length: 52323254
+    image_url: https://static.libsyn.com/p/assets/b/0/7/d/b07d582b302bdbd527a2322813b393ee/CWT-126-DavidDeutsch-libsyn.jpg
     show:
       name: Conversations with Tyler
       url: https://conversationswithtyler.com/episodes/
@@ -169,6 +178,7 @@ podcast_interviews:
     audio_url: https://enrichment.soundstack.com/4vjqq8/traffic.omny.fm/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/a482236a-5a44-43bd-9af5-b0db00198610/audio.mp3?utm_source=Podcast&in_playlist=f287bcce-12f0-44fa-b389-af9000132cfb
     audio_type: audio/mpeg
     audio_length: 111092889
+    image_url: https://www.omnycontent.com/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/a482236a-5a44-43bd-9af5-b0db00198610/image.jpg?t=1702977192&size=Large
     show: &joe_walker
       name: The Joe Walker Podcast
       url: https://josephnoelwalker.com/podcast/
@@ -179,6 +189,7 @@ podcast_interviews:
     audio_url: https://enrichment.soundstack.com/4vjqq8/traffic.omny.fm/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/82637707-880b-4eee-81e7-af9000144577/audio.mp3?utm_source=Podcast&in_playlist=f287bcce-12f0-44fa-b389-af9000132cfb
     audio_type: audio/mpeg
     audio_length: 95097361
+    image_url: https://www.omnycontent.com/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/82637707-880b-4eee-81e7-af9000144577/image.jpg?t=1674177238&size=Large
     show: *joe_walker
     published_date: 2022/04/25
 
@@ -187,6 +198,7 @@ podcast_interviews:
     audio_url: https://sphinx.acast.com/p/open/s/683f0798c966cde736234a29/e/68405d395de209b54b1e025c/media.mp3
     audio_type: audio/mpeg
     audio_length: 62106594
+    image_url: https://assets.pippa.io/shows/683f0798c966cde736234a29/1770222748878-98ae0322-0385-4144-83d0-3b4932cf3dc9.jpeg
     show:
       name: Existential Hope Podcast by Foresight Institute
       url: https://www.youtube.com/channel/UCg5UVUMqXeCQ03MelT_RXMg
@@ -197,6 +209,7 @@ podcast_interviews:
     audio_url: https://anchor.fm/s/e9f811c/podcast/play/66096607/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-2-7%2F75731dcb-8cf3-4a7f-b0d1-c0f8fdd942e0.mp3
     audio_type: audio/mpeg
     audio_length: 15321240
+    image_url: https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/2353343/2353343-1569327079532-905b47d09007a.jpg
     youtube_url: https://www.youtube.com/watch?v=P8bCBypqrEw
     show:
       name: Fallible Animals
@@ -208,6 +221,7 @@ podcast_interviews:
     audio_url: https://anchor.fm/s/c4db244/podcast/play/10628930/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2020-1-26%2F52502993-48000-2-90b4478f2d90c.mp3
     audio_type: audio/mpeg
     audio_length: 134648229
+    image_url: https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_episode/1964185/1964185-1582684800095-8f6f66e246779.jpg
     show:
       name: Dilemma Podcast
       url: https://podcasts.apple.com/us/podcast/dilemma-podcast/id1470490447
@@ -218,6 +232,7 @@ podcast_interviews:
     audio_url: https://api.substack.com/feed/podcast/140216749/254217dd22994eed239715a0d77b66ae.mp3
     audio_type: audio/mpeg
     audio_length: 39002844
+    image_url: https://substackcdn.com/feed/podcast/847348/post/140216749/d8c67e5a2c38771e56fa463f80032f31.jpg
     show: &arjun_khemain
       name: Arjun Khemani's Podcast
       url: https://www.youtube.com/@arjunkhemani
@@ -228,6 +243,7 @@ podcast_interviews:
     audio_url: https://api.substack.com/feed/podcast/151485080/660977dbe0cb7dab33afb3615f7df527.mp3
     audio_type: audio/mpeg
     audio_length: 85532976
+    image_url: https://substackcdn.com/feed/podcast/847348/d8c67e5a2c38771e56fa463f80032f31.jpg
     show: *arjun_khemain
     published_date: 2024/11/12
 
@@ -243,6 +259,7 @@ podcast_interviews:
     audio_url: https://pdcn.co/e/www.buzzsprout.com/1260167/episodes/4846241-the-primacy-of-ideas-with-david-deutsch.mp3
     audio_type: audio/mpeg
     audio_length: 52934329
+    image_url: https://storage.buzzsprout.com/1i5khzo0jkd9vfvpfyzipyyivhqs?.jpg
     show: &do_explain
       name: Do Explain
       url: https://doexplain.buzzsprout.com
@@ -253,6 +270,7 @@ podcast_interviews:
     audio_url: https://pdcn.co/e/www.buzzsprout.com/1260167/episodes/15993837-half-episode-truth-and-abstractions-with-david-deutsch-and-jake-orthwein.mp3
     audio_type: audio/mpeg
     audio_length: 29967359
+    image_url: https://storage.buzzsprout.com/iexs820ctpqbi3bgtlvbnt2o18tf?.jpg
     show: *do_explain
     published_date: 2024/10/28
 
@@ -261,6 +279,7 @@ podcast_interviews:
     audio_url: https://mcdn.podbean.com/mf/web/6mu2h8t6f8cjtcjv/Physicist_Dr_David_Deutsch-_Quantum_Computing_Turing_Machines_and_Multiverses_The_Saad_Truth_with_Dr_Saad_729_93g79.mp3
     audio_type: audio/mpeg
     audio_length: 38899562
+    image_url: https://pbcdn1.podbean.com/imglogo/image-logo/8635096/Gad_Saad_Photo_9d1u3.jpg
     show: &the_saad_truth
       name: The Saad Truth with Dr. Saad
       url: thesaadtruthwithdrsaad
@@ -271,6 +290,7 @@ podcast_interviews:
     audio_url: https://mcdn.podbean.com/mf/web/9xkzft962ir4vegq/Physicist_Dr_David_Deutsch_Returns_-_Science_Mathematics_Jew-Hatred_The_Saad_Truth_with_Dr_Saad_749_b66o6.mp3
     audio_type: audio/mpeg
     audio_length: 50350804
+    image_url: https://pbcdn1.podbean.com/imglogo/image-logo/8635096/Gad_Saad_Photo_9d1u3.jpg
     show: *the_saad_truth
     published_date: 2024/11/12
 
@@ -279,6 +299,7 @@ podcast_interviews:
     audio_url: https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/8cb104e9-39a8-4ddc-9e91-a0e10355329b/14631866-david-deutsch-peter-boghossian-reid-nicewonder-talk-fermi-paradox-ideological-contagion-more.mp3?dest-id=4872530
     audio_type: audio/mpeg
     audio_length: 66235009
+    image_url: https://static.libsyn.com/p/assets/5/0/6/9/5069767a6468129d16c3140a3186d450/podcast_cover_2.0_1-20250114-6xkgqls31u.png
     show:
       name: Conversations with Peter Boghossian
       url: https://www.youtube.com/watch?v=U6_20UFONB4&list=PLYNjnJFU-62sS7o8YLGJGe7RiKneIYfU2
@@ -289,6 +310,7 @@ podcast_interviews:
     audio_url: https://api.substack.com/feed/podcast/166343984/2df7a8f83f444e18ec4f9af70ed83457.mp3
     audio_type: audio/mpeg
     audio_length: 45702314
+    image_url: https://substackcdn.com/feed/podcast/4049309/post/166343984/7c4fa81c1d11e4bf35b063f4433b1427.jpg
     show:
       name: Salvador Podcast
       url: https://www.fromthelotus.world/
@@ -311,6 +333,7 @@ podcast_interviews:
     audio_url: https://sphinx.acast.com/p/open/s/67045b43aa9d704b1e952e88/e/prx_179_7cb483e3-c7b9-4fad-abfb-e5528be4ed58/media.mp3
     audio_type: audio/mpeg
     audio_length: 60223650
+    image_url: https://assets.pippa.io/shows/67045b43aa9d704b1e952e88/show-cover.png
     show:
       name: The TED Interview
       url: https://www.ted.com/podcasts/ted-interview
@@ -322,6 +345,7 @@ podcast_interviews:
     audio_url: https://api.substack.com/feed/podcast/52511224/c32c22a9d2c5737aa08be0ef635603e2.mp3
     audio_type: audio/mpeg
     audio_length: 40412199
+    image_url: https://apple.dwarkesh-podcast.workers.dev/art/v1/MWZmZTlhNTktZDc1Ni00OGNhLWI4N2EtMTkyMjU5ZjQzY2Ey.jpg
     show:
       name: Dwarkesh Podcast
       url: https://www.dwarkesh.com
@@ -332,6 +356,7 @@ podcast_interviews:
     audio_url: https://mcdn.podbean.com/mf/web/zzbafz/Episode_100_Podcast65rif.mp3
     audio_type: audio/mpeg
     audio_length: 167888660
+    image_url: https://pbcdn1.podbean.com/imglogo/image-logo/3210771/TOKCAST_e8uwkp.png
     show: &tokcast
       name: ToKCast
       url: https://www.bretthall.org/tokcast
@@ -356,6 +381,7 @@ podcast_interviews:
     audio_url: https://traffic.libsyn.com/secure/popperian-podcast/The_Popperian_Podcast_1__David_Deutsch__Karl_Popper_and_the_Beginning_of_Infinity.mp3?dest-id=2291375
     audio_type: audio/mpeg
     audio_length: 110111963
+    image_url: https://static.libsyn.com/p/assets/4/4/b/9/44b902dbe4dea8bf/OFFICIAL_THUMBNAIL_resized_again.jpg
     show:
       name: The Popperian Podcast
       url: https://www.jedleahenry.org/the-popperian-podcast
@@ -380,6 +406,7 @@ podcast_interviews:
     audio_url: https://traffic.megaphone.fm/APO5822129085.mp3
     audio_type: audio/mpeg
     audio_length: 62877898
+    image_url: https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_episode/3375364/3375364-1610324172504-1d6eca207653f.jpg
     show:
       name: Theory of Anything
       url: https://www.youtube.com/@theoryofanything6137
@@ -391,6 +418,7 @@ podcast_interviews:
     audio_url: https://anchor.fm/s/22428e1c/podcast/play/100760386/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-3-2%2F397722436-44100-2-a78ebe36f96be.m4a
     audio_type: audio/mp4
     audio_length: 51408930
+    image_url: https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/5647871/5647871-1743638003799-fb50e6c29a7bf.jpg
     show:
       name: The Falsifiable Podcast
       url: https://www.youtube.com/@thefalsifiablepodcast
@@ -424,6 +452,7 @@ podcast_interviews:
     audio_url: https://theinnovationshow.io/download-episode/354/ep-145-the-beginning-of-infinity-explanations-that-transform-the-world-david-deutsch.mp3
     audio_type: audio/mpeg
     audio_length: 72500768
+    image_url: https://theinnovationshow.io/wp-content/uploads/2019/02/David_Deutsch_-_Final.jpg
     show:
       name: The Innovation Show
       url: https://theinnovationshow.io/
@@ -434,6 +463,7 @@ podcast_interviews:
     audio_url: https://www.podtrac.com/pts/redirect.mp3/pdst.fm/e/traffic.megaphone.fm/BBPI9769799920.mp3?updated=1755955116
     audio_type: audio/mpeg
     audio_length: 57559230
+    image_url: https://megaphone.imgix.net/podcasts/51b7eb94-801d-11f0-8892-b7aa9836a750/image/c4ad09259fa3f64808ff8d6c29c7a017.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress
     show:
       name: Brian Keating's Into The Impossible Podcast
       url: https://www.youtube.com/watch?v=sa-WZcXhYH4&list=PLJGKdZD30K_9rVCDAdRSwoJLi5ls6JN-q
@@ -444,6 +474,7 @@ podcast_interviews:
     audio_url: https://mcdn.podbean.com/mf/web/tc493pk23uffxq8a/Edited_Transcript_Twitter_Podcast7j850.mp3
     audio_type: audio/mpeg
     audio_length: 90881445
+    image_url: https://pbcdn1.podbean.com/imglogo/image-logo/20808997/Use_For_Podbean.jpg
     show:
       name: Conjecture Institute Podcast
       url: https://www.youtube.com/@ConjectureInstitute
@@ -454,6 +485,7 @@ podcast_interviews:
     audio_url: https://anchor.fm/s/1056442e4/podcast/play/107639804/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-8-1%2F406653557-44100-2-845539870b27.mp3
     audio_type: audio/mpeg
     audio_length: 55326510
+    image_url: https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/43754241/43754241-1756889046990-779f78e47a835.jpg
     show:
       name: Strange Loop Podcast
       url: https://www.youtube.com/@SanaLabs/podcasts
@@ -471,6 +503,7 @@ podcast_interviews:
     audio_url: https://episodes.captivate.fm/episode/0fbd5d16-2f06-42a7-80b3-ed000c5ce501.mp3
     audio_type: audio/mpeg
     audio_length: 201167040
+    image_url: https://artwork.captivate.fm/1bd1d003-f8f5-47f8-886d-0aecba4b43e4/Admy0eirtfdSQATIG4yNOFb5.png
     show:
       name: The Shape of Dialogue
       url: https://www.youtube.com/@theshapeofdialogue7211
@@ -482,6 +515,7 @@ podcast_interviews:
     audio_url: https://s.gum.fm/s-62d83916a854b1cc0031878d/pscrb.fm/rss/p/traffic.megaphone.fm/TEMI4086813871.mp3?updated=1759762315
     audio_type: audio/mpeg
     audio_length: 97025658
+    image_url: https://static.pocketcasts.com/discover/images/webp/480/4ccbd7f0-a6af-0138-e682-0acc26574db2.webp
     show:
       name: Theories of Everything with Curt Jaimungal
       url: https://www.youtube.com/@TheoriesOfEverything
@@ -492,6 +526,7 @@ podcast_interviews:
     audio_url: https://rss.art19.com/episodes/cf51acc2-5bb1-47df-804a-854958962803.mp3?rss_browser=BAhJIgtDaHJvbWUGOgZFVA%3D%3D--d05363d83ce333c74f32188013892b2863ad051c
     audio_type: audio/mpeg
     audio_length: 57888182
+    image_url: https://content.production.cdn.art19.com/images/63/c7/d6/37/63c7d637-7707-4559-be78-d090c4957445/f3e9c926a20b9be931d1d50abe9d638c5eeafeebb87e2cdb0ba7313290a30b76636d20de14171de2396323e61eda85342c681723eea3513de8f73295d29b29a7.jpeg
     show:
       name: Philosophy For Our Times
       url: https://art19.com/shows/philosophy-for-our-times
@@ -502,6 +537,7 @@ podcast_interviews:
     audio_url: https://cdn.simplecast.com/audio/6fdba516-8381-43b0-b29f-59d05512b693/episodes/a465fa1a-35ca-40f6-8e3c-6f7e49424912/audio/9dfae9e8-490f-499c-8f11-35f0563688e1/default_tc.mp3?aid=rss_feed&feed=wgl4xEgL
     audio_type: audio/mpeg
     audio_length: 83126388
+    image_url: https://image.simplecastcdn.com/images/4ca709a1-1918-43a4-9035-1176b5aa9f2b/b8c673f8-58e7-4d4a-ab02-f83c2fd463c4/3000x3000/econtalknewbluecover1400.jpg?aid=rss_feed
     show:
       name: EconTalk
       url: https://www.econtalk.org/
