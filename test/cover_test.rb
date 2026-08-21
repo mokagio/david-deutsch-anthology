@@ -47,6 +47,12 @@ class CoverTest < Minitest::Test
     assert_includes errors_for('cover.png', png(600, 600)).first, 'under the 1400px'
   end
 
+  def test_rejects_a_cover_too_heavy_for_a_validator
+    padded = jpeg(1400, 1400) + ("\0".b * Cover::MAX_BYTES)
+
+    assert_includes errors_for('cover.jpg', padded).first, 'over the 500KB'
+  end
+
   def test_rejects_a_file_that_is_not_an_image
     assert_includes errors_for('cover.jpg', 'nope'.b).first, 'not a JPEG or a PNG'
   end

@@ -15,12 +15,16 @@ module Cover
   # Apple's floor, and what a client wants for a full-screen tile.
   MIN_EDGE = 1400
 
+  # Feed validators flag a cover past half a megabyte, and a player downloads it
+  # before it will show anything at all.
+  MAX_BYTES = 500_000
+
   class << self
     def errors(path)
       bytes = File.binread(path, ImageProbe::HEADER_BYTES)
       extension = File.extname(path).downcase
 
-      format_errors(path, bytes, extension) + size_errors(path, bytes)
+      format_errors(path, bytes, extension) + size_errors(path, bytes) + weight_errors(path)
     end
 
     private
@@ -32,6 +36,14 @@ module Cover
       return [] if FORMATS[extension] == actual
 
       ["#{path} holds #{actual.to_s.upcase} data — rename it to #{File.basename(path, '.*')}.#{EXTENSIONS[actual]}"]
+    end
+
+    def weight_errors(path)
+      bytes = File.size(path)
+      return [] if bytes <= MAX_BYTES
+
+      ["#{path} is #{(bytes / 1000.0).round}KB, over the #{MAX_BYTES / 1000}KB a validator will pass — " \
+       'resize it to 1400px and re-encode rather than converting it, since a photograph is far larger as a PNG']
     end
 
     def size_errors(path, bytes)
