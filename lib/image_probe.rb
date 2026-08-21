@@ -42,12 +42,21 @@ module ImageProbe
 
     def dimensions(bytes)
       width, height =
-        if bytes.start_with?("\x89PNG\r\n\x1A\n".b) then png(bytes)
-        elsif bytes.start_with?("\xFF\xD8".b) then jpeg(bytes)
-        elsif bytes[0, 4] == 'RIFF'.b && bytes[8, 4] == 'WEBP'.b then webp(bytes)
+        case format(bytes)
+        when :png then png(bytes)
+        when :jpeg then jpeg(bytes)
+        when :webp then webp(bytes)
         end
 
       Details.new(width, height) if width&.positive? && height&.positive?
+    end
+
+    # What the bytes are, whatever the file is called.
+    def format(bytes)
+      return :png if bytes.start_with?("\x89PNG\r\n\x1A\n".b)
+      return :jpeg if bytes.start_with?("\xFF\xD8".b)
+
+      :webp if bytes[0, 4] == 'RIFF'.b && bytes[8, 4] == 'WEBP'.b
     end
 
     private

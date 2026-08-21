@@ -19,6 +19,7 @@ require 'erb'
 require 'cgi'
 require 'fileutils'
 
+require_relative 'lib/cover'
 require_relative 'lib/media_resolver'
 require_relative 'lib/feed_builder'
 
@@ -61,6 +62,9 @@ output_path = File.join('public', 'podcast.rss')
 FileUtils.mkdir_p(File.dirname(output_path))
 
 cover = COVER_PATHS.find { |candidate| File.exist?(candidate) }
+cover_errors = cover ? Cover.errors(cover) : []
+abort "The channel artwork will not do:\n  #{cover_errors.join("\n  ")}" unless cover_errors.empty?
+
 FileUtils.cp(cover, File.join('public', File.basename(cover))) if cover
 feed_image_url = cover ? File.join(SITE_URL, File.basename(cover)) : nil
 puts "No channel artwork: drop a square JPEG or PNG at #{COVER_PATHS.first}." unless cover
