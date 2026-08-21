@@ -4,6 +4,8 @@ require 'fileutils'
 require 'erb'
 require 'yaml'
 
+require_relative 'lib/assets'
+
 # Load data from YAML file
 data = YAML.load_file('list.yml', aliases: true)
 
@@ -26,5 +28,7 @@ FileUtils.mkdir_p(File.dirname(name))
 File.open(name, 'w') do |file|
   file.write(html_content)
 end
+
+Assets.publish(into: File.dirname(name))
 
 puts "HTML page generated successfully: #{name}"
