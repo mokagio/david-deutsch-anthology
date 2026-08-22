@@ -226,11 +226,15 @@ class FindEntries
 
   Show = Struct.new(:name, :url, :feed_url, :own, keyword_init: true)
 
-  def initialize(options)
+  def self.default_list = YAML.load_file(File.join(ROOT, 'list.yml'), aliases: true)
+
+  def self.default_ignore = File.exist?(IGNORE_FILE) ? YAML.load_file(IGNORE_FILE) : {}
+
+  def initialize(options, list: self.class.default_list, ignore: self.class.default_ignore)
     @options = options
-    @list = YAML.load_file(File.join(ROOT, 'list.yml'), aliases: true)
+    @list = list
     @index = Discovery::Index.new(@list)
-    @ignore = Discovery::Ignore.new(File.exist?(IGNORE_FILE) ? YAML.load_file(IGNORE_FILE) : {})
+    @ignore = Discovery::Ignore.new(ignore)
     @ignored = []
     @finder = FeedFinder.new
     @unreachable = Queue.new
