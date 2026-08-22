@@ -39,6 +39,18 @@ other:
     url: https://www.youtube.com/watch?v=C6_gxoLwrWw
 
 talks:
+  - title: Why Are Flowers Beautiful?
+    url: https://www.youtube.com/watch?v=gT7DFCF1Fn8
+    delivered_date: 2007/01/27 # Given by video link to the Irish Museum of Modern Art
+
+  - title: Knowledge Creation and its Risks
+    url: https://www.youtube.com/watch?v=01C3a4fL1m0
+    delivered_date: 2020/05/26 # This is the YouTube upload of the remote talk to the Leverhulme CFI
+
+  - title: In-person Q&A with David Deutsch on Free Will, LLMs, Novelty, Hayek, Self-Driving Cars & Pokémon
+    url: https://www.youtube.com/watch?v=YGeNzpZ5Va4
+    delivered_date: 2026/05/17 # Conjecture Con Europe, Oxford
+
   - title: David Deutsch on Optimism at RSA
     url: https://www.youtube.com/watch?v=lX-K63pVPTM
     delivered_date: 2015/11/18
@@ -112,6 +124,26 @@ podcast_interviews:
     show: *naval
     published_date: 2024/10/11
 
+  - title: "David Deutsch: Knowledge Creation and The Human Race, Part 1"
+    url: https://nav.al/david-deutsch
+    youtube_url: https://www.youtube.com/watch?v=YyxepLfH1ZU
+    audio:
+      url: https://traffic.libsyn.com/secure/naval/Naval__David_V2.mp3
+      type: audio/mpeg
+      length: 42076786
+    show: *naval
+    published_date: 2023/02/11
+
+  - title: "David Deutsch: Knowledge Creation and The Human Race, Part 2"
+    url: https://nav.al/david-deutsch-2
+    youtube_url: https://www.youtube.com/watch?v=aQfeYBa1MTk
+    audio:
+      url: https://traffic.libsyn.com/secure/naval/Naval-133.mp3
+      type: audio/mpeg
+      length: 32698482
+    show: *naval
+    published_date: 2023/08/11
+
   - title: Disagreeing about Belief, Probability, and Truth
     youtube_url: https://www.youtube.com/watch?v=jGht9LNHytU
     audio:
@@ -184,6 +216,18 @@ podcast_interviews:
       name: Conversations with Tyler
       url: https://conversationswithtyler.com/episodes/
     published_date: 2021/06/02
+
+  - title: "253 | David Deutsch on Science, Complexity, and Explanation"
+    url: https://www.preposterousuniverse.com/podcast/2023/10/16/253-david-deutsch-on-science-complexity-and-explanation/
+    youtube_url: https://www.youtube.com/watch?v=ldgK7EhEnto
+    audio:
+      url: https://dts.podtrac.com/redirect.mp3/pscrb.fm/rss/p/traffic.libsyn.com/secure/1d1ac211-8392-45fe-82db-99fa7f77076e/david20deutsch.mp3?dest-id=5264190
+      type: audio/mpeg
+      length: 98320563
+    show:
+      name: Sean Carroll's Mindscape
+      url: https://www.preposterousuniverse.com/podcast/
+    published_date: 2023/10/16
 
   - title: David Deutsch & Steven Pinker (First Ever Public Dialogue) — AGI, P(Doom), and The Enemies of Progress
     url: https://josephnoelwalker.com/153-deutsch-pinker-dialogue/
@@ -268,10 +312,23 @@ podcast_interviews:
 
   - title: The Multiverse is REAL
     youtube_url: https://www.youtube.com/watch?v=bux0SjaUCY0
-    show:
+    audio:
+      url: https://anchor.fm/s/10a220e88/podcast/play/109253846/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-9-5%2F408715666-44100-2-28ad692bf22fa061.mp3
+      type: audio/mpeg
+      length: 115451171
+    show: &within_reason
       name: Within Reason Podcast
       url: https://www.youtube.com/@CosmicSkeptic
     published_date: 2024/03/05
+
+  - title: "#102 David Deutsch - You're Not Smarter Than a Caveman"
+    youtube_url: https://www.youtube.com/watch?v=rpP9sqbQzjs
+    audio:
+      url: https://anchor.fm/s/10a220e88/podcast/play/109253960/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-9-5%2F408715773-44100-2-4928af1d299eb9c7.mp3
+      type: audio/mpeg
+      length: 277790627
+    show: *within_reason
+    published_date: 2025/04/07
 
   - title: The Primacy of Ideas, with David Deutsch
     podcast_url: https://doexplain.buzzsprout.com/1260167/episodes/4846241-10-the-primacy-of-ideas-with-david-deutsch
@@ -352,6 +409,11 @@ podcast_interviews:
     youtube_url: https://www.youtube.com/watch?v=d8KCXgzqhSQ
     show: *joe_boswell
     published_date: 2018/12/08
+
+  - title: Are There Many Worlds? David Deutsch in conversation with Markus Arndt
+    youtube_url: https://www.youtube.com/watch?v=kNAR74SWOho
+    show: *joe_boswell
+    published_date: 2018/06/19
 
   - title: David Deutsch on the infinite reach of knowledge
     podcast_url: https://pca.st/FA1q
@@ -581,3 +643,45 @@ podcast_interviews:
       name: EconTalk
       url: https://www.econtalk.org/
     published_date: 2025/12/22
+
+  - title: "Bennett and Deutsch: The Nature of Computation, Incompleteness and Mathematics"
+    youtube_url: https://www.youtube.com/watch?v=CluVy2jICgs
+    show:
+      name: Charles Alexandre Bédard
+      url: https://www.youtube.com/@BedardCharles
+    published_date: 2023/06/28
+
+  - title: David Deutsch on Progress, the Enlightenment, Aspirations, and the Open Society
+    youtube_url: https://www.youtube.com/watch?v=DT09x0Almlw
+    show:
+      name: Prashanth
+      url: https://www.youtube.com/@prashanths1253
+    published_date: 2025/10/22
+
+  - title: Falling for Physics
+    youtube_url: https://www.youtube.com/watch?v=rGQboQyI79A
+    show:
+      name: Anjali
+      url: https://www.youtube.com/@anjali.thelightside
+    published_date: 2025/11/17
+
+  - title: The Fun Criterion, Inner Conflicts, and How the Self Resolves Them
+    youtube_url: https://www.youtube.com/watch?v=e7CrXqUcqzs
+    show:
+      name: Edwin Do It
+      url: https://www.youtube.com/@Edwindoit
+    published_date: 2026/01/24
+
+  - title: David Deutsch on AGI, Alignment and Existential Risk
+    youtube_url: https://www.youtube.com/watch?v=CU2yj826NHk
+    show:
+      name: Reuben Adams
+      url: https://www.youtube.com/@ReubenJAdams
+    published_date: 2026/02/12
+
+  - title: What Is Quantum Mechanics Really Telling Us?
+    youtube_url: https://www.youtube.com/watch?v=Af5LICjFIBc
+    show:
+      name: World Science Festival
+      url: https://www.youtube.com/@WorldScienceFestival
+    published_date: 2026/05/01
