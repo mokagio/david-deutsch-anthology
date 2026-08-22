@@ -685,3 +685,446 @@ podcast_interviews:
       name: World Science Festival
       url: https://www.youtube.com/@WorldScienceFestival
     published_date: 2026/05/01
+  - title: David Deutsch on AGI, Alignment and Existential Risk
+    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-on-agi-alignment-and-existential-risk/id1844837515?i=1000749470281&uo=4
+    audio:
+      url: https://anchor.fm/s/109e356ac/podcast/play/115412781/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-1-12%2F417984386-44100-2-6a78d75019234.mp3
+      type: audio/mpeg
+      length: 97917804
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/de/3e/11/de3e1131-1fdf-4d1b-ee22-16a178d3c1ff/mza_14134957979514569030.jpg/600x600bb.jpg
+    show:
+      name: What The Bot with Reuben Adams
+      url: https://podcasters.spotify.com/pod/show/reuben-adams6
+    published_date: 2026/02/12
+
+  - title: The Fun Criterion, Inner Conflicts, and How the Self Resolves Them — David Deutsch
+    podcast_url: https://podcasts.apple.com/us/podcast/the-fun-criterion-inner-conflicts-and-how-the/id1823443356?i=1000746464958&uo=4
+    audio:
+      url: https://anchor.fm/s/106b373e0/podcast/play/114480019/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-0-24%2F416738882-44100-2-5a5c6fe0e7835.mp3
+      type: audio/mpeg
+      length: 61033742
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/02/63/7f/02637fd5-d85b-b681-fe96-010817625b82/mza_4370017868957764379.jpg/600x600bb.jpg
+    show:
+      name: The Do It Podcast
+      url: https://edwindoit.com
+    published_date: 2026/01/24
+
+  - title: "Episode 130: The \"Pseudo Deutsch Theory of Knowledge\""
+    podcast_url: https://podcasts.apple.com/us/podcast/episode-130-the-pseudo-deutsch-theory-of-knowledge/id1503194218?i=1000745888575&uo=4
+    audio:
+      url: https://anchor.fm/s/14b6fc10/podcast/play/113292055/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-11-30%2Fcde6e7bc-04c9-19cb-3d33-b78394ffce09.mp3
+      type: audio/mpeg
+      length: 132233367
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/1c/af/35/1caf3588-9943-3f96-2c0f-220589f4b490/mza_9924471757698824599.jpg/600x600bb.jpg
+    show:
+      name: The Theory of Anything
+      url: https://www.patreon.com/c/brucenielson/membership
+    published_date: 2026/01/20
+
+  - title: "Falling for Physics | David Deutsch"
+    podcast_url: https://podcasts.apple.com/us/podcast/falling-for-physics-david-deutsch/id1835761903?i=1000737112823&uo=4
+    audio:
+      url: https://anchor.fm/s/108b5c260/podcast/play/111301410/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-10-17%2F412633821-44100-2-eb9401ac6df28.m4a
+      type: audio/mp4
+      length: 50895787
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/53/c9/37/53c93756-14ba-8b91-cb60-419f7e95ee93/mza_16890488175879970035.jpg/600x600bb.jpg
+    show:
+      name: The Light Side
+      url: https://podcasters.spotify.com/pod/show/anjali8252
+    published_date: 2025/11/17
+
+  - title: "David Deutsch Says We Will Build Humans Before We Build AGI - #515"
+    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-says-we-will-build-humans-before-we-build/id1169885840?i=1000726270084&uo=4
+    audio:
+      url: https://www.podtrac.com/pts/redirect.mp3/pdst.fm/e/traffic.megaphone.fm/BBPI4376914320.mp3?updated=1757588244
+      type: audio/mpeg
+      length: 23237887
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/78/8f/3d/788f3d7c-c500-155d-f41e-7485b97f2e4f/mza_9070847447093751851.jpg/600x600bb.jpg
+    show:
+      name: Into the Impossible With Brian Keating
+      url: https://briankeating.com/podcast
+    published_date: 2025/09/11
+
+  - title: "Episode Preview | David Deutsch"
+    podcast_url: https://podcasts.apple.com/us/podcast/episode-preview-david-deutsch/id1818186996?i=1000724591857&uo=4
+    audio:
+      url: https://anchor.fm/s/1056442e4/podcast/play/107694159/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-8-2%2F406722554-44100-2-d865799e2e97.mp3
+      type: audio/mpeg
+      length: 721396
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/d1/f5/0a/d1f50aba-9fa7-8446-cb45-322253fcd674/mza_3499396470681205916.jpg/600x600bb.jpg
+    show:
+      name: Strange Loop Podcast
+      url: https://www.youtube.com/@SanaLabs/podcasts
+    published_date: 2025/09/02
+
+  - title: David Deutsch
+    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch/id1771517982?i=1000722555502&uo=4
+    audio:
+      url: https://anchor.fm/s/f8df0c20/podcast/play/107029820/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-7-18%2F405872914-44100-2-3f681bd782af4.m4a
+      type: audio/mp4
+      length: 16117091
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/82/b3/95/82b395f4-e8cf-970f-03ad-6ce19357293a/mza_3573698568670918071.jpg/600x600bb.jpg
+    show:
+      name: ÆON imminent 🧬 🌀
+      url: https://podcasters.spotify.com/pod/show/andrewflynn204
+    published_date: 2025/08/18
+
+  - title: "How to Understand Your Mind with David Deutsch & Critical Rationalism"
+    podcast_url: https://podcasts.apple.com/us/podcast/how-to-understand-your-mind-with-david-deutsch/id1823443356?i=1000714947097&uo=4
+    audio:
+      url: https://anchor.fm/s/106b373e0/podcast/play/104766462/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-5-28%2F402972464-44100-2-6068b478f2a91.mp3
+      type: audio/mpeg
+      length: 14456371
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/02/63/7f/02637fd5-d85b-b681-fe96-010817625b82/mza_4370017868957764379.jpg/600x600bb.jpg
+    show:
+      name: The Do It Podcast
+      url: https://edwindoit.com
+    published_date: 2025/06/28
+
+  - title: "Visiting Iceland & England, Richard Dawkins, David Deutsch, & Free Palestine! (The Saad Truth with Dr. Saad_839)"
+    podcast_url: https://podcasts.apple.com/us/podcast/visiting-iceland-england-richard-dawkins-david-deutsch/id1516343565?i=1000712108627&uo=4
+    audio:
+      url: https://mcdn.podbean.com/mf/web/jjn39xjr5cszg9gj/Visiting_Iceland_England_Richard_Dawkins_David_Deutsch_Free_Palestine_The_Saad_Truth_with_Dr_Saad_839_7hulb.mp3
+      type: audio/mpeg
+      length: 20731095
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/3f/37/10/3f371050-62fc-45fc-968b-1d2b1e26bbd1/mza_14658490319243205541.jpg/600x600bb.jpg
+    show: *the_saad_truth
+    published_date: 2025/06/09
+
+  - title: "#102 David Deutsch - You're Not Smarter Than a Caveman"
+    podcast_url: https://podcasts.apple.com/us/podcast/102-david-deutsch-youre-not-smarter-than-a-caveman/id1458675168?i=1000703599411&uo=4
+    audio:
+      url: https://anchor.fm/s/10a220e88/podcast/play/109253960/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-9-5%2F408715773-44100-2-4928af1d299eb9c7.mp3
+      type: audio/mpeg
+      length: 277790627
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/f7/ed/f0/f7edf079-74bd-7ddc-4221-0ef265febceb/mza_8865769313048641138.png/600x600bb.jpg
+    show:
+      name: Within Reason
+      url: http://www.cosmicskeptic.com
+    published_date: 2025/04/07
+
+  - title: The Beginning of Infinity by David Deutsch (HINDI/हिंदी में)
+    podcast_url: https://podcasts.apple.com/us/podcast/the-beginning-of-infinity-by-david-deutsch-hindi-%E0%A4%B9-%E0%A4%A6-%E0%A4%AE/id1798055916?i=1000695256985&uo=4
+    audio:
+      url: https://anchor.fm/s/1015d05a0/podcast/play/98782793/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-1-20%2F395232854-44100-2-07ead742ffa03.mp3
+      type: audio/mpeg
+      length: 107662105
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/e3/77/d8/e377d8a6-069c-16f6-d660-cce2d5b9a8e1/mza_15759014430896799464.jpg/600x600bb.jpg
+    show:
+      name: SyllabuswithRohit
+      url: https://www.syllabuswithrohit.com
+    published_date: 2025/02/20
+
+  - title: "Episode 100: Interview with David Deutsch"
+    podcast_url: https://podcasts.apple.com/us/podcast/episode-100-interview-with-david-deutsch/id1503194218?i=1000681411903&uo=4
+    audio:
+      url: https://anchor.fm/s/14b6fc10/podcast/play/96168713/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2024-11-23%2F29292cae-8db1-bbf5-5945-b31d554fa19d.mp3
+      type: audio/mpeg
+      length: 353817687
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/1c/af/35/1caf3588-9943-3f96-2c0f-220589f4b490/mza_9924471757698824599.jpg/600x600bb.jpg
+    show:
+      name: The Theory of Anything
+      url: https://www.patreon.com/c/brucenielson/membership
+    published_date: 2024/12/23
+
+  - title: "AI Twitter Beefs #2: Yann LeCun, David Deutsch, Tyler Cowen, Jack Clark, Beff Jezos, Samuel Hammond vs. Eliezer Yudkowsky, Geoffrey Hinton, Carl Feynman"
+    podcast_url: https://podcasts.apple.com/us/podcast/ai-twitter-beefs-2-yann-lecun-david-deutsch-tyler-cowen/id1751366208?i=1000676769303&uo=4
+    audio:
+      url: https://api.substack.com/feed/podcast/151589770/fe47a89425a773b7664e3db6cd3e59d5.mp3
+      type: audio/mpeg
+      length: 64118847
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/c0/90/9b/c0909b97-a844-d693-ec8c-1d0f69e12223/mza_4344035330681835796.jpg/600x600bb.jpg
+    show:
+      name: "Doom Debates!"
+      url: https://lironshapira.substack.com/podcast
+    published_date: 2024/11/13
+
+  - title: "Ep 223: The Deutsch Files IV (ToKCast version)"
+    url: https://brettroberthall.podbean.com/e/ep-223-the-deutsch-files-iv-tokcast-version/
+    audio:
+      url: https://mcdn.podbean.com/mf/web/fn7ye6r84ccwhxze/ToKCast_Version_Deutsch_Filesar584.mp3
+      type: audio/mpeg
+      length: 176038481
+    show: *tokcast
+    published_date: 2024/10/17
+
+  - title: "Episode 77: Counter Examples To Deutsch's Theory of Knowledge?"
+    podcast_url: https://podcasts.apple.com/us/podcast/episode-77-counter-examples-to-deutschs-theory-of/id1503194218?i=1000645009935&uo=4
+    audio:
+      url: https://anchor.fm/s/14b6fc10/podcast/play/80692944/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F14b6fc10%2F80692944%2F689072637bfd4151c6839be5bae55c99.m4a
+      type: audio/mp4
+      length: 93015448
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/1c/af/35/1caf3588-9943-3f96-2c0f-220589f4b490/mza_9924471757698824599.jpg/600x600bb.jpg
+    show:
+      name: The Theory of Anything
+      url: https://www.patreon.com/c/brucenielson/membership
+    published_date: 2024/02/12
+
+  - title: "Antisemitism in Britain - An Interview With David Deutsch #928"
+    podcast_url: https://podcasts.apple.com/us/podcast/antisemitism-in-britain-an-interview-with-david/id1518860114?i=1000639543073&uo=4
+    audio:
+      url: https://content.rss.com/episodes/384469/2784394/the-daily-objective/2026_05_01_12_54_30_d846683c-117e-4728-bc8c-9f4aa214c657.mp3
+      type: audio/mpeg
+      length: 30103977
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/03/90/ac/0390ac1b-0b5e-038d-4a24-552a0c2d40bf/mza_18352695743057259628.jpg/600x600bb.jpg
+    show:
+      name: The Daily Objective
+      url: https://rss.com/podcasts/the-daily-objective
+    published_date: 2023/12/23
+
+  - title: David Deutsch on Science, Complexity, and Explanation
+    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-on-science-complexity-and-explanation/id1406534739?i=1000631471142&uo=4
+    audio:
+      url: https://dts.podtrac.com/redirect.mp3/pscrb.fm/rss/p/traffic.libsyn.com/secure/1d1ac211-8392-45fe-82db-99fa7f77076e/david20deutsch.mp3?dest-id=5264190
+      type: audio/mpeg
+      length: 98988028
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/1a/4e/a7/1a4ea744-1635-cb0f-a0ec-739ec0bcf359/mza_4353412670676546759.jpeg/600x600bb.jpg
+    show:
+      name: "Sean Carroll's Mindscape: Science, Society, Philosophy, Culture, Arts, and Ideas"
+      url: https://www.preposterousuniverse.com/podcast/
+    published_date: 2023/10/16
+
+  - title: "Classical Christian Education is Counter-Cultural | A Conversation with Rev. David Deutsch"
+    podcast_url: https://podcasts.apple.com/us/podcast/classical-christian-education-is-counter-cultural-a/id1702286694?i=1000629264107&uo=4
+    audio:
+      url: https://anchor.fm/s/e7378e48/podcast/play/76413872/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-8-26%2F348624583-44100-2-2881bb8d32b9b.m4a
+      type: audio/mp4
+      length: 43863957
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/d2/53/13/d2531358-c34c-fce4-648b-921b6c31172f/mza_15019345814236792247.jpg/600x600bb.jpg
+    show:
+      name: Reforming Classical Education Podcast
+      url: https://www.bezainstitute.org/
+    published_date: 2023/09/26
+
+  - title: "#2: Carlos de la Guardia - AGI, Deutsch, Popper, knowledge, and progress"
+    podcast_url: https://podcasts.apple.com/us/podcast/2-carlos-de-la-guardia-agi-deutsch-popper-knowledge/id1699912677?i=1000624259872&uo=4
+    audio:
+      url: https://anchor.fm/s/e674c124/podcast/play/74550203/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-7-12%2F0e8874a0-a6a1-ae51-3794-ee991094e19f.mp3
+      type: audio/mpeg
+      length: 191955327
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/ce/e1/c6/cee1c6b1-766b-9137-2409-b41df5796394/mza_467482820930693497.jpg/600x600bb.jpg
+    show:
+      name: Theo Jaffee Podcast
+      url: https://theojaffee.com
+    published_date: 2023/08/12
+
+  - title: "David Deutsch: Knowledge Creation and The Human Race, Part 2"
+    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-knowledge-creation-and-the-human-race-part-2/id1454097755?i=1000624205710&uo=4
+    audio:
+      url: https://traffic.libsyn.com/secure/naval/Naval-133.mp3?dest-id=1103966
+      type: audio/mpeg
+      length: 32698482
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts123/v4/eb/f4/dc/ebf4dc3a-0292-a846-b8a1-496ea5c8b435/mza_6617487660716274171.png/600x600bb.jpg
+    show:
+      name: Naval
+      url: https://nav.al
+    published_date: 2023/08/11
+
+  - title: "Q&A: el principio de incertidumbre, hablar a un micrófono, estereotipos de género, el efecto de escribir, ingelitencia, cambio climático, David Deutsch, ikigai, sesgos y México"
+    podcast_url: https://podcasts.apple.com/us/podcast/q-a-el-principio-de-incertidumbre/id1448683751?i=1000613181703&uo=4
+    audio:
+      url: https://sphinx.acast.com/p/open/s/68b08648b7f6022e946c6a86/e/f2bfa136-ad16-4144-8bb1-c6d8cb620b31/media.mp3
+      type: audio/mpeg
+      length: 60071083
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/7d/47/6a/7d476a66-ffe2-c965-7125-c8b88014f1bb/mza_6945882093366315507.jpg/600x600bb.jpg
+    show:
+      name: kaizen con Jaime Rodríguez de Santiago
+      url: http://www.jaimerodriguezdesantiago.com
+    published_date: 2023/05/16
+
+  - title: Multiverse of Madness with David Deutsch
+    podcast_url: https://podcasts.apple.com/us/podcast/multiverse-of-madness-with-david-deutsch/id1716338488?i=1000634629093&uo=4
+    audio:
+      url: https://www.podtrac.com/pts/redirect.mp3/tracking.swap.fm/track/VOdNgcECFk0maZgOJbmx/traffic.megaphone.fm/RUNMED3194296572.mp3?updated=1747075431
+      type: audio/mpeg
+      length: 74150174
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/87/d5/96/87d596dc-7f68-81b5-833e-1c5e4fe62d6a/mza_6193746656898525004.jpg/600x600bb.jpg
+    show:
+      name: Conversations with Coleman
+      url: https://www.thefp.com/podcasts
+    published_date: 2023/05/09
+
+  - title: "#-1 - AGI (with David Deutsch)"
+    podcast_url: https://podcasts.apple.com/us/podcast/1-agi-with-david-deutsch/id1681458005?i=1000608045345&uo=4
+    audio:
+      url: https://mcdn.podbean.com/mf/web/gfh3t5/RIF_-1_AGIb1d1b.mp3
+      type: audio/mpeg
+      length: 58845024
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/a7/a8/76/a7a876e0-1078-92a3-c5a6-07218ca42243/mza_15247522250610742092.jpg/600x600bb.jpg
+    show:
+      name: Reason Is Fun
+      url: https://reasonisfun.podbean.com
+    published_date: 2023/04/08
+
+  - title: "#5 – David Deutsch: The Unity Of The Universe"
+    podcast_url: https://podcasts.apple.com/us/podcast/5-david-deutsch-the-unity-of-the-universe/id1686768692?i=1000612009898&uo=4
+    audio:
+      url: https://anchor.fm/s/ff980ea4/podcast/play/96612589/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-0-5%2F392533261-44100-2-1be00d36e17e0f59.mp3
+      type: audio/mpeg
+      length: 44148753
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/eb/01/db/eb01db6c-856a-e63b-d65c-905c12b537a0/mza_9344691081953673726.jpg/600x600bb.jpg
+    show:
+      name: The Unadulterated Intellect
+      url: https://open.spotify.com/show/5xD9XCKiagoraGYvL0UHrT
+    published_date: 2023/03/24
+
+  - title: "David Deutsch: Knowledge Creation and The Human Race, Part 1"
+    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-knowledge-creation-and-the-human-race-part-1/id1826926331?i=1000717458785&uo=4
+    audio:
+      url: https://traffic.libsyn.com/secure/naval/Naval__David_V2.mp3?dest-id=1103966
+      type: audio/mpeg
+      length: 42076786
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/90/d5/2e/90d52ebc-d5b7-7e42-4cfc-e05ce26dfba0/mza_15185247775912449757.png/600x600bb.jpg
+    show:
+      name: Naval
+      url: https://nav.al
+    published_date: 2023/02/11
+
+  - title: "Ep: 99 David Deutsch‘s ”The Beginning of Infinity” - a retrospective in 99 minutes"
+    podcast_url: https://podcasts.apple.com/us/podcast/ep-99-david-deutsch-s-the-beginning-of/id1447087694?i=1000542058655&uo=4
+    audio:
+      url: https://mcdn.podbean.com/mf/web/dkvgnf/Knitted_Raw_Chapters_99_minute_version_Podcast9za1r.mp3
+      type: audio/mpeg
+      length: 194009430
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts126/v4/2e/59/d8/2e59d835-916e-071a-48c7-7cbef70df419/mza_41688498060216287.png/600x600bb.jpg
+    show: *tokcast
+    published_date: 2021/11/16
+
+  - title: "Ep 97: David Deutsch answers a question about dark energy. A question for David number 10."
+    url: https://brettroberthall.podbean.com/e/ep-97-david-deutsch-answers-a-question-about-dark-energy-a-question-for-david-number-10/
+    audio:
+      url: https://mcdn.podbean.com/mf/web/2zqvhg/Q_10_Podcastbvvfk.mp3
+      type: audio/mpeg
+      length: 28853377
+    show: *tokcast
+    published_date: 2021/10/27
+
+  - title: "Ep 93: David Deutsch answers a question about the nature of mind. A question for David number 9."
+    podcast_url: https://podcasts.apple.com/us/podcast/ep-93-david-deutsch-answers-a-question-about-the/id1447087694?i=1000537800749&uo=4
+    audio:
+      url: https://mcdn.podbean.com/mf/web/czad55/Question_for_David_9_-_editingale58.mp3
+      type: audio/mpeg
+      length: 19610544
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts126/v4/2e/59/d8/2e59d835-916e-071a-48c7-7cbef70df419/mza_41688498060216287.png/600x600bb.jpg
+    show: *tokcast
+    published_date: 2021/10/07
+
+  - title: "Ep 92: David Deutsch answers a question about observations. A question for David number 8"
+    url: https://brettroberthall.podbean.com/e/ep-92-david-deutsch-answers-a-question-about-observations-a-question-for-david-number-8/
+    audio:
+      url: https://mcdn.podbean.com/mf/web/srf8ew/Question_for_David_8_-_editing9lp07.mp3
+      type: audio/mpeg
+      length: 15689335
+    show: *tokcast
+    published_date: 2021/10/06
+
+  - title: "Ep 84: David Deutsch answers a question about the nature of the laws of physics (a question for David: 7)."
+    url: https://brettroberthall.podbean.com/e/ep-84-david-deutsch-answers-a-question-about-the-nature-of-the-laws-of-physics-a-question-for-david-7/
+    audio:
+      url: https://mcdn.podbean.com/mf/web/tpmq39/A_question_for_David_776c3q.mp3
+      type: audio/mpeg
+      length: 22607682
+    show: *tokcast
+    published_date: 2021/08/27
+
+  - title: "Ep 82: David Deutsch answers a question about Gödel and undecidability. (A question for David number 6)."
+    url: https://brettroberthall.podbean.com/e/ep-82-david-deutsch-answers-a-question-about-godel-and-undecidability-a-question-for-david-number-6/
+    audio:
+      url: https://mcdn.podbean.com/mf/web/trhifc/A_question_for_David_6_Podcastbu3ep.mp3
+      type: audio/mpeg
+      length: 23920703
+    show: *tokcast
+    published_date: 2021/08/07
+
+  - title: "Ep 79: David Deutsch answers a question about our environment. A question for David 5."
+    url: https://brettroberthall.podbean.com/e/ep-79-david-deutsch-answers-a-question-about-our-environment-a-question-for-david-5/
+    audio:
+      url: https://mcdn.podbean.com/mf/web/bdbcar/Q5_for_editing_podcast90aa3.mp3
+      type: audio/mpeg
+      length: 36867311
+    show: *tokcast
+    published_date: 2021/07/16
+
+  - title: "Ep 76: David Deutsch and Tyler Cowen: Reaction"
+    url: https://brettroberthall.podbean.com/e/ep-76-1625132468/
+    audio:
+      url: https://mcdn.podbean.com/mf/web/hx3nti/David_Deutsch_Tyler_Cowen_Conversation_Reactionb129p.mp3
+      type: audio/mpeg
+      length: 150004909
+    show: *tokcast
+    published_date: 2021/07/01
+
+  - title: "The limitless potential of human knowledge | David Deutsch"
+    podcast_url: https://podcasts.apple.com/us/podcast/the-limitless-potential-of-human-knowledge-david-deutsch/id1437306870?i=1000526927663&uo=4
+    audio:
+      url: https://sphinx.acast.com/p/open/s/67045b43aa9d704b1e952e88/e/prx_179_cd5de8db-b4c2-4a64-a418-4057a488f9de/media.mp3
+      type: audio/mpeg
+      length: 68140083
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts125/v4/06/9f/25/069f2595-7c4c-c0f3-bba4-7fbc0a8743e6/mza_12146987676499761547.png/600x600bb.jpg
+    show:
+      name: The TED Interview
+      url: https://www.ted.com/podcasts/ted-interview
+    published_date: 2021/06/26
+
+  - title: "Ep 73: David Deutsch on \"Truth\". A question for David 4."
+    url: https://brettroberthall.podbean.com/e/ep-73-david-deutsch-on-truth-a-question-for-david-4/
+    audio:
+      url: https://mcdn.podbean.com/mf/web/k33a2t/Question_for_David_4a3fvq.mp3
+      type: audio/mpeg
+      length: 30046292
+    show: *tokcast
+    published_date: 2021/06/24
+
+  - title: "Ep 72: David Deutsch comments on recent UFO sighting (The \"Tictac\" issue). A question for David 3."
+    url: https://brettroberthall.podbean.com/e/david-deutsch-comments-on-recent-ufo-sighting-the-tictac-issue-a-question-for-david-3/
+    audio:
+      url: https://mcdn.podbean.com/mf/web/inuwg3/Tic_Tacs_A_question_for_David_37sh7n.mp3
+      type: audio/mpeg
+      length: 32312167
+    show: *tokcast
+    published_date: 2021/06/23
+
+  - title: "Ep 71: David Deutsch explains \"explanations\" further. (A \"question for David\" 2)"
+    podcast_url: https://podcasts.apple.com/us/podcast/ep-71-david-deutsch-explains-explanations-further-a/id1447087694?i=1000526248670&uo=4
+    audio:
+      url: https://mcdn.podbean.com/mf/web/r4near/A_question_for_David_2889hz.mp3
+      type: audio/mpeg
+      length: 29259639
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts126/v4/2e/59/d8/2e59d835-916e-071a-48c7-7cbef70df419/mza_41688498060216287.png/600x600bb.jpg
+    show: *tokcast
+    published_date: 2021/06/21
+
+  - title: Constructor Theory of Information with David Deutsch
+    podcast_url: https://podcasts.apple.com/us/podcast/constructor-theory-of-information-with-david-deutsch/id1481994554?i=1000505745684&uo=4
+    audio:
+      url: https://anchor.fm/s/e9f811c/podcast/play/25388260/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2021-0-19%2F09a00e60-f8eb-1d8d-f6b7-a951bccc26ea.mp3
+      type: audio/mpeg
+      length: 21367632
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts115/v4/a7/8e/62/a78e62f9-3619-a8e3-4d93-0ce7b45f84b9/mza_17506033059628645090.jpg/600x600bb.jpg
+    show:
+      name: Fallible Animals
+      url: https://www.youtube.com/@loganchipkin4905
+    published_date: 2021/01/19
+
+  - title: "Ep 41: Deutsch Discoveries: Part 2 of an introduction to the philosophy of David Deutsch"
+    url: https://brettroberthall.podbean.com/e/deutsch-discoveries-part-2-of-an-introduction-to-the-philosophy-of-david-deutsch/
+    audio:
+      url: https://mcdn.podbean.com/mf/web/ibxp3x/Deutsch_Discoveriesaqj5o.mp3
+      type: audio/mpeg
+      length: 26179940
+    show: *tokcast
+    published_date: 2020/12/04
+
+  - title: "Ep 37: An intermittent introduction to Popper and Deutsch"
+    url: https://brettroberthall.podbean.com/e/ep-37-an-intermittent-introduction-to-popper-and-deutsch/
+    audio:
+      url: https://mcdn.podbean.com/mf/web/qfesv5/Introductions.mp3
+      type: audio/mpeg
+      length: 23901749
+    show: *tokcast
+    published_date: 2020/11/13
+
+  - title: Are There Many Worlds? David Deutsch in conversation with Markus Arndt
+    youtube_url: https://www.youtube.com/watch?v=kNAR74SWOho
+    show: *joe_boswell
+    published_date: 2018/06/19
