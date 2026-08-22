@@ -1,0 +1,40 @@
+---
+# What a sweep finds every time and is never worth reporting twice.
+#
+# Two things keep coming back: other people called David Deutsch, and shows that
+# discuss his books rather than have him on. Recording a judgement here is what
+# stops the next run asking for it again — add to it whenever a run makes you
+# dismiss something you will obviously dismiss again.
+#
+# Matching ignores case, punctuation and quote marks, so write the patterns plainly.
+
+# Every episode of these shows is dropped. Only for shows that can never carry an
+# appearance: a namesake's, or one whose whole premise is commentary.
+shows:
+  - name: First Presbyterian Church of Pittsburgh's Podcast
+    reason: A pastor of the same name.
+  - name: Follow the Hummingbird
+    reason: A wellness partner of the same name.
+  - name: Made You Think
+    reason: Two hosts discussing The Beginning of Infinity; he is not on it.
+  # David L. Deutsch, the direct-response copywriter, is a frequent podcast guest
+  # and Apple's index cannot tell the two apart.
+  - name: Strategy Sprints
+    reason: David L. Deutsch, copywriter.
+  - name: Breakthrough Marketing Secrets
+    reason: David L. Deutsch, copywriter.
+  - name: Power Marketing with Kevin Lee
+    reason: David L. Deutsch, copywriter.
+  - name: Email Marketing & Copywriting
+    reason: David L. Deutsch, copywriter.
+  - name: The Optimal Life
+    reason: David L. Deutsch, copywriter.
+  - name: 'Input/Output: The Creator System'
+    reason: David L. Deutsch, copywriter.
+
+# Titles containing these are dropped whatever show they come from, which leaves
+# the rest of the show reportable. ToKCast is the case this exists for: Brett Hall
+# reads the books chapter by chapter, and has David on now and then.
+titles:
+  - The Fabric of Reality Chapter
+  - The Beginning of Infinity Chapter
