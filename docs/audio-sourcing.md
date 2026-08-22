@@ -54,13 +54,13 @@ The IAI published a 753-second excerpt of its 3617-second *In search of nothing*
 Title, channel and rough date all agreed; only the runtime gave it away.
 Compare the ratio, not just the titles — anything under about half the audio length is an excerpt and does not belong in `youtube_url`.
 
-Corollary: `audio_length` on an ad-inserted file will drift over time.
+Corollary: a recorded `audio.length` on an ad-inserted file will drift over time.
 `/audit-list` reports it as `audio_unreadable` if the URL stops resolving.
 
 ## Substack blocks CI
 
 `api.substack.com` serves audio fine from a laptop and refuses GitHub Actions runners.
-This is why `list.yml` records `audio_type` and `audio_length` rather than probing at build time, and why the deploy runs `--no-resolve`.
+This is why `list.yml` records `audio.type` and `audio.length` rather than probing at build time, and why the deploy runs `--no-resolve`.
 
 A build that probes drops those episodes *and reports success*, because a feed of whatever survived still validates.
 

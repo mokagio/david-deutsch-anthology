@@ -2,7 +2,7 @@
 name: audit-list
 description: |
   Check every link in `list.yml` and find the audio and artwork the feed needs but the list does not record.
-  Adds `audio_url` and `image_url` to entries where they were found; reports dead links without touching them.
+  Adds the `audio` block and `image_url` to entries where they were found; reports dead links without touching them.
   Use when asked to "audit the list", "check the links", "find missing audio", "find artwork", or invokes /audit-list.
 allowed-tools: Bash(ruby *), Read, Edit, Grep
 user-invocable: true
@@ -21,15 +21,15 @@ Append to it when a host does something new.
 ruby .claude/skills/audit-list/scripts/audit_list.rb --json > /tmp/audit.json
 ```
 
-Takes several minutes — it resolves audio for every interview without an `audio_url`, measures every file the list already names, and looks for the artwork of every entry that has none.
+Takes several minutes — it resolves audio for every interview with no `audio` block, measures every file the list already names, and looks for the artwork of every entry that has none.
 Narrow it with `--links-only` or `--audio-only` when only one pass is wanted; `--audio-only` covers artwork too, since both come out of the same lookups.
 
-The report keys:
+The report keys, which name the audio fields flat — `ListWriter::KEYS` maps them to the `audio` block in the file:
 
 - `audio_found` — a new `audio_url`, with its `audio_type` and `audio_length`, the `entry_url` identifying which entry, and `matched_title` when it came from matching an episode in a show's feed.
 - `audio_sized` — an entry that had a URL but no size or type.
 - `audio_stale` — a recorded length that no longer matches the file by more than 1%. Ad insertion moves it a fraction of a percent; more than that means the recorded number is wrong or the file was replaced.
-- `audio_unreadable` — a recorded `audio_url` that could not be measured. Worth a look: the file may have moved.
+- `audio_unreadable` — a recorded audio URL that could not be measured. Worth a look: the file may have moved.
 - `audio_missing` — no audio anywhere. Usually a video-only appearance. Leave alone.
 - `artwork_found` — an `image_url`, with the `scope` it came from: `episode` is the episode's own picture, `show` is the show's, which every episode of that show would carry. `size` is what the file measured.
 - `artwork_missing` — no square picture of a usable size anywhere. A show whose entries all come back empty is worth one `image_url` on its `show` anchor by hand, which every entry sharing the anchor then inherits.
@@ -42,7 +42,7 @@ The report keys:
 ruby .claude/skills/audit-list/scripts/audit_list.rb --report /tmp/audit.json --write
 ```
 
-`--write` inserts `audio_url`, `audio_type`, `audio_length` and `image_url` into each entry, keeping them together and adding only keys the entry lacks, so applying a report twice is a no-op.
+`--write` inserts the `audio` block and `image_url` into each entry, keeping them together and adding only keys the entry lacks — a type and a length found for a URL the entry already has go into the block that is there — so applying a report twice is a no-op.
 It refuses to write unless the file still parses, the entry count is unchanged, and exactly as many of each key appeared as were applied.
 `ListWriter` lives in [`lib/list_writer.rb`](../../../lib/list_writer.rb) and is covered by `rake test`.
 

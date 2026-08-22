@@ -174,11 +174,11 @@ unless mode == '--links-only' || from_report
   publishable = FeedBuilder::LABELS.keys.flat_map { |section| data[section] || [] }
 
   # Only interviews are worth resolving: a talk without audio was filmed, not aired.
-  pending = (data['podcast_interviews'] || []).reject { |interview| interview['audio_url'] }
+  pending = (data['podcast_interviews'] || []).reject { |interview| interview.dig('audio', 'url') }
   # An enclosure states the file's size and type; recording them here is what keeps
   # the build from having to ask 30-odd third-party hosts on every deploy.
-  incomplete = publishable.select { |e| e['audio_url'] && !(e['audio_type'] && e['audio_length']) }
-  recorded = publishable.select { |e| e['audio_url'] && e['audio_type'] && e['audio_length'] }
+  incomplete = publishable.select { |e| e.dig('audio', 'url') && !(e.dig('audio', 'type') && e.dig('audio', 'length')) }
+  recorded = publishable.select { |e| %w[url type length].all? { |key| e.dig('audio', key) } }
   # A picture the entry inherits from its show already reaches the feed.
   unillustrated = publishable.reject { |e| e['image_url'] || e.dig('show', 'image_url') }
 
@@ -210,11 +210,11 @@ unless mode == '--links-only' || from_report
 
   incomplete.each do |interview|
     warn "  sizing #{interview['title']}"
-    details = Enclosure.probe(interview['audio_url'])
+    details = Enclosure.probe(interview.dig('audio', 'url'))
 
     unless details&.usable?
       report['audio_unreadable'] ||= []
-      report['audio_unreadable'] << { 'title' => interview['title'], 'audio_url' => interview['audio_url'] }
+      report['audio_unreadable'] << { 'title' => interview['title'], 'audio_url' => interview.dig('audio', 'url') }
       next
     end
 
@@ -232,15 +232,15 @@ unless mode == '--links-only' || from_report
   # further means the recorded number is wrong.
   recorded.each do |entry|
     warn "  checking #{entry['title']}"
-    details = Enclosure.probe(entry['audio_url'])
+    details = Enclosure.probe(entry.dig('audio', 'url'))
 
     unless details&.usable?
       report['audio_unreadable'] ||= []
-      report['audio_unreadable'] << { 'title' => entry['title'], 'audio_url' => entry['audio_url'] }
+      report['audio_unreadable'] << { 'title' => entry['title'], 'audio_url' => entry.dig('audio', 'url') }
       next
     end
 
-    stored = entry['audio_length'].to_i
+    stored = entry.dig('audio', 'length').to_i
     drift = (details.length - stored).abs * 100.0 / stored
     next if drift <= 1
 
@@ -284,8 +284,8 @@ if write
   additions = findings.group_by { |finding| finding['entry_url'] }.filter_map do |entry_url, group|
     entry = recorded[entry_url] || {}
     fields = ListWriter::KEYS
-             .reject { |key| entry[key] }
-             .to_h { |key| [key, group.filter_map { |finding| finding[key] }.first] }
+             .reject { |_key, path| entry.dig(*path) }
+             .to_h { |key, _path| [key, group.filter_map { |finding| finding[key] }.first] }
              .compact
 
     { 'title' => group.first['title'], 'entry_url' => entry_url, 'fields' => fields } unless fields.empty?

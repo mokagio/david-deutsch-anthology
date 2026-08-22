@@ -4,23 +4,29 @@ require 'yaml'
 
 require_relative 'feed_builder'
 
-# Adds `audio_*` and `image_url` keys to entries in `list.yml`.
+# Adds the `audio` block and `image_url` to entries in `list.yml`.
 #
 # Text insertion rather than a YAML dump: `list.yml` uses anchors and comments,
 # and Psych renames `&naval` to `&1` and drops every comment on the way out.
 module ListWriter
-  KEYS = %w[audio_url audio_type audio_length image_url].freeze
+  # The flat name every producer speaks, against where the value lives in the file.
+  KEYS = {
+    'audio_url' => %w[audio url],
+    'audio_type' => %w[audio type],
+    'audio_length' => %w[audio length],
+    'image_url' => %w[image_url]
+  }.freeze
 
   ENTRY_START = /^\s*- /
-  MEDIA_KEY = /^\s*(?:audio_(?:url|type|length)|image_url):/
-  # Not `audio_url`: one entry's page URL is the mp3 itself, so both keys hold the
-  # same value and anchoring on either would be ambiguous.
+  MEDIA_KEY = /^\s*(?:audio|image_url):/
+  # Not the audio URL: one entry's page URL is the mp3 itself, so both keys hold
+  # the same value and anchoring on either would be ambiguous.
   ENTRY_URL_KEY = /^[ \t]*(?:podcast_url|youtube_url|url): /
 
   class << self
-    # Each addition is {'entry_url' =>, 'title' =>, 'fields' => {key => value}}. The
-    # entry URL is the anchor because it is unique per entry, which `audio_url` is
-    # not — two entries can point at the same recording.
+    # Each addition is {'entry_url' =>, 'title' =>, 'fields' => {key => value}}, the
+    # keys being those of `KEYS`. The entry URL is the anchor because it is unique
+    # per entry, which the audio URL is not — two entries can share a recording.
     def insert(path, additions)
       lines = File.readlines(path)
       before = counts(File.read(path))
@@ -34,9 +40,7 @@ module ListWriter
         index = entry_line_index(lines, addition['entry_url'])
         next skipped << [addition['title'], 'no unique line matches the entry URL'] unless index
 
-        indent = lines[index][/\A\s*/]
-        at = last_media_line_index(lines, index)
-        lines.insert(at + 1, *fields.map { |key, value| "#{indent}#{key}: #{scalar(value)}\n" })
+        place(lines, index, fields)
         applied << addition
       end
 
@@ -56,18 +60,63 @@ module ListWriter
       matches.size == 1 ? matches.first : nil
     end
 
-    # The media keys belong together, so insert after the last one this entry
-    # already has; with none, straight after the URL that identifies it.
-    def last_media_line_index(lines, index)
-      last = index
+    # The `audio` block first: inserted after `image_url` it would parse the same,
+    # but the file's order is url, type, length, picture.
+    def place(lines, index, fields)
+      nested, flat = fields.partition { |key, _| KEYS.fetch(key).size > 1 }
 
-      ((index + 1)...lines.size).each do |cursor|
-        break if lines[cursor].match?(ENTRY_START)
-
-        last = cursor if lines[cursor].match?(MEDIA_KEY)
+      nested.group_by { |key, _| KEYS.fetch(key).first }.each do |parent, group|
+        insert_nested(lines, index, parent, group.to_h { |key, value| [KEYS.fetch(key).last, value] })
       end
 
-      last
+      insert_flat(lines, index, flat.to_h)
+    end
+
+    def insert_nested(lines, index, parent, children)
+      indent = indent_of(lines[index])
+      at = block_line_index(lines, index, parent)
+
+      if at
+        lines.insert(last_child_index(lines, at) + 1, *scalars(children, "#{indent}  "))
+      else
+        lines.insert(anchor_index(lines, index) + 1, "#{indent}#{parent}:\n", *scalars(children, "#{indent}  "))
+      end
+    end
+
+    def insert_flat(lines, index, fields)
+      return if fields.empty?
+
+      lines.insert(anchor_index(lines, index) + 1, *scalars(fields, indent_of(lines[index])))
+    end
+
+    def scalars(fields, indent) = fields.map { |key, value| "#{indent}#{key}: #{scalar(value)}\n" }
+
+    def indent_of(line) = line[/\A\s*/]
+
+    # Only the entry's own fields: `show` has a `url` child of its own, and so
+    # does `audio`.
+    def field_line_indices(lines, index)
+      indent = indent_of(lines[index])
+
+      ((index + 1)...lines.size).take_while { |cursor| !lines[cursor].match?(ENTRY_START) }
+                                .select { |cursor| indent_of(lines[cursor]) == indent }
+    end
+
+    def block_line_index(lines, index, name)
+      field_line_indices(lines, index).find { |cursor| lines[cursor].match?(/\A\s*#{name}:\s*$/) }
+    end
+
+    def last_child_index(lines, at)
+      indent = indent_of(lines[at])
+
+      ((at + 1)...lines.size).take_while { |cursor| indent_of(lines[cursor]).length > indent.length }.last || at
+    end
+
+    # The media keys belong together, so insert after the last one this entry
+    # already has; with none, straight after the URL that identifies it.
+    def anchor_index(lines, index)
+      last = field_line_indices(lines, index).select { |cursor| lines[cursor].match?(MEDIA_KEY) }.last
+      last ? last_child_index(lines, last) : index
     end
 
     # The file's convention is bare scalars; only a `#` would actually need quoting.
@@ -79,7 +128,7 @@ module ListWriter
       list = YAML.load(source, aliases: true)
       entries = FeedBuilder::LABELS.keys.flat_map { |section| list[section] || [] }
 
-      KEYS.to_h { |key| [key, entries.count { |entry| entry[key] }] }
+      KEYS.to_h { |key, path| [key, entries.count { |entry| entry.dig(*path) }] }
           .merge(entries: entries.size)
     end
 
@@ -88,7 +137,7 @@ module ListWriter
 
       raise "entry count changed: #{before[:entries]} -> #{after[:entries]}" unless after[:entries] == before[:entries]
 
-      KEYS.each do |key|
+      KEYS.each_key do |key|
         expected = additions.count { |addition| addition['fields'].key?(key) }
         actual = after[key] - before[key]
         next if actual == expected

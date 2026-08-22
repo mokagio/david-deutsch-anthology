@@ -50,9 +50,10 @@ talks:
   - title: Chemical scum that dream of distant quasars
     url: https://www.ted.com/talks/david_deutsch_chemical_scum_that_dream_of_distant_quasars
     podcast_url: https://pca.st/et0jgs4t
-    audio_url: https://sphinx.acast.com/p/open/s/67587e77c705e441797aff96/e/en.audio.talk.ted.com%3A47/media.mp3
-    audio_type: audio/mpeg
-    audio_length: 10163009
+    audio:
+      url: https://sphinx.acast.com/p/open/s/67587e77c705e441797aff96/e/en.audio.talk.ted.com%3A47/media.mp3
+      type: audio/mpeg
+      length: 10163009
     image_url: https://assets.pippa.io/shows/67587e77c705e441797aff96/aa0a1db493afd8357cee53192fa9f860.png
     show: &ted_talks_daily
       name: TED Talks Daily
@@ -61,18 +62,20 @@ talks:
 
   - title: After billions of years of monotony, the universe is waking up
     url: https://www.ted.com/talks/david_deutsch_after_billions_of_years_of_monotony_the_universe_is_waking_up
-    audio_url: https://sphinx.acast.com/p/open/s/67587e77c705e441797aff96/e/en.audio.talk.ted.com%3A50792/media.mp3
-    audio_type: audio/mpeg
-    audio_length: 7481238
+    audio:
+      url: https://sphinx.acast.com/p/open/s/67587e77c705e441797aff96/e/en.audio.talk.ted.com%3A50792/media.mp3
+      type: audio/mpeg
+      length: 7481238
     show: *ted_talks_daily
     delivered_date: 2019/04/15 # TED Talks Daily released it 2019/10/14
 
 podcast_interviews:
   - title: The Deutsch Files I
     url: https://nav.al/deutsch-files-i
-    audio_url: https://traffic.libsyn.com/naval/David_D_-_Ai.mp3
-    audio_type: audio/mpeg
-    audio_length: 52684590
+    audio:
+      url: https://traffic.libsyn.com/naval/David_D_-_Ai.mp3
+      type: audio/mpeg
+      length: 52684590
     image_url: https://i0.wp.com/nav.al/wp-content/uploads/2019/12/Navatar.png?fit=1080%2C1080&ssl=1
     show: &naval
       name: Naval's Podcast
@@ -81,36 +84,40 @@ podcast_interviews:
 
   - title: The Deutsch Files II
     url: https://nav.al/deutsch-files-ii
-    audio_url: https://traffic.libsyn.com/naval/The_Deutsch_Files_II.m4a
-    audio_type: audio/x-m4a
-    audio_length: 72258288
+    audio:
+      url: https://traffic.libsyn.com/naval/The_Deutsch_Files_II.m4a
+      type: audio/x-m4a
+      length: 72258288
     image_url: https://i0.wp.com/nav.al/wp-content/uploads/2019/12/Navatar.png?fit=1080%2C1080&ssl=1
     show: *naval
     published_date: 2024/01/26
 
   - title: The Deutsch Files III
     url: https://nav.al/deutsch-files-iii
-    audio_url: https://traffic.libsyn.com/naval/The_Deutsch_Files_III.m4a
-    audio_type: audio/x-m4a
-    audio_length: 57540194
+    audio:
+      url: https://traffic.libsyn.com/naval/The_Deutsch_Files_III.m4a
+      type: audio/x-m4a
+      length: 57540194
     image_url: https://i0.wp.com/nav.al/wp-content/uploads/2019/12/Navatar.png?fit=1080%2C1080&ssl=1
     show: *naval
     published_date: 2024/02/17
 
   - title: The Deutsch Files IV
     url: https://nav.al/deutsch-files-iv
-    audio_url: https://traffic.libsyn.com/forcedn/naval/The_Deutsch_Files_IV.mp3
-    audio_type: audio/mpeg
-    audio_length: 38156686
+    audio:
+      url: https://traffic.libsyn.com/forcedn/naval/The_Deutsch_Files_IV.mp3
+      type: audio/mpeg
+      length: 38156686
     image_url: https://i0.wp.com/nav.al/wp-content/uploads/2019/12/Navatar.png?fit=1080%2C1080&ssl=1
     show: *naval
     published_date: 2024/10/11
 
   - title: Disagreeing about Belief, Probability, and Truth
     youtube_url: https://www.youtube.com/watch?v=jGht9LNHytU
-    audio_url: https://dts.podtrac.com/redirect.mp3/https://chrt.fm/track/1F5B4D/aphid.fireside.fm/d/1437767933/3229e340-4bf1-42a5-a5b7-4f508a27131c/03508f9b-3a2a-4b15-9b23-fe30083b431b.mp3
-    audio_type: audio/mpeg
-    audio_length: 89477071
+    audio:
+      url: https://dts.podtrac.com/redirect.mp3/https://chrt.fm/track/1F5B4D/aphid.fireside.fm/d/1437767933/3229e340-4bf1-42a5-a5b7-4f508a27131c/03508f9b-3a2a-4b15-9b23-fe30083b431b.mp3
+      type: audio/mpeg
+      length: 89477071
     image_url: https://assets.fireside.fm/file/fireside-images-2024/podcasts/images/3/3229e340-4bf1-42a5-a5b7-4f508a27131c/episodes/0/03508f9b-3a2a-4b15-9b23-fe30083b431b/cover.jpg?v=9
     show:
       name: Increments Podcast
@@ -126,18 +133,20 @@ podcast_interviews:
 
   - title: The Universal Constructor with David Deutsch
     youtube_url: https://www.youtube.com/watch?v=3JmfAJDiHwQ
-    audio_url: https://anchor.fm/s/e9f811c/podcast/play/66096607/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-2-7%2F75731dcb-8cf3-4a7f-b0d1-c0f8fdd942e0.mp3
-    audio_type: audio/mpeg
-    audio_length: 15321240
+    audio:
+      url: https://anchor.fm/s/e9f811c/podcast/play/66096607/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-2-7%2F75731dcb-8cf3-4a7f-b0d1-c0f8fdd942e0.mp3
+      type: audio/mpeg
+      length: 15321240
     image_url: https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/2353343/2353343-1569327079532-905b47d09007a.jpg
     show: *logan_chipkin
     published_date: 2023/03/07
 
   - title: Surviving the Cosmos
     url: https://www.samharris.org/podcasts/making-sense-episodes/surviving-the-cosmos
-    audio_url: https://traffic.libsyn.com/secure/wakingup/Making_Sense_22_Surviving_the_Cosmos_Paywall_7-27-22.mp3
-    audio_type: audio/mpeg
-    audio_length: 48305203
+    audio:
+      url: https://traffic.libsyn.com/secure/wakingup/Making_Sense_22_Surviving_the_Cosmos_Paywall_7-27-22.mp3
+      type: audio/mpeg
+      length: 48305203
     show: &making_sense
       name: Making Sense with Sam Harris
       url: https://www.samharris.org/podcasts
@@ -145,17 +154,19 @@ podcast_interviews:
 
   - title: Finding our Way in the Cosmos
     url: https://www.samharris.org/podcasts/making-sense-episodes/finding-our-way-in-the-cosmos
-    audio_url: https://traffic.libsyn.com/secure/wakingup/Making_Sense_52_Finding_Our_Way_Paywall_7-27-22.mp3
-    audio_type: audio/mpeg
-    audio_length: 43411559
+    audio:
+      url: https://traffic.libsyn.com/secure/wakingup/Making_Sense_52_Finding_Our_Way_Paywall_7-27-22.mp3
+      type: audio/mpeg
+      length: 43411559
     show: *making_sense
     published_date: 2016/11/16
 
   - title: David Deutsch and Naval Ravikant — The Fabric of Reality, The Importance of Disobedience, The Inevitability of Artificial General Intelligence, Finding Good Problems, Redefining Wealth, Foundations of True Knowledge, Harnessing Optimism, Quantum Computing, and More
     url: https://tim.blog/2023/03/24/david-deutsch-naval-ravikant/
-    audio_url: https://rss.art19.com/episodes/0d001a31-eb7d-4f15-b8e5-cc6d319ba39d.mp3?rss_browser=BAhJIgtDaHJvbWUGOgZFVA%3D%3D--d05363d83ce333c74f32188013892b2863ad051c
-    audio_type: audio/mpeg
-    audio_length: 104163290
+    audio:
+      url: https://rss.art19.com/episodes/0d001a31-eb7d-4f15-b8e5-cc6d319ba39d.mp3?rss_browser=BAhJIgtDaHJvbWUGOgZFVA%3D%3D--d05363d83ce333c74f32188013892b2863ad051c
+      type: audio/mpeg
+      length: 104163290
     image_url: https://content.production.cdn.art19.com/images/69/10/10/fb/691010fb-625e-4abe-993c-a57228b28dbe/91cb53ae0d5dbb379b9dffecf0a772593891d0d09bbe6d90ee746edbdb79e3ec75584f2ceb8260e9f675a90c05419b9b99842a76905b686f0f51c1a9d3e227ab.jpeg
     show:
       name: The Tim Ferriss Show
@@ -164,9 +175,10 @@ podcast_interviews:
 
   - title: David Deutsch on Multiple Worlds and Our Place in Them
     url: https://conversationswithtyler.com/episodes/david-deutsch/
-    audio_url: https://traffic.libsyn.com/secure/cowenconvos/CWT-126-DavidDeutsch-podcast-v1Final.mp3?dest-id=850607
-    audio_type: audio/mpeg
-    audio_length: 52323254
+    audio:
+      url: https://traffic.libsyn.com/secure/cowenconvos/CWT-126-DavidDeutsch-podcast-v1Final.mp3?dest-id=850607
+      type: audio/mpeg
+      length: 52323254
     image_url: https://static.libsyn.com/p/assets/b/0/7/d/b07d582b302bdbd527a2322813b393ee/CWT-126-DavidDeutsch-libsyn.jpg
     show:
       name: Conversations with Tyler
@@ -175,9 +187,10 @@ podcast_interviews:
 
   - title: David Deutsch & Steven Pinker (First Ever Public Dialogue) — AGI, P(Doom), and The Enemies of Progress
     url: https://josephnoelwalker.com/153-deutsch-pinker-dialogue/
-    audio_url: https://enrichment.soundstack.com/4vjqq8/traffic.omny.fm/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/a482236a-5a44-43bd-9af5-b0db00198610/audio.mp3?utm_source=Podcast&in_playlist=f287bcce-12f0-44fa-b389-af9000132cfb
-    audio_type: audio/mpeg
-    audio_length: 111092889
+    audio:
+      url: https://enrichment.soundstack.com/4vjqq8/traffic.omny.fm/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/a482236a-5a44-43bd-9af5-b0db00198610/audio.mp3?utm_source=Podcast&in_playlist=f287bcce-12f0-44fa-b389-af9000132cfb
+      type: audio/mpeg
+      length: 111092889
     image_url: https://www.omnycontent.com/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/a482236a-5a44-43bd-9af5-b0db00198610/image.jpg?t=1702977192&size=Large
     show: &joe_walker
       name: The Joe Walker Podcast
@@ -186,18 +199,20 @@ podcast_interviews:
 
   - title: Against Bayesianism
     url: https://josephnoelwalker.com/139-david-deutsch/
-    audio_url: https://enrichment.soundstack.com/4vjqq8/traffic.omny.fm/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/82637707-880b-4eee-81e7-af9000144577/audio.mp3?utm_source=Podcast&in_playlist=f287bcce-12f0-44fa-b389-af9000132cfb
-    audio_type: audio/mpeg
-    audio_length: 95097361
+    audio:
+      url: https://enrichment.soundstack.com/4vjqq8/traffic.omny.fm/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/82637707-880b-4eee-81e7-af9000144577/audio.mp3?utm_source=Podcast&in_playlist=f287bcce-12f0-44fa-b389-af9000132cfb
+      type: audio/mpeg
+      length: 95097361
     image_url: https://www.omnycontent.com/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/82637707-880b-4eee-81e7-af9000144577/image.jpg?t=1674177238&size=Large
     show: *joe_walker
     published_date: 2022/04/25
 
   - title: On Beauty, Knowledge, and Progress
     youtube_url: https://www.youtube.com/watch?v=vYNLahd6fds
-    audio_url: https://sphinx.acast.com/p/open/s/683f0798c966cde736234a29/e/68405d395de209b54b1e025c/media.mp3
-    audio_type: audio/mpeg
-    audio_length: 62106594
+    audio:
+      url: https://sphinx.acast.com/p/open/s/683f0798c966cde736234a29/e/68405d395de209b54b1e025c/media.mp3
+      type: audio/mpeg
+      length: 62106594
     image_url: https://assets.pippa.io/shows/683f0798c966cde736234a29/1770222748878-98ae0322-0385-4144-83d0-3b4932cf3dc9.jpeg
     show:
       name: Existential Hope Podcast by Foresight Institute
@@ -206,9 +221,10 @@ podcast_interviews:
 
   - title: The Universal Constructor with David Deutsch
     podcast_url: https://podcasts.apple.com/nz/podcast/the-universal-constructor-with-david-deutsch/id1481994554?i=1000603140355
-    audio_url: https://anchor.fm/s/e9f811c/podcast/play/66096607/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-2-7%2F75731dcb-8cf3-4a7f-b0d1-c0f8fdd942e0.mp3
-    audio_type: audio/mpeg
-    audio_length: 15321240
+    audio:
+      url: https://anchor.fm/s/e9f811c/podcast/play/66096607/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-2-7%2F75731dcb-8cf3-4a7f-b0d1-c0f8fdd942e0.mp3
+      type: audio/mpeg
+      length: 15321240
     image_url: https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/2353343/2353343-1569327079532-905b47d09007a.jpg
     youtube_url: https://www.youtube.com/watch?v=P8bCBypqrEw
     show:
@@ -218,9 +234,10 @@ podcast_interviews:
 
   - title: Selecting for Deafness
     podcast_url: https://podcasts.apple.com/us/podcast/s01e14-selecting-for-deafness-david-deutsch/id1470490447?i=1000466743291
-    audio_url: https://anchor.fm/s/c4db244/podcast/play/10628930/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2020-1-26%2F52502993-48000-2-90b4478f2d90c.mp3
-    audio_type: audio/mpeg
-    audio_length: 134648229
+    audio:
+      url: https://anchor.fm/s/c4db244/podcast/play/10628930/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2020-1-26%2F52502993-48000-2-90b4478f2d90c.mp3
+      type: audio/mpeg
+      length: 134648229
     image_url: https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_episode/1964185/1964185-1582684800095-8f6f66e246779.jpg
     show:
       name: Dilemma Podcast
@@ -229,9 +246,10 @@ podcast_interviews:
 
   - title: Free-Will, Taking Children Seriously, and Anarcho-Capitalism
     youtube_url: https://www.youtube.com/watch?v=Hh9xOB2oDHk
-    audio_url: https://api.substack.com/feed/podcast/140216749/254217dd22994eed239715a0d77b66ae.mp3
-    audio_type: audio/mpeg
-    audio_length: 39002844
+    audio:
+      url: https://api.substack.com/feed/podcast/140216749/254217dd22994eed239715a0d77b66ae.mp3
+      type: audio/mpeg
+      length: 39002844
     image_url: https://substackcdn.com/feed/podcast/847348/post/140216749/d8c67e5a2c38771e56fa463f80032f31.jpg
     show: &arjun_khemain
       name: Arjun Khemani's Podcast
@@ -240,9 +258,10 @@ podcast_interviews:
 
   - title: The Era of Man, Popper, and Western Civilization
     youtube_url: https://www.youtube.com/watch?v=I3FzAjgPztU
-    audio_url: https://api.substack.com/feed/podcast/151485080/660977dbe0cb7dab33afb3615f7df527.mp3
-    audio_type: audio/mpeg
-    audio_length: 85532976
+    audio:
+      url: https://api.substack.com/feed/podcast/151485080/660977dbe0cb7dab33afb3615f7df527.mp3
+      type: audio/mpeg
+      length: 85532976
     image_url: https://substackcdn.com/feed/podcast/847348/d8c67e5a2c38771e56fa463f80032f31.jpg
     show: *arjun_khemain
     published_date: 2024/11/12
@@ -256,9 +275,10 @@ podcast_interviews:
 
   - title: The Primacy of Ideas, with David Deutsch
     podcast_url: https://doexplain.buzzsprout.com/1260167/episodes/4846241-10-the-primacy-of-ideas-with-david-deutsch
-    audio_url: https://pdcn.co/e/www.buzzsprout.com/1260167/episodes/4846241-the-primacy-of-ideas-with-david-deutsch.mp3
-    audio_type: audio/mpeg
-    audio_length: 52934329
+    audio:
+      url: https://pdcn.co/e/www.buzzsprout.com/1260167/episodes/4846241-the-primacy-of-ideas-with-david-deutsch.mp3
+      type: audio/mpeg
+      length: 52934329
     image_url: https://storage.buzzsprout.com/1i5khzo0jkd9vfvpfyzipyyivhqs?.jpg
     show: &do_explain
       name: Do Explain
@@ -267,18 +287,20 @@ podcast_interviews:
 
   - title: Truth and Abstractions, with David Deutsch and Jake Orthwein
     podcast_url: https://doexplain.buzzsprout.com/1260167/episodes/15993837-half-episode-57-truth-and-abstractions-with-david-deutsch-and-jake-orthwein
-    audio_url: https://pdcn.co/e/www.buzzsprout.com/1260167/episodes/15993837-half-episode-truth-and-abstractions-with-david-deutsch-and-jake-orthwein.mp3
-    audio_type: audio/mpeg
-    audio_length: 29967359
+    audio:
+      url: https://pdcn.co/e/www.buzzsprout.com/1260167/episodes/15993837-half-episode-truth-and-abstractions-with-david-deutsch-and-jake-orthwein.mp3
+      type: audio/mpeg
+      length: 29967359
     image_url: https://storage.buzzsprout.com/iexs820ctpqbi3bgtlvbnt2o18tf?.jpg
     show: *do_explain
     published_date: 2024/10/28
 
   - title: Physicist Dr. David Deutsch-Quantum Computing, Turing Machines, & Multiverses
     youtube_url: https://www.youtube.com/watch?v=S7GS_T_2dyE
-    audio_url: https://mcdn.podbean.com/mf/web/6mu2h8t6f8cjtcjv/Physicist_Dr_David_Deutsch-_Quantum_Computing_Turing_Machines_and_Multiverses_The_Saad_Truth_with_Dr_Saad_729_93g79.mp3
-    audio_type: audio/mpeg
-    audio_length: 38899562
+    audio:
+      url: https://mcdn.podbean.com/mf/web/6mu2h8t6f8cjtcjv/Physicist_Dr_David_Deutsch-_Quantum_Computing_Turing_Machines_and_Multiverses_The_Saad_Truth_with_Dr_Saad_729_93g79.mp3
+      type: audio/mpeg
+      length: 38899562
     image_url: https://pbcdn1.podbean.com/imglogo/image-logo/8635096/Gad_Saad_Photo_9d1u3.jpg
     show: &the_saad_truth
       name: The Saad Truth with Dr. Saad
@@ -287,18 +309,20 @@ podcast_interviews:
 
   - title: Physicist Dr. David Deutsch Returns - Science, Mathematics & Jew Hatred
     youtube_url: https://www.youtube.com/watch?v=ZcPExkCWzRM
-    audio_url: https://mcdn.podbean.com/mf/web/9xkzft962ir4vegq/Physicist_Dr_David_Deutsch_Returns_-_Science_Mathematics_Jew-Hatred_The_Saad_Truth_with_Dr_Saad_749_b66o6.mp3
-    audio_type: audio/mpeg
-    audio_length: 50350804
+    audio:
+      url: https://mcdn.podbean.com/mf/web/9xkzft962ir4vegq/Physicist_Dr_David_Deutsch_Returns_-_Science_Mathematics_Jew-Hatred_The_Saad_Truth_with_Dr_Saad_749_b66o6.mp3
+      type: audio/mpeg
+      length: 50350804
     image_url: https://pbcdn1.podbean.com/imglogo/image-logo/8635096/Gad_Saad_Photo_9d1u3.jpg
     show: *the_saad_truth
     published_date: 2024/11/12
 
   - title: David Deutsch, Peter Boghossian, & Reid Nicewonder Talk Fermi Paradox, Ideological Contagion, & More
     youtube_url: https://www.youtube.com/watch?v=qPvTbftn-xY
-    audio_url: https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/8cb104e9-39a8-4ddc-9e91-a0e10355329b/14631866-david-deutsch-peter-boghossian-reid-nicewonder-talk-fermi-paradox-ideological-contagion-more.mp3?dest-id=4872530
-    audio_type: audio/mpeg
-    audio_length: 66235009
+    audio:
+      url: https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/8cb104e9-39a8-4ddc-9e91-a0e10355329b/14631866-david-deutsch-peter-boghossian-reid-nicewonder-talk-fermi-paradox-ideological-contagion-more.mp3?dest-id=4872530
+      type: audio/mpeg
+      length: 66235009
     image_url: https://static.libsyn.com/p/assets/5/0/6/9/5069767a6468129d16c3140a3186d450/podcast_cover_2.0_1-20250114-6xkgqls31u.png
     show:
       name: Conversations with Peter Boghossian
@@ -307,9 +331,10 @@ podcast_interviews:
 
   - title: "David Deutsch: the fabric of explanations, optimism and creativity"
     url: https://www.fromthelotus.world/p/23-david-deutsch-the-fabric-of-explanations
-    audio_url: https://api.substack.com/feed/podcast/166343984/2df7a8f83f444e18ec4f9af70ed83457.mp3
-    audio_type: audio/mpeg
-    audio_length: 45702314
+    audio:
+      url: https://api.substack.com/feed/podcast/166343984/2df7a8f83f444e18ec4f9af70ed83457.mp3
+      type: audio/mpeg
+      length: 45702314
     image_url: https://substackcdn.com/feed/podcast/4049309/post/166343984/7c4fa81c1d11e4bf35b063f4433b1427.jpg
     show:
       name: Salvador Podcast
@@ -330,9 +355,10 @@ podcast_interviews:
 
   - title: David Deutsch on the infinite reach of knowledge
     podcast_url: https://pca.st/FA1q
-    audio_url: https://sphinx.acast.com/p/open/s/67045b43aa9d704b1e952e88/e/prx_179_7cb483e3-c7b9-4fad-abfb-e5528be4ed58/media.mp3
-    audio_type: audio/mpeg
-    audio_length: 60223650
+    audio:
+      url: https://sphinx.acast.com/p/open/s/67045b43aa9d704b1e952e88/e/prx_179_7cb483e3-c7b9-4fad-abfb-e5528be4ed58/media.mp3
+      type: audio/mpeg
+      length: 60223650
     image_url: https://assets.pippa.io/shows/67045b43aa9d704b1e952e88/show-cover.png
     show:
       name: The TED Interview
@@ -342,9 +368,10 @@ podcast_interviews:
   - title: David Deutsch - AI, America, Fun, & Bayes
     youtube_url: https://www.youtube.com/watch?v=EVwjofV5TgU
     url: https://www.dwarkesh.com/p/david-deutsch
-    audio_url: https://api.substack.com/feed/podcast/52511224/c32c22a9d2c5737aa08be0ef635603e2.mp3
-    audio_type: audio/mpeg
-    audio_length: 40412199
+    audio:
+      url: https://api.substack.com/feed/podcast/52511224/c32c22a9d2c5737aa08be0ef635603e2.mp3
+      type: audio/mpeg
+      length: 40412199
     image_url: https://apple.dwarkesh-podcast.workers.dev/art/v1/MWZmZTlhNTktZDc1Ni00OGNhLWI4N2EtMTkyMjU5ZjQzY2Ey.jpg
     show:
       name: Dwarkesh Podcast
@@ -353,9 +380,10 @@ podcast_interviews:
 
   - title: "ToKCast Episode 100: David Deutsch"
     youtube_url: https://www.youtube.com/watch?v=_pAgz8iVC44
-    audio_url: https://mcdn.podbean.com/mf/web/zzbafz/Episode_100_Podcast65rif.mp3
-    audio_type: audio/mpeg
-    audio_length: 167888660
+    audio:
+      url: https://mcdn.podbean.com/mf/web/zzbafz/Episode_100_Podcast65rif.mp3
+      type: audio/mpeg
+      length: 167888660
     image_url: https://pbcdn1.podbean.com/imglogo/image-logo/3210771/TOKCAST_e8uwkp.png
     show: &tokcast
       name: ToKCast
@@ -378,9 +406,10 @@ podcast_interviews:
 
   - title: David Deutsch – 'Karl Popper and the Beginning of Infinity'
     youtube_url: https://www.youtube.com/watch?v=vKO8YRwVVu8
-    audio_url: https://traffic.libsyn.com/secure/popperian-podcast/The_Popperian_Podcast_1__David_Deutsch__Karl_Popper_and_the_Beginning_of_Infinity.mp3?dest-id=2291375
-    audio_type: audio/mpeg
-    audio_length: 110111963
+    audio:
+      url: https://traffic.libsyn.com/secure/popperian-podcast/The_Popperian_Podcast_1__David_Deutsch__Karl_Popper_and_the_Beginning_of_Infinity.mp3?dest-id=2291375
+      type: audio/mpeg
+      length: 110111963
     image_url: https://static.libsyn.com/p/assets/4/4/b/9/44b902dbe4dea8bf/OFFICIAL_THUMBNAIL_resized_again.jpg
     show:
       name: The Popperian Podcast
@@ -403,9 +432,10 @@ podcast_interviews:
 
   - title: Theory of Anything Hosts David Deutsch
     youtube_url: https://www.youtube.com/watch?v=Q_Cs5iNazB8
-    audio_url: https://traffic.megaphone.fm/APO5822129085.mp3
-    audio_type: audio/mpeg
-    audio_length: 62877898
+    audio:
+      url: https://traffic.megaphone.fm/APO5822129085.mp3
+      type: audio/mpeg
+      length: 62877898
     image_url: https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_episode/3375364/3375364-1610324172504-1d6eca207653f.jpg
     show:
       name: Theory of Anything
@@ -415,9 +445,10 @@ podcast_interviews:
   - title: A Woven Web of Guesses with DAVID DEUTSCH
     youtube_url: https://www.youtube.com/watch?v=Nsv36BuuRK4
     podcast_url: https://podcasts.apple.com/us/podcast/a-woven-web-of-guesses-with-david-deutsch/id1672821908?i=1000701986283
-    audio_url: https://anchor.fm/s/22428e1c/podcast/play/100760386/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-3-2%2F397722436-44100-2-a78ebe36f96be.m4a
-    audio_type: audio/mp4
-    audio_length: 51408930
+    audio:
+      url: https://anchor.fm/s/22428e1c/podcast/play/100760386/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-3-2%2F397722436-44100-2-a78ebe36f96be.m4a
+      type: audio/mp4
+      length: 51408930
     image_url: https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/5647871/5647871-1743638003799-fb50e6c29a7bf.jpg
     show:
       name: The Falsifiable Podcast
@@ -449,9 +480,10 @@ podcast_interviews:
     url: https://theinnovationshow.io/episode/ep-145-the-beginning-of-infinity-explanations-that-transform-the-world-david-deutsch/
     youtube_url: https://www.youtube.com/watch?v=flA3Qbkj_cw
     podcast_url: https://theinnovationshow.io/download-episode/354/ep-145-the-beginning-of-infinity-explanations-that-transform-the-world-david-deutsch.mp3
-    audio_url: https://theinnovationshow.io/download-episode/354/ep-145-the-beginning-of-infinity-explanations-that-transform-the-world-david-deutsch.mp3
-    audio_type: audio/mpeg
-    audio_length: 72500768
+    audio:
+      url: https://theinnovationshow.io/download-episode/354/ep-145-the-beginning-of-infinity-explanations-that-transform-the-world-david-deutsch.mp3
+      type: audio/mpeg
+      length: 72500768
     image_url: https://theinnovationshow.io/wp-content/uploads/2019/02/David_Deutsch_-_Final.jpg
     show:
       name: The Innovation Show
@@ -460,9 +492,10 @@ podcast_interviews:
 
   - title: "David Deutsch: The Quantum Theory No One Dares Explain!"
     youtube_url: https://www.youtube.com/watch?v=EPX_t3E1QOU
-    audio_url: https://www.podtrac.com/pts/redirect.mp3/pdst.fm/e/traffic.megaphone.fm/BBPI9769799920.mp3?updated=1755955116
-    audio_type: audio/mpeg
-    audio_length: 57559230
+    audio:
+      url: https://www.podtrac.com/pts/redirect.mp3/pdst.fm/e/traffic.megaphone.fm/BBPI9769799920.mp3?updated=1755955116
+      type: audio/mpeg
+      length: 57559230
     image_url: https://megaphone.imgix.net/podcasts/51b7eb94-801d-11f0-8892-b7aa9836a750/image/c4ad09259fa3f64808ff8d6c29c7a017.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress
     show:
       name: Brian Keating's Into The Impossible Podcast
@@ -471,9 +504,10 @@ podcast_interviews:
 
   - title: How to Reverse Academia's Stagnation
     youtube_url: https://www.youtube.com/watch?v=Em-85baHx0A
-    audio_url: https://mcdn.podbean.com/mf/web/tc493pk23uffxq8a/Edited_Transcript_Twitter_Podcast7j850.mp3
-    audio_type: audio/mpeg
-    audio_length: 90881445
+    audio:
+      url: https://mcdn.podbean.com/mf/web/tc493pk23uffxq8a/Edited_Transcript_Twitter_Podcast7j850.mp3
+      type: audio/mpeg
+      length: 90881445
     image_url: https://pbcdn1.podbean.com/imglogo/image-logo/20808997/Use_For_Podbean.jpg
     show:
       name: Conjecture Institute Podcast
@@ -482,9 +516,10 @@ podcast_interviews:
 
   - title: "David Deutsch: AGI, the origins of quantum computing, and the future of humanity"
     youtube_url: https://www.youtube.com/watch?v=IVA2bK9qjzE
-    audio_url: https://anchor.fm/s/1056442e4/podcast/play/107639804/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-8-1%2F406653557-44100-2-845539870b27.mp3
-    audio_type: audio/mpeg
-    audio_length: 55326510
+    audio:
+      url: https://anchor.fm/s/1056442e4/podcast/play/107639804/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-8-1%2F406653557-44100-2-845539870b27.mp3
+      type: audio/mpeg
+      length: 55326510
     image_url: https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/43754241/43754241-1756889046990-779f78e47a835.jpg
     show:
       name: Strange Loop Podcast
@@ -500,9 +535,10 @@ podcast_interviews:
 
   - title: What is the best pathway to knowledge?
     youtube_url: https://www.youtube.com/watch?v=7r56Z76L_I8
-    audio_url: https://episodes.captivate.fm/episode/0fbd5d16-2f06-42a7-80b3-ed000c5ce501.mp3
-    audio_type: audio/mpeg
-    audio_length: 201167040
+    audio:
+      url: https://episodes.captivate.fm/episode/0fbd5d16-2f06-42a7-80b3-ed000c5ce501.mp3
+      type: audio/mpeg
+      length: 201167040
     image_url: https://artwork.captivate.fm/1bd1d003-f8f5-47f8-886d-0aecba4b43e4/Admy0eirtfdSQATIG4yNOFb5.png
     show:
       name: The Shape of Dialogue
@@ -512,9 +548,10 @@ podcast_interviews:
   - title: "David Deutsch: Einstein Would Fail Modern Grant Applications"
     podcast_url: https://pca.st/irai1e46
     youtube_url: https://www.youtube.com/watch?v=vKeWv-cdWkM
-    audio_url: https://s.gum.fm/s-62d83916a854b1cc0031878d/pscrb.fm/rss/p/traffic.megaphone.fm/TEMI4086813871.mp3?updated=1759762315
-    audio_type: audio/mpeg
-    audio_length: 97025658
+    audio:
+      url: https://s.gum.fm/s-62d83916a854b1cc0031878d/pscrb.fm/rss/p/traffic.megaphone.fm/TEMI4086813871.mp3?updated=1759762315
+      type: audio/mpeg
+      length: 97025658
     image_url: https://static.pocketcasts.com/discover/images/webp/480/4ccbd7f0-a6af-0138-e682-0acc26574db2.webp
     show:
       name: Theories of Everything with Curt Jaimungal
@@ -523,9 +560,10 @@ podcast_interviews:
 
   - title: In search of nothing | David Deutsch, Amanda Gefter, Lee Smolin
     podcast_url: https://pca.st/fgd9t45f
-    audio_url: https://rss.art19.com/episodes/cf51acc2-5bb1-47df-804a-854958962803.mp3?rss_browser=BAhJIgtDaHJvbWUGOgZFVA%3D%3D--d05363d83ce333c74f32188013892b2863ad051c
-    audio_type: audio/mpeg
-    audio_length: 57888182
+    audio:
+      url: https://rss.art19.com/episodes/cf51acc2-5bb1-47df-804a-854958962803.mp3?rss_browser=BAhJIgtDaHJvbWUGOgZFVA%3D%3D--d05363d83ce333c74f32188013892b2863ad051c
+      type: audio/mpeg
+      length: 57888182
     image_url: https://content.production.cdn.art19.com/images/63/c7/d6/37/63c7d637-7707-4559-be78-d090c4957445/f3e9c926a20b9be931d1d50abe9d638c5eeafeebb87e2cdb0ba7313290a30b76636d20de14171de2396323e61eda85342c681723eea3513de8f73295d29b29a7.jpeg
     show:
       name: Philosophy For Our Times
@@ -534,9 +572,10 @@ podcast_interviews:
 
   - title: David Deutsch on the Pattern
     url: https://www.econtalk.org/david-deutsch-on-the-pattern/
-    audio_url: https://cdn.simplecast.com/audio/6fdba516-8381-43b0-b29f-59d05512b693/episodes/a465fa1a-35ca-40f6-8e3c-6f7e49424912/audio/9dfae9e8-490f-499c-8f11-35f0563688e1/default_tc.mp3?aid=rss_feed&feed=wgl4xEgL
-    audio_type: audio/mpeg
-    audio_length: 83126388
+    audio:
+      url: https://cdn.simplecast.com/audio/6fdba516-8381-43b0-b29f-59d05512b693/episodes/a465fa1a-35ca-40f6-8e3c-6f7e49424912/audio/9dfae9e8-490f-499c-8f11-35f0563688e1/default_tc.mp3?aid=rss_feed&feed=wgl4xEgL
+      type: audio/mpeg
+      length: 83126388
     image_url: https://image.simplecastcdn.com/images/4ca709a1-1918-43a4-9035-1176b5aa9f2b/b8c673f8-58e7-4d4a-ab02-f83c2fd463c4/3000x3000/econtalknewbluecover1400.jpg?aid=rss_feed
     show:
       name: EconTalk

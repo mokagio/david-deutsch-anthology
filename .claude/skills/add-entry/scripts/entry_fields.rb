@@ -160,7 +160,7 @@ section, existing = list.filter_map do |name, entries|
   match = entries.find do |entry|
     next unless entry.is_a?(Hash)
 
-    [entry['audio_url'], entry['url'], entry['podcast_url'], entry['youtube_url']].compact.any? do |recorded|
+    [entry.dig('audio', 'url'), entry['url'], entry['podcast_url'], entry['youtube_url']].compact.any? do |recorded|
       recorded == item.enclosure.url || recorded == source_url
     end
   end
@@ -179,9 +179,10 @@ quoted = matched_title.match?(/[:#]/) ? matched_title.inspect : matched_title
 puts <<~YAML
     - title: #{quoted}
       podcast_url: #{source_url}
-      audio_url: #{item.enclosure.url}
-      audio_type: #{type}
-      audio_length: #{length}#{image_line}
+      audio:
+        url: #{item.enclosure.url}
+        type: #{type}
+        length: #{length}#{image_line}
       show:
         name: #{show_name}
         url: #{show_url}

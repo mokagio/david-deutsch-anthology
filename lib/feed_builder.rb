@@ -8,9 +8,9 @@ require_relative 'enclosure'
 # Turns the interview list into the episodes the feed template renders, and says
 # what it left out and why.
 #
-# `audio_url` in `list.yml` is the source of truth. The MIME type and byte length
-# an `<enclosure>` needs are not recorded there, so they are probed — pass a
-# different `probe` to avoid the network.
+# The `audio` block in `list.yml` is the source of truth. An entry that records
+# only a URL is probed for the MIME type and byte length an `<enclosure>` needs —
+# pass a different `probe` to avoid the network.
 module FeedBuilder
   Build = Struct.new(:episodes, :skipped, keyword_init: true)
 
@@ -46,14 +46,14 @@ module FeedBuilder
     private
 
     def episode_for(entry, section, probe)
-      audio_url = entry['audio_url']
-      return [nil, 'no audio_url'] unless audio_url
+      audio_url = entry.dig('audio', 'url')
+      return [nil, 'no audio url'] unless audio_url
 
       details = recorded(entry) || probe.call(audio_url)
       # An enclosure without a byte count is rejected by strict clients, so an
       # unreachable file is no more use in the feed than a missing one.
       return [nil, "could not read #{audio_url}"] unless details
-      return [nil, "audio_length #{details.length} is too small to be an episode"] unless details.usable?
+      return [nil, "audio length #{details.length} is too small to be an episode"] unless details.usable?
 
       [episode(entry, section, audio_url, details), nil]
     end
@@ -61,8 +61,9 @@ module FeedBuilder
     # A build that trusts the list asks nobody anything. Probing is the fallback
     # for an entry added by hand, and it fails wherever the host blocks CI.
     def recorded(interview)
-      type = interview['audio_type']
-      length = interview['audio_length']
+      audio = interview['audio'] || {}
+      type = audio['type']
+      length = audio['length']
       return nil unless type && length
 
       Enclosure::Details.new(type: type, length: length.to_i)

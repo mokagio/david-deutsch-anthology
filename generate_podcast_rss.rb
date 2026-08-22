@@ -3,15 +3,15 @@
 # Builds the podcast feed from `list.yml`, which is the source of truth for which
 # interviews have audio.
 #
-# An interview with no `audio_url` is resolved on the spot, so an entry added to
+# An interview with no `audio` is resolved on the spot, so an entry added to
 # the list reaches the feed before anyone has run `/audit-list` to record its
 # audio. Nothing is written back — recording a resolution in `list.yml` is that
 # skill's job, and a build has no business editing the source of truth.
 #
-# The build is never offline: an `<enclosure>` has to state the file's MIME type
-# and byte length, and `list.yml` records neither, so every audio URL is probed.
+# An `<enclosure>` has to state the file's MIME type and byte length, so an entry
+# whose `audio` block records neither is probed for both.
 #
-#   ruby generate_podcast_rss.rb               # resolve entries with no audio_url
+#   ruby generate_podcast_rss.rb               # resolve entries with no audio
 #   ruby generate_podcast_rss.rb --no-resolve  # use only what the list records
 
 require 'yaml'
@@ -40,7 +40,7 @@ list = YAML.load_file('list.yml', aliases: true)
 interviews = list['podcast_interviews']
 
 if resolve_missing
-  pending = interviews.reject { |interview| interview['audio_url'] }
+  pending = interviews.reject { |interview| interview.dig('audio', 'url') }
 
   unless pending.empty?
     puts "Looking for audio for #{pending.size} interviews the list does not record..."
@@ -48,7 +48,7 @@ if resolve_missing
 
     found = pending.count do |interview|
       result = resolver.resolve(interview)
-      interview['audio_url'] = result.audio_url if result.resolved?
+      (interview['audio'] ||= {})['url'] = result.audio_url if result.resolved?
       result.resolved?
     end
 

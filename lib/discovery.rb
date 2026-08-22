@@ -180,7 +180,7 @@ module Discovery
         @urls[key] ||= title if key
       end
 
-      audio_key = Discovery.normalize_audio_url(entry['audio_url'])
+      audio_key = Discovery.normalize_audio_url(entry.dig('audio', 'url'))
       @audio[audio_key] ||= title if audio_key
 
       return unless title

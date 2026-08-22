@@ -10,7 +10,7 @@ class DiscoveryTest < Minitest::Test
       {
         'title' => 'The Deutsch Files I',
         'url' => 'https://nav.al/deutsch-files-i',
-        'audio_url' => 'https://traffic.libsyn.com/naval/David_D_-_Ai.mp3',
+        'audio' => { 'url' => 'https://traffic.libsyn.com/naval/David_D_-_Ai.mp3' },
         'show' => { 'name' => "Naval's Podcast" },
         'published_date' => '2024/01/11'
       },
@@ -31,7 +31,7 @@ class DiscoveryTest < Minitest::Test
       {
         'title' => 'Chemical scum that dream of distant quasars',
         'url' => 'https://www.ted.com/talks/david_deutsch_chemical_scum_that_dream_of_distant_quasars',
-        'audio_url' => 'https://sphinx.acast.com/p/open/s/675/e/en.audio.talk.ted.com%3A47/media.mp3',
+        'audio' => { 'url' => 'https://sphinx.acast.com/p/open/s/675/e/en.audio.talk.ted.com%3A47/media.mp3' },
         'show' => { 'name' => 'TED Talks Daily' },
         'delivered_date' => '2005/07/14'
       }

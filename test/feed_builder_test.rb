@@ -7,7 +7,7 @@ require_relative '../lib/feed_builder'
 class FeedBuilderTest < Minitest::Test
   def interview(title:, url:, audio_url: 'https://example.com/a.mp3', date: '2024/01/11', show: 'A Show')
     {
-      'title' => title, 'url' => url, 'audio_url' => audio_url,
+      'title' => title, 'url' => url, 'audio' => audio_url && { 'url' => audio_url },
       'published_date' => date, 'show' => { 'name' => show }
     }.compact
   end
@@ -35,7 +35,7 @@ class FeedBuilderTest < Minitest::Test
 
   def test_uses_the_recorded_type_and_length_without_probing
     entry = interview(title: 'An interview', url: 'https://example.com/one')
-                     .merge('audio_type' => 'audio/x-m4a', 'audio_length' => 9_999_999)
+    entry['audio'].merge!('type' => 'audio/x-m4a', 'length' => 9_999_999)
 
     build = FeedBuilder.build(
       { 'podcast_interviews' => [entry] },
@@ -49,7 +49,8 @@ class FeedBuilderTest < Minitest::Test
   end
 
   def test_probes_when_only_one_of_type_and_length_is_recorded
-    entry = interview(title: 'An interview', url: 'https://example.com/one').merge('audio_length' => 999)
+    entry = interview(title: 'An interview', url: 'https://example.com/one')
+    entry['audio']['length'] = 999
 
     build = FeedBuilder.build(
       { 'podcast_interviews' => [entry] },
@@ -62,7 +63,7 @@ class FeedBuilderTest < Minitest::Test
   def test_publishes_a_talk_that_has_audio
     talk = {
       'title' => 'Chemical scum', 'url' => 'https://ted.com/talk',
-      'audio_url' => 'https://example.com/talk.mp3',
+      'audio' => { 'url' => 'https://example.com/talk.mp3' },
       'delivered_date' => '2005/07/14', 'show' => { 'name' => 'TED Talks Daily' }
     }
 
@@ -77,7 +78,7 @@ class FeedBuilderTest < Minitest::Test
 
   def test_ignores_sections_that_are_not_published
     build = FeedBuilder.build(
-      { 'books' => [{ 'title' => 'A book', 'audio_url' => 'https://example.com/a.mp3' }] },
+      { 'books' => [{ 'title' => 'A book', 'audio' => { 'url' => 'https://example.com/a.mp3' } }] },
       probe: probe
     )
 
@@ -87,7 +88,8 @@ class FeedBuilderTest < Minitest::Test
 
   def test_orders_talks_and_interviews_together_by_date
     talk = {
-      'title' => 'Old talk', 'url' => 'https://ted.com/talk', 'audio_url' => 'https://example.com/talk.mp3',
+      'title' => 'Old talk', 'url' => 'https://ted.com/talk',
+      'audio' => { 'url' => 'https://example.com/talk.mp3' },
       'delivered_date' => '2005/07/14', 'show' => { 'name' => 'TED' }
     }
 
@@ -102,14 +104,14 @@ class FeedBuilderTest < Minitest::Test
     assert_equal ['Recent', 'Old talk'], build.episodes.map { |episode| episode[:title] }
   end
 
-  def test_skips_an_entry_with_no_audio_url
+  def test_skips_an_entry_with_no_audio
     build = FeedBuilder.build(
       { 'podcast_interviews' => [interview(title: 'A video', url: 'https://example.com/one', audio_url: nil)] },
       probe: probe
     )
 
     assert_empty build.episodes
-    assert_equal 'no audio_url', build.skipped.fetch(0).reason
+    assert_equal 'no audio url', build.skipped.fetch(0).reason
   end
 
   def test_skips_audio_the_probe_cannot_reach
@@ -136,7 +138,7 @@ class FeedBuilderTest < Minitest::Test
   # positive-number check waves through and no client can play.
   def test_skips_a_recorded_length_too_small_to_be_an_episode
     entry = interview(title: 'A stub', url: 'https://example.com/one')
-                     .merge('audio_type' => 'audio/mpeg', 'audio_length' => 2)
+    entry['audio'].merge!('type' => 'audio/mpeg', 'length' => 2)
 
     build = FeedBuilder.build(
       { 'podcast_interviews' => [entry] },
@@ -144,7 +146,7 @@ class FeedBuilderTest < Minitest::Test
     )
 
     assert_empty build.episodes
-    assert_includes build.skipped.fetch(0).reason, 'audio_length 2 is too small'
+    assert_includes build.skipped.fetch(0).reason, 'audio length 2 is too small'
   end
 
   def test_lists_the_newest_episode_first

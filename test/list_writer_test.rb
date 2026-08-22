@@ -13,9 +13,10 @@ class ListWriterTest < Minitest::Test
     talks:
       - title: A talk
         url: https://example.com/talk
-        audio_url: https://example.com/talk.mp3
-        audio_type: audio/mpeg
-        audio_length: 10163009
+        audio:
+          url: https://example.com/talk.mp3
+          type: audio/mpeg
+          length: 10163009
         show: &ted
           name: TED Talks Daily
         delivered_date: 2005/07/14
@@ -28,7 +29,8 @@ class ListWriterTest < Minitest::Test
 
       - title: Another interview
         podcast_url: https://example.com/two
-        audio_url: https://example.com/two.mp3
+        audio:
+          url: https://example.com/two.mp3
         show: *ted
         published_date: 2024/02/11
   YAML
@@ -60,8 +62,8 @@ class ListWriterTest < Minitest::Test
 
       recorded = entry(path, 'An interview')
 
-      assert_equal 'https://example.com/one.mp3', recorded['audio_url']
-      assert_equal 12_345_678, recorded['audio_length']
+      assert_equal 'https://example.com/one.mp3', recorded.dig('audio', 'url')
+      assert_equal 12_345_678, recorded.dig('audio', 'length')
       assert_equal 'https://example.com/one.jpg', recorded['image_url']
     end
   end
@@ -72,7 +74,39 @@ class ListWriterTest < Minitest::Test
 
       keys = File.readlines(path).map { |line| line.strip.split(':').first }
 
-      assert_equal 'image_url', keys[keys.rindex('audio_url') + 1]
+      assert_equal 'image_url', keys[keys.rindex('url') + 1]
+    end
+  end
+
+  # The sizing pass finds a type and a length for a URL the list already has, so
+  # they go into the block that is there rather than starting a second one.
+  def test_completes_an_audio_block_the_entry_already_has
+    with_list do |path|
+      ListWriter.insert(path, [addition('https://example.com/two', {
+                                          'audio_type' => 'audio/mpeg',
+                                          'audio_length' => 42_424_242
+                                        })])
+
+      recorded = entry(path, 'Another interview')
+
+      assert_equal %w[url type length], recorded['audio'].keys
+      assert_equal 'https://example.com/two.mp3', recorded.dig('audio', 'url')
+      assert_equal 42_424_242, recorded.dig('audio', 'length')
+    end
+  end
+
+  # `show` carries a `url` of its own, one level in from the entry's own fields.
+  def test_leaves_the_show_block_alone
+    with_list do |path|
+      ListWriter.insert(path, [addition('https://example.com/one', {
+                                          'audio_url' => 'https://example.com/one.mp3',
+                                          'image_url' => 'https://example.com/one.jpg'
+                                        })])
+
+      recorded = entry(path, 'An interview')
+
+      assert_equal 'TED Talks Daily', recorded.dig('show', 'name')
+      assert_nil recorded.dig('show', 'audio')
     end
   end
 
