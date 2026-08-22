@@ -222,7 +222,7 @@ podcast_interviews:
       url: https://conversationswithtyler.com/episodes/
     published_date: 2021/06/02
 
-  - title: "253 | David Deutsch on Science, Complexity, and Explanation"
+  - title: David Deutsch on Science, Complexity, and Explanation
     url: https://www.preposterousuniverse.com/podcast/2023/10/16/253-david-deutsch-on-science-complexity-and-explanation/
     podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-on-science-complexity-and-explanation/id1406534739?i=1000631471142&uo=4
     youtube_url: https://www.youtube.com/watch?v=ldgK7EhEnto
@@ -315,7 +315,7 @@ podcast_interviews:
       url: https://www.youtube.com/@CosmicSkeptic
     published_date: 2024/03/05
 
-  - title: "#102 David Deutsch - You're Not Smarter Than a Caveman"
+  - title: David Deutsch - You're Not Smarter Than a Caveman
     podcast_url: https://podcasts.apple.com/us/podcast/102-david-deutsch-youre-not-smarter-than-a-caveman/id1458675168?i=1000703599411&uo=4
     youtube_url: https://www.youtube.com/watch?v=rpP9sqbQzjs
     audio:
@@ -700,7 +700,7 @@ podcast_interviews:
       url: https://edwindoit.com
     published_date: 2026/01/24
 
-  - title: "Episode 130: The \"Pseudo Deutsch Theory of Knowledge\""
+  - title: The "Pseudo Deutsch Theory of Knowledge"
     podcast_url: https://podcasts.apple.com/us/podcast/episode-130-the-pseudo-deutsch-theory-of-knowledge/id1503194218?i=1000745888575&uo=4
     audio:
       url: https://anchor.fm/s/14b6fc10/podcast/play/113292055/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-11-30%2Fcde6e7bc-04c9-19cb-3d33-b78394ffce09.mp3
@@ -794,7 +794,7 @@ podcast_interviews:
       url: https://www.syllabuswithrohit.com
     published_date: 2025/02/20
 
-  - title: "Episode 100: Interview with David Deutsch"
+  - title: Interview with David Deutsch
     podcast_url: https://podcasts.apple.com/us/podcast/episode-100-interview-with-david-deutsch/id1503194218?i=1000681411903&uo=4
     audio:
       url: https://anchor.fm/s/14b6fc10/podcast/play/96168713/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2024-11-23%2F29292cae-8db1-bbf5-5945-b31d554fa19d.mp3
@@ -818,7 +818,7 @@ podcast_interviews:
       url: https://lironshapira.substack.com/podcast
     published_date: 2024/11/13
 
-  - title: "Ep 223: The Deutsch Files IV (ToKCast version)"
+  - title: The Deutsch Files IV (ToKCast version)
     url: https://brettroberthall.podbean.com/e/ep-223-the-deutsch-files-iv-tokcast-version/
     audio:
       url: https://mcdn.podbean.com/mf/web/fn7ye6r84ccwhxze/ToKCast_Version_Deutsch_Filesar584.mp3
@@ -827,7 +827,7 @@ podcast_interviews:
     show: *tokcast
     published_date: 2024/10/17
 
-  - title: "Episode 77: Counter Examples To Deutsch's Theory of Knowledge?"
+  - title: Counter Examples To Deutsch's Theory of Knowledge?
     podcast_url: https://podcasts.apple.com/us/podcast/episode-77-counter-examples-to-deutschs-theory-of/id1503194218?i=1000645009935&uo=4
     audio:
       url: https://anchor.fm/s/14b6fc10/podcast/play/80692944/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F14b6fc10%2F80692944%2F689072637bfd4151c6839be5bae55c99.m4a
@@ -863,7 +863,7 @@ podcast_interviews:
       url: https://www.bezainstitute.org/
     published_date: 2023/09/26
 
-  - title: "#2: Carlos de la Guardia - AGI, Deutsch, Popper, knowledge, and progress"
+  - title: Carlos de la Guardia - AGI, Deutsch, Popper, knowledge, and progress
     podcast_url: https://podcasts.apple.com/us/podcast/2-carlos-de-la-guardia-agi-deutsch-popper-knowledge/id1699912677?i=1000624259872&uo=4
     audio:
       url: https://anchor.fm/s/e674c124/podcast/play/74550203/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-7-12%2F0e8874a0-a6a1-ae51-3794-ee991094e19f.mp3
@@ -899,7 +899,7 @@ podcast_interviews:
       url: https://www.thefp.com/podcasts
     published_date: 2023/05/09
 
-  - title: "#-1 - AGI (with David Deutsch)"
+  - title: AGI (with David Deutsch)
     podcast_url: https://podcasts.apple.com/us/podcast/1-agi-with-david-deutsch/id1681458005?i=1000608045345&uo=4
     audio:
       url: https://mcdn.podbean.com/mf/web/gfh3t5/RIF_-1_AGIb1d1b.mp3
@@ -911,7 +911,7 @@ podcast_interviews:
       url: https://reasonisfun.podbean.com
     published_date: 2023/04/08
 
-  - title: "#5 – David Deutsch: The Unity Of The Universe"
+  - title: "David Deutsch: The Unity Of The Universe"
     podcast_url: https://podcasts.apple.com/us/podcast/5-david-deutsch-the-unity-of-the-universe/id1686768692?i=1000612009898&uo=4
     audio:
       url: https://anchor.fm/s/ff980ea4/podcast/play/96612589/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-0-5%2F392533261-44100-2-1be00d36e17e0f59.mp3
@@ -923,7 +923,7 @@ podcast_interviews:
       url: https://open.spotify.com/show/5xD9XCKiagoraGYvL0UHrT
     published_date: 2023/03/24
 
-  - title: "Ep: 99 David Deutsch‘s ”The Beginning of Infinity” - a retrospective in 99 minutes"
+  - title: David Deutsch‘s ”The Beginning of Infinity” - a retrospective in 99 minutes
     podcast_url: https://podcasts.apple.com/us/podcast/ep-99-david-deutsch-s-the-beginning-of/id1447087694?i=1000542058655&uo=4
     audio:
       url: https://mcdn.podbean.com/mf/web/dkvgnf/Knitted_Raw_Chapters_99_minute_version_Podcast9za1r.mp3
@@ -933,7 +933,7 @@ podcast_interviews:
     show: *tokcast
     published_date: 2021/11/16
 
-  - title: "Ep 97: David Deutsch answers a question about dark energy. A question for David number 10."
+  - title: David Deutsch answers a question about dark energy. A question for David number 10.
     url: https://brettroberthall.podbean.com/e/ep-97-david-deutsch-answers-a-question-about-dark-energy-a-question-for-david-number-10/
     audio:
       url: https://mcdn.podbean.com/mf/web/2zqvhg/Q_10_Podcastbvvfk.mp3
@@ -942,7 +942,7 @@ podcast_interviews:
     show: *tokcast
     published_date: 2021/10/27
 
-  - title: "Ep 93: David Deutsch answers a question about the nature of mind. A question for David number 9."
+  - title: David Deutsch answers a question about the nature of mind. A question for David number 9.
     podcast_url: https://podcasts.apple.com/us/podcast/ep-93-david-deutsch-answers-a-question-about-the/id1447087694?i=1000537800749&uo=4
     audio:
       url: https://mcdn.podbean.com/mf/web/czad55/Question_for_David_9_-_editingale58.mp3
@@ -952,7 +952,7 @@ podcast_interviews:
     show: *tokcast
     published_date: 2021/10/07
 
-  - title: "Ep 92: David Deutsch answers a question about observations. A question for David number 8"
+  - title: David Deutsch answers a question about observations. A question for David number 8
     url: https://brettroberthall.podbean.com/e/ep-92-david-deutsch-answers-a-question-about-observations-a-question-for-david-number-8/
     audio:
       url: https://mcdn.podbean.com/mf/web/srf8ew/Question_for_David_8_-_editing9lp07.mp3
@@ -961,7 +961,7 @@ podcast_interviews:
     show: *tokcast
     published_date: 2021/10/06
 
-  - title: "Ep 84: David Deutsch answers a question about the nature of the laws of physics (a question for David: 7)."
+  - title: "David Deutsch answers a question about the nature of the laws of physics (a question for David: 7)."
     url: https://brettroberthall.podbean.com/e/ep-84-david-deutsch-answers-a-question-about-the-nature-of-the-laws-of-physics-a-question-for-david-7/
     audio:
       url: https://mcdn.podbean.com/mf/web/tpmq39/A_question_for_David_776c3q.mp3
@@ -970,7 +970,7 @@ podcast_interviews:
     show: *tokcast
     published_date: 2021/08/27
 
-  - title: "Ep 82: David Deutsch answers a question about Gödel and undecidability. (A question for David number 6)."
+  - title: David Deutsch answers a question about Gödel and undecidability. (A question for David number 6).
     url: https://brettroberthall.podbean.com/e/ep-82-david-deutsch-answers-a-question-about-godel-and-undecidability-a-question-for-david-number-6/
     audio:
       url: https://mcdn.podbean.com/mf/web/trhifc/A_question_for_David_6_Podcastbu3ep.mp3
@@ -979,7 +979,7 @@ podcast_interviews:
     show: *tokcast
     published_date: 2021/08/07
 
-  - title: "Ep 79: David Deutsch answers a question about our environment. A question for David 5."
+  - title: David Deutsch answers a question about our environment. A question for David 5.
     url: https://brettroberthall.podbean.com/e/ep-79-david-deutsch-answers-a-question-about-our-environment-a-question-for-david-5/
     audio:
       url: https://mcdn.podbean.com/mf/web/bdbcar/Q5_for_editing_podcast90aa3.mp3
@@ -988,7 +988,7 @@ podcast_interviews:
     show: *tokcast
     published_date: 2021/07/16
 
-  - title: "Ep 76: David Deutsch and Tyler Cowen: Reaction"
+  - title: "David Deutsch and Tyler Cowen: Reaction"
     url: https://brettroberthall.podbean.com/e/ep-76-1625132468/
     audio:
       url: https://mcdn.podbean.com/mf/web/hx3nti/David_Deutsch_Tyler_Cowen_Conversation_Reactionb129p.mp3
@@ -1009,7 +1009,7 @@ podcast_interviews:
       url: https://www.ted.com/podcasts/ted-interview
     published_date: 2021/06/26
 
-  - title: "Ep 73: David Deutsch on \"Truth\". A question for David 4."
+  - title: David Deutsch on "Truth". A question for David 4.
     url: https://brettroberthall.podbean.com/e/ep-73-david-deutsch-on-truth-a-question-for-david-4/
     audio:
       url: https://mcdn.podbean.com/mf/web/k33a2t/Question_for_David_4a3fvq.mp3
@@ -1018,7 +1018,7 @@ podcast_interviews:
     show: *tokcast
     published_date: 2021/06/24
 
-  - title: "Ep 72: David Deutsch comments on recent UFO sighting (The \"Tictac\" issue). A question for David 3."
+  - title: David Deutsch comments on recent UFO sighting (The "Tictac" issue). A question for David 3.
     url: https://brettroberthall.podbean.com/e/david-deutsch-comments-on-recent-ufo-sighting-the-tictac-issue-a-question-for-david-3/
     audio:
       url: https://mcdn.podbean.com/mf/web/inuwg3/Tic_Tacs_A_question_for_David_37sh7n.mp3
@@ -1027,7 +1027,7 @@ podcast_interviews:
     show: *tokcast
     published_date: 2021/06/23
 
-  - title: "Ep 71: David Deutsch explains \"explanations\" further. (A \"question for David\" 2)"
+  - title: David Deutsch explains "explanations" further. (A "question for David" 2)
     podcast_url: https://podcasts.apple.com/us/podcast/ep-71-david-deutsch-explains-explanations-further-a/id1447087694?i=1000526248670&uo=4
     audio:
       url: https://mcdn.podbean.com/mf/web/r4near/A_question_for_David_2889hz.mp3
@@ -1049,7 +1049,7 @@ podcast_interviews:
       url: https://www.youtube.com/@loganchipkin4905
     published_date: 2021/01/19
 
-  - title: "Ep 41: Deutsch Discoveries: Part 2 of an introduction to the philosophy of David Deutsch"
+  - title: "Deutsch Discoveries: Part 2 of an introduction to the philosophy of David Deutsch"
     url: https://brettroberthall.podbean.com/e/deutsch-discoveries-part-2-of-an-introduction-to-the-philosophy-of-david-deutsch/
     audio:
       url: https://mcdn.podbean.com/mf/web/ibxp3x/Deutsch_Discoveriesaqj5o.mp3
@@ -1058,7 +1058,7 @@ podcast_interviews:
     show: *tokcast
     published_date: 2020/12/04
 
-  - title: "Ep 37: An intermittent introduction to Popper and Deutsch"
+  - title: An intermittent introduction to Popper and Deutsch
     url: https://brettroberthall.podbean.com/e/ep-37-an-intermittent-introduction-to-popper-and-deutsch/
     audio:
       url: https://mcdn.podbean.com/mf/web/qfesv5/Introductions.mp3
