@@ -9,7 +9,7 @@
 #
 #   ruby .claude/skills/find-entries/scripts/find_entries.rb [--source itunes,feeds]
 #                                                            [--since YYYY-MM-DD] [--feed URL]
-#                                                            [--json] [--all]
+#                                                            [--own-channel] [--json] [--all]
 
 require 'cgi'
 require 'date'
@@ -318,10 +318,16 @@ class FindEntries
     shows[[name, url]] ||= Show.new(name: name, url: url, feed_url: feed_url, own: false)
   end
 
-  # `other` is where his own channel lives, alongside single videos — a BBC
-  # documentary among them, whose channel is a Dutch television archive. Only a
-  # channel-shaped URL is swept, and only a channel is exempt from the name filter.
+  # His own channel is in `other` as one link, and the list enumerates nothing from
+  # it — the anthology collects appearances, and a channel of his own uploads is
+  # covered by the link. `--own-channel` sweeps it anyway, for the case that earns
+  # it: a talk he gave elsewhere that exists nowhere but there.
+  #
+  # `other` also holds single videos — a BBC documentary among them, whose channel
+  # is a Dutch television archive — so only a channel-shaped URL is ever swept.
   def add_channel(shows, entry)
+    return unless @options[:own_channel]
+
     url = entry['url']
     return unless @finder.youtube?(url) && url.match?(YOUTUBE_CHANNEL)
 
@@ -458,7 +464,7 @@ class FindEntries
 end
 
 def parse_options(argv)
-  options = { sources: %w[itunes feeds], feeds: [], json: false, all: false, since: nil }
+  options = { sources: %w[itunes feeds], feeds: [], json: false, all: false, since: nil, own_channel: false }
 
   until argv.empty?
     case (flag = argv.shift)
@@ -467,6 +473,7 @@ def parse_options(argv)
     when '--since' then options[:since] = Date.parse(argv.shift)
     when '--json' then options[:json] = true
     when '--all' then options[:all] = true
+    when '--own-channel' then options[:own_channel] = true
     else abort "unknown option: #{flag}"
     end
   end

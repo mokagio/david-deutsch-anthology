@@ -26,6 +26,9 @@ Two or three minutes. Three sources, each blind to what the others see:
 - **The back catalogue of every show in the list**, whole. A show that has had him on once is the likeliest to have him on again, and this reads all of it, not the recent end.
 - **The YouTube channels the list names**, through each channel's Atom feed — which carries only the last 15 uploads, so it finds what is new and nothing older.
 
+His own channel is not among them. The list holds it as a single link under `other` and enumerates nothing from it: the anthology collects appearances, and a channel of his own uploads is covered by the link.
+`--own-channel` sweeps it anyway, for the case that earns it — a talk he gave elsewhere that exists nowhere but there. Expect clips.
+
 `--source itunes` or `--source feeds` narrows it; `--feed URL` adds a feed the list does not know about; `--since YYYY-MM-DD` keeps the report to what appeared after the last sweep; `--all` prints what was suppressed and why.
 
 What comes back is sifted against `list.yml` by URL, by audio file, and by wording-plus-date, in that order of confidence.
