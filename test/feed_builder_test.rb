@@ -175,6 +175,22 @@ class FeedBuilderTest < Minitest::Test
     assert_equal 1, build.episodes.size
   end
 
+  # The show's own site and its Apple listing name the same file, one of them
+  # through a download counter and a `?dest-id=`, which a string compare misses.
+  def test_emits_one_episode_when_the_same_file_carries_tracking_decoration
+    build = FeedBuilder.build(
+      { 'podcast_interviews' => [
+        interview(title: 'From the site', url: 'https://nav.al/one',
+                  audio_url: 'https://traffic.libsyn.com/secure/naval/Naval.mp3'),
+        interview(title: 'From Apple', url: 'https://podcasts.apple.com/one',
+                  audio_url: 'https://chrt.fm/track/ABC/traffic.libsyn.com/secure/naval/Naval.mp3?dest-id=1103966')
+      ] },
+      probe: probe
+    )
+
+    assert_equal 1, build.episodes.size
+  end
+
   def test_publishes_the_entry_image
     entry = interview(title: 'An interview', url: 'https://example.com/one')
             .merge('image_url' => 'https://example.com/episode.jpg')

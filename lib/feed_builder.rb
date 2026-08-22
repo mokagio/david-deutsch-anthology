@@ -4,6 +4,7 @@ require 'time'
 
 require_relative 'media_resolver'
 require_relative 'enclosure'
+require_relative 'discovery'
 
 # Turns the interview list into the episodes the feed template renders, and says
 # what it left out and why.
@@ -40,7 +41,10 @@ module FeedBuilder
 
       # A conversation listed twice — say, once as the host's video and once as the
       # show's episode — resolves to one file, and a client would offer it twice.
-      Build.new(episodes: episodes.uniq { |episode| episode[:audio_url] }, skipped: skipped)
+      # Normalized, because the same file is served under a tracking prefix or a
+      # `?dest-id=` suffix depending on which listing the entry came from.
+      Build.new(episodes: episodes.uniq { |episode| Discovery.normalize_audio_url(episode[:audio_url]) },
+                skipped: skipped)
     end
 
     private
