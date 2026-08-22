@@ -126,21 +126,25 @@ podcast_interviews:
 
   - title: "David Deutsch: Knowledge Creation and The Human Race, Part 1"
     url: https://nav.al/david-deutsch
+    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-knowledge-creation-and-the-human-race-part-1/id1826926331?i=1000717458785&uo=4
     youtube_url: https://www.youtube.com/watch?v=YyxepLfH1ZU
     audio:
       url: https://traffic.libsyn.com/secure/naval/Naval__David_V2.mp3
       type: audio/mpeg
       length: 42076786
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/90/d5/2e/90d52ebc-d5b7-7e42-4cfc-e05ce26dfba0/mza_15185247775912449757.png/600x600bb.jpg
     show: *naval
     published_date: 2023/02/11
 
   - title: "David Deutsch: Knowledge Creation and The Human Race, Part 2"
     url: https://nav.al/david-deutsch-2
+    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-knowledge-creation-and-the-human-race-part-2/id1454097755?i=1000624205710&uo=4
     youtube_url: https://www.youtube.com/watch?v=aQfeYBa1MTk
     audio:
       url: https://traffic.libsyn.com/secure/naval/Naval-133.mp3
       type: audio/mpeg
       length: 32698482
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts123/v4/eb/f4/dc/ebf4dc3a-0292-a846-b8a1-496ea5c8b435/mza_6617487660716274171.png/600x600bb.jpg
     show: *naval
     published_date: 2023/08/11
 
@@ -164,6 +168,7 @@ podcast_interviews:
     published_date: 2020/09/24
 
   - title: The Universal Constructor with David Deutsch
+    podcast_url: https://podcasts.apple.com/nz/podcast/the-universal-constructor-with-david-deutsch/id1481994554?i=1000603140355
     youtube_url: https://www.youtube.com/watch?v=3JmfAJDiHwQ
     audio:
       url: https://anchor.fm/s/e9f811c/podcast/play/66096607/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-2-7%2F75731dcb-8cf3-4a7f-b0d1-c0f8fdd942e0.mp3
@@ -219,11 +224,13 @@ podcast_interviews:
 
   - title: "253 | David Deutsch on Science, Complexity, and Explanation"
     url: https://www.preposterousuniverse.com/podcast/2023/10/16/253-david-deutsch-on-science-complexity-and-explanation/
+    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-on-science-complexity-and-explanation/id1406534739?i=1000631471142&uo=4
     youtube_url: https://www.youtube.com/watch?v=ldgK7EhEnto
     audio:
       url: https://dts.podtrac.com/redirect.mp3/pscrb.fm/rss/p/traffic.libsyn.com/secure/1d1ac211-8392-45fe-82db-99fa7f77076e/david20deutsch.mp3?dest-id=5264190
       type: audio/mpeg
-      length: 98320563
+      length: 99012270
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/1a/4e/a7/1a4ea744-1635-cb0f-a0ec-739ec0bcf359/mza_4353412670676546759.jpeg/600x600bb.jpg
     show:
       name: Sean Carroll's Mindscape
       url: https://www.preposterousuniverse.com/podcast/
@@ -262,19 +269,6 @@ podcast_interviews:
       name: Existential Hope Podcast by Foresight Institute
       url: https://www.youtube.com/channel/UCg5UVUMqXeCQ03MelT_RXMg
     published_date: 2023/04/27
-
-  - title: The Universal Constructor with David Deutsch
-    podcast_url: https://podcasts.apple.com/nz/podcast/the-universal-constructor-with-david-deutsch/id1481994554?i=1000603140355
-    audio:
-      url: https://anchor.fm/s/e9f811c/podcast/play/66096607/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-2-7%2F75731dcb-8cf3-4a7f-b0d1-c0f8fdd942e0.mp3
-      type: audio/mpeg
-      length: 15321240
-    image_url: https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/2353343/2353343-1569327079532-905b47d09007a.jpg
-    youtube_url: https://www.youtube.com/watch?v=P8bCBypqrEw
-    show:
-      name: Fallible Animals
-      url: https://www.youtube.com/@loganchipkin4905
-    published_date: 2023/07/03
 
   - title: Selecting for Deafness
     podcast_url: https://podcasts.apple.com/us/podcast/s01e14-selecting-for-deafness-david-deutsch/id1470490447?i=1000466743291
@@ -322,11 +316,13 @@ podcast_interviews:
     published_date: 2024/03/05
 
   - title: "#102 David Deutsch - You're Not Smarter Than a Caveman"
+    podcast_url: https://podcasts.apple.com/us/podcast/102-david-deutsch-youre-not-smarter-than-a-caveman/id1458675168?i=1000703599411&uo=4
     youtube_url: https://www.youtube.com/watch?v=rpP9sqbQzjs
     audio:
       url: https://anchor.fm/s/10a220e88/podcast/play/109253960/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-9-5%2F408715773-44100-2-4928af1d299eb9c7.mp3
       type: audio/mpeg
       length: 277790627
+    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/f7/ed/f0/f7edf079-74bd-7ddc-4221-0ef265febceb/mza_8865769313048641138.png/600x600bb.jpg
     show: *within_reason
     published_date: 2025/04/07
 
@@ -672,21 +668,16 @@ podcast_interviews:
       url: https://www.youtube.com/@Edwindoit
     published_date: 2026/01/24
 
-  - title: David Deutsch on AGI, Alignment and Existential Risk
-    youtube_url: https://www.youtube.com/watch?v=CU2yj826NHk
-    show:
-      name: Reuben Adams
-      url: https://www.youtube.com/@ReubenJAdams
-    published_date: 2026/02/12
-
   - title: What Is Quantum Mechanics Really Telling Us?
     youtube_url: https://www.youtube.com/watch?v=Af5LICjFIBc
     show:
       name: World Science Festival
       url: https://www.youtube.com/@WorldScienceFestival
     published_date: 2026/05/01
+
   - title: David Deutsch on AGI, Alignment and Existential Risk
     podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-on-agi-alignment-and-existential-risk/id1844837515?i=1000749470281&uo=4
+    youtube_url: https://www.youtube.com/watch?v=CU2yj826NHk
     audio:
       url: https://anchor.fm/s/109e356ac/podcast/play/115412781/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-1-12%2F417984386-44100-2-6a78d75019234.mp3
       type: audio/mpeg
@@ -791,18 +782,6 @@ podcast_interviews:
     show: *the_saad_truth
     published_date: 2025/06/09
 
-  - title: "#102 David Deutsch - You're Not Smarter Than a Caveman"
-    podcast_url: https://podcasts.apple.com/us/podcast/102-david-deutsch-youre-not-smarter-than-a-caveman/id1458675168?i=1000703599411&uo=4
-    audio:
-      url: https://anchor.fm/s/10a220e88/podcast/play/109253960/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-9-5%2F408715773-44100-2-4928af1d299eb9c7.mp3
-      type: audio/mpeg
-      length: 277790627
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/f7/ed/f0/f7edf079-74bd-7ddc-4221-0ef265febceb/mza_8865769313048641138.png/600x600bb.jpg
-    show:
-      name: Within Reason
-      url: http://www.cosmicskeptic.com
-    published_date: 2025/04/07
-
   - title: The Beginning of Infinity by David Deutsch (HINDI/हिंदी में)
     podcast_url: https://podcasts.apple.com/us/podcast/the-beginning-of-infinity-by-david-deutsch-hindi-%E0%A4%B9-%E0%A4%A6-%E0%A4%AE/id1798055916?i=1000695256985&uo=4
     audio:
@@ -872,18 +851,6 @@ podcast_interviews:
       url: https://rss.com/podcasts/the-daily-objective
     published_date: 2023/12/23
 
-  - title: David Deutsch on Science, Complexity, and Explanation
-    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-on-science-complexity-and-explanation/id1406534739?i=1000631471142&uo=4
-    audio:
-      url: https://dts.podtrac.com/redirect.mp3/pscrb.fm/rss/p/traffic.libsyn.com/secure/1d1ac211-8392-45fe-82db-99fa7f77076e/david20deutsch.mp3?dest-id=5264190
-      type: audio/mpeg
-      length: 98988028
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/1a/4e/a7/1a4ea744-1635-cb0f-a0ec-739ec0bcf359/mza_4353412670676546759.jpeg/600x600bb.jpg
-    show:
-      name: "Sean Carroll's Mindscape: Science, Society, Philosophy, Culture, Arts, and Ideas"
-      url: https://www.preposterousuniverse.com/podcast/
-    published_date: 2023/10/16
-
   - title: "Classical Christian Education is Counter-Cultural | A Conversation with Rev. David Deutsch"
     podcast_url: https://podcasts.apple.com/us/podcast/classical-christian-education-is-counter-cultural-a/id1702286694?i=1000629264107&uo=4
     audio:
@@ -907,18 +874,6 @@ podcast_interviews:
       name: Theo Jaffee Podcast
       url: https://theojaffee.com
     published_date: 2023/08/12
-
-  - title: "David Deutsch: Knowledge Creation and The Human Race, Part 2"
-    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-knowledge-creation-and-the-human-race-part-2/id1454097755?i=1000624205710&uo=4
-    audio:
-      url: https://traffic.libsyn.com/secure/naval/Naval-133.mp3?dest-id=1103966
-      type: audio/mpeg
-      length: 32698482
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts123/v4/eb/f4/dc/ebf4dc3a-0292-a846-b8a1-496ea5c8b435/mza_6617487660716274171.png/600x600bb.jpg
-    show:
-      name: Naval
-      url: https://nav.al
-    published_date: 2023/08/11
 
   - title: "Q&A: el principio de incertidumbre, hablar a un micrófono, estereotipos de género, el efecto de escribir, ingelitencia, cambio climático, David Deutsch, ikigai, sesgos y México"
     podcast_url: https://podcasts.apple.com/us/podcast/q-a-el-principio-de-incertidumbre/id1448683751?i=1000613181703&uo=4
@@ -967,18 +922,6 @@ podcast_interviews:
       name: The Unadulterated Intellect
       url: https://open.spotify.com/show/5xD9XCKiagoraGYvL0UHrT
     published_date: 2023/03/24
-
-  - title: "David Deutsch: Knowledge Creation and The Human Race, Part 1"
-    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-knowledge-creation-and-the-human-race-part-1/id1826926331?i=1000717458785&uo=4
-    audio:
-      url: https://traffic.libsyn.com/secure/naval/Naval__David_V2.mp3?dest-id=1103966
-      type: audio/mpeg
-      length: 42076786
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/90/d5/2e/90d52ebc-d5b7-7e42-4cfc-e05ce26dfba0/mza_15185247775912449757.png/600x600bb.jpg
-    show:
-      name: Naval
-      url: https://nav.al
-    published_date: 2023/02/11
 
   - title: "Ep: 99 David Deutsch‘s ”The Beginning of Infinity” - a retrospective in 99 minutes"
     podcast_url: https://podcasts.apple.com/us/podcast/ep-99-david-deutsch-s-the-beginning-of/id1447087694?i=1000542058655&uo=4
@@ -1123,8 +1066,3 @@ podcast_interviews:
       length: 23901749
     show: *tokcast
     published_date: 2020/11/13
-
-  - title: Are There Many Worlds? David Deutsch in conversation with Markus Arndt
-    youtube_url: https://www.youtube.com/watch?v=kNAR74SWOho
-    show: *joe_boswell
-    published_date: 2018/06/19
