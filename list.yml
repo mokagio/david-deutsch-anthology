@@ -675,6 +675,13 @@ podcast_interviews:
       url: https://www.youtube.com/@WorldScienceFestival
     published_date: 2026/05/01
 
+  - title: A Conversation with David Deutsch
+    youtube_url: https://www.youtube.com/watch?v=iQbGknvjyFM
+    show:
+      name: Lucas di Grassi
+      url: https://www.youtube.com/@LucasdiGrassi
+    published_date: 2026/08/23
+
   - title: David Deutsch on AGI, Alignment and Existential Risk
     podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-on-agi-alignment-and-existential-risk/id1844837515?i=1000749470281&uo=4
     youtube_url: https://www.youtube.com/watch?v=CU2yj826NHk
