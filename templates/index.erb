@@ -6,8 +6,32 @@
     <title>The David Deutsch Anthology</title>
     <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css">
+    <style>
+      /* Pico's blue, in amber. Each scheme needs its own value: the same amber
+         cannot clear 4.5:1 against both a near-white and a near-black ground. */
+      :root {
+        --pico-primary: #8a5a12;
+        --pico-primary-hover: #6b4409;
+        --pico-primary-underline: rgba(138, 90, 18, 0.4);
+      }
+
+      @media only screen and (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --pico-background-color: #10121c;
+          --pico-primary: #e0a233;
+          --pico-primary-hover: #f2bb5c;
+          --pico-primary-underline: rgba(224, 162, 51, 0.4);
+        }
+      }
+
+      h1, h2, h3 {
+        font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      }
+    </style>
   </head>
   <body>
+    <main>
     <p>This page collects <a href="https://www.daviddeutsch.org.uk/" target="_blank">David Deutsch's</a> books, talks, and interviews.</p>
     <p>A YouTube playlist with some of the interviews can be found <a href="https://www.youtube.com/watch?v=xdtssXITXuE&list=PLlL8eTHbJV9qJIq3kR-V_p9Mavg46pgXf" target="_blank">here</a>.</p>
     <p>A podcast feed with some of the interviews and talks can be found <a href="podcast.rss" target="_blank">here</a>.</p>
@@ -60,8 +84,11 @@
         </li>
       <% end %>
     </ul>
-    <hr/>
-    <p>Curated by <a href="https://giolodi.com" target="_blank">Gio Lodi</a>.</p>
-    <p>Suggest new entries <a href="https://github.com/mokagio/david-deutsch-anthology" target="_blank">here</a>.</p>
+    </main>
+    <footer>
+      <hr/>
+      <p>Curated by <a href="https://giolodi.com" target="_blank">Gio Lodi</a>.</p>
+      <p>Suggest new entries <a href="https://github.com/mokagio/david-deutsch-anthology" target="_blank">here</a>.</p>
+    </footer>
   </body>
 </html>
