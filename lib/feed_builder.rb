@@ -75,21 +75,22 @@ module FeedBuilder
     end
 
     def episode(entry, section, audio_url, details)
-      source_url = MediaResolver.source_url(entry)
+      # The show's own page ahead of the aggregator link the resolver prefers: an
+      # episode is attributed to whoever published it, not to Pocket Casts. A
+      # client tells episodes apart by `guid` alone, so changing what this reads
+      # re-adds every episode it moves as unheard.
+      page_url = entry['url'] || MediaResolver.source_url(entry)
       show_name = entry.dig('show', 'name') || 'Unknown Show'
 
       {
         title: entry['title'],
-        page_url: source_url,
-        guid: source_url,
+        page_url: page_url,
+        guid: page_url,
         # A talk records when it was delivered; an interview, when it was published.
         published_at: Time.parse(entry['published_date'] || entry['delivered_date']),
         label: LABELS.fetch(section),
         show_name: show_name,
         show_url: entry.dig('show', 'url'),
-        # The show's own page ahead of the aggregator link the entry is identified
-        # by: an episode is attributed to whoever published it, not to Pocket Casts.
-        origin_url: entry['url'] || source_url,
         audio_url: audio_url,
         image_url: entry['image_url'] || entry.dig('show', 'image_url'),
         duration: Duration.hms(Duration.seconds(entry.dig('audio', 'duration'))),

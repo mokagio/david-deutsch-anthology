@@ -11,7 +11,7 @@ class ShowNotesTest < Minitest::Test
   def episode(**overrides)
     {
       label: 'Interview', show_name: 'EconTalk', show_url: 'https://econtalk.org',
-      origin_url: 'https://econtalk.org/deutsch', published_at: Time.parse('2024/01/11')
+      page_url: 'https://econtalk.org/deutsch', published_at: Time.parse('2024/01/11')
     }.merge(overrides)
   end
 
@@ -46,7 +46,7 @@ class ShowNotesTest < Minitest::Test
   end
 
   def test_writes_no_empty_paragraph_when_there_is_nothing_to_link
-    notes = ShowNotes.html(episode(show_url: nil, origin_url: nil), site_url: SITE)
+    notes = ShowNotes.html(episode(show_url: nil, page_url: nil), site_url: SITE)
 
     refute_includes notes, '<p></p>'
   end

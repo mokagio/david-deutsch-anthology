@@ -28,7 +28,7 @@ module ShowNotes
     # be given no markup.
     def text(episode)
       sentences = ["#{episode[:label]} on #{episode[:show_name]}, #{date(episode)}."]
-      sentences << "Original: #{episode[:origin_url]}" if episode[:origin_url]
+      sentences << "Original: #{episode[:page_url]}" if episode[:page_url]
       sentences << "Collected in the #{NAME}. #{RIGHTS}"
       sentences.join("\n\n")
     end
@@ -37,7 +37,7 @@ module ShowNotes
 
     def links(episode)
       links = []
-      links << link(episode[:origin_url], 'Original episode') if episode[:origin_url]
+      links << link(episode[:page_url], 'Original episode') if episode[:page_url]
       links << link(episode[:show_url], episode[:show_name]) if episode[:show_url]
       links.join(' &middot; ') unless links.empty?
     end

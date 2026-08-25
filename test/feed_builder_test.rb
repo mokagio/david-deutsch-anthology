@@ -227,8 +227,7 @@ class FeedBuilderTest < Minitest::Test
 
     episode = FeedBuilder.build({ 'podcast_interviews' => [entry] }, probe: probe).episodes.fetch(0)
 
-    assert_equal 'https://pca.st/abcd1234', episode[:guid]
-    assert_equal 'https://econtalk.org/deutsch', episode[:origin_url]
+    assert_equal 'https://econtalk.org/deutsch', episode[:guid]
     assert_equal 'https://econtalk.org', episode[:show_url]
   end
 
