@@ -45,10 +45,27 @@
       h1, h2, h3 {
         font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
       }
+
+      .portrait {
+        float: right;
+        width: 200px;
+        margin: 0 0 1rem 1.5rem;
+        border-radius: .5rem;
+      }
+
+      @media (max-width: 600px) {
+        .portrait {
+          float: none;
+          display: block;
+          width: 110px;
+          margin: 0 auto 1.5rem;
+        }
+      }
     </style>
   </head>
   <body>
     <main>
+    <img class="portrait" src="portrait.jpg" width="480" height="480" alt="David Deutsch">
     <p>This page collects <a href="https://www.daviddeutsch.org.uk/" target="_blank">David Deutsch's</a> books, talks, and interviews.</p>
     <p>A YouTube playlist with some of the interviews can be found <a href="https://www.youtube.com/watch?v=xdtssXITXuE&list=PLlL8eTHbJV9qJIq3kR-V_p9Mavg46pgXf" target="_blank">here</a>.</p>
     <p>A podcast feed with some of the interviews and talks can be found <a href="podcast.rss" target="_blank">here</a>.</p>
