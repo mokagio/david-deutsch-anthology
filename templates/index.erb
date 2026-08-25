@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +8,38 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css">
     <style>
-      /* Pico's blue, in amber. Each scheme needs its own value: the same amber
-         cannot clear 4.5:1 against both a near-white and a near-black ground. */
-      :root {
-        --pico-primary: #8a5a12;
-        --pico-primary-hover: #6b4409;
-        --pico-primary-underline: rgba(138, 90, 18, 0.4);
+      /* The accent drifts through the colours of the cover art. A custom property
+         has to be registered to be animatable: without `@property` the browser
+         has no idea `--accent` holds a colour, and the keyframes snap instead of
+         blending. Unregistered, it simply sits on the initial value. */
+      @property --accent {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: oklch(0.672 0.113 300.3);
       }
 
-      @media only screen and (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) {
-          --pico-background-color: #10121c;
-          --pico-primary: #e0a233;
-          --pico-primary-hover: #f2bb5c;
-          --pico-primary-underline: rgba(224, 162, 51, 0.4);
-        }
+      /* Every stop shares a lightness of ~0.67, which is what holds the contrast
+         at 6:1 against the ground for the whole cycle, blends included. Change a
+         hue freely; change an L and check it. */
+      @keyframes drift {
+        0%   { --accent: oklch(0.672 0.113 300.3); } /* nebula    */
+        20%  { --accent: oklch(0.677 0.129 322.0); } /* orchid    */
+        40%  { --accent: oklch(0.670 0.124  46.0); } /* ember     */
+        60%  { --accent: oklch(0.670 0.076 288.6); } /* starlight */
+        80%  { --accent: oklch(0.671 0.116 268.6); } /* cobalt    */
+        100% { --accent: oklch(0.672 0.113 300.3); }
+      }
+
+      :root[data-theme="dark"] {
+        animation: drift 60s linear infinite;
+        --pico-background-color: #0F0E24;
+        --pico-primary: var(--accent);
+        --pico-primary-hover: var(--accent);
+        --pico-primary-underline: color-mix(in oklab, var(--accent) 40%, transparent);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="dark"] { animation: none; }
       }
 
       h1, h2, h3 {
