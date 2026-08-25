@@ -219,6 +219,25 @@ class FeedBuilderTest < Minitest::Test
     assert_equal 'https://example.com/episode.jpg', build.episodes.fetch(0)[:image_url]
   end
 
+  def test_publishes_the_recorded_runtime_as_a_clock_face
+    entry = interview(title: 'An interview', url: 'https://example.com/one')
+    entry['audio']['duration'] = 3754
+
+    build = FeedBuilder.build({ 'podcast_interviews' => [entry] }, probe: probe)
+
+    assert_equal '01:02:34', build.episodes.fetch(0)[:duration]
+  end
+
+  def test_publishes_an_episode_whose_runtime_is_not_recorded
+    build = FeedBuilder.build(
+      { 'podcast_interviews' => [interview(title: 'An interview', url: 'https://example.com/one')] },
+      probe: probe
+    )
+
+    assert_empty build.skipped
+    assert_nil build.episodes.fetch(0)[:duration]
+  end
+
   def test_publishes_an_episode_with_no_image
     build = FeedBuilder.build(
       { 'podcast_interviews' => [interview(title: 'An interview', url: 'https://example.com/one')] },

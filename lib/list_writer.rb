@@ -14,6 +14,7 @@ module ListWriter
     'audio_url' => %w[audio url],
     'audio_type' => %w[audio type],
     'audio_length' => %w[audio length],
+    'audio_duration' => %w[audio duration],
     'image_url' => %w[image_url]
   }.freeze
 

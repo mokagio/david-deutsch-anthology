@@ -51,6 +51,17 @@ class ListWriterTest < Minitest::Test
     YAML.load_file(path, aliases: true).values.flatten.find { |candidate| candidate['title'] == title }
   end
 
+  def test_records_the_runtime_in_the_audio_block
+    with_list do |path|
+      ListWriter.insert(path, [addition('https://example.com/two', { 'audio_duration' => 3754 })])
+
+      recorded = entry(path, 'Another interview')
+
+      assert_equal 3754, recorded.dig('audio', 'duration')
+      assert_equal 'https://example.com/two.mp3', recorded.dig('audio', 'url')
+    end
+  end
+
   def test_records_audio_and_artwork_together
     with_list do |path|
       ListWriter.insert(path, [addition('https://example.com/one', {

@@ -30,6 +30,8 @@ The report keys, which name the audio fields flat — `ListWriter::KEYS` maps th
 - `audio_sized` — an entry that had a URL but no size or type.
 - `audio_stale` — a recorded length that no longer matches the file by more than 1%. Ad insertion moves it a fraction of a percent; more than that means the recorded number is wrong or the file was replaced.
 - `audio_unreadable` — a recorded audio URL that could not be measured. Worth a look: the file may have moved.
+- `audio_timed` — an `audio_duration`, in seconds, for an entry whose runtime the list does not record. Only a feed or Apple states one, and only when it describes the file the entry already records: a runtime taken from another release of the same conversation would be a different cut.
+- `audio_untimed` — no runtime, so the client shows 0s until it downloads the file. Nothing to do about it; the audio found by scraping a page comes with no runtime attached.
 - `audio_missing` — no audio anywhere. Usually a video-only appearance. Leave alone.
 - `artwork_found` — an `image_url`, with the `scope` it came from: `episode` is the episode's own picture, `show` is the show's, which every episode of that show would carry. `size` is what the file measured.
 - `artwork_missing` — no square picture of a usable size anywhere. A show whose entries all come back empty is worth one `image_url` on its `show` anchor by hand, which every entry sharing the anchor then inherits.

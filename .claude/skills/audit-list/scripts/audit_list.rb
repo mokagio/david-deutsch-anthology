@@ -18,6 +18,8 @@ require 'yaml'
 ROOT = File.expand_path('../../../..', __dir__)
 require File.join(ROOT, 'lib', 'media_resolver')
 require File.join(ROOT, 'lib', 'enclosure')
+require File.join(ROOT, 'lib', 'discovery')
+require File.join(ROOT, 'lib', 'duration')
 require File.join(ROOT, 'lib', 'feed_builder')
 require File.join(ROOT, 'lib', 'list_writer')
 
@@ -179,11 +181,13 @@ unless mode == '--links-only' || from_report
   # the build from having to ask 30-odd third-party hosts on every deploy.
   incomplete = publishable.select { |e| e.dig('audio', 'url') && !(e.dig('audio', 'type') && e.dig('audio', 'length')) }
   recorded = publishable.select { |e| %w[url type length].all? { |key| e.dig('audio', key) } }
+  untimed = publishable.select { |e| e.dig('audio', 'url') && !e.dig('audio', 'duration') }
   # A picture the entry inherits from its show already reaches the feed.
   unillustrated = publishable.reject { |e| e['image_url'] || e.dig('show', 'image_url') }
 
   warn "Looking for audio for #{pending.size} interviews, sizing #{incomplete.size}, " \
-       "checking #{recorded.size} recorded files, illustrating #{unillustrated.size}..."
+       "timing #{untimed.size}, checking #{recorded.size} recorded files, " \
+       "illustrating #{unillustrated.size}..."
   resolver = MediaResolver.new(logger: ->(message) { warn message })
 
   pending.each do |interview|
@@ -202,6 +206,7 @@ unless mode == '--links-only' || from_report
         'audio_url' => result.audio_url,
         'audio_type' => details&.type,
         'audio_length' => details&.length,
+        'audio_duration' => Duration.seconds(result.duration),
         'strategy' => result.strategy,
         'matched_title' => result.matched_title
       }.compact
@@ -225,6 +230,32 @@ unless mode == '--links-only' || from_report
       'audio_type' => details.type,
       'audio_length' => details.length
     }
+  end
+
+  # Only a feed or Apple states a runtime; a file found by scraping a page comes
+  # with nothing but its bytes, and the entry stays untimed.
+  untimed.each do |entry|
+    warn "  timing #{entry['title']}"
+    result = resolver.resolve(entry)
+    seconds = Duration.seconds(result.duration)
+    finding = { 'title' => entry['title'], 'entry_url' => MediaResolver.source_url(entry) }
+
+    # A runtime is only this episode's if it describes this episode's file: the
+    # resolver reaches other releases of the same conversation, and an edit or a
+    # video cut of it does not run for as long.
+    same_file = Discovery.normalize_audio_url(result.audio_url.to_s) ==
+                Discovery.normalize_audio_url(entry.dig('audio', 'url'))
+
+    unless seconds && same_file
+      (report['audio_untimed'] ||= []) << finding.merge(
+        'reason' => seconds ? "runtime is #{result.audio_url}'s, not the recorded file's" : 'no source states one'
+      )
+      next
+    end
+
+    (report['audio_timed'] ||= []) << finding.merge(
+      { 'audio_duration' => seconds, 'strategy' => result.strategy, 'matched_title' => result.matched_title }.compact
+    )
   end
 
   # Re-measuring what is already recorded is how a two-byte stub and a moved file
@@ -277,7 +308,8 @@ if write
   recorded = FeedBuilder::LABELS.keys.flat_map { |section| data[section] || [] }
                                 .to_h { |entry| [MediaResolver.source_url(entry), entry] }
 
-  findings = report['audio_found'] + (report['audio_sized'] || []) + (report['artwork_found'] || [])
+  findings = report['audio_found'] + (report['audio_sized'] || []) +
+             (report['audio_timed'] || []) + (report['artwork_found'] || [])
 
   # Only ever add a key the entry lacks, so applying a report twice is a no-op.
   # Grouped by entry: audio and artwork found in the same run go in together.
@@ -314,6 +346,12 @@ else
   sized = report['audio_sized'] || []
   puts "\n#{sized.size} recorded audio files sized." unless sized.empty?
 
+  timed = report['audio_timed'] || []
+  unless timed.empty?
+    puts "\n#{timed.size} entries with a runtime to add:"
+    timed.each { |t| puts "  #{Duration.hms(t['audio_duration'])}  #{t['title']}" }
+  end
+
   unreadable = report['audio_unreadable'] || []
   unless unreadable.empty?
     puts "\n#{unreadable.size} recorded audio files could not be read:"
@@ -335,6 +373,7 @@ else
     end
   end
 
-  puts "\n#{report['audio_missing'].size} interviews with no audio found."
+  puts "\n#{(report['audio_untimed'] || []).size} entries with no runtime found."
+  puts "#{report['audio_missing'].size} interviews with no audio found."
   puts "#{(report['artwork_missing'] || []).size} entries with no artwork found."
 end

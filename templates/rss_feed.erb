@@ -37,6 +37,9 @@
       <description><%= h episode[:description] %></description>
       <enclosure url="<%= h episode[:audio_url] %>" type="<%= h episode[:type] %>" length="<%= episode[:length] %>" />
       <itunes:author><%= h episode[:show_name] %></itunes:author>
+<% if episode[:duration] -%>
+      <itunes:duration><%= episode[:duration] %></itunes:duration>
+<% end -%>
 <% if episode[:image_url] -%>
       <itunes:image href="<%= h episode[:image_url] %>" />
 <% end -%>

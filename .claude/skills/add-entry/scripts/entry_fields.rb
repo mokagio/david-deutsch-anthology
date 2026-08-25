@@ -20,6 +20,7 @@ ROOT = File.expand_path('../../../..', __dir__)
 require File.join(ROOT, 'lib', 'http_client')
 require File.join(ROOT, 'lib', 'enclosure')
 require File.join(ROOT, 'lib', 'image_probe')
+require File.join(ROOT, 'lib', 'duration')
 
 def option(flag) = ARGV.include?(flag) ? ARGV[ARGV.index(flag) + 1] : nil
 
@@ -146,6 +147,11 @@ warn 'NOTE: no artwork found; the client will fall back to the channel cover' un
 # Two spaces, not six: the heredoc below strips its own indentation, this line's is its own.
 image_line = image_url ? "\n  image_url: #{image_url}" : ''
 
+stated_duration = (item.itunes_duration&.content if item.respond_to?(:itunes_duration))
+duration = Duration.seconds(stated_duration)
+warn 'NOTE: the feed states no runtime; a client shows 0s until it downloads the file' unless duration
+duration_line = duration ? "\n    duration: #{duration}" : ''
+
 published = item.pubDate
 show_name = (feed.channel.title.respond_to?(:content) ? feed.channel.title.content : feed.channel.title).to_s.strip
 show_url = feed.channel.link.to_s.strip
@@ -182,7 +188,7 @@ puts <<~YAML
       audio:
         url: #{item.enclosure.url}
         type: #{type}
-        length: #{length}#{image_line}
+        length: #{length}#{duration_line}#{image_line}
       show:
         name: #{show_name}
         url: #{show_url}
@@ -190,4 +196,4 @@ puts <<~YAML
 YAML
 
 warn ''
-warn "duration : #{(item.itunes_duration&.content rescue nil)} (compare against any video release before adding youtube_url)"
+warn "duration : #{Duration.hms(duration) || stated_duration} (compare against any video release before adding youtube_url)"

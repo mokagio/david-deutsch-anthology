@@ -5,6 +5,7 @@ require 'time'
 require_relative 'media_resolver'
 require_relative 'enclosure'
 require_relative 'discovery'
+require_relative 'duration'
 
 # Turns the interview list into the episodes the feed template renders, and says
 # what it left out and why.
@@ -87,6 +88,7 @@ module FeedBuilder
         show_name: show_name,
         audio_url: audio_url,
         image_url: entry['image_url'] || entry.dig('show', 'image_url'),
+        duration: Duration.hms(Duration.seconds(entry.dig('audio', 'duration'))),
         type: details.type,
         length: details.length
       }
