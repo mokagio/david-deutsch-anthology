@@ -61,8 +61,18 @@ module FeedValidator
       errors << "#{label}: missing <guid>" unless present?(item.guid&.content)
       errors << "#{label}: missing or unparseable <pubDate>" unless item.pubDate
       errors.concat(image_errors(item, label))
+      errors.concat(link_errors(item, label))
       errors
     end
+
+    # A link in the notes has nothing to resolve a relative href against: the feed
+    # is not a page, and a client will not guess the site it came from.
+    def link_errors(item, label)
+      hrefs(item.description).reject { |href| http_url?(href) }
+                             .map { |href| "#{label}: link #{href.inspect} in the notes is not absolute" }
+    end
+
+    def hrefs(notes) = notes.to_s.scan(/href="([^"]*)"/).flatten
 
     # Artwork is optional — a client falls back to the show's, and the show's to
     # nothing — but a relative href is ignored in silence wherever it appears.

@@ -35,6 +35,18 @@ class FeedValidatorTest < Minitest::Test
     assert_empty FeedValidator.errors(feed(playable_item))
   end
 
+  def notes(href) = "<description><![CDATA[<a href='#{href}'>The Show</a>]]></description>".tr("'", '"')
+
+  def test_rejects_a_relative_link_in_the_notes
+    errors = FeedValidator.errors(feed(playable_item + notes('theshowsname')))
+
+    assert_includes errors.join, 'is not absolute'
+  end
+
+  def test_accepts_absolute_links_in_the_notes
+    assert_empty FeedValidator.errors(feed(playable_item + notes('https://example.com/show')))
+  end
+
   def test_rejects_an_item_with_no_enclosure
     errors = FeedValidator.errors(feed(playable_item(enclosure: '')))
 
