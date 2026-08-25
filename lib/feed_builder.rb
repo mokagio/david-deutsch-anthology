@@ -22,6 +22,15 @@ module FeedBuilder
   # not published, which is why `books` and `other` never reach the feed.
   LABELS = { 'podcast_interviews' => 'Interview', 'talks' => 'Talk' }.freeze
 
+  # Where an item points and what identifies it, in falling order of who owns the
+  # page: an episode is attributed to whoever published it, and Apple and Pocket
+  # Casts published none of these. The resolver's order is the other way round,
+  # because an aggregator is the better place to ask for the audio.
+  #
+  # A client tells episodes apart by `guid` alone, so an entry that changes which
+  # of these it answers with arrives again as unheard.
+  PAGE_URL_KEYS = %w[url youtube_url podcast_url].freeze
+
   class << self
     # Takes the whole of `list.yml`: any section with a label contributes whatever
     # entries carry audio, so a talk released as a podcast episode is published
@@ -75,11 +84,7 @@ module FeedBuilder
     end
 
     def episode(entry, section, audio_url, details)
-      # The show's own page ahead of the aggregator link the resolver prefers: an
-      # episode is attributed to whoever published it, not to Pocket Casts. A
-      # client tells episodes apart by `guid` alone, so changing what this reads
-      # re-adds every episode it moves as unheard.
-      page_url = entry['url'] || MediaResolver.source_url(entry)
+      page_url = PAGE_URL_KEYS.filter_map { |key| entry[key] }.first
       show_name = entry.dig('show', 'name') || 'Unknown Show'
 
       {

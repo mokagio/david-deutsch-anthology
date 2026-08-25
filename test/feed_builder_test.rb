@@ -228,7 +228,18 @@ class FeedBuilderTest < Minitest::Test
     episode = FeedBuilder.build({ 'podcast_interviews' => [entry] }, probe: probe).episodes.fetch(0)
 
     assert_equal 'https://econtalk.org/deutsch', episode[:guid]
+    assert_equal 'https://econtalk.org/deutsch', episode[:page_url]
     assert_equal 'https://econtalk.org', episode[:show_url]
+  end
+
+  def test_prefers_the_shows_own_video_to_an_aggregator_listing
+    entry = interview(title: 'An interview', url: nil)
+    entry['podcast_url'] = 'https://podcasts.apple.com/us/podcast/one/id1?i=2'
+    entry['youtube_url'] = 'https://www.youtube.com/watch?v=abcd1234'
+
+    episode = FeedBuilder.build({ 'podcast_interviews' => [entry] }, probe: probe).episodes.fetch(0)
+
+    assert_equal 'https://www.youtube.com/watch?v=abcd1234', episode[:guid]
   end
 
   def test_publishes_the_recorded_runtime_as_a_clock_face
