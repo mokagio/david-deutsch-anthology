@@ -48,7 +48,9 @@
 
       .portrait {
         float: right;
-        width: 200px;
+        /* Grows with the page, but never past a third of the column: further and
+           the text wrapping beside it is a gutter rather than a paragraph. */
+        width: clamp(200px, 26vw, 320px);
         margin: 0 0 1rem 1.5rem;
         border-radius: .5rem;
       }
@@ -57,7 +59,7 @@
         .portrait {
           float: none;
           display: block;
-          width: 110px;
+          width: min(52vw, 260px);
           margin: 0 auto 1.5rem;
         }
       }
@@ -65,7 +67,7 @@
   </head>
   <body>
     <main>
-    <img class="portrait" src="portrait.jpg" width="480" height="480" alt="David Deutsch">
+    <img class="portrait" src="portrait.jpg" width="640" height="640" alt="David Deutsch">
     <p>This page collects <a href="https://www.daviddeutsch.org.uk/" target="_blank">David Deutsch's</a> books, talks, and interviews.</p>
     <p>A YouTube playlist with some of the interviews can be found <a href="https://www.youtube.com/watch?v=xdtssXITXuE&list=PLlL8eTHbJV9qJIq3kR-V_p9Mavg46pgXf" target="_blank">here</a>.</p>
     <p>A podcast feed with some of the interviews and talks can be found <a href="podcast.rss" target="_blank">here</a>.</p>
