@@ -433,6 +433,7 @@ podcast_interviews:
     published_date: 2018/06/19
 
   - title: David Deutsch on the infinite reach of knowledge
+    url: https://www.ted.com/talks/the_ted_interview_david_deutsch_on_the_infinite_reach_of_knowledge
     podcast_url: https://pca.st/FA1q
     audio:
       url: https://sphinx.acast.com/p/open/s/67045b43aa9d704b1e952e88/e/prx_179_7cb483e3-c7b9-4fad-abfb-e5528be4ed58/media.mp3
@@ -649,6 +650,7 @@ podcast_interviews:
     published_date: 2025/10/06
 
   - title: In search of nothing | David Deutsch, Amanda Gefter, Lee Smolin
+    url: https://iai.tv/video/in-search-of-nothing
     podcast_url: https://pca.st/fgd9t45f
     audio:
       url: https://rss.art19.com/episodes/cf51acc2-5bb1-47df-804a-854958962803.mp3?rss_browser=BAhJIgtDaHJvbWUGOgZFVA%3D%3D--d05363d83ce333c74f32188013892b2863ad051c
