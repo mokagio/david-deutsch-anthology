@@ -84,8 +84,12 @@ module FeedBuilder
         guid: source_url,
         # A talk records when it was delivered; an interview, when it was published.
         published_at: Time.parse(entry['published_date'] || entry['delivered_date']),
-        description: "#{LABELS.fetch(section)} on #{show_name}",
+        label: LABELS.fetch(section),
         show_name: show_name,
+        show_url: entry.dig('show', 'url'),
+        # The show's own page ahead of the aggregator link the entry is identified
+        # by: an episode is attributed to whoever published it, not to Pocket Casts.
+        origin_url: entry['url'] || source_url,
         audio_url: audio_url,
         image_url: entry['image_url'] || entry.dig('show', 'image_url'),
         duration: Duration.hms(Duration.seconds(entry.dig('audio', 'duration'))),

@@ -23,6 +23,7 @@ require_relative 'lib/assets'
 require_relative 'lib/cover'
 require_relative 'lib/media_resolver'
 require_relative 'lib/feed_builder'
+require_relative 'lib/show_notes'
 
 SITE_URL = 'https://mokagio.github.io/david-deutsch-anthology/'
 FEED_TITLE = 'David Deutsch Podcast Interviews'
@@ -33,6 +34,8 @@ FEED_AUTHOR = 'David Deutsch'
 COVER_PATHS = %w[assets/cover.jpg assets/cover.jpeg assets/cover.png].freeze
 
 def h(text) = CGI.escapeHTML(text.to_s)
+
+def cdata(markup) = "<![CDATA[#{markup.gsub(']]>', ']]]]><![CDATA[>')}]]>"
 
 resolve_missing = !ARGV.include?('--no-resolve')
 

@@ -30,7 +30,8 @@ class FeedBuilderTest < Minitest::Test
     assert_equal 'https://example.com/a.mp3', episode[:audio_url]
     assert_equal 'audio/mpeg', episode[:type]
     assert_equal 1234567, episode[:length]
-    assert_equal 'Interview on EconTalk', episode[:description]
+    assert_equal 'Interview', episode[:label]
+    assert_equal 'EconTalk', episode[:show_name]
   end
 
   def test_uses_the_recorded_type_and_length_without_probing
@@ -72,7 +73,7 @@ class FeedBuilderTest < Minitest::Test
     episode = build.episodes.fetch(0)
 
     assert_equal 'Chemical scum', episode[:title]
-    assert_equal 'Talk on TED Talks Daily', episode[:description]
+    assert_equal 'Talk', episode[:label]
     assert_equal 2005, episode[:published_at].year
   end
 
@@ -217,6 +218,18 @@ class FeedBuilderTest < Minitest::Test
     build = FeedBuilder.build({ 'podcast_interviews' => [entry] }, probe: probe)
 
     assert_equal 'https://example.com/episode.jpg', build.episodes.fetch(0)[:image_url]
+  end
+
+  def test_attributes_an_episode_to_the_show_that_published_it
+    entry = interview(title: 'An interview', url: 'https://econtalk.org/deutsch')
+    entry['podcast_url'] = 'https://pca.st/abcd1234'
+    entry['show']['url'] = 'https://econtalk.org'
+
+    episode = FeedBuilder.build({ 'podcast_interviews' => [entry] }, probe: probe).episodes.fetch(0)
+
+    assert_equal 'https://pca.st/abcd1234', episode[:guid]
+    assert_equal 'https://econtalk.org/deutsch', episode[:origin_url]
+    assert_equal 'https://econtalk.org', episode[:show_url]
   end
 
   def test_publishes_the_recorded_runtime_as_a_clock_face

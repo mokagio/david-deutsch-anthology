@@ -34,7 +34,7 @@
       <link><%= h episode[:page_url] %></link>
       <guid isPermaLink="false"><%= h episode[:guid] %></guid>
       <pubDate><%= episode[:published_at].rfc2822 %></pubDate>
-      <description><%= h episode[:description] %></description>
+      <description><%= cdata ShowNotes.html(episode, site_url: site_url) %></description>
       <enclosure url="<%= h episode[:audio_url] %>" type="<%= h episode[:type] %>" length="<%= episode[:length] %>" />
       <itunes:author><%= h episode[:show_name] %></itunes:author>
 <% if episode[:duration] -%>
@@ -43,7 +43,7 @@
 <% if episode[:image_url] -%>
       <itunes:image href="<%= h episode[:image_url] %>" />
 <% end -%>
-      <itunes:summary><%= h episode[:description] %></itunes:summary>
+      <itunes:summary><%= h ShowNotes.text(episode) %></itunes:summary>
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>false</itunes:explicit>
     </item>
