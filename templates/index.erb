@@ -42,6 +42,18 @@
         :root[data-theme="dark"] { animation: none; }
       }
 
+      /* Visited links sit a quarter of the way to white, and drift with the rest.
+         Stated as `a` plus `:link` rather than as `a:visited`: a browser limits
+         what a `:visited` rule may set, and the accent is a custom property, so
+         this way nothing rests on whether that pairing is honoured. */
+      a {
+        color: color-mix(in oklab, var(--pico-primary), white 25%);
+      }
+
+      a:link {
+        color: var(--pico-primary);
+      }
+
       h1, h2, h3 {
         font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
       }
