@@ -66,6 +66,11 @@
         font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
       }
 
+      .title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 1.5rem;
+      }
+
       .portrait {
         float: right;
         /* Grows with the page, but never past a third of the column: further and
@@ -76,7 +81,12 @@
       }
 
       @media (max-width: 600px) {
-        .portrait {
+        .title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 1.5rem;
+      }
+
+      .portrait {
           float: none;
           display: block;
           width: min(52vw, 260px);
@@ -88,6 +98,7 @@
   <body>
     <main>
     <img class="portrait" src="portrait.jpg" width="640" height="640" alt="David Deutsch">
+    <h1 class="title">The David Deutsch Anthology</h1>
     <p>This page collects <a href="https://www.daviddeutsch.org.uk/" target="_blank">David Deutsch's</a> books, talks, and interviews.</p>
     <p>A YouTube playlist with some of the interviews can be found <a href="https://www.youtube.com/watch?v=xdtssXITXuE&list=PLlL8eTHbJV9qJIq3kR-V_p9Mavg46pgXf" target="_blank">here</a>.</p>
     <p>A podcast feed with some of the interviews and talks can be found <a href="podcast.rss" target="_blank">here</a>.</p>
