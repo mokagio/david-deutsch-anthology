@@ -42,16 +42,24 @@
         :root[data-theme="dark"] { animation: none; }
       }
 
-      /* Visited links sit a quarter of the way to white, and drift with the rest.
-         Stated as `a` plus `:link` rather than as `a:visited`: a browser limits
-         what a `:visited` rule may set, and the accent is a custom property, so
-         this way nothing rests on whether that pairing is honoured. */
-      a {
-        color: color-mix(in oklab, var(--pico-primary), white 25%);
+      /* A visited link takes no colour that resolves through a custom property:
+         Chrome refuses those on visited links, whatever rule they come from, and
+         the link falls back to the body's white. So these are the same five stops
+         written out literally, a quarter of the way to white, on their own
+         keyframes in step with `drift`. The `color` beneath is what shows if the
+         animation is refused too. */
+      @keyframes drift-visited {
+        0%   { color: #B7A3DD; }
+        20%  { color: #CD9CD5; }
+        40%  { color: #E09C7C; }
+        60%  { color: #ADAAD2; }
+        80%  { color: #98ADE7; }
+        100% { color: #B7A3DD; }
       }
 
-      a:link {
-        color: var(--pico-primary);
+      a:visited {
+        color: #B7A3DD;
+        animation: drift-visited 60s linear infinite;
       }
 
       h1, h2, h3 {
