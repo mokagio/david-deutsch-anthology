@@ -16,7 +16,7 @@
 
 require 'yaml'
 require 'erb'
-require 'cgi'
+require 'cgi/escape'
 require 'fileutils'
 
 require_relative 'lib/assets'

@@ -10,7 +10,7 @@
 #
 # See docs/audio-sourcing.md for why each step is the way it is.
 
-require 'cgi'
+require 'cgi/escape'
 require 'json'
 require 'rss'
 require 'uri'

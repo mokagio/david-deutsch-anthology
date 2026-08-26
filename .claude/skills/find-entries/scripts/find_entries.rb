@@ -11,7 +11,7 @@
 #                                                            [--since YYYY-MM-DD] [--feed URL]
 #                                                            [--own-channel] [--json] [--all]
 
-require 'cgi'
+require 'cgi/escape'
 require 'date'
 require 'json'
 require 'rss'
