@@ -114,13 +114,6 @@
     <% books.each do |book| %>
       <p>
         <a href="<%= book['urls'].first['url'] %>" target="_blank"><i><%= book['name'] %></i> (<%= book['published_year'] %>)</a>
-        <% rest = book['urls'].drop(1) %>
-        <% unless rest.empty? %>
-          -
-          <% rest.each_with_index do |url, index| %>
-            <a href="<%= url['url'] %>" target="_blank"><%= url['title'] %></a><% unless index >= rest.count - 1 %>,&nbsp;<% end %>
-          <% end %>
-        <% end %>
       </p>
     <% end %>
 
