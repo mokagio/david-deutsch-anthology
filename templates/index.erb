@@ -147,9 +147,9 @@
           next unless url
         %>
         <li>
-          <em><a href="<%= url %>" target="_blank"><%= podcast['title'] %></a></em>
-          on <a href="<%= podcast['show']['url'] %>" target="_blank"><%= podcast['show']['name'] %></a>
-          (<%= podcast['published_date'] %>)
+          <a href="<%= url %>" target="_blank"><%= podcast['title'] %></a>
+          &middot; <a href="<%= podcast['show']['url'] %>" target="_blank"><%= podcast['show']['name'] %></a>
+          &middot; <%= podcast['published_date'] %>
         </li>
       <% end %>
     </ul>
