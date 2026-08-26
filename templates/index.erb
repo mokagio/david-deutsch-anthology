@@ -66,6 +66,10 @@
         font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
       }
 
+      p {
+        margin-bottom: calc(var(--pico-typography-spacing-vertical) / 2);
+      }
+
       .title {
         font-size: clamp(2rem, 5vw, 3rem);
         margin-bottom: 1.5rem;
@@ -81,7 +85,11 @@
       }
 
       @media (max-width: 600px) {
-        .title {
+        p {
+        margin-bottom: calc(var(--pico-typography-spacing-vertical) / 2);
+      }
+
+      .title {
         font-size: clamp(2rem, 5vw, 3rem);
         margin-bottom: 1.5rem;
       }
