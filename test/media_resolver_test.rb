@@ -51,9 +51,19 @@ class MediaResolverArtworkTest < Minitest::Test
       body && HttpClient::Response.new(status: 200, headers: {}, body: body, url: url)
     end
 
-    HttpClient.stub(:get, get) do
+    while_getting(get) do
       MediaResolver.new(logger: ->(_message) {}, image_probe: ->(url) { sizes[url] }).resolve_artwork(entry)
     end
+  end
+
+  # What `HttpClient.stub` did until minitest 6 dropped mocking. Six lines against
+  # a gem and the Gemfile this project does not have.
+  def while_getting(replacement)
+    original = HttpClient.method(:get)
+    HttpClient.define_singleton_method(:get) { |*args, **options| replacement.call(*args, **options) }
+    yield
+  ensure
+    HttpClient.define_singleton_method(:get, original)
   end
 
   def size(width, height) = ImageProbe::Details.new(width, height)
