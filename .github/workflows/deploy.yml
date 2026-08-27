@@ -34,14 +34,14 @@ jobs:
       - name: Run tests
         run: rake test
       - name: Generate static pages
-        run: ruby generate_html.rb
+        run: ruby bin/generate_html.rb
       - name: Generate podcast feed
         # Builds from list.yml alone. Resolving here reached a dozen third-party
         # hosts on every deploy, never once found anything, and was the only way
         # left for a blocked host to quietly shrink the feed.
-        run: ruby generate_podcast_rss.rb --no-resolve
+        run: ruby bin/generate_podcast_rss.rb --no-resolve
       - name: Validate podcast feed
-        run: ruby validate_podcast_rss.rb
+        run: ruby bin/validate_podcast_rss.rb
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v5
         with:

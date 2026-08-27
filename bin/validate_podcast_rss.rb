@@ -2,9 +2,9 @@
 
 # Fails the build when the generated feed would not work in a podcast client.
 #
-#   ruby validate_podcast_rss.rb [path]
+#   ruby bin/validate_podcast_rss.rb [path]
 
-require_relative 'lib/feed_validator'
+require_relative '../lib/feed_validator'
 
 path = ARGV.fetch(0, File.join('public', 'podcast.rss'))
 abort "No feed at #{path}" unless File.exist?(path)

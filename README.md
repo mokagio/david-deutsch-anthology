@@ -25,7 +25,7 @@ It also reports links that have rotted.
 
 ```sh
 rake                                        # test, generate, validate
-ruby generate_podcast_rss.rb --no-resolve   # use only what the list records
+ruby bin/generate_podcast_rss.rb --no-resolve  # use only what the list records
 ```
 
 Because the list carries the size and type, a build asks nobody anything and takes a fraction of a second.

@@ -11,19 +11,19 @@
 # An `<enclosure>` has to state the file's MIME type and byte length, so an entry
 # whose `audio` block records neither is probed for both.
 #
-#   ruby generate_podcast_rss.rb               # resolve entries with no audio
-#   ruby generate_podcast_rss.rb --no-resolve  # use only what the list records
+#   ruby bin/generate_podcast_rss.rb               # resolve entries with no audio
+#   ruby bin/generate_podcast_rss.rb --no-resolve  # use only what the list records
 
 require 'yaml'
 require 'erb'
 require 'cgi/escape'
 require 'fileutils'
 
-require_relative 'lib/assets'
-require_relative 'lib/cover'
-require_relative 'lib/media_resolver'
-require_relative 'lib/feed_builder'
-require_relative 'lib/show_notes'
+require_relative '../lib/assets'
+require_relative '../lib/cover'
+require_relative '../lib/media_resolver'
+require_relative '../lib/feed_builder'
+require_relative '../lib/show_notes'
 
 SITE_URL = 'https://mokagio.github.io/david-deutsch-anthology/'
 FEED_TITLE = 'David Deutsch Podcast Interviews'

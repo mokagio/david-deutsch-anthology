@@ -9,7 +9,7 @@ rake                # test, generate, validate
 rake test
 rake generate       # public/index.html and public/podcast.rss
 rake validate       # the feed works in a podcast client
-ruby count.rb       # entry tallies
+rake count          # entry tallies
 ```
 
 No Gemfile — Ruby stdlib only, version pinned in `.ruby-version`.

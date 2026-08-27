@@ -4,7 +4,7 @@ require 'fileutils'
 require 'erb'
 require 'yaml'
 
-require_relative 'lib/assets'
+require_relative '../lib/assets'
 
 # Load data from YAML file
 data = YAML.load_file('list.yml', aliases: true)

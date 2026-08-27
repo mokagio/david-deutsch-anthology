@@ -9,13 +9,18 @@ end
 
 desc 'Build the static site and the podcast feed'
 task :generate do
-  ruby 'generate_html.rb'
-  ruby 'generate_podcast_rss.rb'
+  ruby 'bin/generate_html.rb'
+  ruby 'bin/generate_podcast_rss.rb'
 end
 
 desc 'Check the generated feed works in a podcast client'
 task :validate do
-  ruby 'validate_podcast_rss.rb'
+  ruby 'bin/validate_podcast_rss.rb'
+end
+
+desc 'Print entry tallies'
+task :count do
+  ruby 'bin/count.rb'
 end
 
 task default: %i[test generate validate]
