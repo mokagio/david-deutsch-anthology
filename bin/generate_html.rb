@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'fileutils'
+require 'date'
 require 'erb'
 require 'yaml'
 

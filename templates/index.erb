@@ -70,6 +70,10 @@
         margin-bottom: calc(var(--pico-typography-spacing-vertical) / 2);
       }
 
+      ul {
+        list-style-type: circle;
+      }
+
       .title {
         font-size: clamp(2rem, 5vw, 3rem);
         margin-bottom: 1.5rem;
@@ -82,6 +86,124 @@
         width: clamp(200px, 26vw, 320px);
         margin: 0 0 1rem 1.5rem;
         border-radius: .5rem;
+      }
+
+      .prototype {
+        margin: 3rem 0 5rem;
+      }
+
+      .prototype > h2 {
+        margin-bottom: .25rem;
+      }
+
+      .prototype-note, .episode-meta, .episode-date, .episode-show {
+        color: var(--pico-muted-color);
+      }
+
+      .prototype-note {
+        margin-bottom: 1.5rem;
+        font-size: .85rem;
+      }
+
+      .source-links {
+        white-space: nowrap;
+      }
+
+      .source-links a + a::before {
+        content: " · ";
+        color: var(--pico-muted-color);
+        text-decoration: none;
+      }
+
+      .v2-list, .v5-list, .v7-list, .v8-list, .v10-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .v2-list li, .v7-list li {
+        padding: .7rem 0;
+        border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+      }
+
+      .episode-title {
+        display: block;
+        font-weight: 600;
+      }
+
+      .v3-list li { margin-bottom: .75rem; }
+      .v3-list .source-links a, .v5-list .source-links a {
+        display: inline-block;
+        padding: .1rem .45rem;
+        border: 1px solid color-mix(in srgb, var(--pico-primary) 50%, transparent);
+        border-radius: 999px;
+        font-size: .78rem;
+        text-decoration: none;
+      }
+      .v3-list .source-links a + a::before, .v5-list .source-links a + a::before { content: none; }
+
+      .v4-row {
+        display: grid;
+        grid-template-columns: minmax(18rem, 2fr) minmax(10rem, 1fr) auto auto;
+        gap: 1rem;
+        align-items: baseline;
+        padding: .55rem 0;
+        border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      }
+
+      .v5-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .v5-list li {
+        padding: 1rem;
+        border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+        border-radius: .5rem;
+      }
+
+      .v6-row {
+        display: grid;
+        grid-template-columns: 7rem 1fr;
+        gap: 1rem;
+        padding: .6rem 0;
+      }
+
+      .v7-list li {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .v8-list li { margin-bottom: 1.15rem; }
+      .v8-list .episode-show {
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        font-size: .68rem;
+      }
+
+      .v9-table { font-size: .88rem; }
+      .v9-table td:first-child { font-weight: 600; }
+
+      .v10-list { counter-reset: episode; }
+      .v10-list li {
+        counter-increment: episode;
+        display: grid;
+        grid-template-columns: 2.5rem 1fr auto;
+        gap: .75rem;
+        padding: .8rem 0;
+      }
+      .v10-list li::before {
+        content: counter(episode, decimal-leading-zero);
+        color: var(--pico-muted-color);
+        font-variant-numeric: tabular-nums;
+      }
+
+      @media (max-width: 800px) {
+        .v4-row, .v6-row, .v10-list li { grid-template-columns: 1fr; gap: .15rem; }
+        .v5-list { grid-template-columns: 1fr; }
+        .v7-list li { display: block; }
+        .v9-table { display: block; overflow-x: auto; }
       }
 
       @media (max-width: 600px) {
@@ -132,20 +254,62 @@
     </ul>
     -->
 
-    <h1>Podcast Interviews</h1>
-    <ul>
-      <% podcast_interviews.each do |podcast| %>
-        <%
-          url = podcast['url'] || podcast['youtube_url'] || podcast['podcast_url']
-          next unless url
-        %>
-        <li>
-          <a href="<%= url %>" target="_blank"><%= podcast['title'] %></a>
-          &middot; <a href="<%= podcast['show']['url'] %>" target="_blank"><%= podcast['show']['name'] %></a>
-          &middot; <%= podcast['published_date'] %>
-        </li>
-      <% end %>
-    </ul>
+    <h1>Podcast Interview Layouts</h1>
+    <%
+      samples = podcast_interviews.first(8).filter_map do |podcast|
+        sources = [
+            ['Website', podcast['url']],
+            ['YouTube', podcast['youtube_url']],
+            ['Podcast', podcast['podcast_url']]
+          ].select { |_, source_url| source_url }
+        next if sources.empty?
+
+        published_on = Date.strptime(podcast['published_date'], '%Y/%m/%d')
+        day = published_on.day
+        suffix = (11..13).cover?(day % 100) ? 'th' : { 1 => 'st', 2 => 'nd', 3 => 'rd' }.fetch(day % 10, 'th')
+        { podcast: podcast, sources: sources, date: published_on.strftime("#{day}#{suffix} %b %Y") }
+      end
+    %>
+
+    <section class="prototype" data-version="1"><h2>1. Single line</h2><p class="prototype-note">Everything in reading order.</p><ul>
+      <% samples.each do |item| %><li><%= item[:podcast]['title'] %> · <span class="episode-show"><%= item[:podcast]['show']['name'] %></span> · <span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span> · <span class="episode-date"><%= item[:date] %></span></li><% end %>
+    </ul></section>
+
+    <section class="prototype" data-version="2"><h2>2. Title first</h2><p class="prototype-note">A strong title with quieter metadata beneath.</p><ul class="v2-list">
+      <% samples.each do |item| %><li><span class="episode-title"><%= item[:podcast]['title'] %></span><span class="episode-meta"><%= item[:podcast]['show']['name'] %> · <%= item[:date] %> · </span><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span></li><% end %>
+    </ul></section>
+
+    <section class="prototype" data-version="3"><h2>3. Source chips</h2><p class="prototype-note">Inline metadata with compact source controls.</p><ul class="v3-list">
+      <% samples.each do |item| %><li><%= item[:podcast]['title'] %> · <span class="episode-show"><%= item[:podcast]['show']['name'] %></span> · <span class="episode-date"><%= item[:date] %></span> · <span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a> <% end %></span></li><% end %>
+    </ul></section>
+
+    <section class="prototype" data-version="4"><h2>4. Columns</h2><p class="prototype-note">A scan-friendly metadata grid.</p>
+      <% samples.each do |item| %><div class="v4-row"><strong><%= item[:podcast]['title'] %></strong><span class="episode-show"><%= item[:podcast]['show']['name'] %></span><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span><time><%= item[:date] %></time></div><% end %>
+    </section>
+
+    <section class="prototype" data-version="5"><h2>5. Cards</h2><p class="prototype-note">More separation and breathing room.</p><ul class="v5-list">
+      <% samples.each do |item| %><li><span class="episode-title"><%= item[:podcast]['title'] %></span><p class="episode-meta"><%= item[:podcast]['show']['name'] %> · <%= item[:date] %></p><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a> <% end %></span></li><% end %>
+    </ul></section>
+
+    <section class="prototype" data-version="6"><h2>6. Date rail</h2><p class="prototype-note">Chronology forms the left edge.</p>
+      <% samples.each do |item| %><div class="v6-row"><time class="episode-date"><%= item[:date] %></time><div><span class="episode-title"><%= item[:podcast]['title'] %></span><span class="episode-meta"><%= item[:podcast]['show']['name'] %> · </span><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span></div></div><% end %>
+    </section>
+
+    <section class="prototype" data-version="7"><h2>7. Sources right</h2><p class="prototype-note">Content and actions occupy opposite edges.</p><ul class="v7-list">
+      <% samples.each do |item| %><li><div><span class="episode-title"><%= item[:podcast]['title'] %></span><span class="episode-meta"><%= item[:podcast]['show']['name'] %> · <%= item[:date] %></span></div><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span></li><% end %>
+    </ul></section>
+
+    <section class="prototype" data-version="8"><h2>8. Show kicker</h2><p class="prototype-note">The show becomes a small category label.</p><ul class="v8-list">
+      <% samples.each do |item| %><li><span class="episode-show"><%= item[:podcast]['show']['name'] %></span><span class="episode-title"><%= item[:podcast]['title'] %></span><span class="episode-meta"><%= item[:date] %> · </span><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span></li><% end %>
+    </ul></section>
+
+    <section class="prototype" data-version="9"><h2>9. Table</h2><p class="prototype-note">Maximum consistency for comparison.</p><table class="v9-table"><thead><tr><th>Episode</th><th>Show</th><th>Listen / watch</th><th>Date</th></tr></thead><tbody>
+      <% samples.each do |item| %><tr><td><%= item[:podcast]['title'] %></td><td><%= item[:podcast]['show']['name'] %></td><td class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></td><td><%= item[:date] %></td></tr><% end %>
+    </tbody></table></section>
+
+    <section class="prototype" data-version="10"><h2>10. Numbered editorial</h2><p class="prototype-note">A magazine-like index with a restrained action column.</p><ol class="v10-list">
+      <% samples.each do |item| %><li><div><span class="episode-title"><%= item[:podcast]['title'] %></span><span class="episode-meta"><%= item[:podcast]['show']['name'] %> · <%= item[:date] %></span></div><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span></li><% end %>
+    </ol></section>
 
     <h1>Other</h1>
     <ul>
