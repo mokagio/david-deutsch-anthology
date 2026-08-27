@@ -33,9 +33,9 @@ class IndexTemplateTest < Minitest::Test
       )
     )
 
-    assert_equal 10, html.scan(/data-version="\d+"/).size
-    assert_equal 10, html.scan('<a href="https://episode.example" target="_blank">Website</a>').size
-    assert_equal 10, html.scan('27th Aug 2026').size
+    refute_includes html, 'data-version='
+    assert_equal 1, html.scan('<a href="https://episode.example" target="_blank">Website</a>').size
+    assert_equal 1, html.scan('27th Aug 2026').size
     refute_includes html, '<a href="https://show.example"'
   end
 
@@ -48,8 +48,8 @@ class IndexTemplateTest < Minitest::Test
     )
 
     assert_equal 0, html.scan('>Website</a>').size
-    assert_equal 10, html.scan('>YouTube</a>').size
-    assert_equal 10, html.scan('>Podcast</a>').size
+    assert_equal 1, html.scan('>YouTube</a>').size
+    assert_equal 1, html.scan('>Podcast</a>').size
   end
 
   def test_uses_english_ordinal_date_suffixes
@@ -67,17 +67,44 @@ class IndexTemplateTest < Minitest::Test
       entry = interview(podcast_url: 'https://podcast.example/episode')
       entry['published_date'] = stored
 
-      assert_equal 10, render(entry).scan(displayed).size
+      assert_equal 1, render(entry).scan(displayed).size
     end
   end
 
-  def test_every_version_uses_only_the_first_eight_entries
+  def test_renders_the_full_interview_list
     entries = 9.times.map do |index|
       interview(podcast_url: "https://podcast.example/#{index}").merge('title' => "Episode #{index + 1}")
     end
     html = render(entries)
 
-    assert_equal 10, html.scan('Episode 8').size
-    refute_includes html, 'Episode 9'
+    assert_equal 1, html.scan('Episode 8').size
+    assert_equal 1, html.scan('Episode 9').size
+  end
+
+  def test_all_visible_collections_share_the_list_style
+    html = render(interview(podcast_url: 'https://podcast.example/episode'))
+
+    assert_equal 3, html.scan(/<ul class="[^"]*anthology-list/).size
+  end
+
+  def test_book_and_other_titles_use_the_podcast_title_interaction
+    books = [{ 'name' => 'A Book', 'published_year' => 2026,
+               'urls' => [{ 'url' => 'https://book.example' }] }]
+    other = [{ 'name' => 'Another resource', 'url' => 'https://other.example' }]
+    talks = []
+    podcast_interviews = [interview(podcast_url: 'https://podcast.example/episode')]
+    html = TEMPLATE.result(binding)
+
+    assert_includes html, '<a class="anthology-link" href="https://book.example"'
+    assert_includes html, ' · <span class="episode-date">2026</span>'
+    assert_includes html, '<a class="anthology-link" href="https://other.example"'
+  end
+
+  def test_page_loads_the_cosmic_background
+    html = render(interview(podcast_url: 'https://podcast.example/episode'))
+
+    refute_includes html, '<select id="background-mode">'
+    assert_includes html, '<canvas id="cosmic-background"'
+    assert_includes html, '<script src="cosmic-backgrounds.js"></script>'
   end
 end

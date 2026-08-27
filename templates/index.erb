@@ -23,10 +23,9 @@
          hue freely; change an L and check it. */
       @keyframes drift {
         0%   { --accent: oklch(0.672 0.113 300.3); } /* nebula    */
-        20%  { --accent: oklch(0.677 0.129 322.0); } /* orchid    */
-        40%  { --accent: oklch(0.670 0.124  46.0); } /* ember     */
-        60%  { --accent: oklch(0.670 0.076 288.6); } /* starlight */
-        80%  { --accent: oklch(0.671 0.116 268.6); } /* cobalt    */
+        25%  { --accent: oklch(0.677 0.129 322.0); } /* orchid    */
+        50%  { --accent: oklch(0.670 0.076 288.6); } /* starlight */
+        75%  { --accent: oklch(0.671 0.116 268.6); } /* cobalt    */
         100% { --accent: oklch(0.672 0.113 300.3); }
       }
 
@@ -44,22 +43,35 @@
 
       /* A visited link takes no colour that resolves through a custom property:
          Chrome refuses those on visited links, whatever rule they come from, and
-         the link falls back to the body's white. So these are the same five stops
+         the link falls back to the body's white. So these are the same four stops
          written out literally, a quarter of the way to white, on their own
          keyframes in step with `drift`. The `color` beneath is what shows if the
          animation is refused too. */
       @keyframes drift-visited {
         0%   { color: #B7A3DD; }
-        20%  { color: #CD9CD5; }
-        40%  { color: #E09C7C; }
-        60%  { color: #ADAAD2; }
-        80%  { color: #98ADE7; }
+        25%  { color: #CD9CD5; }
+        50%  { color: #ADAAD2; }
+        75%  { color: #98ADE7; }
         100% { color: #B7A3DD; }
       }
 
       a:visited {
         color: #B7A3DD;
         animation: drift-visited 60s linear infinite;
+      }
+
+      #cosmic-background {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      main, footer {
+        position: relative;
+        z-index: 1;
       }
 
       h1, h2, h3 {
@@ -70,8 +82,8 @@
         margin-bottom: calc(var(--pico-typography-spacing-vertical) / 2);
       }
 
-      ul {
-        list-style-type: circle;
+      ul li {
+        list-style-type: disc;
       }
 
       .title {
@@ -88,21 +100,9 @@
         border-radius: .5rem;
       }
 
-      .prototype {
-        margin: 3rem 0 5rem;
-      }
-
-      .prototype > h2 {
-        margin-bottom: .25rem;
-      }
-
-      .prototype-note, .episode-meta, .episode-date, .episode-show {
+      .episode-date, .episode-show {
         color: var(--pico-muted-color);
-      }
-
-      .prototype-note {
-        margin-bottom: 1.5rem;
-        font-size: .85rem;
+        transition: color 800ms ease;
       }
 
       .source-links {
@@ -115,23 +115,15 @@
         text-decoration: none;
       }
 
-      .v2-list, .v5-list, .v7-list, .v8-list, .v10-list {
-        list-style: none;
-        padding: 0;
+      .anthology-list {
+        padding-inline-start: 0;
       }
 
-      .v2-list li, .v7-list li {
-        padding: .7rem 0;
-        border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+      .anthology-list li {
+        margin-bottom: .75rem;
+        list-style-type: none;
       }
-
-      .episode-title {
-        display: block;
-        font-weight: 600;
-      }
-
-      .v3-list li { margin-bottom: .75rem; }
-      .v3-list .source-links a, .v5-list .source-links a {
+      .chips a {
         display: inline-block;
         padding: .1rem .45rem;
         border: 1px solid color-mix(in srgb, var(--pico-primary) 50%, transparent);
@@ -139,71 +131,41 @@
         font-size: .78rem;
         text-decoration: none;
       }
-      .v3-list .source-links a + a::before, .v5-list .source-links a + a::before { content: none; }
+      .chips a + a::before { content: none; }
 
-      .v4-row {
-        display: grid;
-        grid-template-columns: minmax(18rem, 2fr) minmax(10rem, 1fr) auto auto;
-        gap: 1rem;
-        align-items: baseline;
-        padding: .55rem 0;
-        border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      .chips a {
+        transition: color 240ms ease, background-color 240ms ease, border-color 240ms ease;
       }
 
-      .v5-list {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-      }
-      .v5-list li {
-        padding: 1rem;
-        border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
-        border-radius: .5rem;
+      .chips a:hover {
+        color: #0F0E24;
+        background: var(--accent);
+        border-color: var(--accent);
+        animation: none;
       }
 
-      .v6-row {
-        display: grid;
-        grid-template-columns: 7rem 1fr;
-        gap: 1rem;
-        padding: .6rem 0;
+      .podcast-list .episode-name,
+      .anthology-link {
+        transition: color 800ms ease;
       }
 
-      .v7-list li {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
+      .anthology-link,
+      .anthology-link:visited {
+        color: inherit;
+        text-decoration: none;
+        animation: none;
       }
 
-      .v8-list li { margin-bottom: 1.15rem; }
-      .v8-list .episode-show {
-        display: block;
-        text-transform: uppercase;
-        letter-spacing: .08em;
-        font-size: .68rem;
+      .podcast-list li:hover .episode-name,
+      .anthology-list li:hover .anthology-link {
+        color: var(--accent);
+        transition-duration: 60ms;
       }
 
-      .v9-table { font-size: .88rem; }
-      .v9-table td:first-child { font-weight: 600; }
-
-      .v10-list { counter-reset: episode; }
-      .v10-list li {
-        counter-increment: episode;
-        display: grid;
-        grid-template-columns: 2.5rem 1fr auto;
-        gap: .75rem;
-        padding: .8rem 0;
-      }
-      .v10-list li::before {
-        content: counter(episode, decimal-leading-zero);
-        color: var(--pico-muted-color);
-        font-variant-numeric: tabular-nums;
-      }
-
-      @media (max-width: 800px) {
-        .v4-row, .v6-row, .v10-list li { grid-template-columns: 1fr; gap: .15rem; }
-        .v5-list { grid-template-columns: 1fr; }
-        .v7-list li { display: block; }
-        .v9-table { display: block; overflow-x: auto; }
+      .anthology-list li:hover .episode-date,
+      .podcast-list li:hover .episode-show {
+        color: color-mix(in srgb, var(--pico-muted-color) 88%, var(--accent));
+        transition-duration: 60ms;
       }
 
       @media (max-width: 600px) {
@@ -226,6 +188,7 @@
     </style>
   </head>
   <body>
+    <canvas id="cosmic-background" aria-hidden="true"></canvas>
     <main>
     <img class="portrait" src="portrait.jpg" width="640" height="640" alt="David Deutsch">
     <h1 class="title">The David Deutsch Anthology</h1>
@@ -233,11 +196,11 @@
     <p>A YouTube playlist with some of the interviews can be found <a href="https://www.youtube.com/watch?v=xdtssXITXuE&list=PLlL8eTHbJV9qJIq3kR-V_p9Mavg46pgXf" target="_blank">here</a>.</p>
     <p>A podcast feed with some of the interviews and talks can be found <a href="podcast.rss" target="_blank">here</a>.</p>
     <h1>Books</h1>
-    <% books.each do |book| %>
-      <p>
-        <a href="<%= book['urls'].first['url'] %>" target="_blank"><i><%= book['name'] %></i> (<%= book['published_year'] %>)</a>
-      </p>
-    <% end %>
+    <ul class="anthology-list">
+      <% books.each do |book| %>
+        <li><a class="anthology-link" href="<%= book['urls'].first['url'] %>" target="_blank"><%= book['name'] %></a> · <span class="episode-date"><%= book['published_year'] %></span></li>
+      <% end %>
+    </ul>
 
     <!-- TODO
     <h1>Talks</h1>
@@ -254,9 +217,9 @@
     </ul>
     -->
 
-    <h1>Podcast Interview Layouts</h1>
+    <h1>Podcast Interviews</h1>
     <%
-      samples = podcast_interviews.first(8).filter_map do |podcast|
+      episodes = podcast_interviews.filter_map do |podcast|
         sources = [
             ['Website', podcast['url']],
             ['YouTube', podcast['youtube_url']],
@@ -271,51 +234,15 @@
       end
     %>
 
-    <section class="prototype" data-version="1"><h2>1. Single line</h2><p class="prototype-note">Everything in reading order.</p><ul>
-      <% samples.each do |item| %><li><%= item[:podcast]['title'] %> · <span class="episode-show"><%= item[:podcast]['show']['name'] %></span> · <span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span> · <span class="episode-date"><%= item[:date] %></span></li><% end %>
-    </ul></section>
-
-    <section class="prototype" data-version="2"><h2>2. Title first</h2><p class="prototype-note">A strong title with quieter metadata beneath.</p><ul class="v2-list">
-      <% samples.each do |item| %><li><span class="episode-title"><%= item[:podcast]['title'] %></span><span class="episode-meta"><%= item[:podcast]['show']['name'] %> · <%= item[:date] %> · </span><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span></li><% end %>
-    </ul></section>
-
-    <section class="prototype" data-version="3"><h2>3. Source chips</h2><p class="prototype-note">Inline metadata with compact source controls.</p><ul class="v3-list">
-      <% samples.each do |item| %><li><%= item[:podcast]['title'] %> · <span class="episode-show"><%= item[:podcast]['show']['name'] %></span> · <span class="episode-date"><%= item[:date] %></span> · <span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a> <% end %></span></li><% end %>
-    </ul></section>
-
-    <section class="prototype" data-version="4"><h2>4. Columns</h2><p class="prototype-note">A scan-friendly metadata grid.</p>
-      <% samples.each do |item| %><div class="v4-row"><strong><%= item[:podcast]['title'] %></strong><span class="episode-show"><%= item[:podcast]['show']['name'] %></span><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span><time><%= item[:date] %></time></div><% end %>
-    </section>
-
-    <section class="prototype" data-version="5"><h2>5. Cards</h2><p class="prototype-note">More separation and breathing room.</p><ul class="v5-list">
-      <% samples.each do |item| %><li><span class="episode-title"><%= item[:podcast]['title'] %></span><p class="episode-meta"><%= item[:podcast]['show']['name'] %> · <%= item[:date] %></p><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a> <% end %></span></li><% end %>
-    </ul></section>
-
-    <section class="prototype" data-version="6"><h2>6. Date rail</h2><p class="prototype-note">Chronology forms the left edge.</p>
-      <% samples.each do |item| %><div class="v6-row"><time class="episode-date"><%= item[:date] %></time><div><span class="episode-title"><%= item[:podcast]['title'] %></span><span class="episode-meta"><%= item[:podcast]['show']['name'] %> · </span><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span></div></div><% end %>
-    </section>
-
-    <section class="prototype" data-version="7"><h2>7. Sources right</h2><p class="prototype-note">Content and actions occupy opposite edges.</p><ul class="v7-list">
-      <% samples.each do |item| %><li><div><span class="episode-title"><%= item[:podcast]['title'] %></span><span class="episode-meta"><%= item[:podcast]['show']['name'] %> · <%= item[:date] %></span></div><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span></li><% end %>
-    </ul></section>
-
-    <section class="prototype" data-version="8"><h2>8. Show kicker</h2><p class="prototype-note">The show becomes a small category label.</p><ul class="v8-list">
-      <% samples.each do |item| %><li><span class="episode-show"><%= item[:podcast]['show']['name'] %></span><span class="episode-title"><%= item[:podcast]['title'] %></span><span class="episode-meta"><%= item[:date] %> · </span><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span></li><% end %>
-    </ul></section>
-
-    <section class="prototype" data-version="9"><h2>9. Table</h2><p class="prototype-note">Maximum consistency for comparison.</p><table class="v9-table"><thead><tr><th>Episode</th><th>Show</th><th>Listen / watch</th><th>Date</th></tr></thead><tbody>
-      <% samples.each do |item| %><tr><td><%= item[:podcast]['title'] %></td><td><%= item[:podcast]['show']['name'] %></td><td class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></td><td><%= item[:date] %></td></tr><% end %>
-    </tbody></table></section>
-
-    <section class="prototype" data-version="10"><h2>10. Numbered editorial</h2><p class="prototype-note">A magazine-like index with a restrained action column.</p><ol class="v10-list">
-      <% samples.each do |item| %><li><div><span class="episode-title"><%= item[:podcast]['title'] %></span><span class="episode-meta"><%= item[:podcast]['show']['name'] %> · <%= item[:date] %></span></div><span class="source-links"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a><% end %></span></li><% end %>
-    </ol></section>
+    <ul class="anthology-list podcast-list">
+      <% episodes.each do |item| %><li><span class="episode-name"><%= item[:podcast]['title'] %></span><span class="episode-separator"> · </span><span class="episode-show"><%= item[:podcast]['show']['name'] %></span><span class="episode-separator"> · </span><span class="episode-date"><%= item[:date] %></span> <span class="source-links chips"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a> <% end %></span></li><% end %>
+    </ul>
 
     <h1>Other</h1>
-    <ul>
+    <ul class="anthology-list">
       <% other.each do |item| %>
         <li>
-          <a href="<%= item['url'] %>" target="_blank"><%= item['name'] %></a>
+          <a class="anthology-link" href="<%= item['url'] %>" target="_blank"><%= item['name'] %></a>
         </li>
       <% end %>
     </ul>
@@ -327,5 +254,6 @@
         Suggest new entries <a href="https://github.com/mokagio/david-deutsch-anthology" target="_blank">here</a>.
       </p>
     </footer>
+    <script src="cosmic-backgrounds.js"></script>
   </body>
 </html>
