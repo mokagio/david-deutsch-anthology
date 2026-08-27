@@ -252,7 +252,7 @@
     <ul class="anthology-list">
       <% other.each do |item| %>
         <li>
-          <a class="anthology-link" href="<%= item['url'] %>" target="_blank"><%= item['name'] %></a>
+          <a class="anthology-link" href="<%= item['url'] %>" target="_blank"><%= item['name'] %></a><% if item['published_year'] %> · <span class="episode-date"><%= item['published_year'] %></span><% end %>
         </li>
       <% end %>
     </ul>

@@ -92,7 +92,7 @@ class IndexTemplateTest < Minitest::Test
   def test_book_and_other_titles_use_the_podcast_title_interaction
     books = [{ 'name' => 'A Book', 'published_year' => 2026,
                'urls' => [{ 'url' => 'https://book.example' }] }]
-    other = [{ 'name' => 'Another resource', 'url' => 'https://other.example' }]
+    other = [{ 'name' => 'Another resource', 'url' => 'https://other.example', 'published_year' => 1992 }]
     talks = []
     podcast_interviews = [interview(podcast_url: 'https://podcast.example/episode')]
     html = TEMPLATE.result(binding)
@@ -100,6 +100,16 @@ class IndexTemplateTest < Minitest::Test
     assert_includes html, '<a class="anthology-link" href="https://book.example"'
     assert_includes html, ' · <span class="episode-date">2026</span>'
     assert_includes html, '<a class="anthology-link" href="https://other.example"'
+    assert_includes html, 'Another resource</a> · <span class="episode-date">1992</span>'
+  end
+
+  def test_other_items_omit_the_date_separator_without_a_year
+    books = []
+    other = [{ 'name' => 'Undated resource', 'url' => 'https://other.example' }]
+    talks = []
+    podcast_interviews = [interview(podcast_url: 'https://podcast.example/episode')]
+
+    refute_includes TEMPLATE.result(binding), 'Undated resource</a> ·'
   end
 
   def test_page_loads_the_cosmic_background
