@@ -822,30 +822,6 @@ podcast_interviews:
       url: https://edwindoit.com
     published_date: 2025/06/28
 
-  - title: "Visiting Iceland & England, Richard Dawkins, David Deutsch, & Free Palestine! (The Saad Truth with Dr. Saad_839)"
-    podcast_url: https://podcasts.apple.com/us/podcast/visiting-iceland-england-richard-dawkins-david-deutsch/id1516343565?i=1000712108627&uo=4
-    audio:
-      url: https://mcdn.podbean.com/mf/web/jjn39xjr5cszg9gj/Visiting_Iceland_England_Richard_Dawkins_David_Deutsch_Free_Palestine_The_Saad_Truth_with_Dr_Saad_839_7hulb.mp3
-      type: audio/mpeg
-      length: 20731095
-      duration: 638
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/3f/37/10/3f371050-62fc-45fc-968b-1d2b1e26bbd1/mza_14658490319243205541.jpg/600x600bb.jpg
-    show: *the_saad_truth
-    published_date: 2025/06/09
-
-  - title: The Beginning of Infinity by David Deutsch (HINDI/हिंदी में)
-    podcast_url: https://podcasts.apple.com/us/podcast/the-beginning-of-infinity-by-david-deutsch-hindi-%E0%A4%B9-%E0%A4%A6-%E0%A4%AE/id1798055916?i=1000695256985&uo=4
-    audio:
-      url: https://anchor.fm/s/1015d05a0/podcast/play/98782793/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-1-20%2F395232854-44100-2-07ead742ffa03.mp3
-      type: audio/mpeg
-      length: 107662105
-      duration: 6728
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/e3/77/d8/e377d8a6-069c-16f6-d660-cce2d5b9a8e1/mza_15759014430896799464.jpg/600x600bb.jpg
-    show:
-      name: SyllabuswithRohit
-      url: https://www.syllabuswithrohit.com
-    published_date: 2025/02/20
-
   - title: Interview with David Deutsch
     podcast_url: https://podcasts.apple.com/us/podcast/episode-100-interview-with-david-deutsch/id1503194218?i=1000681411903&uo=4
     audio:

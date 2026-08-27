@@ -64,7 +64,8 @@ Three questions, in this order. The first two are where the sweep is weakest.
 **Is it him?** Apple's index cannot tell one David Deutsch from another, and there are several — a direct-response copywriter who guests on marketing shows, a pastor, a wellness partner.
 The show is usually the tell; the episode description settles it.
 
-**Is it an appearance, or is it about him?** A reading of *The Beginning of Infinity*, a reaction episode, two hosts discussing his work — none of these belong in the list, and they outnumber the real finds.
+**Is it an appearance, or is it about him?** A book summary, review, reading or audiobook; a reaction episode; or two hosts discussing his work — none of these belong in the list, and they outnumber the real finds.
+A title containing `David Deutsch` or one of his book titles is only a search hit, not evidence that he participated. Confirm participation from the episode description, credits or recording before reporting it as a candidate.
 ToKCast is the hard case: Brett Hall's episodes are mostly commentary, and some are David answering a question directly.
 
 **Is it the whole thing?** A preview, a trailer and a clip all carry the full episode's title.

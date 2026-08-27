@@ -214,7 +214,12 @@ class DiscoveryTest < Minitest::Test
       { 'title' => 'Q&A: el principio de incertidumbre, hablar a un micrófono, estereotipos de género, ' \
                    'el efecto de escribir, ingelitencia, cambio climático, David Deutsch, ikigai, sesgos y México',
         'show' => { 'name' => 'kaizen con Jaime Rodríguez de Santiago' } },
-      { 'title' => 'David Deutsch and Tyler Cowen: Reaction', 'show' => { 'name' => 'ToKCast' } }
+      { 'title' => 'David Deutsch and Tyler Cowen: Reaction', 'show' => { 'name' => 'ToKCast' } },
+      { 'title' => 'The Beginning of Infinity by David Deutsch (HINDI/हिंदी में)',
+        'show' => { 'name' => 'SyllabuswithRohit' } },
+      { 'title' => 'Visiting Iceland & England, Richard Dawkins, David Deutsch, & Free Palestine! ' \
+                   '(The Saad Truth with Dr. Saad_839)',
+        'show' => { 'name' => 'The Saad Truth with Dr. Saad' } }
     ]
 
     entries.each { |entry| refute_nil project_ignore.reject_entry(entry), entry['title'] }
