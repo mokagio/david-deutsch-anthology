@@ -141,6 +141,15 @@ module Discovery
       pattern ? "ignored title: #{pattern.inspect}" : nil
     end
 
+    def reject_entry(entry)
+      reject(
+        Candidate.new(
+          title: entry['title'] || entry['name'],
+          show_name: entry.dig('show', 'name')
+        )
+      )
+    end
+
     def empty? = @shows.empty? && @titles.empty?
   end
 

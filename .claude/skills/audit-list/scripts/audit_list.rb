@@ -151,8 +151,24 @@ from_report = ARGV[ARGV.index('--report') + 1] if ARGV.include?('--report')
 LIST_PATH = File.join(ROOT, 'list.yml')
 
 data = YAML.load_file(LIST_PATH, aliases: true)
-report = { 'broken_links' => [], 'unchecked_links' => [], 'audio_found' => [], 'audio_missing' => [] }
+ignore_path = File.join(ROOT, '.claude', 'skills', 'find-entries', 'ignore.yml')
+ignore = Discovery::Ignore.new(File.exist?(ignore_path) ? YAML.load_file(ignore_path) : {})
+rejected_entries = data.values.grep(Array).flatten.filter_map do |entry|
+  next unless entry.is_a?(Hash)
+
+  reason = ignore.reject_entry(entry)
+  { 'title' => entry['title'] || entry['name'], 'reason' => reason } if reason
+end
+
+report = {
+  'rejected_entries' => rejected_entries,
+  'broken_links' => [],
+  'unchecked_links' => [],
+  'audio_found' => [],
+  'audio_missing' => []
+}
 report = JSON.parse(File.read(from_report)) if from_report
+report['rejected_entries'] = rejected_entries
 mode = '--audio-only' if from_report
 
 unless mode == '--audio-only'
@@ -331,6 +347,9 @@ end
 if as_json
   puts JSON.pretty_generate(report)
 else
+  puts "\n#{report['rejected_entries'].size} entries rejected by discovery rules:"
+  report['rejected_entries'].each { |entry| puts "  #{entry['title']} — #{entry['reason']}" }
+
   puts "\n#{report['broken_links'].size} dead links:"
   report['broken_links'].each { |l| puts "  #{l['detail']}  #{l['url']}\n      #{l['entries'].join(', ')}" }
 

@@ -33,6 +33,7 @@ The report keys, which name the audio fields flat — `ListWriter::KEYS` maps th
 - `audio_timed` — an `audio_duration`, in seconds, for an entry whose runtime the list does not record. Only a feed or Apple states one, and only when it describes the file the entry already records: a runtime taken from another release of the same conversation would be a different cut.
 - `audio_untimed` — no runtime, so the client shows 0s until it downloads the file. Nothing to do about it; the audio found by scraping a page comes with no runtime attached.
 - `audio_missing` — no audio anywhere. Usually a video-only appearance. Leave alone.
+- `rejected_entries` — entries that now match the durable namesake or commentary rules used by `/find-entries`. Remove them from the anthology after confirming the recorded judgement still applies.
 - `artwork_found` — an `image_url`, with the `scope` it came from: `episode` is the episode's own picture, `show` is the show's, which every episode of that show would carry. `size` is what the file measured.
 - `artwork_missing` — no square picture of a usable size anywhere. A show whose entries all come back empty is worth one `image_url` on its `show` anchor by hand, which every entry sharing the anchor then inherits.
 - `broken_links` — confirmed dead.
@@ -68,7 +69,7 @@ Count `&` naively and you will scare yourself: the audio URLs carry `&` in their
 
 ## 4. Report, do not fix
 
-Surface `broken_links` to the user and stop.
+Surface `rejected_entries` and `broken_links` to the user and stop.
 Fixing a dead link means finding where the content moved, which is a judgement call, not a substitution.
 
 Mention `unchecked_links` only in passing; a TLS handshake this script cannot complete usually says more about the checker than the link.

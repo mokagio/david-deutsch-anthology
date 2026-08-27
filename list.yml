@@ -882,19 +882,6 @@ podcast_interviews:
     show: *tokcast
     published_date: 2024/10/17
 
-  - title: Counter Examples To Deutsch's Theory of Knowledge?
-    podcast_url: https://podcasts.apple.com/us/podcast/episode-77-counter-examples-to-deutschs-theory-of/id1503194218?i=1000645009935&uo=4
-    audio:
-      url: https://anchor.fm/s/14b6fc10/podcast/play/80692944/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F14b6fc10%2F80692944%2F689072637bfd4151c6839be5bae55c99.m4a
-      type: audio/mp4
-      length: 93015448
-      duration: 5751
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/1c/af/35/1caf3588-9943-3f96-2c0f-220589f4b490/mza_9924471757698824599.jpg/600x600bb.jpg
-    show:
-      name: The Theory of Anything
-      url: https://www.patreon.com/c/brucenielson/membership
-    published_date: 2024/02/12
-
   - title: "Antisemitism in Britain - An Interview With David Deutsch #928"
     podcast_url: https://podcasts.apple.com/us/podcast/antisemitism-in-britain-an-interview-with-david/id1518860114?i=1000639543073&uo=4
     audio:
@@ -907,45 +894,6 @@ podcast_interviews:
       name: The Daily Objective
       url: https://rss.com/podcasts/the-daily-objective
     published_date: 2023/12/23
-
-  - title: "Classical Christian Education is Counter-Cultural | A Conversation with Rev. David Deutsch"
-    podcast_url: https://podcasts.apple.com/us/podcast/classical-christian-education-is-counter-cultural-a/id1702286694?i=1000629264107&uo=4
-    audio:
-      url: https://anchor.fm/s/e7378e48/podcast/play/76413872/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-8-26%2F348624583-44100-2-2881bb8d32b9b.m4a
-      type: audio/mp4
-      length: 43863957
-      duration: 2712
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/d2/53/13/d2531358-c34c-fce4-648b-921b6c31172f/mza_15019345814236792247.jpg/600x600bb.jpg
-    show:
-      name: Reforming Classical Education Podcast
-      url: https://www.bezainstitute.org/
-    published_date: 2023/09/26
-
-  - title: Carlos de la Guardia - AGI, Deutsch, Popper, knowledge, and progress
-    podcast_url: https://podcasts.apple.com/us/podcast/2-carlos-de-la-guardia-agi-deutsch-popper-knowledge/id1699912677?i=1000624259872&uo=4
-    audio:
-      url: https://anchor.fm/s/e674c124/podcast/play/74550203/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-7-12%2F0e8874a0-a6a1-ae51-3794-ee991094e19f.mp3
-      type: audio/mpeg
-      length: 191955327
-      duration: 5925
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/ce/e1/c6/cee1c6b1-766b-9137-2409-b41df5796394/mza_467482820930693497.jpg/600x600bb.jpg
-    show:
-      name: Theo Jaffee Podcast
-      url: https://theojaffee.com
-    published_date: 2023/08/12
-
-  - title: "Q&A: el principio de incertidumbre, hablar a un micrófono, estereotipos de género, el efecto de escribir, ingelitencia, cambio climático, David Deutsch, ikigai, sesgos y México"
-    podcast_url: https://podcasts.apple.com/us/podcast/q-a-el-principio-de-incertidumbre/id1448683751?i=1000613181703&uo=4
-    audio:
-      url: https://sphinx.acast.com/p/open/s/68b08648b7f6022e946c6a86/e/f2bfa136-ad16-4144-8bb1-c6d8cb620b31/media.mp3
-      type: audio/mpeg
-      length: 60071083
-      duration: 3754
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/7d/47/6a/7d476a66-ffe2-c965-7125-c8b88014f1bb/mza_6945882093366315507.jpg/600x600bb.jpg
-    show:
-      name: kaizen con Jaime Rodríguez de Santiago
-      url: http://www.jaimerodriguezdesantiago.com
-    published_date: 2023/05/16
 
   - title: Multiverse of Madness with David Deutsch
     podcast_url: https://podcasts.apple.com/us/podcast/multiverse-of-madness-with-david-deutsch/id1716338488?i=1000634629093&uo=4
@@ -1057,16 +1005,6 @@ podcast_interviews:
       duration: 1131
     show: *tokcast
     published_date: 2021/07/16
-
-  - title: "David Deutsch and Tyler Cowen: Reaction"
-    url: https://brettroberthall.podbean.com/e/ep-76-1625132468/
-    audio:
-      url: https://mcdn.podbean.com/mf/web/hx3nti/David_Deutsch_Tyler_Cowen_Conversation_Reactionb129p.mp3
-      type: audio/mpeg
-      length: 150004909
-      duration: 4607
-    show: *tokcast
-    published_date: 2021/07/01
 
   - title: "The limitless potential of human knowledge | David Deutsch"
     podcast_url: https://podcasts.apple.com/us/podcast/the-limitless-potential-of-human-knowledge-david-deutsch/id1437306870?i=1000526927663&uo=4

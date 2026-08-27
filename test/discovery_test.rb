@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
+require 'yaml'
 
 require_relative '../lib/discovery'
 
@@ -197,6 +198,26 @@ class DiscoveryTest < Minitest::Test
 
   def test_a_candidate_without_a_show_is_not_swallowed_by_a_blank_show_rule
     assert_nil Discovery::Ignore.new('shows' => [{ 'name' => nil }]).reject(candidate(show_name: nil))
+  end
+
+  def test_project_rules_reject_every_known_false_positive
+    rules = YAML.load_file(
+      File.expand_path('../.claude/skills/find-entries/ignore.yml', __dir__)
+    )
+    project_ignore = Discovery::Ignore.new(rules)
+    entries = [
+      { 'title' => "Counter Examples To Deutsch's Theory of Knowledge?", 'show' => { 'name' => 'The Theory of Anything' } },
+      { 'title' => 'Classical Christian Education is Counter-Cultural | A Conversation with Rev. David Deutsch',
+        'show' => { 'name' => 'Reforming Classical Education Podcast' } },
+      { 'title' => 'Carlos de la Guardia - AGI, Deutsch, Popper, knowledge, and progress',
+        'show' => { 'name' => 'Theo Jaffee Podcast' } },
+      { 'title' => 'Q&A: el principio de incertidumbre, hablar a un micrófono, estereotipos de género, ' \
+                   'el efecto de escribir, ingelitencia, cambio climático, David Deutsch, ikigai, sesgos y México',
+        'show' => { 'name' => 'kaizen con Jaime Rodríguez de Santiago' } },
+      { 'title' => 'David Deutsch and Tyler Cowen: Reaction', 'show' => { 'name' => 'ToKCast' } }
+    ]
+
+    entries.each { |entry| refute_nil project_ignore.reject_entry(entry), entry['title'] }
   end
 
   # --- normalisation ------------------------------------------------------
