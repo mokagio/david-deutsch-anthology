@@ -23,10 +23,9 @@
          hue freely; change an L and check it. */
       @keyframes drift {
         0%   { --accent: oklch(0.672 0.113 300.3); } /* nebula    */
-        20%  { --accent: oklch(0.677 0.129 322.0); } /* orchid    */
-        40%  { --accent: oklch(0.670 0.124  46.0); } /* ember     */
-        60%  { --accent: oklch(0.670 0.076 288.6); } /* starlight */
-        80%  { --accent: oklch(0.671 0.116 268.6); } /* cobalt    */
+        25%  { --accent: oklch(0.677 0.129 322.0); } /* orchid    */
+        50%  { --accent: oklch(0.670 0.076 288.6); } /* starlight */
+        75%  { --accent: oklch(0.671 0.116 268.6); } /* cobalt    */
         100% { --accent: oklch(0.672 0.113 300.3); }
       }
 
@@ -44,16 +43,15 @@
 
       /* A visited link takes no colour that resolves through a custom property:
          Chrome refuses those on visited links, whatever rule they come from, and
-         the link falls back to the body's white. So these are the same five stops
+         the link falls back to the body's white. So these are the same four stops
          written out literally, a quarter of the way to white, on their own
          keyframes in step with `drift`. The `color` beneath is what shows if the
          animation is refused too. */
       @keyframes drift-visited {
         0%   { color: #B7A3DD; }
-        20%  { color: #CD9CD5; }
-        40%  { color: #E09C7C; }
-        60%  { color: #ADAAD2; }
-        80%  { color: #98ADE7; }
+        25%  { color: #CD9CD5; }
+        50%  { color: #ADAAD2; }
+        75%  { color: #98ADE7; }
         100% { color: #B7A3DD; }
       }
 
@@ -62,12 +60,34 @@
         animation: drift-visited 60s linear infinite;
       }
 
+      #cosmic-background {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      main, footer {
+        position: relative;
+        z-index: 1;
+      }
+
       h1, h2, h3 {
         font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
       }
 
       p {
         margin-bottom: calc(var(--pico-typography-spacing-vertical) / 2);
+      }
+
+      .intro-link {
+        text-decoration: none;
+      }
+
+      ul li {
+        list-style-type: disc;
       }
 
       .title {
@@ -82,6 +102,74 @@
         width: clamp(200px, 26vw, 320px);
         margin: 0 0 1rem 1.5rem;
         border-radius: .5rem;
+      }
+
+      .episode-date, .episode-show {
+        color: var(--pico-muted-color);
+        transition: color 800ms ease;
+      }
+
+      .source-links {
+        white-space: nowrap;
+      }
+
+      .source-links a + a::before {
+        content: " · ";
+        color: var(--pico-muted-color);
+        text-decoration: none;
+      }
+
+      .anthology-list {
+        padding-inline-start: 0;
+      }
+
+      .anthology-list li {
+        margin-bottom: .75rem;
+        list-style-type: none;
+      }
+      .chips a {
+        display: inline-block;
+        padding: .1rem .45rem;
+        border: 1px solid color-mix(in srgb, var(--pico-primary) 50%, transparent);
+        border-radius: 999px;
+        font-size: .78rem;
+        text-decoration: none;
+      }
+      .chips a + a::before { content: none; }
+
+      .chips a {
+        transition: color 240ms ease, background-color 240ms ease, border-color 240ms ease;
+      }
+
+      .chips a:hover {
+        color: #0F0E24;
+        background: var(--accent);
+        border-color: var(--accent);
+        animation: none;
+      }
+
+      .podcast-list .episode-name,
+      .anthology-link {
+        transition: color 800ms ease;
+      }
+
+      .anthology-link,
+      .anthology-link:visited {
+        color: inherit;
+        text-decoration: none;
+        animation: none;
+      }
+
+      .podcast-list li:hover .episode-name,
+      .anthology-list li:hover .anthology-link {
+        color: var(--accent);
+        transition-duration: 60ms;
+      }
+
+      .anthology-list li:hover .episode-date,
+      .podcast-list li:hover .episode-show {
+        color: color-mix(in srgb, var(--pico-muted-color) 88%, var(--accent));
+        transition-duration: 60ms;
       }
 
       @media (max-width: 600px) {
@@ -104,18 +192,19 @@
     </style>
   </head>
   <body>
+    <canvas id="cosmic-background" aria-hidden="true"></canvas>
     <main>
     <img class="portrait" src="portrait.jpg" width="640" height="640" alt="David Deutsch">
     <h1 class="title">The David Deutsch Anthology</h1>
-    <p>This page collects <a href="https://www.daviddeutsch.org.uk/" target="_blank">David Deutsch's</a> books, talks, and interviews.</p>
-    <p>A YouTube playlist with some of the interviews can be found <a href="https://www.youtube.com/watch?v=xdtssXITXuE&list=PLlL8eTHbJV9qJIq3kR-V_p9Mavg46pgXf" target="_blank">here</a>.</p>
-    <p>A podcast feed with some of the interviews and talks can be found <a href="podcast.rss" target="_blank">here</a>.</p>
+    <p>This page collects <a class="intro-link" href="https://www.daviddeutsch.org.uk/" target="_blank">David Deutsch's</a> books, talks, and interviews.</p>
+    <p>A YouTube playlist with some of the interviews can be found <a class="intro-link" href="https://www.youtube.com/watch?v=xdtssXITXuE&list=PLlL8eTHbJV9qJIq3kR-V_p9Mavg46pgXf" target="_blank">here</a>.</p>
+    <p>A podcast feed with some of the interviews and talks can be found <a class="intro-link" href="podcast.rss" target="_blank">here</a>.</p>
     <h1>Books</h1>
-    <% books.each do |book| %>
-      <p>
-        <a href="<%= book['urls'].first['url'] %>" target="_blank"><i><%= book['name'] %></i> (<%= book['published_year'] %>)</a>
-      </p>
-    <% end %>
+    <ul class="anthology-list">
+      <% books.each do |book| %>
+        <li><a class="anthology-link" href="<%= book['urls'].first['url'] %>" target="_blank"><%= book['name'] %></a> · <span class="episode-date"><%= book['published_year'] %></span></li>
+      <% end %>
+    </ul>
 
     <!-- TODO
     <h1>Talks</h1>
@@ -133,25 +222,31 @@
     -->
 
     <h1>Interviews</h1>
-    <ul>
-      <% podcast_interviews.each do |podcast| %>
-        <%
-          url = podcast['url'] || podcast['youtube_url'] || podcast['podcast_url']
-          next unless url
-        %>
-        <li>
-          <a href="<%= url %>" target="_blank"><%= podcast['title'] %></a>
-          &middot; <a href="<%= podcast['show']['url'] %>" target="_blank"><%= podcast['show']['name'] %></a>
-          &middot; <%= podcast['published_date'] %>
-        </li>
-      <% end %>
+    <%
+      episodes = podcast_interviews.filter_map do |podcast|
+        sources = [
+            ['Website', podcast['url']],
+            ['YouTube', podcast['youtube_url']],
+            ['Podcast', podcast['podcast_url']]
+          ].select { |_, source_url| source_url }
+        next if sources.empty?
+
+        published_on = Date.strptime(podcast['published_date'], '%Y/%m/%d')
+        day = published_on.day
+        suffix = (11..13).cover?(day % 100) ? 'th' : { 1 => 'st', 2 => 'nd', 3 => 'rd' }.fetch(day % 10, 'th')
+        { podcast: podcast, sources: sources, date: published_on.strftime("#{day}#{suffix} %b %Y") }
+      end
+    %>
+
+    <ul class="anthology-list podcast-list">
+      <% episodes.each do |item| %><li><span class="episode-name"><%= item[:podcast]['title'] %></span><span class="episode-separator"> · </span><span class="episode-show"><%= item[:podcast]['show']['name'] %></span><span class="episode-separator"> · </span><span class="episode-date"><%= item[:date] %></span> <span class="source-links chips"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a> <% end %></span></li><% end %>
     </ul>
 
     <h1>Other</h1>
-    <ul>
+    <ul class="anthology-list">
       <% other.each do |item| %>
         <li>
-          <a href="<%= item['url'] %>" target="_blank"><%= item['name'] %></a>
+          <a class="anthology-link" href="<%= item['url'] %>" target="_blank"><%= item['name'] %></a>
         </li>
       <% end %>
     </ul>
@@ -163,5 +258,6 @@
         Suggest new entries <a href="https://github.com/mokagio/david-deutsch-anthology" target="_blank">here</a>.
       </p>
     </footer>
+    <script src="cosmic-backgrounds.js"></script>
   </body>
 </html>
