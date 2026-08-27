@@ -23,6 +23,11 @@ ruby .claude/skills/audit-list/scripts/audit_list.rb --json > /tmp/audit.json
 
 Takes several minutes — it resolves audio for every interview with no `audio` block, measures every file the list already names, and looks for the artwork of every entry that has none.
 Narrow it with `--links-only` or `--audio-only` when only one pass is wanted; `--audio-only` covers artwork too, since both come out of the same lookups.
+Use `--rejections-only` to rerun the shared false-positive rules immediately, without waiting for unrelated network checks:
+
+```sh
+ruby .claude/skills/audit-list/scripts/audit_list.rb --rejections-only --json
+```
 
 The report keys, which name the audio fields flat — `ListWriter::KEYS` maps them to the `audio` block in the file:
 

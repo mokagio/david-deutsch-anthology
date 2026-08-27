@@ -7,7 +7,7 @@
 # `<enclosure>` needs, and the picture a client shows — so the build never has to
 # ask a third-party host anything.
 #
-#   ruby .claude/skills/audit-list/scripts/audit_list.rb [--links-only|--audio-only] [--json]
+#   ruby .claude/skills/audit-list/scripts/audit_list.rb [--links-only|--audio-only|--rejections-only] [--json]
 #   ruby .claude/skills/audit-list/scripts/audit_list.rb --report <file> --write
 
 require 'json'
@@ -142,7 +142,7 @@ def walk(value, &block)
   end
 end
 
-mode = ARGV.find { |arg| %w[--links-only --audio-only].include?(arg) }
+mode = ARGV.find { |arg| %w[--links-only --audio-only --rejections-only].include?(arg) }
 as_json = ARGV.include?('--json')
 write = ARGV.include?('--write')
 # Resolving takes minutes, so an earlier run's report can be applied directly.
@@ -171,7 +171,7 @@ report = JSON.parse(File.read(from_report)) if from_report
 report['rejected_entries'] = rejected_entries
 mode = '--audio-only' if from_report
 
-unless mode == '--audio-only'
+unless %w[--audio-only --rejections-only].include?(mode)
   urls = collect_urls(data)
   warn "Checking #{urls.size} links..."
   checker = LinkChecker.new
@@ -186,7 +186,7 @@ unless mode == '--audio-only'
   end
 end
 
-unless mode == '--links-only' || from_report
+unless %w[--links-only --rejections-only].include?(mode) || from_report
   # Whatever the feed publishes is what needs auditing, so a talk carrying podcast
   # audio is checked like an interview.
   publishable = FeedBuilder::LABELS.keys.flat_map { |section| data[section] || [] }

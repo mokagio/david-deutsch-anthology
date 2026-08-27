@@ -207,6 +207,20 @@ class DiscoveryTest < Minitest::Test
     project_ignore = Discovery::Ignore.new(rules)
     entries = [
       { 'title' => "Counter Examples To Deutsch's Theory of Knowledge?", 'show' => { 'name' => 'The Theory of Anything' } },
+      { 'title' => 'The "Pseudo Deutsch Theory of Knowledge"',
+        'show' => { 'name' => 'The Theory of Anything' } },
+      { 'title' => 'David Deutsch', 'show' => { 'name' => 'ÆON imminent 🧬 🌀' } },
+      { 'title' => 'How to Understand Your Mind with David Deutsch & Critical Rationalism',
+        'show' => { 'name' => 'The Do It Podcast' } },
+      { 'title' => 'AI Twitter Beefs #2: Yann LeCun, David Deutsch, Tyler Cowen, Jack Clark, Beff Jezos, ' \
+                   'Samuel Hammond vs. Eliezer Yudkowsky, Geoffrey Hinton, Carl Feynman',
+        'show' => { 'name' => 'Doom Debates!' } },
+      { 'title' => 'David Deutsch‘s ”The Beginning of Infinity” - a retrospective in 99 minutes',
+        'show' => { 'name' => 'ToKCast' } },
+      { 'title' => 'Deutsch Discoveries: Part 2 of an introduction to the philosophy of David Deutsch',
+        'show' => { 'name' => 'ToKCast' } },
+      { 'title' => 'An intermittent introduction to Popper and Deutsch',
+        'show' => { 'name' => 'ToKCast' } },
       { 'title' => 'Classical Christian Education is Counter-Cultural | A Conversation with Rev. David Deutsch',
         'show' => { 'name' => 'Reforming Classical Education Podcast' } },
       { 'title' => 'Carlos de la Guardia - AGI, Deutsch, Popper, knowledge, and progress',

@@ -746,19 +746,6 @@ podcast_interviews:
       url: https://edwindoit.com
     published_date: 2026/01/24
 
-  - title: The "Pseudo Deutsch Theory of Knowledge"
-    podcast_url: https://podcasts.apple.com/us/podcast/episode-130-the-pseudo-deutsch-theory-of-knowledge/id1503194218?i=1000745888575&uo=4
-    audio:
-      url: https://anchor.fm/s/14b6fc10/podcast/play/113292055/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-11-30%2Fcde6e7bc-04c9-19cb-3d33-b78394ffce09.mp3
-      type: audio/mpeg
-      length: 132233367
-      duration: 3305
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/1c/af/35/1caf3588-9943-3f96-2c0f-220589f4b490/mza_9924471757698824599.jpg/600x600bb.jpg
-    show:
-      name: The Theory of Anything
-      url: https://www.patreon.com/c/brucenielson/membership
-    published_date: 2026/01/20
-
   - title: "Falling for Physics | David Deutsch"
     podcast_url: https://podcasts.apple.com/us/podcast/falling-for-physics-david-deutsch/id1835761903?i=1000737112823&uo=4
     audio:
@@ -797,32 +784,6 @@ podcast_interviews:
       url: https://www.youtube.com/@SanaLabs/podcasts
     published_date: 2025/09/02
 
-  - title: David Deutsch
-    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch/id1771517982?i=1000722555502&uo=4
-    audio:
-      url: https://anchor.fm/s/f8df0c20/podcast/play/107029820/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-7-18%2F405872914-44100-2-3f681bd782af4.m4a
-      type: audio/mp4
-      length: 16117091
-      duration: 996
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/82/b3/95/82b395f4-e8cf-970f-03ad-6ce19357293a/mza_3573698568670918071.jpg/600x600bb.jpg
-    show:
-      name: ÆON imminent 🧬 🌀
-      url: https://podcasters.spotify.com/pod/show/andrewflynn204
-    published_date: 2025/08/18
-
-  - title: "How to Understand Your Mind with David Deutsch & Critical Rationalism"
-    podcast_url: https://podcasts.apple.com/us/podcast/how-to-understand-your-mind-with-david-deutsch/id1823443356?i=1000714947097&uo=4
-    audio:
-      url: https://anchor.fm/s/106b373e0/podcast/play/104766462/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-5-28%2F402972464-44100-2-6068b478f2a91.mp3
-      type: audio/mpeg
-      length: 14456371
-      duration: 903
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/02/63/7f/02637fd5-d85b-b681-fe96-010817625b82/mza_4370017868957764379.jpg/600x600bb.jpg
-    show:
-      name: The Do It Podcast
-      url: https://edwindoit.com
-    published_date: 2025/06/28
-
   - title: Interview with David Deutsch
     podcast_url: https://podcasts.apple.com/us/podcast/episode-100-interview-with-david-deutsch/id1503194218?i=1000681411903&uo=4
     audio:
@@ -835,19 +796,6 @@ podcast_interviews:
       name: The Theory of Anything
       url: https://www.patreon.com/c/brucenielson/membership
     published_date: 2024/12/23
-
-  - title: "AI Twitter Beefs #2: Yann LeCun, David Deutsch, Tyler Cowen, Jack Clark, Beff Jezos, Samuel Hammond vs. Eliezer Yudkowsky, Geoffrey Hinton, Carl Feynman"
-    podcast_url: https://podcasts.apple.com/us/podcast/ai-twitter-beefs-2-yann-lecun-david-deutsch-tyler-cowen/id1751366208?i=1000676769303&uo=4
-    audio:
-      url: https://api.substack.com/feed/podcast/151589770/fe47a89425a773b7664e3db6cd3e59d5.mp3
-      type: audio/mpeg
-      length: 64118847
-      duration: 4007
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/c0/90/9b/c0909b97-a844-d693-ec8c-1d0f69e12223/mza_4344035330681835796.jpg/600x600bb.jpg
-    show:
-      name: "Doom Debates!"
-      url: https://lironshapira.substack.com/podcast
-    published_date: 2024/11/13
 
   - title: The Deutsch Files IV (ToKCast version)
     url: https://brettroberthall.podbean.com/e/ep-223-the-deutsch-files-iv-tokcast-version/
@@ -910,17 +858,6 @@ podcast_interviews:
       name: The Unadulterated Intellect
       url: https://open.spotify.com/show/5xD9XCKiagoraGYvL0UHrT
     published_date: 2023/03/24
-
-  - title: David Deutsch‘s ”The Beginning of Infinity” - a retrospective in 99 minutes
-    podcast_url: https://podcasts.apple.com/us/podcast/ep-99-david-deutsch-s-the-beginning-of/id1447087694?i=1000542058655&uo=4
-    audio:
-      url: https://mcdn.podbean.com/mf/web/dkvgnf/Knitted_Raw_Chapters_99_minute_version_Podcast9za1r.mp3
-      type: audio/mpeg
-      length: 194009430
-      duration: 5940
-    image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts126/v4/2e/59/d8/2e59d835-916e-071a-48c7-7cbef70df419/mza_41688498060216287.png/600x600bb.jpg
-    show: *tokcast
-    published_date: 2021/11/16
 
   - title: David Deutsch answers a question about dark energy. A question for David number 10.
     url: https://brettroberthall.podbean.com/e/ep-97-david-deutsch-answers-a-question-about-dark-energy-a-question-for-david-number-10/
@@ -1039,23 +976,3 @@ podcast_interviews:
       name: Fallible Animals
       url: https://www.youtube.com/@loganchipkin4905
     published_date: 2021/01/19
-
-  - title: "Deutsch Discoveries: Part 2 of an introduction to the philosophy of David Deutsch"
-    url: https://brettroberthall.podbean.com/e/deutsch-discoveries-part-2-of-an-introduction-to-the-philosophy-of-david-deutsch/
-    audio:
-      url: https://mcdn.podbean.com/mf/web/ibxp3x/Deutsch_Discoveriesaqj5o.mp3
-      type: audio/mpeg
-      length: 26179940
-      duration: 802
-    show: *tokcast
-    published_date: 2020/12/04
-
-  - title: An intermittent introduction to Popper and Deutsch
-    url: https://brettroberthall.podbean.com/e/ep-37-an-intermittent-introduction-to-popper-and-deutsch/
-    audio:
-      url: https://mcdn.podbean.com/mf/web/qfesv5/Introductions.mp3
-      type: audio/mpeg
-      length: 23901749
-      duration: 995
-    show: *tokcast
-    published_date: 2020/11/13
