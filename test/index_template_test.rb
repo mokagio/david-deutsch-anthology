@@ -34,6 +34,7 @@ class IndexTemplateTest < Minitest::Test
     )
 
     refute_includes html, 'data-version='
+    assert_includes html, '<a class="episode-name" href="https://episode.example" target="_blank">An interview</a>'
     assert_equal 1, html.scan('<a href="https://episode.example" target="_blank">Website</a>').size
     assert_equal 1, html.scan('27th Aug 2026').size
     refute_includes html, '<a href="https://show.example"'
@@ -48,6 +49,7 @@ class IndexTemplateTest < Minitest::Test
     )
 
     assert_equal 0, html.scan('>Website</a>').size
+    assert_includes html, '<a class="episode-name" href="https://youtube.example/watch" target="_blank">An interview</a>'
     assert_equal 1, html.scan('>YouTube</a>').size
     assert_equal 1, html.scan('>Podcast</a>').size
   end
