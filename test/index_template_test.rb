@@ -107,4 +107,11 @@ class IndexTemplateTest < Minitest::Test
     assert_includes html, '<canvas id="cosmic-background"'
     assert_includes html, '<script src="cosmic-backgrounds.js"></script>'
   end
+
+  def test_intro_links_are_styled_without_a_layout_wrapper
+    html = render(interview(podcast_url: 'https://podcast.example/episode'))
+
+    assert_equal 3, html.scan('class="intro-link"').size
+    refute_includes html, '<div class="intro">'
+  end
 end
