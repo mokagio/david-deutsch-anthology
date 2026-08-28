@@ -41,25 +41,6 @@
         :root[data-theme="dark"] { animation: none; }
       }
 
-      /* A visited link takes no colour that resolves through a custom property:
-         Chrome refuses those on visited links, whatever rule they come from, and
-         the link falls back to the body's white. So these are the same four stops
-         written out literally, a quarter of the way to white, on their own
-         keyframes in step with `drift`. The `color` beneath is what shows if the
-         animation is refused too. */
-      @keyframes drift-visited {
-        0%   { color: #B7A3DD; }
-        25%  { color: #CD9CD5; }
-        50%  { color: #ADAAD2; }
-        75%  { color: #98ADE7; }
-        100% { color: #B7A3DD; }
-      }
-
-      a:visited {
-        color: #B7A3DD;
-        animation: drift-visited 60s linear infinite;
-      }
-
       #cosmic-background {
         position: fixed;
         inset: 0;
@@ -131,7 +112,12 @@
         margin-bottom: .75rem;
         list-style-type: none;
       }
+      .chips {
+        color: var(--pico-primary);
+      }
+
       .chips a {
+        color: inherit;
         display: inline-block;
         padding: .1rem .45rem;
         border: 1px solid color-mix(in srgb, var(--pico-primary) 50%, transparent);
@@ -158,9 +144,7 @@
       }
 
       .episode-name,
-      .episode-name:visited,
-      .anthology-link,
-      .anthology-link:visited {
+      .anthology-link {
         color: inherit;
         text-decoration: none;
         animation: none;
