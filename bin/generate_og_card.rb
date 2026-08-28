@@ -71,8 +71,9 @@ def page(art)
       <div class="art"></div>
       <div class="fade"></div>
       <div class="text">
-        <!-- Set as display type, the article reads as filler and costs a line. -->
-        <h1>#{Site::TITLE.delete_prefix('The ')}</h1>
+        <!-- Set as display type: the article reads as filler, and the three words
+             are stacked rather than left to wrap where the column happens to end. -->
+        <h1>#{Site::TITLE.delete_prefix('The ').split.join('<br>')}</h1>
         <p>#{Site::DESCRIPTION}</p>
         <div class="rule"></div>
       </div>
