@@ -26,6 +26,7 @@ require_relative '../lib/media_resolver'
 require_relative '../lib/feed_builder'
 require_relative '../lib/show_notes'
 require_relative '../lib/podcast_guid'
+require_relative '../lib/build_date'
 
 SITE_URL = Site::URL
 FEED_TITLE = 'David Deutsch Podcast Interviews'
@@ -84,9 +85,12 @@ feed_title = FEED_TITLE
 feed_description = FEED_DESCRIPTION
 feed_author = FEED_AUTHOR
 site_url = SITE_URL
-# Derived from the newest episode rather than the clock, so regenerating without
-# a content change produces an identical file.
-build_date = episodes.first[:published_at]
+pub_date = episodes.first[:published_at]
+# What the channel last published and when the feed last changed are different
+# questions. Answering both with the newest episode's date told every caching
+# client that nothing had changed since February, while runtimes and artwork
+# were being added underneath it.
+build_date = BuildDate.current
 
 template = ERB.new(File.read(File.join('templates', 'rss_feed.erb')), trim_mode: '-')
 File.write(output_path, template.result(binding))
