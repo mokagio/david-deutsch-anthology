@@ -248,7 +248,7 @@
       <% episodes.each do |item| %><li><a class="episode-name" href="<%= item[:sources].first[1] %>" target="_blank"><%= item[:podcast]['title'] %></a><span class="episode-separator"> · </span><span class="episode-show"><%= item[:podcast]['show']['name'] %></span><span class="episode-separator"> · </span><span class="episode-date"><%= item[:date] %></span> <span class="source-links chips"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a> <% end %></span></li><% end %>
     </ul>
 
-    <h1>Other</h1>
+    <h1>Others</h1>
     <ul class="anthology-list">
       <% other.each do |item| %>
         <li>
