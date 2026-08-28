@@ -130,12 +130,18 @@
         margin-bottom: .75rem;
         list-style-type: none;
       }
-      .chips {
+      /* Chrome drops a var()-derived colour on a link once it has been visited,
+         whatever rule it comes from, and the link falls back to the body's
+         white. Inheriting from a wrapper survives that. */
+      .accent-link {
         color: var(--pico-primary);
       }
 
-      .chips a {
+      .accent-link a {
         color: inherit;
+      }
+
+      .chips a {
         display: inline-block;
         padding: .1rem .45rem;
         border: 1px solid color-mix(in srgb, var(--pico-primary) 50%, transparent);
@@ -204,9 +210,9 @@
     <main>
     <img class="portrait" src="portrait.jpg" width="640" height="640" alt="David Deutsch">
     <h1 class="title">The David Deutsch Anthology</h1>
-    <p>This page collects <a class="intro-link" href="https://www.daviddeutsch.org.uk/" target="_blank">David Deutsch's</a> books, talks, and interviews.</p>
-    <p>A YouTube playlist with some of the interviews can be found <a class="intro-link" href="https://www.youtube.com/watch?v=xdtssXITXuE&list=PLlL8eTHbJV9qJIq3kR-V_p9Mavg46pgXf" target="_blank">here</a>.</p>
-    <p>A podcast feed with some of the interviews and talks can be found <a class="intro-link" href="podcast.rss" target="_blank">here</a>.</p>
+    <p>This page collects <span class="accent-link"><a class="intro-link" href="https://www.daviddeutsch.org.uk/" target="_blank">David Deutsch's</a></span> books, talks, and interviews.</p>
+    <p>A YouTube playlist with some of the interviews can be found <span class="accent-link"><a class="intro-link" href="https://www.youtube.com/watch?v=xdtssXITXuE&list=PLlL8eTHbJV9qJIq3kR-V_p9Mavg46pgXf" target="_blank">here</a></span>.</p>
+    <p>A podcast feed with some of the interviews and talks can be found <span class="accent-link"><a class="intro-link" href="podcast.rss" target="_blank">here</a></span>.</p>
     <h1>Books</h1>
     <ul class="anthology-list">
       <% books.each do |book| %>
@@ -247,7 +253,7 @@
     %>
 
     <ul class="anthology-list podcast-list">
-      <% episodes.each do |item| %><li><a class="episode-name" href="<%= item[:sources].first[1] %>" target="_blank"><%= item[:podcast]['title'] %></a><span class="episode-separator"> · </span><span class="episode-show"><%= item[:podcast]['show']['name'] %></span><span class="episode-separator"> · </span><span class="episode-date"><%= item[:date] %></span> <span class="source-links chips"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a> <% end %></span></li><% end %>
+      <% episodes.each do |item| %><li><a class="episode-name" href="<%= item[:sources].first[1] %>" target="_blank"><%= item[:podcast]['title'] %></a><span class="episode-separator"> · </span><span class="episode-show"><%= item[:podcast]['show']['name'] %></span><span class="episode-separator"> · </span><span class="episode-date"><%= item[:date] %></span> <span class="source-links chips accent-link"><% item[:sources].each do |label, url| %><a href="<%= url %>" target="_blank"><%= label %></a> <% end %></span></li><% end %>
     </ul>
 
     <h1>Others</h1>
@@ -262,8 +268,8 @@
     <footer>
       <hr/>
       <p>
-        Curated by <a href="https://giolodi.com" target="_blank">Gio Lodi</a>.
-        Suggest new entries <a href="https://github.com/mokagio/david-deutsch-anthology" target="_blank">here</a>.
+        Curated by <span class="accent-link"><a href="https://giolodi.com" target="_blank">Gio Lodi</a></span>.
+        Suggest new entries <span class="accent-link"><a href="https://github.com/mokagio/david-deutsch-anthology" target="_blank">here</a></span>.
       </p>
       <p class="credits">
         <em>This page is but a collection of links. All credits go to the creators — and David, of course.</em>
