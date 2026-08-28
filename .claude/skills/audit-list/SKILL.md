@@ -29,6 +29,8 @@ Use `--rejections-only` to rerun the shared false-positive rules immediately, wi
 ruby .claude/skills/audit-list/scripts/audit_list.rb --rejections-only --json
 ```
 
+A full run also resolves every entry that has no `published_at`, which is a feed lookup each. The first run after this landed does that for the whole list; afterwards only new entries are left.
+
 The report keys, which name the audio fields flat — `ListWriter::KEYS` maps them to the `audio` block in the file:
 
 - `audio_found` — a new `audio_url`, with its `audio_type` and `audio_length`, the `entry_url` identifying which entry, and `matched_title` when it came from matching an episode in a show's feed.
@@ -37,6 +39,8 @@ The report keys, which name the audio fields flat — `ListWriter::KEYS` maps th
 - `audio_unreadable` — a recorded audio URL that could not be measured. Worth a look: the file may have moved.
 - `audio_timed` — an `audio_duration`, in seconds, for an entry whose runtime the list does not record. Only a feed or Apple states one, and only when it describes the file the entry already records: a runtime taken from another release of the same conversation would be a different cut.
 - `audio_untimed` — no runtime, so the client shows 0s until it downloads the file. Nothing to do about it; the audio found by scraping a page comes with no runtime attached.
+- `published_dated` — a `published_at`, in RFC 2822, for an entry whose hour the list does not record. Only a feed states one, and only when it describes the entry's own file and falls on the day the list already records: the anthology asserts the day, and a source naming another is describing another release.
+- `published_undated` — no hour, so the feed stamps the entry midday UTC. Harmless; the recorded day is what a client shows.
 - `audio_missing` — no audio anywhere. Usually a video-only appearance. Leave alone.
 - `rejected_entries` — entries that now match the durable namesake or commentary rules used by `/find-entries`. These include book summaries, reviews, readings and audiobooks that name Deutsch or his books without featuring him. Remove them from the anthology after confirming the recorded judgement still applies.
 - `artwork_found` — an `image_url`, with the `scope` it came from: `episode` is the episode's own picture, `show` is the show's, which every episode of that show would carry. `size` is what the file measured.

@@ -10,6 +10,7 @@
 #   ruby .claude/skills/audit-list/scripts/audit_list.rb [--links-only|--audio-only|--rejections-only] [--json]
 #   ruby .claude/skills/audit-list/scripts/audit_list.rb --report <file> --write
 
+require 'date'
 require 'json'
 require 'net/http'
 require 'uri'
@@ -116,6 +117,14 @@ class LinkChecker
 end
 
 # Every string under a key ending in `url`, with the entries that point at it.
+# Why an entry keeps the midday stamp rather than the hour its show published it.
+def reason_undated(result, stamp, same_file)
+  return "instant is #{result.audio_url}'s, not the recorded file's" unless same_file
+  return 'no source feed states one' unless stamp
+
+  "source states #{stamp.to_date}, and the list records another day"
+end
+
 def collect_urls(data)
   urls = Hash.new { |hash, key| hash[key] = [] }
 
@@ -198,11 +207,12 @@ unless %w[--links-only --rejections-only].include?(mode) || from_report
   incomplete = publishable.select { |e| e.dig('audio', 'url') && !(e.dig('audio', 'type') && e.dig('audio', 'length')) }
   recorded = publishable.select { |e| %w[url type length].all? { |key| e.dig('audio', key) } }
   untimed = publishable.select { |e| e.dig('audio', 'url') && !e.dig('audio', 'duration') }
+  undated = publishable.select { |e| e.dig('audio', 'url') && !e['published_at'] }
   # A picture the entry inherits from its show already reaches the feed.
   unillustrated = publishable.reject { |e| e['image_url'] || e.dig('show', 'image_url') }
 
   warn "Looking for audio for #{pending.size} interviews, sizing #{incomplete.size}, " \
-       "timing #{untimed.size}, checking #{recorded.size} recorded files, " \
+       "timing #{untimed.size}, dating #{undated.size}, checking #{recorded.size} recorded files, " \
        "illustrating #{unillustrated.size}..."
   resolver = MediaResolver.new(logger: ->(message) { warn message })
 
@@ -274,6 +284,32 @@ unless %w[--links-only --rejections-only].include?(mode) || from_report
     )
   end
 
+  # Only a feed states the hour a show published an episode; the list records the
+  # day, and without the hour the feed stamps it midday UTC.
+  undated.each do |entry|
+    warn "  dating #{entry['title']}"
+    result = resolver.resolve(entry)
+    finding = { 'title' => entry['title'], 'entry_url' => MediaResolver.source_url(entry) }
+
+    same_file = Discovery.normalize_audio_url(result.audio_url.to_s) ==
+                Discovery.normalize_audio_url(entry.dig('audio', 'url'))
+    stamp = result.published_at if same_file
+
+    # The anthology asserts the day; a feed may only refine the hour within it. A
+    # source that names another day is describing another release, or is wrong,
+    # and either way the site and the feed must not disagree about the date.
+    unless stamp && stamp.to_date.to_s == Date.parse(entry['published_date'] || entry['delivered_date']).to_s
+      (report['published_undated'] ||= []) << finding.merge(
+        'reason' => reason_undated(result, stamp, same_file)
+      )
+      next
+    end
+
+    (report['published_dated'] ||= []) << finding.merge(
+      { 'published_at' => stamp.rfc2822, 'strategy' => result.strategy, 'matched_title' => result.matched_title }.compact
+    )
+  end
+
   # Re-measuring what is already recorded is how a two-byte stub and a moved file
   # get noticed. Ad-inserted audio drifts by a fraction of a percent; anything
   # further means the recorded number is wrong.
@@ -325,7 +361,8 @@ if write
                                 .to_h { |entry| [MediaResolver.source_url(entry), entry] }
 
   findings = report['audio_found'] + (report['audio_sized'] || []) +
-             (report['audio_timed'] || []) + (report['artwork_found'] || [])
+             (report['audio_timed'] || []) + (report['published_dated'] || []) +
+             (report['artwork_found'] || [])
 
   # Only ever add a key the entry lacks, so applying a report twice is a no-op.
   # Grouped by entry: audio and artwork found in the same run go in together.
@@ -369,6 +406,12 @@ else
   unless timed.empty?
     puts "\n#{timed.size} entries with a runtime to add:"
     timed.each { |t| puts "  #{Duration.hms(t['audio_duration'])}  #{t['title']}" }
+  end
+
+  dated = report['published_dated'] || []
+  unless dated.empty?
+    puts "\n#{dated.size} entries with a publication time to add:"
+    dated.each { |d| puts "  #{d['published_at']}  #{d['title']}" }
   end
 
   unreadable = report['audio_unreadable'] || []
