@@ -6,6 +6,7 @@ require_relative 'media_resolver'
 require_relative 'enclosure'
 require_relative 'discovery'
 require_relative 'duration'
+require_relative 'published_at'
 
 # Turns the interview list into the episodes the feed template renders, and says
 # what it left out and why.
@@ -92,7 +93,7 @@ module FeedBuilder
         page_url: page_url,
         guid: page_url,
         # A talk records when it was delivered; an interview, when it was published.
-        published_at: Time.parse(entry['published_date'] || entry['delivered_date']),
+        published_at: PublishedAt.parse(entry['published_date'] || entry['delivered_date']),
         label: LABELS.fetch(section),
         show_name: show_name,
         show_url: entry.dig('show', 'url'),
