@@ -186,6 +186,7 @@ podcast_interviews:
 
   - title: Surviving the Cosmos
     url: https://www.samharris.org/podcasts/making-sense-episodes/surviving-the-cosmos
+    podcast_url: https://podcasts.apple.com/qa/podcast/22-surviving-the-cosmos/id733163012?i=1000359043206
     audio:
       url: https://traffic.libsyn.com/secure/wakingup/Making_Sense_22_Surviving_the_Cosmos_Paywall_7-27-22.mp3
       type: audio/mpeg
@@ -197,6 +198,7 @@ podcast_interviews:
 
   - title: Finding our Way in the Cosmos
     url: https://www.samharris.org/podcasts/making-sense-episodes/finding-our-way-in-the-cosmos
+    podcast_url: https://open.spotify.com/episode/7kTe0ZNS70Pk7ERGPSrBoW
     audio:
       url: https://traffic.libsyn.com/secure/wakingup/Making_Sense_52_Finding_Our_Way_Paywall_7-27-22.mp3
       type: audio/mpeg
@@ -206,6 +208,8 @@ podcast_interviews:
 
   - title: David Deutsch and Naval Ravikant — The Fabric of Reality, The Importance of Disobedience, The Inevitability of Artificial General Intelligence, Finding Good Problems, Redefining Wealth, Foundations of True Knowledge, Harnessing Optimism, Quantum Computing, and More
     url: https://tim.blog/2023/03/24/david-deutsch-naval-ravikant/
+    podcast_url: https://podcasts.apple.com/us/podcast/662-david-deutsch-and-naval-ravikant-the-fabric/id863897795?i=1000605565529
+    youtube_url: https://www.youtube.com/watch?v=FfWbcrObpUY
     audio:
       url: https://rss.art19.com/episodes/0d001a31-eb7d-4f15-b8e5-cc6d319ba39d.mp3?rss_browser=BAhJIgtDaHJvbWUGOgZFVA%3D%3D--d05363d83ce333c74f32188013892b2863ad051c
       type: audio/mpeg
@@ -219,6 +223,8 @@ podcast_interviews:
 
   - title: David Deutsch on Multiple Worlds and Our Place in Them
     url: https://conversationswithtyler.com/episodes/david-deutsch/
+    podcast_url: https://podcasts.apple.com/gb/podcast/david-deutsch-on-multiple-worlds-and-our-place-in-them/id983795625?i=1000523911995
+    youtube_url: https://www.youtube.com/watch?v=b_6vYwCkIpc
     audio:
       url: https://traffic.libsyn.com/secure/cowenconvos/CWT-126-DavidDeutsch-podcast-v1Final.mp3?dest-id=850607
       type: audio/mpeg
@@ -247,6 +253,8 @@ podcast_interviews:
 
   - title: David Deutsch & Steven Pinker (First Ever Public Dialogue) — AGI, P(Doom), and The Enemies of Progress
     url: https://josephnoelwalker.com/153-deutsch-pinker-dialogue/
+    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-steven-pinker-first-ever-public-dialogue/id1236553683?i=1000639115173
+    youtube_url: https://www.youtube.com/watch?v=3Ho-vJZsMgk
     audio:
       url: https://enrichment.soundstack.com/4vjqq8/traffic.omny.fm/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/a482236a-5a44-43bd-9af5-b0db00198610/audio.mp3?utm_source=Podcast&in_playlist=f287bcce-12f0-44fa-b389-af9000132cfb
       type: audio/mpeg
@@ -260,6 +268,7 @@ podcast_interviews:
 
   - title: Against Bayesianism
     url: https://josephnoelwalker.com/139-david-deutsch/
+    podcast_url: https://podcasts.apple.com/us/podcast/against-bayesianism-david-deutsch/id1236553683?i=1000558544632
     audio:
       url: https://enrichment.soundstack.com/4vjqq8/traffic.omny.fm/d/clips/d3d56d8d-11c9-411a-aade-af8f001be4a7/119996bc-5b83-4d07-aef7-af9000132ced/82637707-880b-4eee-81e7-af9000144577/audio.mp3?utm_source=Podcast&in_playlist=f287bcce-12f0-44fa-b389-af9000132cfb
       type: audio/mpeg
@@ -270,6 +279,7 @@ podcast_interviews:
     published_date: 2022/04/25
 
   - title: On Beauty, Knowledge, and Progress
+    podcast_url: https://podcasts.apple.com/us/podcast/existential-hope-podcast-david-deutsch-on-beauty-knowledge/id1573395849?i=1000611016811
     youtube_url: https://www.youtube.com/watch?v=vYNLahd6fds
     audio:
       url: https://sphinx.acast.com/p/open/s/683f0798c966cde736234a29/e/68405d395de209b54b1e025c/media.mp3
@@ -320,6 +330,7 @@ podcast_interviews:
     published_date: 2024/11/12
 
   - title: The Multiverse is REAL
+    podcast_url: https://podcasts.apple.com/us/podcast/57-david-deutsch-the-multiverse-is-real/id1458675168?i=1000648014828
     youtube_url: https://www.youtube.com/watch?v=bux0SjaUCY0
     audio:
       url: https://anchor.fm/s/10a220e88/podcast/play/109253846/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-9-5%2F408715666-44100-2-28ad692bf22fa061.mp3
@@ -367,6 +378,7 @@ podcast_interviews:
     published_date: 2024/10/28
 
   - title: Physicist Dr. David Deutsch-Quantum Computing, Turing Machines, & Multiverses
+    podcast_url: https://podcasts.apple.com/tn/podcast/physicist-dr-david-deutsch-quantum-computing-turing/id1516343565?i=1000674179249
     youtube_url: https://www.youtube.com/watch?v=S7GS_T_2dyE
     audio:
       url: https://mcdn.podbean.com/mf/web/6mu2h8t6f8cjtcjv/Physicist_Dr_David_Deutsch-_Quantum_Computing_Turing_Machines_and_Multiverses_The_Saad_Truth_with_Dr_Saad_729_93g79.mp3
@@ -380,6 +392,7 @@ podcast_interviews:
     published_date: 2024/10/24
 
   - title: Physicist Dr. David Deutsch Returns - Science, Mathematics & Jew Hatred
+    podcast_url: https://podcasts.apple.com/us/podcast/physicist-dr-david-deutsch-returns-science-mathematics/id1516343565?i=1000676507185
     youtube_url: https://www.youtube.com/watch?v=ZcPExkCWzRM
     audio:
       url: https://mcdn.podbean.com/mf/web/9xkzft962ir4vegq/Physicist_Dr_David_Deutsch_Returns_-_Science_Mathematics_Jew-Hatred_The_Saad_Truth_with_Dr_Saad_749_b66o6.mp3
@@ -391,6 +404,7 @@ podcast_interviews:
     published_date: 2024/11/12
 
   - title: David Deutsch, Peter Boghossian, & Reid Nicewonder Talk Fermi Paradox, Ideological Contagion, & More
+    podcast_url: https://podcasts.apple.com/in/podcast/david-deutsch-peter-boghossian-reid-nicewonder-talk/id1650150225?i=1000648136488
     youtube_url: https://www.youtube.com/watch?v=qPvTbftn-xY
     audio:
       url: https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/8cb104e9-39a8-4ddc-9e91-a0e10355329b/14631866-david-deutsch-peter-boghossian-reid-nicewonder-talk-fermi-paradox-ideological-contagion-more.mp3?dest-id=4872530
@@ -405,6 +419,7 @@ podcast_interviews:
 
   - title: "David Deutsch: the fabric of explanations, optimism and creativity"
     url: https://www.fromthelotus.world/p/23-david-deutsch-the-fabric-of-explanations
+    podcast_url: https://podcasts.apple.com/nl/podcast/12-david-deutsch-the-fabric-of-explanations/id1798566809?i=1000714346642
     audio:
       url: https://api.substack.com/feed/podcast/166343984/2df7a8f83f444e18ec4f9af70ed83457.mp3
       type: audio/mpeg
@@ -591,6 +606,7 @@ podcast_interviews:
     published_date: 2025/08/23
 
   - title: How to Reverse Academia's Stagnation
+    podcast_url: https://podcasts.apple.com/us/podcast/ep-8-david-deutsch-how-to-reverse-academias-stagnation/id1816409555?i=1000725121635
     youtube_url: https://www.youtube.com/watch?v=Em-85baHx0A
     audio:
       url: https://mcdn.podbean.com/mf/web/tc493pk23uffxq8a/Edited_Transcript_Twitter_Podcast7j850.mp3
@@ -624,6 +640,7 @@ podcast_interviews:
     published_date: 2025/06/28
 
   - title: What is the best pathway to knowledge?
+    podcast_url: https://podcasts.apple.com/gb/podcast/what-is-the-best-pathway-to-knowledge-with-david/id1530320341?i=1000726992351
     youtube_url: https://www.youtube.com/watch?v=7r56Z76L_I8
     audio:
       url: https://episodes.captivate.fm/episode/0fbd5d16-2f06-42a7-80b3-ed000c5ce501.mp3
@@ -691,20 +708,6 @@ podcast_interviews:
       url: https://www.youtube.com/@prashanths1253
     published_date: 2025/10/22
 
-  - title: Falling for Physics
-    youtube_url: https://www.youtube.com/watch?v=rGQboQyI79A
-    show:
-      name: Anjali
-      url: https://www.youtube.com/@anjali.thelightside
-    published_date: 2025/11/17
-
-  - title: The Fun Criterion, Inner Conflicts, and How the Self Resolves Them
-    youtube_url: https://www.youtube.com/watch?v=e7CrXqUcqzs
-    show:
-      name: Edwin Do It
-      url: https://www.youtube.com/@Edwindoit
-    published_date: 2026/01/24
-
   - title: What Is Quantum Mechanics Really Telling Us?
     youtube_url: https://www.youtube.com/watch?v=Af5LICjFIBc
     show:
@@ -735,6 +738,7 @@ podcast_interviews:
 
   - title: The Fun Criterion, Inner Conflicts, and How the Self Resolves Them — David Deutsch
     podcast_url: https://podcasts.apple.com/us/podcast/the-fun-criterion-inner-conflicts-and-how-the/id1823443356?i=1000746464958&uo=4
+    youtube_url: https://www.youtube.com/watch?v=e7CrXqUcqzs
     audio:
       url: https://anchor.fm/s/106b373e0/podcast/play/114480019/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-0-24%2F416738882-44100-2-5a5c6fe0e7835.mp3
       type: audio/mpeg
@@ -748,6 +752,7 @@ podcast_interviews:
 
   - title: "Falling for Physics | David Deutsch"
     podcast_url: https://podcasts.apple.com/us/podcast/falling-for-physics-david-deutsch/id1835761903?i=1000737112823&uo=4
+    youtube_url: https://www.youtube.com/watch?v=rGQboQyI79A
     audio:
       url: https://anchor.fm/s/108b5c260/podcast/play/111301410/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-10-17%2F412633821-44100-2-eb9401ac6df28.m4a
       type: audio/mp4
