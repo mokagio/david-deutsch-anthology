@@ -71,7 +71,8 @@ def page(art)
       <div class="art"></div>
       <div class="fade"></div>
       <div class="text">
-        <h1>#{Site::TITLE}</h1>
+        <!-- Set as display type, the article reads as filler and costs a line. -->
+        <h1>#{Site::TITLE.delete_prefix('The ')}</h1>
         <p>#{Site::DESCRIPTION}</p>
         <div class="rule"></div>
       </div>
