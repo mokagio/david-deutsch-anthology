@@ -25,11 +25,17 @@ require_relative '../lib/site'
 require_relative '../lib/media_resolver'
 require_relative '../lib/feed_builder'
 require_relative '../lib/show_notes'
+require_relative '../lib/podcast_guid'
 
 SITE_URL = Site::URL
 FEED_TITLE = 'David Deutsch Podcast Interviews'
 FEED_DESCRIPTION = 'A collection of podcast appearances by David Deutsch.'
 FEED_AUTHOR = 'David Deutsch'
+# A client tells this podcast from every other by its `<podcast:guid>`, which is
+# seeded from the feed's URL and then belongs to the podcast rather than to the
+# address. This is that URL as it stood when the GUID was assigned: it stays as
+# it is if the feed ever moves, or every subscription starts over as a new show.
+FEED_GUID_SEED = 'https://mokagio.github.io/david-deutsch-anthology/podcast.rss'
 
 def h(text) = CGI.escapeHTML(text.to_s)
 
@@ -73,6 +79,7 @@ puts "No channel artwork: drop a square JPEG or PNG at #{Cover::PATHS.first}." u
 
 episodes = build.episodes
 feed_url = File.join(SITE_URL, File.basename(output_path))
+feed_guid = PodcastGuid.for(FEED_GUID_SEED)
 feed_title = FEED_TITLE
 feed_description = FEED_DESCRIPTION
 feed_author = FEED_AUTHOR
