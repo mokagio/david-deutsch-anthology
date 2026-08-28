@@ -29,9 +29,6 @@ SITE_URL = 'https://mokagio.github.io/david-deutsch-anthology/'
 FEED_TITLE = 'David Deutsch Podcast Interviews'
 FEED_DESCRIPTION = 'A collection of podcast appearances by David Deutsch.'
 FEED_AUTHOR = 'David Deutsch'
-# The channel artwork, dropped in by hand: nothing in `list.yml` is ours to use
-# as a cover, and a client shows a blank tile for the show without one.
-COVER_PATHS = %w[assets/cover.jpg assets/cover.jpeg assets/cover.png].freeze
 
 def h(text) = CGI.escapeHTML(text.to_s)
 
@@ -65,13 +62,13 @@ abort 'Nothing in list.yml has usable audio.' if build.episodes.empty?
 output_path = File.join('public', 'podcast.rss')
 FileUtils.mkdir_p(File.dirname(output_path))
 
-cover = COVER_PATHS.find { |candidate| File.exist?(candidate) }
+cover = Cover::PATHS.find { |candidate| File.exist?(candidate) }
 cover_errors = cover ? Cover.errors(cover) : []
 abort "The channel artwork will not do:\n  #{cover_errors.join("\n  ")}" unless cover_errors.empty?
 
 Assets.publish(into: 'public')
 feed_image_url = cover ? File.join(SITE_URL, File.basename(cover)) : nil
-puts "No channel artwork: drop a square JPEG or PNG at #{COVER_PATHS.first}." unless cover
+puts "No channel artwork: drop a square JPEG or PNG at #{Cover::PATHS.first}." unless cover
 
 episodes = build.episodes
 feed_url = File.join(SITE_URL, File.basename(output_path))

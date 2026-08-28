@@ -8,6 +8,9 @@ require_relative 'image_probe'
 # `Content-Type` that contradicts its own bytes — which is how artwork gets
 # rejected by a client that reads the header rather than the name.
 module Cover
+  # Dropped in by hand: nothing in `list.yml` is ours to use as a cover.
+  PATHS = %w[assets/cover.jpg assets/cover.jpeg assets/cover.png].freeze
+
   FORMATS = { '.jpg' => :jpeg, '.jpeg' => :jpeg, '.png' => :png }.freeze
 
   EXTENSIONS = { jpeg: 'jpg', png: 'png' }.freeze
