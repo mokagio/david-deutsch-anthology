@@ -172,3 +172,51 @@ class MediaResolverArtworkTest < Minitest::Test
 
   def apple_lookup = 'https://itunes.apple.com/lookup?id=123&entity=podcastEpisode&limit=200'
 end
+
+class MediaResolverPublicationTimeTest < Minitest::Test
+  FEED_URL = 'https://example.com/feed.xml'
+
+  FEED = <<~XML
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <rss version="2.0">
+      <channel>
+        <title>A Show</title>
+        <link>https://example.com/</link>
+        <description>A show.</description>
+        <item>
+          <title>The Deutsch Files with David Deutsch</title>
+          <pubDate>Thu, 11 Jan 2024 00:00:00 +1100</pubDate>
+          <enclosure url="https://example.com/a.mp3" type="audio/mpeg" length="1234567" />
+        </item>
+      </channel>
+    </rss>
+  XML
+
+  # The hour the show published it, which the list records only as a day.
+  def test_carries_the_instant_the_source_feed_stated
+    assert_equal Time.utc(2024, 1, 10, 13, 0, 0), resolve.published_at.utc
+  end
+
+  def resolve
+    entry = { 'title' => 'The Deutsch Files', 'url' => 'https://example.com/one',
+              'published_date' => '2024/01/11',
+              'show' => { 'name' => 'A Show', 'feed_url' => FEED_URL } }
+
+    get = lambda do |url, **_options|
+      url == FEED_URL ? HttpClient::Response.new(status: 200, headers: {}, body: FEED, url: url) : nil
+    end
+
+    with_stubs(get) { MediaResolver.new(logger: ->(_message) {}).resolve(entry) }
+  end
+
+  def with_stubs(get)
+    original_get = HttpClient.method(:get)
+    original_probe = Enclosure.method(:probe)
+    HttpClient.define_singleton_method(:get) { |*args, **options| get.call(*args, **options) }
+    Enclosure.define_singleton_method(:probe) { |_url| Enclosure::Details.new(type: 'audio/mpeg', length: 1234567) }
+    yield
+  ensure
+    HttpClient.define_singleton_method(:get, original_get)
+    Enclosure.define_singleton_method(:probe, original_probe)
+  end
+end

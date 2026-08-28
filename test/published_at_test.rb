@@ -32,6 +32,12 @@ class PublishedAtTest < Minitest::Test
     assert_equal 0, PublishedAt.parse('2026-02-12T20:30:00+11:00').utc_offset
   end
 
+  # `list.yml` records it the way a feed states it, because YAML 1.1 reads a bare
+  # `2026-02-12T09:30:00Z` as a `Time` and the safe loaders refuse the class.
+  def test_reads_the_form_a_feed_states_an_instant_in
+    assert_equal Time.utc(2026, 2, 12, 9, 30, 0), PublishedAt.parse('Thu, 12 Feb 2026 09:30:00 +0000')
+  end
+
   def test_reads_an_instant_stated_without_a_zone_as_utc
     stamp = PublishedAt.parse('2026-02-12 09:30:00')
 

@@ -15,8 +15,11 @@ module ListWriter
     'audio_type' => %w[audio type],
     'audio_length' => %w[audio length],
     'audio_duration' => %w[audio duration],
-    'image_url' => %w[image_url]
+    'image_url' => %w[image_url],
+    'published_at' => %w[published_at]
   }.freeze
+
+  MEDIA_KEYS = %w[image_url].freeze
 
   ENTRY_START = /^\s*- /
   MEDIA_KEY = /^\s*(?:audio|image_url):/
@@ -65,12 +68,14 @@ module ListWriter
     # but the file's order is url, type, length, picture.
     def place(lines, index, fields)
       nested, flat = fields.partition { |key, _| KEYS.fetch(key).size > 1 }
+      media, dates = flat.partition { |key, _| MEDIA_KEYS.include?(key) }
 
       nested.group_by { |key, _| KEYS.fetch(key).first }.each do |parent, group|
         insert_nested(lines, index, parent, group.to_h { |key, value| [KEYS.fetch(key).last, value] })
       end
 
-      insert_flat(lines, index, flat.to_h)
+      insert_flat(lines, media.to_h, lines_at: anchor_index(lines, index), indent: indent_of(lines[index]))
+      insert_flat(lines, dates.to_h, lines_at: tail_index(lines, index), indent: indent_of(lines[index]))
     end
 
     def insert_nested(lines, index, parent, children)
@@ -84,10 +89,10 @@ module ListWriter
       end
     end
 
-    def insert_flat(lines, index, fields)
+    def insert_flat(lines, fields, lines_at:, indent:)
       return if fields.empty?
 
-      lines.insert(anchor_index(lines, index) + 1, *scalars(fields, indent_of(lines[index])))
+      lines.insert(lines_at + 1, *scalars(fields, indent))
     end
 
     def scalars(fields, indent) = fields.map { |key, value| "#{indent}#{key}: #{scalar(value)}\n" }
@@ -117,6 +122,13 @@ module ListWriter
     # already has; with none, straight after the URL that identifies it.
     def anchor_index(lines, index)
       last = field_line_indices(lines, index).select { |cursor| lines[cursor].match?(MEDIA_KEY) }.last
+      last ? last_child_index(lines, last) : index
+    end
+
+    # Everything else goes after the entry's last own field, which is where the
+    # date a time refines is written.
+    def tail_index(lines, index)
+      last = field_line_indices(lines, index).last
       last ? last_child_index(lines, last) : index
     end
 

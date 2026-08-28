@@ -79,6 +79,36 @@ class ListWriterTest < Minitest::Test
     end
   end
 
+  def test_records_the_publication_time_beside_the_date_it_refines
+    with_list do |path|
+      ListWriter.insert(path, [addition('https://example.com/two',
+                                        { 'published_at' => 'Sun, 11 Feb 2024 09:30:00 +0000' })])
+
+      recorded = entry(path, 'Another interview')
+
+      assert_equal 'Sun, 11 Feb 2024 09:30:00 +0000', recorded['published_at']
+
+      keys = File.readlines(path).map { |line| line.strip.split(':').first }
+
+      assert_equal 'published_at', keys[keys.rindex('published_date') + 1]
+    end
+  end
+
+  def test_keeps_a_time_out_of_the_media_block
+    with_list do |path|
+      ListWriter.insert(path, [addition('https://example.com/two', {
+                                          'image_url' => 'https://example.com/two.jpg',
+                                          'published_at' => 'Sun, 11 Feb 2024 09:30:00 +0000'
+                                        })])
+
+      recorded = entry(path, 'Another interview')
+
+      assert_equal 'https://example.com/two.jpg', recorded['image_url']
+      assert_equal 'Sun, 11 Feb 2024 09:30:00 +0000', recorded['published_at']
+      assert_nil recorded.dig('audio', 'published_at')
+    end
+  end
+
   def test_keeps_the_media_keys_together
     with_list do |path|
       ListWriter.insert(path, [addition('https://example.com/two', { 'image_url' => 'https://example.com/two.jpg' })])

@@ -242,6 +242,24 @@ class FeedBuilderTest < Minitest::Test
     assert_equal 'https://www.youtube.com/watch?v=abcd1234', episode[:guid]
   end
 
+  def test_stamps_a_recorded_day_at_midday_utc
+    build = FeedBuilder.build(
+      { 'podcast_interviews' => [interview(title: 'An interview', url: 'https://example.com/one')] },
+      probe: probe
+    )
+
+    assert_equal Time.utc(2024, 1, 11, 12, 0, 0), build.episodes.fetch(0)[:published_at]
+  end
+
+  def test_prefers_the_instant_the_source_feed_stated
+    entry = interview(title: 'An interview', url: 'https://example.com/one')
+                .merge('published_at' => 'Thu, 11 Jan 2024 09:30:00 +0000')
+
+    build = FeedBuilder.build({ 'podcast_interviews' => [entry] }, probe: probe)
+
+    assert_equal Time.utc(2024, 1, 11, 9, 30, 0), build.episodes.fetch(0)[:published_at]
+  end
+
   def test_publishes_the_recorded_runtime_as_a_clock_face
     entry = interview(title: 'An interview', url: 'https://example.com/one')
     entry['audio']['duration'] = 3754

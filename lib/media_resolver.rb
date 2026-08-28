@@ -3,6 +3,7 @@
 require 'cgi/escape'
 require 'json'
 require 'rss'
+require 'time'
 require 'uri'
 
 require_relative 'http_client'
@@ -20,8 +21,8 @@ require_relative 'image_probe'
 class MediaResolver
   APPLE_PODCASTS_URL = %r{podcasts\.apple\.com/.*?/id(?<collection>\d+).*?[?&]i=(?<episode>\d+)}
 
-  Result = Struct.new(:audio_url, :type, :length, :duration, :strategy, :matched_title, :reason,
-                      keyword_init: true) do
+  Result = Struct.new(:audio_url, :type, :length, :duration, :published_at, :strategy, :matched_title,
+                      :reason, keyword_init: true) do
     def resolved? = !audio_url.nil?
   end
 
@@ -99,7 +100,8 @@ class MediaResolver
         episode['episodeUrl'],
         strategy: 'apple',
         type: episode['episodeFileExtension'] ? nil : Enclosure::DEFAULT_MIME_TYPE,
-        duration: milliseconds_to_duration(episode['trackTimeMillis'])
+        duration: milliseconds_to_duration(episode['trackTimeMillis']),
+        published_at: apple_release_date(episode)
       )
     end
 
@@ -252,6 +254,9 @@ class MediaResolver
     result = describe(match.audio_url, strategy: 'feed', type: match.type, duration: match.duration)
     result.length = match.length if result.length.to_i < Enclosure::MIN_PLAUSIBLE_BYTES
 
+    # The instant the show published it, which only a feed states: a page gives a
+    # day at best, and the list already records that.
+    result.published_at = match.published_on
     result.matched_title = match.title
     result
   end
@@ -404,7 +409,7 @@ class MediaResolver
 
   # --- helpers ------------------------------------------------------------
 
-  def describe(url, strategy:, type: nil, duration: nil)
+  def describe(url, strategy:, type: nil, duration: nil, published_at: nil)
     details = Enclosure.probe(url)
 
     Result.new(
@@ -412,8 +417,17 @@ class MediaResolver
       type: type || details&.type || Enclosure.mime_type_for(url),
       length: details&.length,
       duration: duration,
+      published_at: published_at,
       strategy: strategy
     )
+  end
+
+  # What Apple recorded from the show's own feed, and as much use as the runtime
+  # beside it.
+  def apple_release_date(episode)
+    Time.parse(episode['releaseDate'])
+  rescue ArgumentError, TypeError
+    nil
   end
 
   def audio_url?(url) = Enclosure.audio_url?(url)

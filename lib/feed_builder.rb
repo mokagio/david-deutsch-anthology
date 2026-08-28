@@ -93,7 +93,11 @@ module FeedBuilder
         page_url: page_url,
         guid: page_url,
         # A talk records when it was delivered; an interview, when it was published.
-        published_at: PublishedAt.parse(entry['published_date'] || entry['delivered_date']),
+        # `published_at` is the instant the show's own feed stated, where one was
+        # found; the date is what the anthology asserts, and stands otherwise.
+        published_at: PublishedAt.parse(
+          entry['published_at'] || entry['published_date'] || entry['delivered_date']
+        ),
         label: LABELS.fetch(section),
         show_name: show_name,
         show_url: entry.dig('show', 'url'),
