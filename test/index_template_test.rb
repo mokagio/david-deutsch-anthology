@@ -132,13 +132,15 @@ class IndexTemplateTest < Minitest::Test
     assert_includes html, '<meta property="og:type" content="website">'
   end
 
-  def test_previews_with_the_channel_artwork_at_its_measured_size
+  # Slack lays a preview out from the stated size, and drops a picture it cannot
+  # fit the card: a square one is what unfurled with a title and no image.
+  def test_previews_with_the_card_at_its_measured_size
     html = render(interview(podcast_url: 'https://podcast.example/episode'))
 
-    assert_includes html, '<meta property="og:image" content="https://mokagio.github.io/david-deutsch-anthology/cover.jpg">'
-    assert_includes html, '<meta property="og:image:width" content="1400">'
-    assert_includes html, '<meta property="og:image:height" content="1400">'
-    assert_includes html, '<meta name="twitter:card" content="summary">'
+    assert_includes html, '<meta property="og:image" content="https://mokagio.github.io/david-deutsch-anthology/og-card.jpg">'
+    assert_includes html, '<meta property="og:image:width" content="1200">'
+    assert_includes html, '<meta property="og:image:height" content="630">'
+    assert_includes html, '<meta name="twitter:card" content="summary_large_image">'
   end
 
   def test_intro_links_are_styled_without_a_layout_wrapper

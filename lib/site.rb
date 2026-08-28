@@ -12,18 +12,23 @@ module Site
   URL = 'https://mokagio.github.io/david-deutsch-anthology/'
   TITLE = 'The David Deutsch Anthology'
   DESCRIPTION = "A growing collection of David Deutsch's books, talks, and interviews."
-  IMAGE_ALT = 'David Deutsch, against a spiral galaxy'
+  IMAGE_ALT = 'David Deutsch against a spiral galaxy, beside the title of the anthology'
+
+  # Drawn by `bin/generate_og_card.rb`. The square cover is the fallback, and an
+  # unfurler is free to ignore it: Slack dropped it for being square, showing the
+  # title and the description against no picture at all.
+  CARD = 'assets/og-card.jpg'
+  PATHS = [CARD, *Cover::PATHS].freeze
 
   Image = Struct.new(:url, :width, :height, keyword_init: true)
 
   class << self
-    # The channel artwork doubles as the preview picture. `assets/` is published
-    # flat, so the file's name is its path on the site.
+    # `assets/` is published flat, so the file's name is its path on the site.
     #
-    # The dimensions are stated so an unfurl can lay out the card before it has
-    # fetched the image, and left out when the header will not measure.
+    # The dimensions are stated so an unfurl can lay the card out before it has
+    # fetched the picture, and left out when the header will not measure.
     def image
-      path = Cover::PATHS.find { |candidate| File.exist?(candidate) }
+      path = PATHS.find { |candidate| File.exist?(candidate) }
       return nil unless path
 
       size = ImageProbe.dimensions(File.binread(path, ImageProbe::HEADER_BYTES))
