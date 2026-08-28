@@ -3,7 +3,25 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The David Deutsch Anthology</title>
+    <title><%= Site::TITLE %></title>
+    <meta name="description" content="<%= Site::DESCRIPTION %>">
+    <link rel="canonical" href="<%= Site::URL %>">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="<%= Site::TITLE %>">
+    <meta property="og:title" content="<%= Site::TITLE %>">
+    <meta property="og:description" content="<%= Site::DESCRIPTION %>">
+    <meta property="og:url" content="<%= Site::URL %>">
+    <% if (preview_image = Site.image) %>
+      <meta property="og:image" content="<%= preview_image.url %>">
+      <meta property="og:image:alt" content="<%= Site::IMAGE_ALT %>">
+      <% if preview_image.width %>
+        <meta property="og:image:width" content="<%= preview_image.width %>">
+        <meta property="og:image:height" content="<%= preview_image.height %>">
+      <% end %>
+    <% end %>
+    <!-- The artwork is square, and `summary_large_image` would crop it to a
+         letterbox through the middle of the face. -->
+    <meta name="twitter:card" content="summary">
     <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css">

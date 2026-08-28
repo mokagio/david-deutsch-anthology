@@ -21,11 +21,12 @@ require 'fileutils'
 
 require_relative '../lib/assets'
 require_relative '../lib/cover'
+require_relative '../lib/site'
 require_relative '../lib/media_resolver'
 require_relative '../lib/feed_builder'
 require_relative '../lib/show_notes'
 
-SITE_URL = 'https://mokagio.github.io/david-deutsch-anthology/'
+SITE_URL = Site::URL
 FEED_TITLE = 'David Deutsch Podcast Interviews'
 FEED_DESCRIPTION = 'A collection of podcast appearances by David Deutsch.'
 FEED_AUTHOR = 'David Deutsch'

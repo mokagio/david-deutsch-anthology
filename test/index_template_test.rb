@@ -4,6 +4,8 @@ require 'erb'
 require 'date'
 require 'minitest/autorun'
 
+require_relative '../lib/site'
+
 class IndexTemplateTest < Minitest::Test
   TEMPLATE = ERB.new(File.read(File.expand_path('../templates/index.erb', __dir__)))
 
@@ -118,6 +120,25 @@ class IndexTemplateTest < Minitest::Test
     refute_includes html, '<select id="background-mode">'
     assert_includes html, '<canvas id="cosmic-background"'
     assert_includes html, '<script src="cosmic-backgrounds.js"></script>'
+  end
+
+  def test_states_what_a_link_preview_needs
+    html = render(interview(podcast_url: 'https://podcast.example/episode'))
+
+    assert_includes html, '<meta property="og:title" content="The David Deutsch Anthology">'
+    assert_includes html, %(<meta property="og:description" content="#{Site::DESCRIPTION}">)
+    assert_includes html, '<meta property="og:url" content="https://mokagio.github.io/david-deutsch-anthology/">'
+    assert_includes html, %(<meta name="description" content="#{Site::DESCRIPTION}">)
+    assert_includes html, '<meta property="og:type" content="website">'
+  end
+
+  def test_previews_with_the_channel_artwork_at_its_measured_size
+    html = render(interview(podcast_url: 'https://podcast.example/episode'))
+
+    assert_includes html, '<meta property="og:image" content="https://mokagio.github.io/david-deutsch-anthology/cover.jpg">'
+    assert_includes html, '<meta property="og:image:width" content="1400">'
+    assert_includes html, '<meta property="og:image:height" content="1400">'
+    assert_includes html, '<meta name="twitter:card" content="summary">'
   end
 
   def test_intro_links_are_styled_without_a_layout_wrapper
