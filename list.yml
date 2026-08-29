@@ -138,6 +138,7 @@ podcast_interviews:
     image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/90/d5/2e/90d52ebc-d5b7-7e42-4cfc-e05ce26dfba0/mza_15185247775912449757.png/600x600bb.jpg
     show: *naval
     published_date: 2023/02/11
+    published_at: Sat, 11 Feb 2023 18:32:18 +0000
 
   - title: "David Deutsch: Knowledge Creation and The Human Race, Part 2"
     url: https://nav.al/david-deutsch-2
@@ -151,6 +152,7 @@ podcast_interviews:
     image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts123/v4/eb/f4/dc/ebf4dc3a-0292-a846-b8a1-496ea5c8b435/mza_6617487660716274171.png/600x600bb.jpg
     show: *naval
     published_date: 2023/08/11
+    published_at: Fri, 11 Aug 2023 23:37:25 +0000
 
   - title: Disagreeing about Belief, Probability, and Truth
     youtube_url: https://www.youtube.com/watch?v=jGht9LNHytU
@@ -183,6 +185,7 @@ podcast_interviews:
     image_url: https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/2353343/2353343-1569327079532-905b47d09007a.jpg
     show: *logan_chipkin
     published_date: 2023/03/07
+    published_at: Tue, 07 Mar 2023 11:27:58 +0000
 
   - title: Surviving the Cosmos
     url: https://www.samharris.org/podcasts/making-sense-episodes/surviving-the-cosmos
@@ -235,6 +238,7 @@ podcast_interviews:
       name: Conversations with Tyler
       url: https://conversationswithtyler.com/episodes/
     published_date: 2021/06/02
+    published_at: Wed, 02 Jun 2021 12:00:00 +0000
 
   - title: David Deutsch on Science, Complexity, and Explanation
     url: https://www.preposterousuniverse.com/podcast/2023/10/16/253-david-deutsch-on-science-complexity-and-explanation/
@@ -250,6 +254,7 @@ podcast_interviews:
       name: Sean Carroll's Mindscape
       url: https://www.preposterousuniverse.com/podcast/
     published_date: 2023/10/16
+    published_at: Mon, 16 Oct 2023 11:48:06 +0000
 
   - title: David Deutsch & Steven Pinker (First Ever Public Dialogue) — AGI, P(Doom), and The Enemies of Progress
     url: https://josephnoelwalker.com/153-deutsch-pinker-dialogue/
@@ -304,6 +309,7 @@ podcast_interviews:
       name: Dilemma Podcast
       url: https://podcasts.apple.com/us/podcast/dilemma-podcast/id1470490447
     published_date: 2020/02/26
+    published_at: Wed, 26 Feb 2020 12:00:00 +0000
 
   - title: Free-Will, Taking Children Seriously, and Anarcho-Capitalism
     youtube_url: https://www.youtube.com/watch?v=Hh9xOB2oDHk
@@ -317,6 +323,7 @@ podcast_interviews:
       name: Arjun Khemani's Podcast
       url: https://www.youtube.com/@arjunkhemani
     published_date: 2024/01/01
+    published_at: Mon, 01 Jan 2024 09:03:42 +0000
 
   - title: The Era of Man, Popper, and Western Civilization
     youtube_url: https://www.youtube.com/watch?v=I3FzAjgPztU
@@ -340,6 +347,7 @@ podcast_interviews:
       name: Within Reason Podcast
       url: https://www.youtube.com/@CosmicSkeptic
     published_date: 2024/03/05
+    published_at: Tue, 05 Mar 2024 01:01:00 +0000
 
   - title: David Deutsch - You're Not Smarter Than a Caveman
     podcast_url: https://podcasts.apple.com/us/podcast/102-david-deutsch-youre-not-smarter-than-a-caveman/id1458675168?i=1000703599411&uo=4
@@ -352,6 +360,7 @@ podcast_interviews:
     image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/f7/ed/f0/f7edf079-74bd-7ddc-4221-0ef265febceb/mza_8865769313048641138.png/600x600bb.jpg
     show: *within_reason
     published_date: 2025/04/07
+    published_at: Mon, 07 Apr 2025 20:51:00 +0000
 
   - title: The Primacy of Ideas, with David Deutsch
     podcast_url: https://doexplain.buzzsprout.com/1260167/episodes/4846241-10-the-primacy-of-ideas-with-david-deutsch
@@ -365,6 +374,7 @@ podcast_interviews:
       name: Do Explain
       url: https://doexplain.buzzsprout.com
     published_date: 2020/02/25
+    published_at: Tue, 25 Feb 2020 20:09:33 +0100
 
   - title: Truth and Abstractions, with David Deutsch and Jake Orthwein
     podcast_url: https://doexplain.buzzsprout.com/1260167/episodes/15993837-half-episode-57-truth-and-abstractions-with-david-deutsch-and-jake-orthwein
@@ -376,6 +386,7 @@ podcast_interviews:
     image_url: https://storage.buzzsprout.com/iexs820ctpqbi3bgtlvbnt2o18tf?.jpg
     show: *do_explain
     published_date: 2024/10/28
+    published_at: Mon, 28 Oct 2024 12:00:00 +0100
 
   - title: Physicist Dr. David Deutsch-Quantum Computing, Turing Machines, & Multiverses
     podcast_url: https://podcasts.apple.com/tn/podcast/physicist-dr-david-deutsch-quantum-computing-turing/id1516343565?i=1000674179249
@@ -430,6 +441,7 @@ podcast_interviews:
       name: Salvador Podcast
       url: https://www.fromthelotus.world/
     published_date: 2025/06/24
+    published_at: Tue, 24 Jun 2025 10:15:01 +0000
 
   - title: David Deutsch on Brexit and Error Correction
     youtube_url: https://www.youtube.com/watch?v=xdtssXITXuE
@@ -461,6 +473,7 @@ podcast_interviews:
       name: The TED Interview
       url: https://www.ted.com/podcasts/ted-interview
     published_date: 2018/10/23
+    published_at: Tue, 23 Oct 2018 11:00:00 +0000
 
   - title: David Deutsch - AI, America, Fun, & Bayes
     youtube_url: https://www.youtube.com/watch?v=EVwjofV5TgU
@@ -475,6 +488,7 @@ podcast_interviews:
       name: Dwarkesh Podcast
       url: https://www.dwarkesh.com
     published_date: 2022/01/31
+    published_at: Mon, 31 Jan 2022 15:55:20 +0000
 
   - title: "ToKCast Episode 100: David Deutsch"
     youtube_url: https://www.youtube.com/watch?v=_pAgz8iVC44
@@ -488,6 +502,7 @@ podcast_interviews:
       name: ToKCast
       url: https://www.bretthall.org/tokcast
     published_date: 2021/12/01
+    published_at: Wed, 01 Dec 2021 18:40:55 +1100
 
   - title: To what extent can we predict the future? With Robin Hanson and David Deutsch
     youtube_url: https://www.youtube.com/watch?v=IBc1oVXen-o
@@ -515,6 +530,7 @@ podcast_interviews:
       name: The Popperian Podcast
       url: https://www.jedleahenry.org/the-popperian-podcast
     published_date: 2020/11/29
+    published_at: Sun, 29 Nov 2020 09:16:46 +0000
 
   - title: Chat with David Deutsch about The Beginning of Infinity
     youtube_url: https://www.youtube.com/watch?v=t511rshmw1Y
@@ -542,6 +558,7 @@ podcast_interviews:
       name: Theory of Anything
       url: https://www.youtube.com/@theoryofanything6137
     published_date: 2021/01/11
+    published_at: Mon, 11 Jan 2021 00:16:04 +0000
 
   - title: A Woven Web of Guesses with DAVID DEUTSCH
     youtube_url: https://www.youtube.com/watch?v=Nsv36BuuRK4
@@ -556,6 +573,7 @@ podcast_interviews:
       name: The Falsifiable Podcast
       url: https://www.youtube.com/@thefalsifiablepodcast
     published_date: 2025/04/02
+    published_at: Wed, 02 Apr 2025 23:48:47 +0000
 
   - title: '"There is only one interpretation of quantum mechanics" | David Deutsch FULL INTERVIEW'
     youtube_url: https://www.youtube.com/watch?v=ilEjjnkgTfQ
@@ -604,6 +622,7 @@ podcast_interviews:
       name: Brian Keating's Into The Impossible Podcast
       url: https://www.youtube.com/watch?v=sa-WZcXhYH4&list=PLJGKdZD30K_9rVCDAdRSwoJLi5ls6JN-q
     published_date: 2025/08/23
+    published_at: Sat, 23 Aug 2025 13:00:00 +0000
 
   - title: How to Reverse Academia's Stagnation
     podcast_url: https://podcasts.apple.com/us/podcast/ep-8-david-deutsch-how-to-reverse-academias-stagnation/id1816409555?i=1000725121635
@@ -618,6 +637,7 @@ podcast_interviews:
       name: Conjecture Institute Podcast
       url: https://www.youtube.com/@ConjectureInstitute
     published_date: 2025/09/05
+    published_at: Fri, 05 Sep 2025 08:44:46 +0000
 
   - title: "David Deutsch: AGI, the origins of quantum computing, and the future of humanity"
     youtube_url: https://www.youtube.com/watch?v=IVA2bK9qjzE
@@ -631,6 +651,7 @@ podcast_interviews:
       name: Strange Loop Podcast
       url: https://www.youtube.com/@SanaLabs/podcasts
     published_date: 2025/09/03
+    published_at: Wed, 03 Sep 2025 06:00:00 +0000
 
   - title: David Deutsch, Robin Hanson, & Daniel Martin on Culture
     youtube_url: https://www.youtube.com/watch?v=7zUQBs-ju6w
@@ -666,6 +687,7 @@ podcast_interviews:
       name: Theories of Everything with Curt Jaimungal
       url: https://www.youtube.com/@TheoriesOfEverything
     published_date: 2025/10/06
+    published_at: Mon, 06 Oct 2025 14:32:00 +0000
 
   - title: In search of nothing | David Deutsch, Amanda Gefter, Lee Smolin
     url: https://iai.tv/video/in-search-of-nothing
@@ -680,6 +702,7 @@ podcast_interviews:
       name: Philosophy For Our Times
       url: https://art19.com/shows/philosophy-for-our-times
     published_date: 2025/11/06
+    published_at: Thu, 06 Nov 2025 00:00:00 +0000
 
   - title: David Deutsch on the Pattern
     url: https://www.econtalk.org/david-deutsch-on-the-pattern/
@@ -693,6 +716,7 @@ podcast_interviews:
       name: EconTalk
       url: https://www.econtalk.org/
     published_date: 2025/12/22
+    published_at: Mon, 22 Dec 2025 11:30:00 +0000
 
   - title: "Bennett and Deutsch: The Nature of Computation, Incompleteness and Mathematics"
     youtube_url: https://www.youtube.com/watch?v=CluVy2jICgs
@@ -735,6 +759,7 @@ podcast_interviews:
       name: What The Bot with Reuben Adams
       url: https://podcasters.spotify.com/pod/show/reuben-adams6
     published_date: 2026/02/12
+    published_at: Thu, 12 Feb 2026 18:03:44 +0000
 
   - title: The Fun Criterion, Inner Conflicts, and How the Self Resolves Them — David Deutsch
     podcast_url: https://podcasts.apple.com/us/podcast/the-fun-criterion-inner-conflicts-and-how-the/id1823443356?i=1000746464958&uo=4
@@ -749,6 +774,7 @@ podcast_interviews:
       name: The Do It Podcast
       url: https://edwindoit.com
     published_date: 2026/01/24
+    published_at: Sat, 24 Jan 2026 11:06:34 +0000
 
   - title: "Falling for Physics | David Deutsch"
     podcast_url: https://podcasts.apple.com/us/podcast/falling-for-physics-david-deutsch/id1835761903?i=1000737112823&uo=4
@@ -763,6 +789,7 @@ podcast_interviews:
       name: The Light Side
       url: https://podcasters.spotify.com/pod/show/anjali8252
     published_date: 2025/11/17
+    published_at: Mon, 17 Nov 2025 14:58:28 +0000
 
   - title: "David Deutsch Says We Will Build Humans Before We Build AGI - #515"
     podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-says-we-will-build-humans-before-we-build/id1169885840?i=1000726270084&uo=4
@@ -776,6 +803,7 @@ podcast_interviews:
       name: Into the Impossible With Brian Keating
       url: https://briankeating.com/podcast
     published_date: 2025/09/11
+    published_at: Thu, 11 Sep 2025 12:00:00 +0000
 
   - title: "Episode Preview | David Deutsch"
     podcast_url: https://podcasts.apple.com/us/podcast/episode-preview-david-deutsch/id1818186996?i=1000724591857&uo=4
@@ -788,6 +816,7 @@ podcast_interviews:
       name: Strange Loop Podcast
       url: https://www.youtube.com/@SanaLabs/podcasts
     published_date: 2025/09/02
+    published_at: Tue, 02 Sep 2025 16:12:09 +0000
 
   - title: Interview with David Deutsch
     podcast_url: https://podcasts.apple.com/us/podcast/episode-100-interview-with-david-deutsch/id1503194218?i=1000681411903&uo=4
@@ -801,6 +830,7 @@ podcast_interviews:
       name: The Theory of Anything
       url: https://www.patreon.com/c/brucenielson/membership
     published_date: 2024/12/23
+    published_at: Mon, 23 Dec 2024 12:00:00 +0000
 
   - title: The Deutsch Files IV (ToKCast version)
     url: https://brettroberthall.podbean.com/e/ep-223-the-deutsch-files-iv-tokcast-version/
@@ -811,6 +841,7 @@ podcast_interviews:
       duration: 5281
     show: *tokcast
     published_date: 2024/10/17
+    published_at: Thu, 17 Oct 2024 19:57:01 +1100
 
   - title: "Antisemitism in Britain - An Interview With David Deutsch #928"
     podcast_url: https://podcasts.apple.com/us/podcast/antisemitism-in-britain-an-interview-with-david/id1518860114?i=1000639543073&uo=4
@@ -824,6 +855,7 @@ podcast_interviews:
       name: The Daily Objective
       url: https://rss.com/podcasts/the-daily-objective
     published_date: 2023/12/23
+    published_at: Sat, 23 Dec 2023 18:00:00 +0000
 
   - title: Multiverse of Madness with David Deutsch
     podcast_url: https://podcasts.apple.com/us/podcast/multiverse-of-madness-with-david-deutsch/id1716338488?i=1000634629093&uo=4
@@ -837,6 +869,7 @@ podcast_interviews:
       name: Conversations with Coleman
       url: https://www.thefp.com/podcasts
     published_date: 2023/05/09
+    published_at: Tue, 09 May 2023 20:00:00 +0000
 
   - title: AGI (with David Deutsch)
     podcast_url: https://podcasts.apple.com/us/podcast/1-agi-with-david-deutsch/id1681458005?i=1000608045345&uo=4
@@ -850,6 +883,7 @@ podcast_interviews:
       name: Reason Is Fun
       url: https://reasonisfun.podbean.com
     published_date: 2023/04/08
+    published_at: Sat, 08 Apr 2023 21:26:31 +0000
 
   - title: "David Deutsch: The Unity Of The Universe"
     podcast_url: https://podcasts.apple.com/us/podcast/5-david-deutsch-the-unity-of-the-universe/id1686768692?i=1000612009898&uo=4
@@ -863,6 +897,7 @@ podcast_interviews:
       name: The Unadulterated Intellect
       url: https://open.spotify.com/show/5xD9XCKiagoraGYvL0UHrT
     published_date: 2023/03/24
+    published_at: Fri, 24 Mar 2023 03:08:47 +0000
 
   - title: David Deutsch answers a question about dark energy. A question for David number 10.
     url: https://brettroberthall.podbean.com/e/ep-97-david-deutsch-answers-a-question-about-dark-energy-a-question-for-david-number-10/
@@ -873,6 +908,7 @@ podcast_interviews:
       duration: 886
     show: *tokcast
     published_date: 2021/10/27
+    published_at: Wed, 27 Oct 2021 19:42:13 +1100
 
   - title: David Deutsch answers a question about the nature of mind. A question for David number 9.
     podcast_url: https://podcasts.apple.com/us/podcast/ep-93-david-deutsch-answers-a-question-about-the/id1447087694?i=1000537800749&uo=4
@@ -884,6 +920,7 @@ podcast_interviews:
     image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts126/v4/2e/59/d8/2e59d835-916e-071a-48c7-7cbef70df419/mza_41688498060216287.png/600x600bb.jpg
     show: *tokcast
     published_date: 2021/10/07
+    published_at: Thu, 07 Oct 2021 03:05:26 +0000
 
   - title: David Deutsch answers a question about observations. A question for David number 8
     url: https://brettroberthall.podbean.com/e/ep-92-david-deutsch-answers-a-question-about-observations-a-question-for-david-number-8/
@@ -894,6 +931,7 @@ podcast_interviews:
       duration: 481
     show: *tokcast
     published_date: 2021/10/06
+    published_at: Wed, 06 Oct 2021 13:21:17 +1100
 
   - title: "David Deutsch answers a question about the nature of the laws of physics (a question for David: 7)."
     url: https://brettroberthall.podbean.com/e/ep-84-david-deutsch-answers-a-question-about-the-nature-of-the-laws-of-physics-a-question-for-david-7/
@@ -904,6 +942,7 @@ podcast_interviews:
       duration: 693
     show: *tokcast
     published_date: 2021/08/27
+    published_at: Fri, 27 Aug 2021 18:52:03 +1000
 
   - title: David Deutsch answers a question about Gödel and undecidability. (A question for David number 6).
     url: https://brettroberthall.podbean.com/e/ep-82-david-deutsch-answers-a-question-about-godel-and-undecidability-a-question-for-david-number-6/
@@ -914,6 +953,7 @@ podcast_interviews:
       duration: 735
     show: *tokcast
     published_date: 2021/08/07
+    published_at: Sat, 07 Aug 2021 20:38:07 +1000
 
   - title: David Deutsch answers a question about our environment. A question for David 5.
     url: https://brettroberthall.podbean.com/e/ep-79-david-deutsch-answers-a-question-about-our-environment-a-question-for-david-5/
@@ -924,6 +964,7 @@ podcast_interviews:
       duration: 1131
     show: *tokcast
     published_date: 2021/07/16
+    published_at: Fri, 16 Jul 2021 18:12:29 +1000
 
   - title: "The limitless potential of human knowledge | David Deutsch"
     podcast_url: https://podcasts.apple.com/us/podcast/the-limitless-potential-of-human-knowledge-david-deutsch/id1437306870?i=1000526927663&uo=4
@@ -937,6 +978,7 @@ podcast_interviews:
       name: The TED Interview
       url: https://www.ted.com/podcasts/ted-interview
     published_date: 2021/06/26
+    published_at: Sat, 26 Jun 2021 05:46:15 +0000
 
   - title: David Deutsch on "Truth". A question for David 4.
     url: https://brettroberthall.podbean.com/e/ep-73-david-deutsch-on-truth-a-question-for-david-4/
@@ -947,6 +989,7 @@ podcast_interviews:
       duration: 920
     show: *tokcast
     published_date: 2021/06/24
+    published_at: Thu, 24 Jun 2021 12:25:09 +1000
 
   - title: David Deutsch comments on recent UFO sighting (The "Tictac" issue). A question for David 3.
     url: https://brettroberthall.podbean.com/e/david-deutsch-comments-on-recent-ufo-sighting-the-tictac-issue-a-question-for-david-3/
@@ -957,6 +1000,7 @@ podcast_interviews:
       duration: 988
     show: *tokcast
     published_date: 2021/06/23
+    published_at: Wed, 23 Jun 2021 01:20:16 +1000
 
   - title: David Deutsch explains "explanations" further. (A "question for David" 2)
     podcast_url: https://podcasts.apple.com/us/podcast/ep-71-david-deutsch-explains-explanations-further-a/id1447087694?i=1000526248670&uo=4
@@ -968,6 +1012,7 @@ podcast_interviews:
     image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts126/v4/2e/59/d8/2e59d835-916e-071a-48c7-7cbef70df419/mza_41688498060216287.png/600x600bb.jpg
     show: *tokcast
     published_date: 2021/06/21
+    published_at: Mon, 21 Jun 2021 08:45:47 +0000
 
   - title: Constructor Theory of Information with David Deutsch
     podcast_url: https://podcasts.apple.com/us/podcast/constructor-theory-of-information-with-david-deutsch/id1481994554?i=1000505745684&uo=4
@@ -981,3 +1026,4 @@ podcast_interviews:
       name: Fallible Animals
       url: https://www.youtube.com/@loganchipkin4905
     published_date: 2021/01/19
+    published_at: Tue, 19 Jan 2021 00:04:47 +0000
