@@ -117,6 +117,11 @@ class LinkChecker
 end
 
 # Every string under a key ending in `url`, with the entries that point at it.
+# The show's own offset where its feed states one, and `+0000` rather than the
+# `-0000` Ruby prints for a `utc?` time, which RFC 5322 reserves for a sender
+# whose zone is unknown.
+def rfc2822(stamp) = stamp.getlocal(stamp.utc_offset).rfc2822
+
 # Why an entry keeps the midday stamp rather than the hour its show published it.
 def reason_undated(result, stamp, same_file)
   return "instant is #{result.audio_url}'s, not the recorded file's" unless same_file
@@ -306,7 +311,8 @@ unless %w[--links-only --rejections-only].include?(mode) || from_report
     end
 
     (report['published_dated'] ||= []) << finding.merge(
-      { 'published_at' => stamp.rfc2822, 'strategy' => result.strategy, 'matched_title' => result.matched_title }.compact
+      { 'published_at' => rfc2822(stamp), 'strategy' => result.strategy,
+        'matched_title' => result.matched_title }.compact
     )
   end
 
