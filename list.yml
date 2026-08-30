@@ -318,6 +318,7 @@ podcast_interviews:
     published_at: Wed, 26 Feb 2020 12:00:00 +0000
 
   - title: Free-Will, Taking Children Seriously, and Anarcho-Capitalism
+    podcast_url: https://podcasts.apple.com/us/podcast/25-david-deutsch-free-will-taking-children-seriously/id1624691690?i=1000640218835&uo=4
     youtube_url: https://www.youtube.com/watch?v=Hh9xOB2oDHk
     audio:
       url: https://api.substack.com/feed/podcast/140216749/254217dd22994eed239715a0d77b66ae.mp3
@@ -332,6 +333,7 @@ podcast_interviews:
     published_at: Mon, 01 Jan 2024 09:03:42 +0000
 
   - title: The Era of Man, Popper, and Western Civilization
+    podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-the-era-of-man-popper/id1624691690?i=1000676494088&uo=4
     youtube_url: https://www.youtube.com/watch?v=I3FzAjgPztU
     audio:
       url: https://api.substack.com/feed/podcast/151485080/660977dbe0cb7dab33afb3615f7df527.mp3
