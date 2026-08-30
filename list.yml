@@ -752,6 +752,13 @@ podcast_interviews:
       url: https://www.youtube.com/@LucasdiGrassi
     published_date: 2026/08/23
 
+  - title: Sam Altman and David Deutsch on AGI
+    youtube_url: https://www.youtube.com/watch?v=o80PeJ0P1YM # He appears in a segment of the ceremony stream, where the two settle on solving quantum gravity as the test the Turing Test is not
+    show:
+      name: Axel Springer SE
+      url: https://www.youtube.com/@axelspringer
+    published_date: 2025/09/24
+
   - title: David Deutsch on AGI, Alignment and Existential Risk
     podcast_url: https://podcasts.apple.com/us/podcast/david-deutsch-on-agi-alignment-and-existential-risk/id1844837515?i=1000749470281&uo=4
     youtube_url: https://www.youtube.com/watch?v=CU2yj826NHk
