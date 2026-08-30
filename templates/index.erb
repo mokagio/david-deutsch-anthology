@@ -260,7 +260,7 @@
     <ul class="anthology-list">
       <% other.each do |item| %>
         <li>
-          <% if item['markdown'] %><%= Markdown.inline(item['markdown'], link_class: 'accent-link') %><% else %><a class="anthology-link" href="<%= item['url'] %>" target="_blank"><%= item['name'] %></a><% if item['published_year'] %> · <span class="episode-date"><%= item['published_year'] %></span><% end %><% end %>
+          <a class="anthology-link" href="<%= item['url'] %>" target="_blank"><%= Markdown.inline(item['name']) %></a><% if item['published_year'] %> · <span class="episode-date"><%= item['published_year'] %></span><% end %>
         </li>
       <% end %>
     </ul>

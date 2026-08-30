@@ -149,6 +149,7 @@ class IndexTemplateTest < Minitest::Test
     assert_equal 3, html.scan('class="intro-link"').size
     refute_includes html, '<div class="intro">'
   end
+
   def test_lists_a_named_other_entry_as_a_link
     html = render(
       interview(podcast_url: 'https://podcast.example/episode'),
@@ -159,13 +160,16 @@ class IndexTemplateTest < Minitest::Test
     assert_includes html, '<span class="episode-date">1992</span>'
   end
 
-  def test_renders_an_other_entry_written_as_markdown
+  def test_marks_up_an_other_entry_name_written_in_markdown
     html = render(
       interview(podcast_url: 'https://podcast.example/episode'),
-      other: [{ 'markdown' => "[A collection](https://collection.example) with _transcripts_.\n" }]
+      other: [{ 'name' => '_A collection_ with _transcripts_', 'url' => 'https://collection.example' }]
     )
 
-    assert_includes html, '<span class="accent-link"><a href="https://collection.example" target="_blank">A collection</a></span> with <em>transcripts</em>.'
-    refute_includes html, 'class="anthology-link" href=""'
+    assert_includes(
+      html,
+      '<a class="anthology-link" href="https://collection.example" target="_blank">' \
+      '<em>A collection</em> with <em>transcripts</em></a>'
+    )
   end
 end
