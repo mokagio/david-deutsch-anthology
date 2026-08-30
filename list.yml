@@ -39,6 +39,9 @@ other:
     url: https://www.youtube.com/watch?v=C6_gxoLwrWw
     published_year: 1992
 
+  - markdown: |
+      [Deutschland](https://www.dirkswebsite.nl/deutschland) is another rich collection of David's work, with _searchable transcripts_
+
 talks:
   - title: Why Are Flowers Beautiful?
     url: https://www.youtube.com/watch?v=gT7DFCF1Fn8
