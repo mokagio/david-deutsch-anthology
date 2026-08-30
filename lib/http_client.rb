@@ -3,7 +3,7 @@
 require 'net/http'
 require 'uri'
 
-# Minimal GET/HEAD wrapper with redirect following, so the resolver can stay stdlib-only.
+# Minimal GET/HEAD/POST wrapper with redirect following, so the resolver can stay stdlib-only.
 module HttpClient
   # Several podcast hosts serve a bot-blocking page unless the request looks like a browser.
   USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 ' \
@@ -16,8 +16,22 @@ module HttpClient
   Response = Struct.new(:status, :headers, :body, :url, keyword_init: true)
 
   class << self
-    def get(url, redirects: MAX_REDIRECTS)
-      request(Net::HTTP::Get, url, redirects: redirects)
+    def get(url, redirects: MAX_REDIRECTS, headers: {})
+      request(Net::HTTP::Get, url, redirects: redirects, headers: headers)
+    end
+
+    # No redirects: an API that answers a POST with one is answering a different
+    # question, and the only POST here is an exchange of credentials.
+    def post_form(url, form:, headers: {})
+      uri = URI.parse(url)
+      return nil unless uri.is_a?(URI::HTTP)
+
+      request = Net::HTTP::Post.new(uri, { 'User-Agent' => USER_AGENT }.merge(headers))
+      request.set_form_data(form)
+      response = perform_request(uri, request)
+      return nil unless response.is_a?(Net::HTTPSuccess)
+
+      Response.new(status: response.code.to_i, headers: normalize(response), body: response.body, url: url)
     end
 
     def head(url, redirects: MAX_REDIRECTS)
@@ -55,12 +69,14 @@ module HttpClient
     end
 
     def perform(verb, uri, headers)
+      perform_request(uri, verb.new(uri, { 'User-Agent' => USER_AGENT }.merge(headers)))
+    end
+
+    def perform_request(uri, request)
       Net::HTTP.start(
         uri.host, uri.port,
         use_ssl: uri.scheme == 'https', open_timeout: OPEN_TIMEOUT, read_timeout: READ_TIMEOUT
-      ) do |http|
-        http.request(verb.new(uri, { 'User-Agent' => USER_AGENT }.merge(headers)))
-      end
+      ) { |http| http.request(request) }
     rescue StandardError => e
       warn "    http error: #{e.class}: #{e.message}"
       nil
