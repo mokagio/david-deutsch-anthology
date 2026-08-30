@@ -35,6 +35,18 @@ shows:
     reason: David L. Deutsch, copywriter.
   - name: 'Input/Output: The Creator System For Experts | with Shawn Buttner'
     reason: David L. Deutsch, copywriter.
+  - name: The McMethod Email Marketing Podcast
+    reason: David L. Deutsch, copywriter.
+  - name: The Do It Podcast
+    reason: A host applying his ideas episode by episode; he is not on it.
+  - name: Ruflections
+    reason: Hosts discussing his ideas; they are not interviewing him.
+  - name: 9Natree Germany
+    reason: Ten-minute book summaries, one of them of The Beginning of Infinity.
+  - name: Deutsches Geplapper - Echtes Deutsch lernen
+    reason: A German-learning show. Its David reached C2; the surname is the language.
+  - name: Woke Spiritual Talk
+    reason: Reposts talks of his under its own name.
 
 # Titles containing these are dropped whatever show they come from, which leaves
 # the rest of the show reportable. ToKCast is the case this exists for: Brett Hall
@@ -54,3 +66,15 @@ titles:
   - David Deutsch and Tyler Cowen Reaction
   - The Beginning of Infinity by David Deutsch HINDI हिंदी में
   - Visiting Iceland England Richard Dawkins David Deutsch Free Palestine The Saad Truth with Dr Saad 839
+  # The Theory of Anything reads his work at length and has had him on twice, so
+  # the show stays reportable and its commentary is named episode by episode.
+  - The Deutsch Slot Machine
+  - Campbell vs Deutsch
+  - Disagreements with Deutsch
+  - Deutsch's Theory of Knowledge: The Walking Robot
+  - Deutsch's "Creative Blocks": A Decade Later
+  - Clarifying David Deutsch's Views of "Knowledge"
+  - Byrne vs Deutsch on Animal Intelligence
+  - The Avengers Time Travel and The Deutsch Proposition
+  - The Popper-Deutsch Solution
+  - A Crash-Course on Deutsch-Hayden Descriptors
