@@ -885,11 +885,89 @@ podcast_interviews:
       length: 58845024
       duration: 3678
     image_url: https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/a7/a8/76/a7a876e0-1078-92a3-c5a6-07218ca42243/mza_15247522250610742092.jpg/600x600bb.jpg
-    show:
+    show: &reason_is_fun
       name: Reason Is Fun
       url: https://reasonisfun.podbean.com
     published_date: 2023/04/08
     published_at: Sat, 08 Apr 2023 21:26:31 +0000
+
+  - title: The Art of Decision Making
+    url: https://reasonisfun.podbean.com/e/5-the-art-of-decision-making/
+    podcast_url: https://podcasts.apple.com/us/podcast/5-the-art-of-decision-making/id1681458005?i=1000640582180&uo=4
+    audio:
+      url: https://mcdn.podbean.com/mf/web/afcb3r/RIF_5_-_The_Art_of_Decision_Makinga77m0.mp3
+      type: audio/mpeg
+      length: 47253876
+      duration: 2952
+    image_url: https://pbcdn1.podbean.com/imglogo/image-logo/16252769/Lulie_infinity_sign_with_RIF.jpg
+    show: *reason_is_fun
+    published_date: 2024/01/04
+    published_at: Thu, 04 Jan 2024 20:59:16 +0000
+
+  - title: Decisions
+    url: https://reasonisfun.podbean.com/e/4-decisions/
+    podcast_url: https://podcasts.apple.com/us/podcast/4-decisions/id1681458005?i=1000640436232&uo=4
+    audio:
+      url: https://mcdn.podbean.com/mf/web/3vqief/RIF_4_-_Decisionsap7yu.mp3
+      type: audio/mpeg
+      length: 52154579
+      duration: 3259
+    image_url: https://pbcdn1.podbean.com/imglogo/image-logo/16252769/Lulie_infinity_sign_with_RIF.jpg
+    show: *reason_is_fun
+    published_date: 2024/01/03
+    published_at: Wed, 03 Jan 2024 14:23:27 +0000
+
+  - title: Inexplicit Ideas & Embodiment
+    url: https://reasonisfun.podbean.com/e/3-inexplicit-ideas-embodiment/
+    podcast_url: https://podcasts.apple.com/us/podcast/3-inexplicit-ideas-embodiment/id1681458005?i=1000615553747&uo=4
+    audio:
+      url: https://mcdn.podbean.com/mf/web/jz2e8k/RIF_3_-_Inexplicit_Ideas_Embodimentb69ij.mp3
+      type: audio/mpeg
+      length: 72975809
+      duration: 4560
+    image_url: https://pbcdn1.podbean.com/imglogo/image-logo/16252769/Lulie_infinity_sign_with_RIF.jpg
+    show: *reason_is_fun
+    published_date: 2023/06/03
+    published_at: Sat, 03 Jun 2023 21:58:37 +0000
+
+  - title: Physics of Inexplicit Ideas
+    url: https://reasonisfun.podbean.com/e/2-physics-of-inexplicit-ideas/
+    podcast_url: https://podcasts.apple.com/us/podcast/2-physics-of-inexplicit-ideas/id1681458005?i=1000614134181&uo=4
+    audio:
+      url: https://mcdn.podbean.com/mf/web/yy5cuw/RIF_2_-_Physics_of_Inexplicit_Ideas8f6l9.mp3
+      type: audio/mpeg
+      length: 68736425
+      duration: 4296
+    image_url: https://pbcdn1.podbean.com/imglogo/image-logo/16252769/Lulie_infinity_sign_with_RIF.jpg
+    show: *reason_is_fun
+    published_date: 2023/05/23
+    published_at: Tue, 23 May 2023 11:23:31 +0000
+
+  - title: Fun, Fury, Feeling
+    url: https://reasonisfun.podbean.com/e/1-fun-fury-feeling/
+    podcast_url: https://podcasts.apple.com/us/podcast/1-fun-fury-feeling/id1681458005?i=1000612003892&uo=4
+    audio:
+      url: https://mcdn.podbean.com/mf/web/57vbxt/RIF_1_-_Fun_Anger_Emotional_Fluidity6vfb2.mp3
+      type: audio/mpeg
+      length: 69944833
+      duration: 4371
+    image_url: https://pbcdn1.podbean.com/imglogo/image-logo/16252769/Lulie_infinity_sign_with_RIF.jpg
+    show: *reason_is_fun
+    published_date: 2023/05/06
+    published_at: Sat, 06 May 2023 20:53:50 +0000
+
+  - title: Effective Altruism, X-risk, (e/acc)
+    url: https://reasonisfun.podbean.com/e/0-effective-altruism-x-risk-eacc/
+    podcast_url: https://podcasts.apple.com/us/podcast/0-effective-altruism-x-risk-e-acc/id1681458005?i=1000610223173&uo=4
+    audio:
+      url: https://mcdn.podbean.com/mf/web/e9exp5/RIF_0_-_Effective_Altruism_X-risk_e_acc_8asbi.mp3
+      type: audio/mpeg
+      length: 96057096
+      duration: 6003
+    image_url: https://pbcdn1.podbean.com/imglogo/image-logo/16252769/Lulie_infinity_sign_with_RIF.jpg
+    show: *reason_is_fun
+    published_date: 2023/04/22
+    published_at: Sat, 22 Apr 2023 22:21:45 +0000
 
   - title: "David Deutsch: The Unity Of The Universe"
     podcast_url: https://podcasts.apple.com/us/podcast/5-david-deutsch-the-unity-of-the-universe/id1686768692?i=1000612009898&uo=4
