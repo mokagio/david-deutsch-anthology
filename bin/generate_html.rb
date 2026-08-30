@@ -6,6 +6,7 @@ require 'erb'
 require 'yaml'
 
 require_relative '../lib/assets'
+require_relative '../lib/markdown'
 require_relative '../lib/site'
 
 # Load data from YAML file

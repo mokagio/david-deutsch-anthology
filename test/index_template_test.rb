@@ -4,15 +4,15 @@ require 'erb'
 require 'date'
 require 'minitest/autorun'
 
+require_relative '../lib/markdown'
 require_relative '../lib/site'
 
 class IndexTemplateTest < Minitest::Test
   TEMPLATE = ERB.new(File.read(File.expand_path('../templates/index.erb', __dir__)))
 
-  def render(interviews)
+  def render(interviews, other: [])
     books = []
     talks = []
-    other = []
     podcast_interviews = interviews.is_a?(Array) ? interviews : [interviews]
 
     TEMPLATE.result(binding)
@@ -148,5 +148,24 @@ class IndexTemplateTest < Minitest::Test
 
     assert_equal 3, html.scan('class="intro-link"').size
     refute_includes html, '<div class="intro">'
+  end
+  def test_lists_a_named_other_entry_as_a_link
+    html = render(
+      interview(podcast_url: 'https://podcast.example/episode'),
+      other: [{ 'name' => 'A documentary', 'url' => 'https://video.example', 'published_year' => 1992 }]
+    )
+
+    assert_includes html, '<a class="anthology-link" href="https://video.example" target="_blank">A documentary</a>'
+    assert_includes html, '<span class="episode-date">1992</span>'
+  end
+
+  def test_renders_an_other_entry_written_as_markdown
+    html = render(
+      interview(podcast_url: 'https://podcast.example/episode'),
+      other: [{ 'markdown' => "[A collection](https://collection.example) with _transcripts_.\n" }]
+    )
+
+    assert_includes html, '<span class="accent-link"><a href="https://collection.example" target="_blank">A collection</a></span> with <em>transcripts</em>.'
+    refute_includes html, 'class="anthology-link" href=""'
   end
 end
