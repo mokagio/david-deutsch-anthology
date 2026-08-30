@@ -226,6 +226,9 @@ class FindEntries
 
   Show = Struct.new(:name, :url, :feed_url, :own, keyword_init: true)
 
+  # Above this many episodes, a show is read for his name; at or below it, whole.
+  SHORT_CATALOGUE = 20
+
   def self.default_list = YAML.load_file(File.join(ROOT, 'list.yml'), aliases: true)
 
   def self.default_ignore = File.exist?(IGNORE_FILE) ? YAML.load_file(IGNORE_FILE) : {}
@@ -288,9 +291,13 @@ class FindEntries
     feed_url, kind = located
     log "  reading #{show.name} (#{kind})"
     candidates = FeedReader.candidates(feed_url, show_name: show.name, source: kind.to_s)
-    # His own channel is all him, and its uploads are titled by subject rather
-    # than by guest, so the name filter would throw away everything worth seeing.
-    show.own ? candidates : candidates.select { |candidate| about_deutsch?(candidate) }
+    # The name filter earns its place on a long catalogue, where one appearance
+    # hides among hundreds of episodes about something else. On a short one it
+    # only throws away what a glance would judge: six of the seven Reason Is Fun
+    # episodes name him nowhere in the title, and it dropped all six.
+    return candidates if show.own || candidates.size <= SHORT_CATALOGUE
+
+    candidates.select { |candidate| about_deutsch?(candidate) }
   end
 
   # Only the title is read for his name. A description is a poor test: on the

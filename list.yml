@@ -40,10 +40,10 @@ other:
     published_year: 1992
 
   - markdown: |
-      [_Bold Conjectures, Volume I_](https://conjectureinstitute.org/press) by Logan Chipkin and Conjecture Institute is a curated selection of interviews with David
+      [_Bold Conjectures, Volume I_ by Logan Chipkin and Conjecture Institute is a curated selection of interviews with David](https://conjectureinstitute.org/press)
 
   - markdown: |
-      [Deutschland](https://www.dirkswebsite.nl/deutschland) is another rich collection of David's work, with _searchable transcripts_
+      [_Deutschland_ is another rich collection of David's work, with _searchable transcripts_](https://www.dirkswebsite.nl/deutschland)
 
 talks:
   - title: Why Are Flowers Beautiful?

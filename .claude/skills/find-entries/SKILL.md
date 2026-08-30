@@ -24,6 +24,7 @@ Two or three minutes. Three sources, each blind to what the others see:
 
 - **Apple's episode index**, searched under four terms. The only source that can find a show he has never been on before.
 - **The back catalogue of every show in the list**, whole. A show that has had him on once is the likeliest to have him on again, and this reads all of it, not the recent end.
+  An episode qualifies by naming him in its title, unless the show has 20 episodes or fewer, where the whole catalogue is reported: a short feed is a show that is his or nearly all his, and its episodes are titled by subject.
 - **The YouTube channels the list names**, through each channel's Atom feed — which carries only the last 15 uploads, so it finds what is new and nothing older.
 
 His own channel is not among them. The list holds it as a single link under `other` and enumerates nothing from it: the anthology collects appearances, and a channel of his own uploads is covered by the link.

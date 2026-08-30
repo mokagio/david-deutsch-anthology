@@ -137,6 +137,32 @@ class FindEntriesTest < Minitest::Test
     refute_includes @requested, 'https://www.youtube.com/watch?v=C6_gxo'
   end
 
+  # --- how much of a show's catalogue is read ------------------------------
+
+  # Reason Is Fun is his and Lulie Tanett's, and only its first episode names him
+  # in the title. The other six sat in a seven-episode feed the sweep was already
+  # reading, and the name filter dropped every one.
+  def show_list = { 'podcast_interviews' => [{ 'title' => 'An episode', 'show' => { 'name' => 'A Show', 'url' => 'https://show.example' } }] }
+
+  def serve_catalogue(size)
+    episodes = Array.new(size) { |n| { title: "Episode #{n} about something else" } }
+    episodes << { title: 'Fun, Fury, Feeling' }
+    serve('https://show.example', %(<link rel="alternate" type="application/rss+xml" href="https://show.example/feed.xml"/>))
+    serve('https://show.example/feed.xml', rss(*episodes))
+  end
+
+  def test_a_short_catalogue_is_read_whole
+    serve_catalogue(6)
+
+    assert_includes titles(sweep(show_list)), 'Fun, Fury, Feeling'
+  end
+
+  def test_a_long_catalogue_is_read_for_his_name
+    serve_catalogue(FindEntries::SHORT_CATALOGUE)
+
+    assert_empty sweep(show_list)['new']
+  end
+
   # --- locating a show's feed ---------------------------------------------
 
   def guest_channel_list(url = 'https://www.youtube.com/@guest')
@@ -185,10 +211,12 @@ class FindEntriesTest < Minitest::Test
     ] }
   end
 
+  # A long catalogue only; a short one is read whole, which is what the sweep of a
+  # show's back catalogue tests above pin down.
   def test_an_episode_that_never_names_him_is_not_a_candidate
+    episodes = Array.new(FindEntries::SHORT_CATALOGUE) { |n| { title: 'Some other guest entirely', link: "https://show.example/#{n}" } }
     serve('https://show.example/feed',
-          rss({ title: 'Some other guest entirely', link: 'https://show.example/1' },
-              { title: 'David Deutsch on explanation', link: 'https://show.example/2' }))
+          rss(*episodes, { title: 'David Deutsch on explanation', link: 'https://show.example/named' }))
 
     assert_equal ['David Deutsch on explanation'], titles(sweep(rss_show_list))
   end
