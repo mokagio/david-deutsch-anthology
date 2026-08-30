@@ -7,7 +7,7 @@
 # list names. What comes back is sifted against the list and reported; nothing is
 # written.
 #
-#   ruby .claude/skills/find-entries/scripts/find_entries.rb [--source itunes,feeds]
+#   ruby .claude/skills/find-entries/scripts/find_entries.rb [--source itunes,spotify,feeds]
 #                                                            [--since YYYY-MM-DD] [--feed URL]
 #                                                            [--own-channel] [--json] [--all]
 
@@ -22,6 +22,7 @@ require 'yaml'
 ROOT = File.expand_path('../../../..', __dir__)
 require File.join(ROOT, 'lib', 'http_client')
 require File.join(ROOT, 'lib', 'episode_matcher')
+require File.join(ROOT, 'lib', 'spotify')
 require File.join(ROOT, 'lib', 'discovery')
 
 # Reads any feed a sweep lands on — a show's RSS or a YouTube channel's Atom —
@@ -216,6 +217,51 @@ module ItunesSweep
   end
 end
 
+# Spotify indexes shows that publish nowhere else, and the only way to read one is
+# to ask it. What comes back is a lead, never audio: see `Spotify`.
+module SpotifySweep
+  TERMS = ['david deutsch', 'david deutsch interview', 'constructor theory'].freeze
+
+  class << self
+    # Search hands back an episode with no sign of what show it is from, and the
+    # endpoint that would read fifty of them back whole is forbidden to an
+    # application's own credentials. So the name filter runs first, on the title
+    # alone, and only what survives it is read back one at a time.
+    def search(client, logger, &keep)
+      wanted = {}
+
+      TERMS.each do |term|
+        logger.call("  searching Spotify for #{term.inspect}")
+        client.search_episodes(term).each do |episode|
+          found = candidate(episode)
+          wanted[episode['id']] ||= found if keep.call(found)
+        end
+      end
+
+      wanted.map { |id, found| name_show(client, id, found) }
+    end
+
+    def name_show(client, id, candidate)
+      candidate.show_name = client.episode(id)&.dig('show', 'name')
+      candidate
+    end
+
+    def show(client, show_id) = client.show_episodes(show_id).map { |episode| candidate(episode) }
+
+    def candidate(episode)
+      Discovery::Candidate.new(
+        title: episode['name'],
+        url: episode.dig('external_urls', 'spotify'),
+        published_on: episode['release_date'],
+        show_name: episode.dig('show', 'name'),
+        source: 'spotify',
+        image_url: episode['images']&.first&.fetch('url', nil),
+        duration: episode['duration_ms'] && (episode['duration_ms'] / 1000)
+      )
+    end
+  end
+end
+
 # Runs the sweeps, sifts what they return, and reports.
 class FindEntries
   WORKERS = 6
@@ -241,12 +287,15 @@ class FindEntries
     @ignored = []
     @finder = FeedFinder.new
     @unreachable = Queue.new
+    @skipped = []
     @swept = Hash.new(0)
   end
 
   def run
+    prepare_spotify
     candidates = []
     candidates.concat(itunes_candidates) if source?('itunes')
+    candidates.concat(spotify_candidates) if source?('spotify')
     candidates.concat(feed_candidates) if source?('feeds')
     candidates.concat(extra_feed_candidates)
 
@@ -267,6 +316,31 @@ class FindEntries
     found
   end
 
+  def spotify_candidates
+    return [] unless @spotify
+
+    found = SpotifySweep.search(@spotify, method(:log)) { |candidate| about_deutsch?(candidate) }
+    @swept[:spotify_searches] = SpotifySweep::TERMS.size
+    found
+  end
+
+  # Built before the sweeps, which read shows in parallel and share the one token.
+  # A sweep that would never ask Spotify anything says nothing about it.
+  def prepare_spotify
+    @spotify = nil
+    return unless source?('spotify') || shows_in_list.any? { |show| Spotify.show_id(show.url) }
+
+    client = Spotify.configured? ? Spotify::Client.new : nil
+    @spotify = client if client&.usable?
+    return if @spotify
+
+    @skipped << if client
+                  'Spotify (the credentials were refused)'
+                else
+                  'Spotify (set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET to sweep it)'
+                end
+  end
+
   # A show that has had him on once is the likeliest to have him on again, so the
   # whole back catalogue of every show in the list gets read.
   def feed_candidates
@@ -282,6 +356,9 @@ class FindEntries
   end
 
   def sweep_show(show)
+    spotify_id = Spotify.show_id(show.url)
+    return sweep_spotify_show(show, spotify_id) if spotify_id
+
     located = @finder.find(name: show.name, url: show.url, feed_url: show.feed_url)
     unless located
       @unreachable << show.name
@@ -291,13 +368,29 @@ class FindEntries
     feed_url, kind = located
     log "  reading #{show.name} (#{kind})"
     candidates = FeedReader.candidates(feed_url, show_name: show.name, source: kind.to_s)
-    # The name filter earns its place on a long catalogue, where one appearance
-    # hides among hundreds of episodes about something else. On a short one it
-    # only throws away what a glance would judge: six of the seven Reason Is Fun
-    # episodes name him nowhere in the title, and it dropped all six.
-    return candidates if show.own || candidates.size <= SHORT_CATALOGUE
+    filter(candidates, own: show.own)
+  end
+
+  # The name filter earns its place on a long catalogue, where one appearance
+  # hides among hundreds of episodes about something else. On a short one it only
+  # throws away what a glance would judge: six of the seven Reason Is Fun episodes
+  # name him nowhere in the title, and it dropped all six.
+  def filter(candidates, own: false)
+    return candidates if own || candidates.size <= SHORT_CATALOGUE
 
     candidates.select { |candidate| about_deutsch?(candidate) }
+  end
+
+  # A show that lives on Spotify has no feed to find, and the finder reported every
+  # one of them as unreachable until this asked Spotify instead.
+  def sweep_spotify_show(show, spotify_id)
+    unless @spotify
+      @unreachable << show.name
+      return []
+    end
+
+    log "  reading #{show.name} (spotify)"
+    filter(SpotifySweep.show(@spotify, spotify_id))
   end
 
   # Only the title is read for his name. A description is a poor test: on the
@@ -305,6 +398,10 @@ class FindEntries
   def about_deutsch?(candidate) = EpisodeMatcher.names_subject?(candidate.title)
 
   def shows_in_list
+    @shows_in_list ||= collect_shows
+  end
+
+  def collect_shows
     shows = {}
 
     @list.each_value do |entries|
@@ -427,6 +524,7 @@ class FindEntries
       'swept' => @swept,
       'new' => novel.map { |candidate| json_candidate(candidate) },
       'unreachable_shows' => @unreachable_names,
+      'skipped_sources' => @skipped,
       'ignored_count' => @ignored.size,
       'ignored' => (@options[:all] ? @ignored.map { |c, reason| { 'title' => c.title, 'reason' => reason } } : []),
       'known_count' => known.size,
@@ -440,7 +538,11 @@ class FindEntries
 
   def report_text(novel, known)
     puts
-    puts "Swept #{@swept[:shows]} shows and #{@swept[:searches]} Apple searches: " \
+    searches = [
+      ("#{@swept[:searches]} Apple searches" if @swept[:searches].positive?),
+      ("#{@swept[:spotify_searches]} Spotify searches" if @swept[:spotify_searches].positive?)
+    ].compact
+    puts "Swept #{@swept[:shows]} shows#{searches.empty? ? '' : " and #{searches.join(' and ')}"}: " \
          "#{novel.size} to look at, #{known.size} already listed, #{@ignored.size} ignored."
     puts
 
@@ -448,6 +550,7 @@ class FindEntries
     print_group('Already listed', known) if @options[:all]
     print_group('Ignored', @ignored) if @options[:all]
     print_unreachable
+    print_skipped
   end
 
   def print_candidate(candidate)
@@ -465,6 +568,13 @@ class FindEntries
     puts
   end
 
+  def print_skipped
+    return if @skipped.empty?
+
+    @skipped.each { |source| puts "Not swept: #{source}" }
+    puts
+  end
+
   def print_unreachable
     return if @unreachable_names.empty?
 
@@ -475,7 +585,7 @@ class FindEntries
 end
 
 def parse_options(argv)
-  options = { sources: %w[itunes feeds], feeds: [], json: false, all: false, since: nil, own_channel: false }
+  options = { sources: %w[itunes spotify feeds], feeds: [], json: false, all: false, since: nil, own_channel: false }
 
   until argv.empty?
     case (flag = argv.shift)

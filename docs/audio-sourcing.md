@@ -83,6 +83,24 @@ Space requests to the same host and retry once before believing a failure.
 `dts.podtrac.com` answers HEAD with 405 while serving a ranged GET happily.
 Fall back to `Range: bytes=0-0` and read the total from `Content-Range`.
 
+## Spotify hands out no audio
+
+The Web API states no enclosure for an episode, and the file behind the player is DRM'd.
+What it does offer is `audio_preview_url`, a 30-second clip: never record that as an entry's audio — an episode that plays for 30 seconds and stops is worse than one a client cannot play at all.
+
+A Spotify result is a lead. Find the same conversation on the show's own feed, and take the audio from there.
+The exception is a show that publishes on Spotify alone, which has no audio to find anywhere: the entry can be recorded without an `audio` block, and simply will not reach the podcast feed.
+
+Reading the catalogue needs an app's client credentials (`SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`); everything asked for is public, so no user login is involved.
+
+Two limits the documentation does not lead with:
+
+- **Episode search refuses `limit` above 10** — `400 Invalid limit`, where every other search type takes 50. Page through `next` instead.
+- **`GET /v1/episodes?ids=` answers 403** to an application's own credentials, though `GET /v1/episodes/{id}` answers 200. Search results carry no `show`, so learning where a hit was published costs one request each, and is worth spending only on what a filter has already kept.
+
+A show's episodes, unlike an RSS feed, page to the end: a Spotify catalogue's length is the truth, where a feed's is often a window.
+Catalogue endpoints answer for one country at a time and return an empty payload when asked for none, which reads exactly like a show with no episodes — `Spotify::MARKET` is why the sweep sees anything at all.
+
 ## Unreachable is not dead
 
 `fromthelotus.world` fails the TLS handshake from Ruby *and* from curl.

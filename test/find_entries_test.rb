@@ -20,15 +20,21 @@ class FindEntriesTest < Minitest::Test
   end
 
   def teardown
-    HttpClient.singleton_class.send(:remove_method, :get)
-    HttpClient.singleton_class.send(:alias_method, :get, :get_without_stub)
-    HttpClient.singleton_class.send(:remove_method, :get_without_stub)
+    %i[get post_form].each do |verb|
+      HttpClient.singleton_class.send(:remove_method, verb)
+      HttpClient.singleton_class.send(:alias_method, verb, :"#{verb}_without_stub")
+      HttpClient.singleton_class.send(:remove_method, :"#{verb}_without_stub")
+    end
+    ENV.delete('SPOTIFY_CLIENT_ID')
+    ENV.delete('SPOTIFY_CLIENT_SECRET')
   end
 
   def stub_http
     test = self
     HttpClient.singleton_class.send(:alias_method, :get_without_stub, :get)
+    HttpClient.singleton_class.send(:alias_method, :post_form_without_stub, :post_form)
     HttpClient.singleton_class.send(:define_method, :get) { |url, **| test.respond(url) }
+    HttpClient.singleton_class.send(:define_method, :post_form) { |url, **| test.respond(url) }
   end
 
   def respond(url)
@@ -135,6 +141,105 @@ class FindEntriesTest < Minitest::Test
 
     assert_empty sweep(list, options: { own_channel: true })['new']
     refute_includes @requested, 'https://www.youtube.com/watch?v=C6_gxo'
+  end
+
+  # --- Spotify --------------------------------------------------------------
+
+  # The list holds a show that publishes on Spotify and nowhere else. The feed
+  # finder has nothing to find for it, and it was reported unreachable every sweep.
+  SPOTIFY_SHOW = 'https://open.spotify.com/show/5xD9XCKiagoraGYvL0UHrT'
+
+  def spotify_show_list
+    { 'podcast_interviews' => [
+      { 'title' => 'An interview', 'show' => { 'name' => 'A Spotify Show', 'url' => SPOTIFY_SHOW } }
+    ] }
+  end
+
+  def with_credentials
+    ENV['SPOTIFY_CLIENT_ID'] = 'an-id'
+    ENV['SPOTIFY_CLIENT_SECRET'] = 'a-secret'
+    serve(Spotify::TOKEN_URL, JSON.dump({ 'access_token' => 'a-token' }))
+  end
+
+  def serve_spotify_show(*names)
+    episodes = names.each_with_index.map do |name, index|
+      { 'id' => "e#{index}", 'name' => name, 'release_date' => '2024-01-04',
+        'external_urls' => { 'spotify' => "https://open.spotify.com/episode/e#{index}" } }
+    end
+    serve("#{Spotify::API}/shows/5xD9XCKiagoraGYvL0UHrT?market=US", JSON.dump({ 'name' => 'A Spotify Show' }))
+    serve("#{Spotify::API}/shows/5xD9XCKiagoraGYvL0UHrT/episodes?market=US&limit=50",
+          JSON.dump({ 'items' => episodes, 'next' => nil }))
+  end
+
+  def test_a_listed_spotify_show_is_read_through_the_api
+    with_credentials
+    serve_spotify_show('Deutsch on explanation')
+
+    report = sweep(spotify_show_list, options: { sources: %w[feeds] })
+
+    assert_equal ['Deutsch on explanation'], titles(report)
+    assert_equal 'A Spotify Show', report['new'].first['show_name']
+    assert_empty report['unreachable_shows']
+  end
+
+  # Without credentials nothing is guessed at: the show is named as unswept, the
+  # way a show whose feed cannot be found already is.
+  def test_without_credentials_spotify_is_said_to_be_skipped
+    serve_spotify_show('Deutsch on explanation')
+
+    report = sweep(spotify_show_list, options: { sources: %w[feeds] })
+
+    assert_empty report['new']
+    assert_equal ['A Spotify Show'], report['unreachable_shows']
+    assert_includes report['skipped_sources'].join, 'SPOTIFY_CLIENT_ID'
+  end
+
+  def serve_spotify_search(*episodes)
+    serve("#{Spotify::API}/search?q=david+deutsch&type=episode&market=US&limit=#{Spotify::SEARCH_PAGE}",
+          JSON.dump({ 'episodes' => { 'items' => episodes, 'next' => nil } }))
+  end
+
+  def spotify_episode(id, name)
+    { 'id' => id, 'name' => name, 'release_date' => '2024-01-04', 'duration_ms' => 60_000,
+      'external_urls' => { 'spotify' => "https://open.spotify.com/episode/#{id}" },
+      'audio_preview_url' => 'https://p.scdn.co/mp3-preview/clip.mp3' }
+  end
+
+  # An episode Spotify carries is a lead, never audio: the file is theirs to play,
+  # and the preview it offers is thirty seconds long.
+  def test_a_spotify_search_hit_carries_no_audio
+    with_credentials
+    serve_spotify_search(spotify_episode('e1', 'David Deutsch on explanation'))
+    serve("#{Spotify::API}/episodes/e1?market=US",
+          JSON.dump(spotify_episode('e1', 'David Deutsch on explanation').merge('show' => { 'name' => 'A Spotify Show' })))
+
+    found = sweep({}, options: { sources: %w[spotify] })['new']
+
+    assert_equal ['David Deutsch on explanation'], found.map { |candidate| candidate['title'] }
+    assert_equal 'A Spotify Show', found.first['show_name']
+    assert_nil found.first['audio_url']
+    assert_equal 60, found.first['duration']
+  end
+
+  # Reading a hit back is a request of its own, so it is spent only on what the
+  # name filter kept.
+  def test_only_a_hit_worth_keeping_is_read_back
+    with_credentials
+    serve_spotify_search(spotify_episode('e1', 'David Deutsch on explanation'),
+                         spotify_episode('e2', 'Some other guest entirely'))
+    serve("#{Spotify::API}/episodes/e1?market=US",
+          JSON.dump(spotify_episode('e1', 'David Deutsch on explanation').merge('show' => { 'name' => 'A Spotify Show' })))
+
+    found = sweep({}, options: { sources: %w[spotify] })['new']
+
+    assert_equal ['David Deutsch on explanation'], found.map { |candidate| candidate['title'] }
+    refute_includes @requested, "#{Spotify::API}/episodes/e2?market=US"
+  end
+
+  def test_a_sweep_that_asks_spotify_nothing_says_nothing_about_it
+    report = sweep({}, options: { sources: %w[itunes] })
+
+    assert_empty report['skipped_sources']
   end
 
   # --- how much of a show's catalogue is read ------------------------------
