@@ -272,8 +272,14 @@ class FindEntries
 
   Show = Struct.new(:name, :url, :feed_url, :own, keyword_init: true)
 
-  # Above this many episodes, a show is read for his name; at or below it, whole.
-  SHORT_CATALOGUE = 20
+  # At or below this many episodes, a show is read whole; above it, for his name.
+  #
+  # The number is low because a feed that stops at a round one is a window rather
+  # than a catalogue: fifteen is every YouTube channel, and ten, twenty and
+  # twenty-five are where podcast hosts cut theirs. Reading a window whole reports
+  # the recent end of Mindscape, Conversations with Tyler and Tim Ferriss in full,
+  # which is 448 candidates where there were 19.
+  SHORT_CATALOGUE = 9
 
   def self.default_list = YAML.load_file(File.join(ROOT, 'list.yml'), aliases: true)
 
@@ -368,15 +374,20 @@ class FindEntries
     feed_url, kind = located
     log "  reading #{show.name} (#{kind})"
     candidates = FeedReader.candidates(feed_url, show_name: show.name, source: kind.to_s)
-    filter(candidates, own: show.own)
+    # A channel's Atom feed carries its last fifteen uploads whatever the channel
+    # holds, so its length says nothing about the catalogue behind it.
+    filter(candidates, own: show.own, windowed: kind == :youtube)
   end
 
   # The name filter earns its place on a long catalogue, where one appearance
   # hides among hundreds of episodes about something else. On a short one it only
   # throws away what a glance would judge: six of the seven Reason Is Fun episodes
   # name him nowhere in the title, and it dropped all six.
-  def filter(candidates, own: false)
-    return candidates if own || candidates.size <= SHORT_CATALOGUE
+  #
+  # `windowed` is a feed that states a fixed number of recent items rather than
+  # everything it has, where a small count is no evidence of a small show.
+  def filter(candidates, own: false, windowed: false)
+    return candidates if own || (!windowed && candidates.size <= SHORT_CATALOGUE)
 
     candidates.select { |candidate| about_deutsch?(candidate) }
   end
@@ -390,6 +401,7 @@ class FindEntries
     end
 
     log "  reading #{show.name} (spotify)"
+    # Paged to its end rather than served as a window, so its length is the truth.
     filter(SpotifySweep.show(@spotify, spotify_id))
   end
 

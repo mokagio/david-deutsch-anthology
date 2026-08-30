@@ -262,6 +262,17 @@ class FindEntriesTest < Minitest::Test
     assert_includes titles(sweep(show_list)), 'Fun, Fury, Feeling'
   end
 
+  # A channel's Atom feed states its last fifteen uploads whatever the channel
+  # holds, so a short one is a window, not a small show. Read whole, the windows
+  # of 23 listed channels reported 299 candidates in a single sweep.
+  def test_a_channel_window_is_read_for_his_name_however_short_it_is
+    uploads = Array.new(FindEntries::SHORT_CATALOGUE - 3) { |n| { title: "Upload #{n}", link: "https://youtu.be/#{n}" } }
+    serve(channel_feed_url, atom(*uploads, { title: 'David Deutsch on knowledge', link: 'https://youtu.be/d' }))
+
+    assert_equal ['David Deutsch on knowledge'],
+                 titles(sweep(guest_channel_list("https://www.youtube.com/channel/#{CHANNEL}")))
+  end
+
   def test_a_long_catalogue_is_read_for_his_name
     serve_catalogue(FindEntries::SHORT_CATALOGUE)
 

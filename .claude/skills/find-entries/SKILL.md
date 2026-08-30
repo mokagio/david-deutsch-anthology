@@ -24,7 +24,8 @@ Two or three minutes. Four sources, each blind to what the others see:
 
 - **Apple's episode index**, searched under four terms. The only source that can find a show he has never been on before.
 - **The back catalogue of every show in the list**, whole. A show that has had him on once is the likeliest to have him on again, and this reads all of it, not the recent end.
-  An episode qualifies by naming him in its title, unless the show has 20 episodes or fewer, where the whole catalogue is reported: a short feed is a show that is his or nearly all his, and its episodes are titled by subject.
+  An episode qualifies by naming him in its title, unless the feed holds fewer than ten items and states everything it has, where the whole catalogue is reported — a feed that short is a show that is his or nearly all his, and its episodes are titled by subject.
+  A YouTube channel's feed is never read that way: it states fifteen uploads whatever the channel holds, and a window read as a catalogue reported 299 candidates in one sweep.
 - **The YouTube channels the list names**, through each channel's Atom feed — which carries only the last 15 uploads, so it finds what is new and nothing older.
 - **Spotify**, searched under three terms, and asked for the catalogue of every show the list holds by an `open.spotify.com/show/` URL — those have no feed to find, and were reported unreachable every sweep until now.
   A Spotify hit is a lead, never audio: the file is theirs to play, and the 30-second `audio_preview_url` they do offer is worse than nothing to a feed that publishes what it records. Expect to find the same conversation elsewhere before adding it.
