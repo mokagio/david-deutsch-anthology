@@ -878,6 +878,7 @@ podcast_interviews:
     published_at: Tue, 09 May 2023 20:00:00 +0000
 
   - title: AGI (with David Deutsch)
+    url: https://reasonisfun.podbean.com/e/agi/
     podcast_url: https://podcasts.apple.com/us/podcast/1-agi-with-david-deutsch/id1681458005?i=1000608045345&uo=4
     audio:
       url: https://mcdn.podbean.com/mf/web/gfh3t5/RIF_-1_AGIb1d1b.mp3
