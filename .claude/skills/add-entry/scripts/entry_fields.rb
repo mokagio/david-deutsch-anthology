@@ -21,6 +21,7 @@ require File.join(ROOT, 'lib', 'http_client')
 require File.join(ROOT, 'lib', 'enclosure')
 require File.join(ROOT, 'lib', 'image_probe')
 require File.join(ROOT, 'lib', 'duration')
+require File.join(ROOT, 'lib', 'episode_title')
 
 def option(flag) = ARGV.include?(flag) ? ARGV[ARGV.index(flag) + 1] : nil
 
@@ -180,7 +181,10 @@ if existing
   warn 'Adding this would publish the same recording twice. Stop unless you know better.'
 end
 
-quoted = matched_title.match?(/[:#]/) ? matched_title.inspect : matched_title
+bare_title = EpisodeTitle.strip_numbering(matched_title)
+warn "stripped the show's episode number: #{matched_title} -> #{bare_title}" unless bare_title == matched_title
+
+quoted = bare_title.match?(/[:#]/) ? bare_title.inspect : bare_title
 
 puts <<~YAML
     - title: #{quoted}
