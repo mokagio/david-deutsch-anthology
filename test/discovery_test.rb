@@ -179,6 +179,18 @@ class DiscoveryTest < Minitest::Test
     assert_match(/A pastor/, ignore.reject(candidate(show_name: "First Presbyterian Church of Pittsburgh's podcast")))
   end
 
+  # Two clips of one Lucas di Grassi interview came back the day after the
+  # interview itself was listed, both carrying its subject in the title.
+  def test_ignores_a_youtube_short_as_a_clip_of_something_else
+    assert_match(
+      /clip/,
+      ignore.reject(candidate(title: 'Free will and Determinism with David Deutsch',
+                              url: 'https://www.youtube.com/shorts/2iptVgx13wA'))
+    )
+    assert_nil ignore.reject(candidate(title: 'David Deutsch on free will',
+                                       url: 'https://www.youtube.com/watch?v=2iptVgx13wA'))
+  end
+
   def test_ignores_a_commentary_title_whatever_quote_marks_it_uses
     assert_match(
       /ignored title/,

@@ -125,6 +125,10 @@ module Discovery
   # shows that belong to a namesake, and titles that are commentary on the books
   # rather than an appearance.
   class Ignore
+    # A Short is capped at three minutes and carries the whole episode's title, so
+    # it is an excerpt of something else — usually of an episode already listed.
+    SHORT = %r{youtube\.com/shorts/}
+
     def initialize(rules)
       rules ||= {}
       @shows = (rules['shows'] || []).to_h { |show| [Discovery.fold(show['name']), show['reason']] }
@@ -133,6 +137,8 @@ module Discovery
 
     # Why this candidate is not worth reporting, or nil.
     def reject(candidate)
+      return 'a Short, which is a clip of something else' if candidate.url.to_s.match?(SHORT)
+
       show = Discovery.fold(candidate.show_name)
       return "ignored show: #{@shows[show] || show}" if @shows.key?(show) && !show.empty?
 
