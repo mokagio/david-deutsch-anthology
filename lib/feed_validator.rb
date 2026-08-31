@@ -31,8 +31,18 @@ module FeedValidator
       errors = REQUIRED_CHANNEL_FIELDS.reject { |field| present?(channel.public_send(field)) }
                                       .map { |field| "channel is missing <#{field}>" }
       errors << 'channel has no items' if channel.items.empty?
+      errors.concat(owner_errors(channel))
       errors.concat(image_errors(channel, 'channel'))
       errors
+    end
+
+    # No client asks for this, but a directory does: Spotify and Apple prove the
+    # feed is yours by mailing the owner address, and refuse a submission without
+    # one.
+    def owner_errors(channel)
+      return [] if present?(channel.itunes_owner&.itunes_email)
+
+      ['channel is missing <itunes:owner><itunes:email>, which a directory needs to verify it']
     end
 
     def item_errors(items)

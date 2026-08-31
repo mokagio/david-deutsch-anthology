@@ -12,6 +12,10 @@
     <lastBuildDate><%= build_date.rfc2822 %></lastBuildDate>
     <generator>david-deutsch-anthology</generator>
     <itunes:author><%= h feed_author %></itunes:author>
+    <itunes:owner>
+      <itunes:name><%= h feed_owner_name %></itunes:name>
+      <itunes:email><%= h feed_owner_email %></itunes:email>
+    </itunes:owner>
     <itunes:summary><%= h feed_description %></itunes:summary>
 <% if feed_image_url -%>
     <image>

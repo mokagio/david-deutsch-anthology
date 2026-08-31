@@ -32,6 +32,11 @@ SITE_URL = Site::URL
 FEED_TITLE = 'David Deutsch Podcast Interviews'
 FEED_DESCRIPTION = 'A collection of podcast appearances by David Deutsch.'
 FEED_AUTHOR = 'David Deutsch'
+# Whoever assembled the anthology, not whoever is speaking on it: a directory
+# proves a feed is yours by mailing this address, so it has to reach the person
+# who submitted it.
+FEED_OWNER_NAME = 'Gio Lodi'
+FEED_OWNER_EMAIL = 'gio+ddpodcastfeed@mokacoding.com'
 # A client tells this podcast from every other by its `<podcast:guid>`, which is
 # seeded from the feed's URL and then belongs to the podcast rather than to the
 # address. This is that URL as it stood when the GUID was assigned: it stays as
@@ -84,6 +89,8 @@ feed_guid = PodcastGuid.for(FEED_GUID_SEED)
 feed_title = FEED_TITLE
 feed_description = FEED_DESCRIPTION
 feed_author = FEED_AUTHOR
+feed_owner_name = FEED_OWNER_NAME
+feed_owner_email = FEED_OWNER_EMAIL
 site_url = SITE_URL
 pub_date = episodes.first[:published_at]
 # What the channel last published and when the feed last changed are different

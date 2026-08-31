@@ -13,6 +13,10 @@ class FeedValidatorTest < Minitest::Test
           <title>David Deutsch Podcast Interviews</title>
           <link>https://example.com/</link>
           <description>Interviews.</description>
+          <itunes:owner>
+            <itunes:name>The Anthologist</itunes:name>
+            <itunes:email>owner@example.com</itunes:email>
+          </itunes:owner>
           #{channel_body}
           <item>
             #{item_body}
@@ -87,6 +91,14 @@ class FeedValidatorTest < Minitest::Test
     errors = FeedValidator.errors(feed(item))
 
     assert_includes errors.join, 'missing <guid>'
+  end
+
+  def test_rejects_a_channel_with_no_owner_email
+    owner = %r{</?itunes:(owner|name|email)}
+    errors = FeedValidator.errors(feed(playable_item).lines.grep_v(owner).join)
+
+    assert_equal 1, errors.size
+    assert_includes errors.first, '<itunes:owner><itunes:email>'
   end
 
   def test_rejects_a_feed_that_is_not_well_formed
