@@ -902,6 +902,11 @@ podcast_interviews:
     published_date: 2023/04/08
     published_at: Sat, 08 Apr 2023 21:26:31 +0000
 
+  - title: Are feelings ideas?
+    youtube_url: https://www.youtube.com/watch?v=25kJdNHlZk0 # YouTube only; the show's podcast feed stops at #5
+    show: *reason_is_fun
+    published_date: 2024/08/25
+
   - title: The Art of Decision Making
     url: https://reasonisfun.podbean.com/e/5-the-art-of-decision-making/
     podcast_url: https://podcasts.apple.com/us/podcast/5-the-art-of-decision-making/id1681458005?i=1000640582180&uo=4
