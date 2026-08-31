@@ -31,7 +31,7 @@ require_relative '../lib/build_date'
 SITE_URL = Site::URL
 FEED_TITLE = 'David Deutsch Podcast Interviews'
 FEED_DESCRIPTION = 'A collection of podcast appearances by David Deutsch.'
-FEED_AUTHOR = 'David Deutsch'
+FEED_AUTHOR = 'David Deutsch and various podcast hosts'
 # Whoever assembled the anthology, not whoever is speaking on it: a directory
 # proves a feed is yours by mailing this address, so it has to reach the person
 # who submitted it.
