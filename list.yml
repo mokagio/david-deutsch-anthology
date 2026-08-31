@@ -889,6 +889,7 @@ podcast_interviews:
   - title: AGI (with David Deutsch)
     url: https://reasonisfun.podbean.com/e/agi/
     podcast_url: https://podcasts.apple.com/us/podcast/1-agi-with-david-deutsch/id1681458005?i=1000608045345&uo=4
+    youtube_url: https://www.youtube.com/watch?v=jQnoxhoWhXE
     audio:
       url: https://mcdn.podbean.com/mf/web/gfh3t5/RIF_-1_AGIb1d1b.mp3
       type: audio/mpeg
@@ -904,6 +905,7 @@ podcast_interviews:
   - title: The Art of Decision Making
     url: https://reasonisfun.podbean.com/e/5-the-art-of-decision-making/
     podcast_url: https://podcasts.apple.com/us/podcast/5-the-art-of-decision-making/id1681458005?i=1000640582180&uo=4
+    youtube_url: https://www.youtube.com/watch?v=Sdgl_Z3Tc7Y
     audio:
       url: https://mcdn.podbean.com/mf/web/afcb3r/RIF_5_-_The_Art_of_Decision_Makinga77m0.mp3
       type: audio/mpeg
@@ -917,6 +919,7 @@ podcast_interviews:
   - title: Decisions
     url: https://reasonisfun.podbean.com/e/4-decisions/
     podcast_url: https://podcasts.apple.com/us/podcast/4-decisions/id1681458005?i=1000640436232&uo=4
+    youtube_url: https://www.youtube.com/watch?v=F39FQnLjI6k
     audio:
       url: https://mcdn.podbean.com/mf/web/3vqief/RIF_4_-_Decisionsap7yu.mp3
       type: audio/mpeg
@@ -930,6 +933,7 @@ podcast_interviews:
   - title: Inexplicit Ideas & Embodiment
     url: https://reasonisfun.podbean.com/e/3-inexplicit-ideas-embodiment/
     podcast_url: https://podcasts.apple.com/us/podcast/3-inexplicit-ideas-embodiment/id1681458005?i=1000615553747&uo=4
+    youtube_url: https://www.youtube.com/watch?v=vxemBLZRgYI
     audio:
       url: https://mcdn.podbean.com/mf/web/jz2e8k/RIF_3_-_Inexplicit_Ideas_Embodimentb69ij.mp3
       type: audio/mpeg
@@ -943,6 +947,7 @@ podcast_interviews:
   - title: Physics of Inexplicit Ideas
     url: https://reasonisfun.podbean.com/e/2-physics-of-inexplicit-ideas/
     podcast_url: https://podcasts.apple.com/us/podcast/2-physics-of-inexplicit-ideas/id1681458005?i=1000614134181&uo=4
+    youtube_url: https://www.youtube.com/watch?v=0x8DNlMhaKQ
     audio:
       url: https://mcdn.podbean.com/mf/web/yy5cuw/RIF_2_-_Physics_of_Inexplicit_Ideas8f6l9.mp3
       type: audio/mpeg
@@ -956,6 +961,7 @@ podcast_interviews:
   - title: Fun, Fury, Feeling
     url: https://reasonisfun.podbean.com/e/1-fun-fury-feeling/
     podcast_url: https://podcasts.apple.com/us/podcast/1-fun-fury-feeling/id1681458005?i=1000612003892&uo=4
+    youtube_url: https://www.youtube.com/watch?v=5e2LWxaqQUQ
     audio:
       url: https://mcdn.podbean.com/mf/web/57vbxt/RIF_1_-_Fun_Anger_Emotional_Fluidity6vfb2.mp3
       type: audio/mpeg
@@ -969,6 +975,7 @@ podcast_interviews:
   - title: Effective Altruism, X-risk, (e/acc)
     url: https://reasonisfun.podbean.com/e/0-effective-altruism-x-risk-eacc/
     podcast_url: https://podcasts.apple.com/us/podcast/0-effective-altruism-x-risk-e-acc/id1681458005?i=1000610223173&uo=4
+    youtube_url: https://www.youtube.com/watch?v=iXZmczLNaoY
     audio:
       url: https://mcdn.podbean.com/mf/web/e9exp5/RIF_0_-_Effective_Altruism_X-risk_e_acc_8asbi.mp3
       type: audio/mpeg
