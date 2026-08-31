@@ -34,7 +34,8 @@ class ShowNotesTest < Minitest::Test
   def test_links_the_anthology_and_names_whose_the_episode_is
     notes = ShowNotes.html(episode, site_url: SITE)
 
-    assert_includes notes, "<a href=\"#{SITE}\">David Deutsch Anthology</a>"
+    assert_includes notes, "<a href=\"#{SITE}\">The David Deutsch Anthology</a>"
+    refute_includes notes, "the <a href=\"#{SITE}\">"
     assert_includes notes, ShowNotes::RIGHTS
   end
 
@@ -62,6 +63,7 @@ class ShowNotesTest < Minitest::Test
 
     assert_includes text, 'Interview on EconTalk, 11 January 2024.'
     assert_includes text, 'Original: https://econtalk.org/deutsch'
+    assert_includes text, 'Collected in The David Deutsch Anthology.'
     refute_match(/<[a-z]/, text)
   end
 end
