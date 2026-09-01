@@ -9,7 +9,7 @@ require 'cgi/escape'
 # its part is to say what the conversation is, point at where it was published,
 # and name whose it remains.
 module ShowNotes
-  NAME = 'David Deutsch Anthology'
+  NAME = 'The David Deutsch Anthology'
 
   RIGHTS = 'Each episode remains the property of the show that produced it.'
 
@@ -18,7 +18,7 @@ module ShowNotes
       paragraphs = [
         "#{h episode[:label]} on <em>#{h episode[:show_name]}</em>, #{date(episode)}.",
         links(episode),
-        "Collected in #{link(site_url, "The #{NAME}")}. #{RIGHTS}"
+        "Collected in #{link(site_url, NAME)}. #{RIGHTS}"
       ]
 
       paragraphs.compact.map { |paragraph| "<p>#{paragraph}</p>" }.join("\n")
@@ -29,7 +29,7 @@ module ShowNotes
     def text(episode)
       sentences = ["#{episode[:label]} on #{episode[:show_name]}, #{date(episode)}."]
       sentences << "Original: #{episode[:page_url]}" if episode[:page_url]
-      sentences << "Collected in The #{NAME}. #{RIGHTS}"
+      sentences << "Collected in #{NAME}. #{RIGHTS}"
       sentences.join("\n\n")
     end
 
