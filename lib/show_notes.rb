@@ -2,6 +2,8 @@
 
 require 'cgi/escape'
 
+require_relative 'site'
+
 # What a client shows underneath an episode.
 #
 # Written from what `list.yml` records rather than copied from the show's own
@@ -9,8 +11,6 @@ require 'cgi/escape'
 # its part is to say what the conversation is, point at where it was published,
 # and name whose it remains.
 module ShowNotes
-  NAME = 'David Deutsch Anthology'
-
   RIGHTS = 'Each episode remains the property of the show that produced it.'
 
   class << self
@@ -18,7 +18,7 @@ module ShowNotes
       paragraphs = [
         "#{h episode[:label]} on <em>#{h episode[:show_name]}</em>, #{date(episode)}.",
         links(episode),
-        "Collected in #{link(site_url, "The #{NAME}")}. #{RIGHTS}"
+        collected(link(site_url, Site::TITLE))
       ]
 
       paragraphs.compact.map { |paragraph| "<p>#{paragraph}</p>" }.join("\n")
@@ -29,11 +29,13 @@ module ShowNotes
     def text(episode)
       sentences = ["#{episode[:label]} on #{episode[:show_name]}, #{date(episode)}."]
       sentences << "Original: #{episode[:page_url]}" if episode[:page_url]
-      sentences << "Collected in The #{NAME}. #{RIGHTS}"
+      sentences << collected(Site::TITLE)
       sentences.join("\n\n")
     end
 
     private
+
+    def collected(title) = "Collected in #{title}. #{RIGHTS}"
 
     def links(episode)
       links = []
