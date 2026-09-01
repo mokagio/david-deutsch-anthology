@@ -212,7 +212,7 @@
     <h1 class="title">The David Deutsch Anthology</h1>
     <p>This page collects <span class="accent-link"><a class="intro-link" href="https://www.daviddeutsch.org.uk/" target="_blank">David Deutsch's</a></span> books, talks, and interviews.</p>
     <p>A YouTube playlist with some of the interviews can be found <span class="accent-link"><a class="intro-link" href="https://www.youtube.com/watch?v=xdtssXITXuE&list=PLlL8eTHbJV9qJIq3kR-V_p9Mavg46pgXf" target="_blank">here</a></span>.</p>
-    <p>A podcast feed with some of the interviews and talks can be found <span class="accent-link"><a class="intro-link" href="podcast.rss" target="_blank">here</a></span>.</p>
+    <p>A podcast feed with some of the interviews and talks can be found on <% podcasts.each_with_index do |podcast, index| %><%= index.zero? ? '' : (index == podcasts.size - 1 ? ' and ' : ', ') %><span class="accent-link"><a class="intro-link" href="<%= podcast['url'] %>" target="_blank"><%= podcast['name'] %></a></span><% end %>.</p>
     <h1>Books</h1>
     <ul class="anthology-list">
       <% books.each do |book| %>

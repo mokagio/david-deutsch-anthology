@@ -17,6 +17,7 @@ No Gemfile — Ruby stdlib only, version pinned in `.ruby-version`.
 ## Conventions
 
 - Content goes in `list.yml`, markup in `templates/`, shared code in `lib/`.
+- `podcasts.yml` lists the services the feed is published on, in the order the intro line names them.
 - `public/` is generated and gitignored: never edit or commit it.
 - `list.yml` uses YAML anchors and comments. Edit it as text; a round-trip through Ruby's YAML dumper renames every anchor and drops every comment.
 - An entry reaches the feed only if its `audio` block records `url`, `type` and `length`, and only from `podcast_interviews` or `talks` (`FeedBuilder::LABELS`). The `/audit-list` skill finds and records all three; the size and type are there so the build never probes a third-party host, which is how a deploy once silently lost four episodes.

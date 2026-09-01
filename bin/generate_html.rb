@@ -11,6 +11,7 @@ require_relative '../lib/site'
 
 # Load data from YAML file
 data = YAML.load_file('list.yml', aliases: true)
+podcasts = YAML.load_file('podcasts.yml')['podcasts']
 
 # Extract the sections from the YAML file
 books = data['books']

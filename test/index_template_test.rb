@@ -10,7 +10,7 @@ require_relative '../lib/site'
 class IndexTemplateTest < Minitest::Test
   TEMPLATE = ERB.new(File.read(File.expand_path('../templates/index.erb', __dir__)))
 
-  def render(interviews, other: [])
+  def render(interviews, other: [], podcasts: [{ 'name' => 'A Service', 'url' => 'https://service.example' }])
     books = []
     talks = []
     podcast_interviews = interviews.is_a?(Array) ? interviews : [interviews]
@@ -96,6 +96,7 @@ class IndexTemplateTest < Minitest::Test
                'urls' => [{ 'url' => 'https://book.example' }] }]
     other = [{ 'name' => 'Another resource', 'url' => 'https://other.example', 'published_year' => 1992 }]
     talks = []
+    podcasts = []
     podcast_interviews = [interview(podcast_url: 'https://podcast.example/episode')]
     html = TEMPLATE.result(binding)
 
@@ -109,6 +110,7 @@ class IndexTemplateTest < Minitest::Test
     books = []
     other = [{ 'name' => 'Undated resource', 'url' => 'https://other.example' }]
     talks = []
+    podcasts = []
     podcast_interviews = [interview(podcast_url: 'https://podcast.example/episode')]
 
     refute_includes TEMPLATE.result(binding), 'Undated resource</a> ·'
@@ -148,6 +150,27 @@ class IndexTemplateTest < Minitest::Test
 
     assert_equal 3, html.scan('class="intro-link"').size
     refute_includes html, '<div class="intro">'
+  end
+
+  def test_names_every_service_the_feed_is_published_on
+    html = render(
+      interview(podcast_url: 'https://podcast.example/episode'),
+      podcasts: [
+        { 'name' => 'Spotify', 'url' => 'https://spotify.example/show' },
+        { 'name' => 'Pocket Casts', 'url' => 'https://pca.example/show' },
+        { 'name' => 'RSS', 'url' => 'https://feed.example/podcast.rss' }
+      ]
+    )
+
+    assert_includes(
+      html,
+      'can be found on <span class="accent-link">' \
+      '<a class="intro-link" href="https://spotify.example/show" target="_blank">Spotify</a></span>, ' \
+      '<span class="accent-link">' \
+      '<a class="intro-link" href="https://pca.example/show" target="_blank">Pocket Casts</a></span> and ' \
+      '<span class="accent-link">' \
+      '<a class="intro-link" href="https://feed.example/podcast.rss" target="_blank">RSS</a></span>.</p>'
+    )
   end
 
   def test_lists_a_named_other_entry_as_a_link
