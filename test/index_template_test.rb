@@ -52,8 +52,8 @@ class IndexTemplateTest < Minitest::Test
 
     assert_equal 0, html.scan('>Website</a>').size
     assert_includes html, '<a class="episode-name" href="https://youtube.example/watch" target="_blank">An interview</a>'
-    assert_equal 1, html.scan('>YouTube</a>').size
-    assert_equal 1, html.scan('>Podcast</a>').size
+    assert_equal 1, html.scan('<a href="https://youtube.example/watch" target="_blank">YouTube</a>').size
+    assert_equal 1, html.scan('<a href="https://podcast.example/episode" target="_blank">Podcast</a>').size
   end
 
   def test_uses_english_ordinal_date_suffixes
