@@ -164,6 +164,18 @@ class FeedBuilderTest < Minitest::Test
     assert_equal %w[Newer Older], build.episodes.map { |episode| episode[:title] }
   end
 
+  def test_orders_episodes_stamped_the_same_instant_by_title
+    entries = %w[Carol Alice Bob].map do |title|
+      interview(title: title, url: "https://example.com/#{title.downcase}",
+                audio_url: "https://example.com/#{title.downcase}.mp3", date: '2024/11/12')
+    end
+
+    order = ->(list) { FeedBuilder.build({ 'podcast_interviews' => list }, probe: probe).episodes.map { |e| e[:title] } }
+
+    assert_equal %w[Alice Bob Carol], order.call(entries)
+    assert_equal %w[Alice Bob Carol], order.call(entries.reverse)
+  end
+
   def test_emits_one_episode_when_two_entries_share_an_audio_file
     build = FeedBuilder.build(
       { 'podcast_interviews' => [

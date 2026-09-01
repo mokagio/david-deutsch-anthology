@@ -47,8 +47,10 @@ module FeedBuilder
         end
       end
 
-      episodes.sort_by! { |episode| episode[:published_at] }
-      episodes.reverse!
+      # The title breaks ties: `sort_by` is not stable, so entries stamped the same
+      # instant swap between builds, changing which of a duplicated pair the `uniq`
+      # below keeps.
+      episodes.sort_by! { |episode| [-episode[:published_at].to_i, episode[:title]] }
 
       # A conversation listed twice — say, once as the host's video and once as the
       # show's episode — resolves to one file, and a client would offer it twice.
