@@ -754,6 +754,21 @@ podcast_interviews:
       url: https://www.youtube.com/@LucasdiGrassi
     published_date: 2026/08/23
 
+  - title: Why Does Progress Take So Long?
+    podcast_url: https://podfollow.com/studio-schweizer-monat/episode/fe9fb14a358b08a216c3b9718e58488a6f0f3ecb/view
+    youtube_url: https://www.youtube.com/watch?v=f6xc0jkHnf0
+    audio:
+      url: https://cdn.stationista.com/a7/608679a2d4ad3c4f4e0c0ba7/audio/fd/6accbeb6e30ce5199306c1fd/f05ab8aa01e72cad545f29f70751bb9c.mp3
+      type: audio/mpeg
+      length: 68186213
+      duration: 4867
+    image_url: https://cdn.stationista.com/a7/608679a2d4ad3c4f4e0c0ba7/images/a9/6a1e95a816080b10b106a9a9/pc/6ab36f582b7c5bc4b50c87bd_feed.jpg
+    show:
+      name: Schweizer Monat
+      url: https://www.schweizermonat.ch/
+    published_date: 2026/10/12
+    published_at: Mon, 12 Oct 2026 11:04:00 +0000
+
   - title: Sam Altman and David Deutsch on AGI
     youtube_url: https://www.youtube.com/watch?v=o80PeJ0P1YM # He appears in a segment of the ceremony stream, where the two settle on solving quantum gravity as the test the Turing Test is not
     show:
