@@ -769,6 +769,21 @@ podcast_interviews:
     published_date: 2026/10/12
     published_at: Mon, 12 Oct 2026 11:04:00 +0000
 
+  - title: "Father Of Quantum Computing: How To Think Like A Genius"
+    podcast_url: https://podcasts.apple.com/ca/podcast/father-of-quantum-computing-how-to-think-like-a/id1347973549?i=1000796767223
+    youtube_url: https://www.youtube.com/watch?v=WS3BZjtHpWw
+    audio:
+      url: https://prfx.byspotify.com/e/pscrb.fm/rss/p/claritaspod.com/measure/traffic.megaphone.fm/SIXMSB4638282457.mp3
+      type: audio/mpeg
+      length: 173098790
+      duration: 4311
+    image_url: https://megaphone.imgix.net/podcasts/38f5cb80-2c75-11f1-aa69-3bd75423085e/image/28404876bdb4918884356cf922a20c22.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress
+    show:
+      name: Modern Wisdom
+      url: https://chriswillx.com/podcast
+    published_date: 2026/10/17
+    published_at: Sat, 17 Oct 2026 05:00:00 +0000
+
   - title: Sam Altman and David Deutsch on AGI
     youtube_url: https://www.youtube.com/watch?v=o80PeJ0P1YM # He appears in a segment of the ceremony stream, where the two settle on solving quantum gravity as the test the Turing Test is not
     show:
